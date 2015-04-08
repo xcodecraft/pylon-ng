@@ -1,0 +1,7 @@
+<phpunit>
+    <testsuites>
+        <testsuite name="hello5">
+            <directory suffix="test.php">/home/zuowenjian/devspace/pylon/test/pylon/basesvc</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

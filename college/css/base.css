@@ -1,0 +1,35 @@
+@import url(base.css);
+
+.grey-bg {
+  background-color: #f3f3f4;
+}
+
+head,body{
+  font-family: Helvetica, Arial, Tahoma, "Microsoft YaHei", simsun, sans-serif;
+  font-size: 16px;
+}
+
+/*================================
+    NAVBAR STYLES
+==================================*/
+.navbar-default {
+  background-color: rgb(35, 133, 161);
+  border-color: transparent;
+  color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:hover {
+  color: #fff;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color:#fff;
+}
+
+pre code {
+  font-size: larger;
+  font-family: Monaco, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}

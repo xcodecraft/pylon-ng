@@ -1,0 +1,40 @@
+prj: !G.conf
+    version : "./src/version.txt"
+    service : "./_rg/svc.yaml"
+    publish : "./_rg/pub.yaml"
+    pub_ver : 2
+    scm     : "git"
+
+
+os:
+    php52: !G.os_env
+        nginx_conf_path  : "/usr/local/nginx/conf/include"
+        nginx_ctrl       : "/usr/local/nginx/sbin/nginx -s "
+        php_cgi          : "/usr/local/php-5.2/bin/php-cgi"
+        php              : "/usr/local/php-5.2/bin/php"
+        python           : "python"
+        run_path         : "/tmp/run"
+        log_path         : "/tmp/log"
+        import_env       : "HOME,PATH,PHPINI"
+
+    php53: !G.os_env
+        nginx_conf_path  : "/usr/local/nginx/conf/include"
+        nginx_ctrl       : "/usr/local/nginx/sbin/nginx -s "
+        php_cgi          : "/usr/local/php-5.3/bin/php-cgi"
+        php_fpm          : "/usr/local/php-5.3/sbin/php-fpm"
+        php              : "/usr/local/php-5.3/bin/php"
+        python           : "python"
+        run_path         : "/tmp/run"
+        log_path         : "/tmp/log"
+
+
+    php56: !G.os_env
+        nginx_conf_path  : "/usr/local/nginx/conf/include"
+        nginx_ctrl       : "/usr/local/nginx/sbin/nginx -s "
+        php_cgi          : "/usr/local/php-5.6/bin/php-cgi"
+        php_fpm          : "/usr/local/php-5.6/sbin/php-fpm"
+        php              : "/usr/local/php-5.6/bin/php"
+        python           : "python"
+        run_path         : "/tmp/run"
+        log_path         : "/tmp/log"
+

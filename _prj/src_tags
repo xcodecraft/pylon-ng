@@ -1,0 +1,1343 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	Development	//
+ACL_PRIFX	../src/pylon/impl/basesvc/monitor_svc.php	/^    const ACL_PRIFX='_stat_acl';$/;"	d	class:StatControl
+ACTION	../src/pylon/interface/exception.php	/^    const ACTION=1;$/;"	d	class:XNotFound
+ALLOW	../src/pylon/impl/framework/control.php	/^    const ALLOW=true;$/;"	d	class:IControl
+APCDriver	../src/pylon/impl/autoload/cache_svc.php	/^class APCDriver implements Cachable$/;"	c	inherits:Cachable
+Ands	../src/pylon/impl/dba/express.php	/^class Ands extends Express$/;"	c	inherits:Express
+ApiStyle	../src/pylon/impl/framework/other.php	/^class ApiStyle$/;"	c
+ArgsChecker	../src/pylon/impl/utls/args_checker.php	/^class ArgsChecker$/;"	c
+AutoScopeIntc	../src/pylon/impl/web/aop.php	/^class AutoScopeIntc$/;"	c
+BIZ_UNKNOW	../src/pylon/interface/exception.php	/^    const BIZ_UNKNOW   = 1100 ;$/;"	d	class:XErrCode
+CONF_BUG	../src/pylon/interface/exception.php	/^    const CONF_BUG    = 1003 ;$/;"	d	class:XErrCode
+Cachable	../src/pylon/impl/autoload/cache_svc.php	/^interface  Cachable$/;"	i
+CacheAdmin	../src/pylon/impl/autoload/cache_svc.php	/^class CacheAdmin$/;"	c
+CacheProxy	../src/pylon/impl/autoload/cache_svc.php	/^class  CacheProxy$/;"	c
+CacheSapce	../src/pylon/impl/autoload/cache_svc.php	/^class CacheSapce extends CacheSpace$/;"	c	inherits:CacheSpace
+CacheSpace	../src/pylon/impl/autoload/cache_svc.php	/^class CacheSpace$/;"	c
+CacheStg	../src/pylon/impl/autoload/cache_svc.php	/^class  CacheStg $/;"	c
+CacheSvcWarpper	../src/pylon/impl/autoload/cache_svc.php	/^class  CacheSvcWarpper extends PylCacheSvc$/;"	c	inherits:PylCacheSvc
+CallWrapper	../src/pylon/impl/framework/proxy.php	/^class CallWrapper extends XProperty$/;"	c	inherits:XProperty
+ColumnStg	../src/pylon/impl/dba/express.php	/^    function ColumnStg()$/;"	f	class:ColumnStg	signature:()
+ColumnStg	../src/pylon/impl/dba/express.php	/^class ColumnStg extends GenerateStg$/;"	c	inherits:GenerateStg
+CombinLogger	../src/pylon/impl/utls/logutls.php	/^class CombinLogger$/;"	c
+CondProp	../src/pylon/impl/framework/dao_utls.php	/^class CondProp$/;"	c
+DAO	../src/pylon/interface/ioc.php	/^    const DAO              = 'dao'  ;$/;"	d	class:XBox
+DBC	../src/pylon/utls/dbc.php	/^class DBC$/;"	c
+DB_ERR	../src/pylon/interface/exception.php	/^    const DB_ERR       = 1003 ;$/;"	d	class:XErrCode
+DB_LOCK	../src/pylon/impl/basesvc/locks.php	/^    const DB_LOCK= 1;$/;"	d	class:LockUtil
+DContextImpl	../src/pylon/impl/utls/diagnosis.php	/^class DContextImpl$/;"	c
+DO_ABORT	../src/pylon/utls/dbc.php	/^    const DO_ABORT      =2 ;$/;"	d	class:DBC
+DO_EXCEPTION	../src/pylon/utls/dbc.php	/^    const DO_EXCEPTION  =1;$/;"	d	class:DBC
+DO_NO	../src/pylon/utls/dbc.php	/^    const DO_NO         =4 ;$/;"	d	class:DBC
+DO_WARN	../src/pylon/utls/dbc.php	/^    const DO_WARN       =3 ;$/;"	d	class:DBC
+DQLObj	../src/pylon/impl/framework/query.php	/^class DQLObj$/;"	c
+Dao	../src/pylon/interface/ent.php	/^interface Dao$/;"	i
+DaoBase	../src/pylon/impl/framework/daobase.php	/^class DaoBase$/;"	c
+DaoFinderUtls	../src/pylon/impl/framework/entity.php	/^class DaoFinderUtls$/;"	c
+DaoImp	../src/pylon/impl/framework/daobase.php	/^class DaoImp extends DaoBase$/;"	c	inherits:DaoBase
+DaoInnerCacheCtrl	../src/pylon/impl/framework/control.php	/^class DaoInnerCacheCtrl extends DiyKeyControl$/;"	c	inherits:DiyKeyControl
+Debug	../src/pylon/utls/debug_utls.php	/^class Debug                                                                                                               $/;"	c
+DebugSupportInter	../src/pylon/impl/web/xmvc_ex.php	/^class DebugSupportInter implements XScopeInterceptor$/;"	c	inherits:XScopeInterceptor
+DiagnoseContext	../src/pylon/impl/utls/diagnosis.php	/^class DiagnoseContext$/;"	c
+DiagnoseMonitor	../src/pylon/impl/utls/diagnosis.php	/^class DiagnoseMonitor$/;"	c
+DiyKeyControl	../src/pylon/impl/framework/control.php	/^class DiyKeyControl extends EmptyControl$/;"	c	inherits:EmptyControl
+DynCallParser	../src/pylon/impl/framework/dao_utls.php	/^class DynCallParser$/;"	c
+EADriver	../src/pylon/impl/autoload/cache_svc.php	/^class EADriver implements Cachable$/;"	c	inherits:Cachable
+ENABLE_DOUBLE_MASTER	../src/pylon/extends/idgenerator.php	/^    public static $ENABLE_DOUBLE_MASTER = false;$/;"	v	class:MySqlIDGenerator	access:public
+ENABLE_DOUBLE_MASTER	../src/pylon/extends/idgenerator.php	/^    public static function ENABLE_DOUBLE_MASTER()$/;"	f	class:MySqlIDGenerator	access:public	signature:()
+EXPIRE	../src/pylon/impl/basesvc/locks.php	/^    const EXPIRE = 3;$/;"	d	class:LockUtil
+EchoLogger	../src/pylon/impl/utls/logutls.php	/^class EchoLogger$/;"	c
+EmptyControl	../src/pylon/impl/framework/control.php	/^class EmptyControl implements IControl$/;"	c	inherits:IControl
+EmptyUnitWork	../src/pylon/impl/framework/unitwork.php	/^class EmptyUnitWork implements UnitWork$/;"	c	inherits:UnitWork
+EntityImpl	../src/pylon/impl/framework/entity.php	/^class EntityImpl extends XProperty implements IAutoUpdate$/;"	c	inherits:XProperty,IAutoUpdate
+EntityUtls	../src/pylon/impl/framework/entity.php	/^class EntityUtls$/;"	c
+Eq	../src/pylon/impl/dba/express.php	/^class Eq extends Express$/;"	c	inherits:Express
+EqColumn	../src/pylon/impl/dba/express.php	/^class EqColumn extends Express$/;"	c	inherits:Express
+Express	../src/pylon/impl/dba/express.php	/^class Express$/;"	c
+FILE_DEFAULT_DIRECTORY_CREATION_MODE	../src/pylon/impl/autoload/build_includes.php	/^define( "FILE_DEFAULT_DIRECTORY_CREATION_MODE", 0755 );$/;"	d
+FILE_LOCK	../src/pylon/impl/basesvc/locks.php	/^    const FILE_LOCK = 0;$/;"	d	class:LockUtil
+FILTER_EXP	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  FILTER_EXP='filter_exp';$/;"	d	class:StatQueue
+FILTER_ITEM	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  FILTER_ITEM='filter_item';$/;"	d	class:StatQueue
+FORBID	../src/pylon/impl/framework/control.php	/^    const FORBID=false;$/;"	d	class:IControl
+FastRouter	../src/pylon/extends/rest_finder.php	/^class  FastRouter implements XIRouter$/;"	c	inherits:XIRouter
+FastSQLExecutor	../src/pylon/extends/sql_executor.php	/^class FastSQLExecutor$/;"	c
+FileLockImp	../src/pylon/impl/basesvc/locks.php	/^class FileLockImp implements Lockable$/;"	c	inherits:Lockable
+FilterProp	../src/pylon/impl/framework/dao_utls.php	/^class FilterProp extends XProperty$/;"	c	inherits:XProperty
+GenerateStg	../src/pylon/impl/dba/express.php	/^    function GenerateStg()$/;"	f	class:GenerateStg	signature:()
+GenerateStg	../src/pylon/impl/dba/express.php	/^class GenerateStg$/;"	c
+Great	../src/pylon/impl/dba/express.php	/^    function Great($column, $value,$stg=null)$/;"	f	class:Great	signature:($column, $value, $stg = null)
+Great	../src/pylon/impl/dba/express.php	/^class Great extends Express$/;"	c	inherits:Express
+GreatEq	../src/pylon/impl/dba/express.php	/^    function GreatEq($column, $value,$stg=null)$/;"	f	class:GreatEq	signature:($column, $value, $stg = null)
+GreatEq	../src/pylon/impl/dba/express.php	/^class GreatEq extends Express$/;"	c	inherits:Express
+GreatEqColumn	../src/pylon/impl/dba/express.php	/^    static public function GreatEqColumn($column1, $column2)$/;"	f	class:Express	access:public	signature:($column1, $column2)
+GreatEqColumn	../src/pylon/impl/dba/express.php	/^class GreatEqColumn extends Express$/;"	c	inherits:Express
+IAutoUpdate	../src/pylon/impl/framework/entity.php	/^interface IAutoUpdate$/;"	i
+IControl	../src/pylon/impl/framework/control.php	/^interface IControl$/;"	i
+IDG	../src/pylon/interface/ioc.php	/^    const IDG              = 'IDGenterService' ;$/;"	d	class:XBox
+IDGenterSvcImp	../src/pylon/extends/idgenerator.php	/^class IDGenterSvcImp extends MySqlIDGenerator$/;"	c	inherits:MySqlIDGenerator
+IMMED_LOADER	../src/pylon/impl/framework/entity.php	/^    const IMMED_LOADER = 2 ;$/;"	d	class:EntityImpl
+IMappingStg	../src/pylon/impl/framework/entity.php	/^interface IMappingStg$/;"	i
+ISessionDriver	../src/pylon/interface/plugin.php	/^interface ISessionDriver$/;"	i
+ITEM_KEEP_TIME	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  ITEM_KEEP_TIME=120;$/;"	d	class:StatWatcher
+InnerCache	../src/pylon/impl/autoload/cache_svc.php	/^class InnerCache implements Cachable$/;"	c	inherits:Cachable
+JoinUtls	../src/pylon/impl/utls/join_utls.php	/^class JoinUtls$/;"	c
+KEEP_TIME	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  KEEP_TIME=600;$/;"	d	class:StatWatcher
+LAZY_LOADER	../src/pylon/impl/framework/entity.php	/^    const LAZY_LOADER  = 1 ;$/;"	d	class:EntityImpl
+LArrayDriver	../src/pylon/impl/basesvc/monitor_svc.php	/^class LArrayDriver implements LCachable$/;"	c	inherits:LCachable
+LCachable	../src/pylon/impl/basesvc/monitor_svc.php	/^interface  LCachable  \/\/LCache 表达是轻量级的Cache;$/;"	i
+LDProxy	../src/pylon/impl/framework/proxy.php	/^class  LDProxy$/;"	c
+LEADriver	../src/pylon/impl/basesvc/monitor_svc.php	/^class LEADriver implements LCachable$/;"	c	inherits:LCachable
+LMDB	../src/pylon/impl/basesvc/monitor_svc.php	/^class LMDB$/;"	c
+LMemCacheDriver	../src/pylon/impl/basesvc/monitor_svc.php	/^class LMemCacheDriver implements LCachable$/;"	c	inherits:LCachable
+LMutiLevelCache	../src/pylon/impl/basesvc/monitor_svc.php	/^class LMutiLevelCache$/;"	c
+LOGIC_BUG	../src/pylon/interface/exception.php	/^    const LOGIC_BUG    = 1002 ;$/;"	d	class:XErrCode
+LOG_BENCHMARK_MODE	../src/pylon/pylon.php	/^    const LOG_BENCHMARK_MODE = 'BENCHMARK'  ;$/;"	d	class:XSetting
+LOG_DEBUG_LEVEL	../src/pylon/pylon.php	/^    const LOG_DEBUG_LEVEL    = 0 ;$/;"	d	class:XSetting
+LOG_DEBUG_MODE	../src/pylon/pylon.php	/^    const LOG_DEBUG_MODE     = 'DEBUG';$/;"	d	class:XSetting
+LOG_ERROR_LEVEL	../src/pylon/pylon.php	/^    const LOG_ERROR_LEVEL    = 3 ;$/;"	d	class:XSetting
+LOG_FAST_MODE	../src/pylon/pylon.php	/^    const LOG_FAST_MODE      = 'FAST' ;$/;"	d	class:XSetting
+LOG_INFO_LEVEL	../src/pylon/pylon.php	/^    const LOG_INFO_LEVEL     = 1 ;$/;"	d	class:XSetting
+LOG_ONLINE_MODE	../src/pylon/pylon.php	/^    const LOG_ONLINE_MODE    = 'ONLINE' ;$/;"	d	class:XSetting
+LOG_WARN_LEVEL	../src/pylon/pylon.php	/^    const LOG_WARN_LEVEL     = 2 ;$/;"	d	class:XSetting
+LONG_CONN	../src/pylon/extends/sql_executor.php	/^    const LONG_CONN=true;$/;"	d	class:FastSQLExecutor
+LZLExecutor	../src/pylon/extends/sql_executor.php	/^class LZLExecutor$/;"	c
+Less	../src/pylon/impl/dba/express.php	/^    function Less($column, $value,$stg=null)$/;"	f	class:Less	signature:($column, $value, $stg = null)
+Less	../src/pylon/impl/dba/express.php	/^class Less extends Express$/;"	c	inherits:Express
+LessEq	../src/pylon/impl/dba/express.php	/^    function LessEq($column, $value,$stg=null)$/;"	f	class:LessEq	signature:($column, $value, $stg = null)
+LessEq	../src/pylon/impl/dba/express.php	/^class LessEq extends Express$/;"	c	inherits:Express
+LessEqColumn	../src/pylon/impl/dba/express.php	/^    static public function LessEqColumn($column1, $column2)$/;"	f	class:Express	access:public	signature:($column1, $column2)
+LessEqColumn	../src/pylon/impl/dba/express.php	/^class LessEqColumn extends Express$/;"	c	inherits:Express
+LessValueColumnStg	../src/pylon/impl/dba/express.php	/^    function LessValueColumnStg($value)$/;"	f	class:LessValueColunmStg	signature:($value)
+LessValueColunmStg	../src/pylon/impl/dba/express.php	/^class LessValueColunmStg extends GenerateStg$/;"	c	inherits:GenerateStg
+LockUtil	../src/pylon/impl/basesvc/locks.php	/^class LockUtil$/;"	c
+Lockable	../src/pylon/impl/basesvc/locks.php	/^interface Lockable$/;"	i
+MAX_BOX	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  MAX_BOX=101;$/;"	d	class:StatWatcher
+MONGO	../src/pylon/impl/framework/other.php	/^    const MONGO = 2;$/;"	d	class:ApiStyle
+MSG_QUEUE	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  MSG_QUEUE="queue_st";$/;"	d	class:StatQueue
+MappingConf	../src/pylon/impl/framework/control.php	/^class MappingConf$/;"	c
+MemCacheSvc	../src/pylon/impl/autoload/cache_svc.php	/^class MemCacheSvc implements Cachable$/;"	c	inherits:Cachable
+MemCollectLogger	../src/pylon/impl/utls/logutls.php	/^class MemCollectLogger$/;"	c
+MemcacheSessDriver	../src/pylon/extends/session_memcache.php	/^class MemcacheSessDriver implements ISessionDriver$/;"	c	inherits:ISessionDriver
+MySqlIDGenerator	../src/pylon/extends/idgenerator.php	/^class MySqlIDGenerator implements XIDGenerator$/;"	c	inherits:XIDGenerator
+MySqlSessDriver	../src/pylon/extends/session_mysql.php	/^class MySqlSessDriver$/;"	c
+NOT_FOUND	../src/pylon/interface/exception.php	/^    const NOT_FOUND    = 404 ;$/;"	d	class:XErrCode
+NO_CLASS	../src/pylon/impl/autoload/class_loads.php	/^    const NO_CLASS = 1 ;$/;"	d	class:PylonGod
+NULLColumnStg	../src/pylon/impl/dba/express.php	/^    function NULLColumnStg()$/;"	f	class:NULLColumnStg	signature:()
+NULLColumnStg	../src/pylon/impl/dba/express.php	/^class NULLColumnStg extends GenerateStg$/;"	c	inherits:GenerateStg
+NULLStg	../src/pylon/impl/dba/express.php	/^    function NULLStg()$/;"	f	class:NULLStg	signature:()
+NULLStg	../src/pylon/impl/dba/express.php	/^class NULLStg extends GenerateStg$/;"	c	inherits:GenerateStg
+NullDriver	../src/pylon/impl/autoload/cache_svc.php	/^class NullDriver implements Cachable$/;"	c	inherits:Cachable
+NullEntity	../src/pylon/impl/framework/other.php	/^class NullEntity extends XEntity$/;"	c	inherits:XEntity
+NullLogger	../src/pylon/impl/dba/executer.php	/^class NullLogger$/;"	c
+NullSessionDriver	../src/pylon/impl/basesvc/session_svc.php	/^class NullSessionDriver implements ISessionDriver$/;"	c	inherits:ISessionDriver
+OBJ_ADD	../src/pylon/impl/framework/entity.php	/^    const OBJ_ADD=2;$/;"	d	class:ObjUpdater
+OBJ_DEL	../src/pylon/impl/framework/entity.php	/^    const OBJ_DEL=3;$/;"	d	class:ObjUpdater
+OBJ_LOAD	../src/pylon/impl/framework/entity.php	/^    const OBJ_LOAD=1;$/;"	d	class:ObjUpdater
+OFF	../src/pylon/impl/autoload/class_loads.php	/^    const OFF=0;$/;"	d	class:PylonGod
+OFF	../src/pylon/impl/framework/other.php	/^    const OFF=2;$/;"	d	class:XEntityCtrl
+ON	../src/pylon/impl/autoload/class_loads.php	/^    const ON=1;$/;"	d	class:PylonGod
+ON	../src/pylon/impl/framework/other.php	/^    const ON =1 ;$/;"	d	class:XEntityCtrl
+OP_ADD	../src/pylon/interface/ent.php	/^    const OP_ADD    = 3;$/;"	d	class:XQobj
+OP_DEL	../src/pylon/interface/ent.php	/^    const OP_DEL    = 4;$/;"	d	class:XQobj
+OP_GET	../src/pylon/interface/ent.php	/^    const OP_GET    = 2;$/;"	d	class:XQobj
+OP_LIST	../src/pylon/interface/ent.php	/^    const OP_LIST   = 1;$/;"	d	class:XQobj
+OP_UPDATE	../src/pylon/interface/ent.php	/^    const OP_UPDATE = 5;$/;"	d	class:XQobj
+ObjUpdater	../src/pylon/impl/framework/entity.php	/^class ObjUpdater$/;"	c
+ObjectSet	../src/pylon/impl/framework/relation.php	/^class ObjectSet  extends ObjUpdater$/;"	c	inherits:ObjUpdater
+Ors	../src/pylon/impl/dba/express.php	/^class Ors extends Express$/;"	c	inherits:Express
+PYLAssemblyBuilder	../src/pylon/impl/autoload/build_includes.php	/^class PYLAssemblyBuilder$/;"	c
+PYLFile	../src/pylon/impl/autoload/build_includes.php	/^class PYLFile$/;"	c
+PYL_HttpHeader	../src/pylon/impl/utls/http.php	/^class PYL_HttpHeader$/;"	c
+Pair	../src/pylon/extends/sql_executor.php	/^class Pair$/;"	c
+Prompt	../src/pylon/impl/autoload/php_cls_loads.php	/^class Prompt$/;"	c
+PylCacheSvc	../src/pylon/impl/autoload/cache_svc.php	/^class  PylCacheSvc$/;"	c
+PylonGod	../src/pylon/impl/autoload/class_loads.php	/^class PylonGod$/;"	c
+PylonModule	../src/pylon/impl/autoload/class_loads.php	/^class PylonModule$/;"	c
+PylonModule	../src/pylon/pylon.php	/^class PylonModule$/;"	c
+QL	../src/pylon/impl/framework/query.php	/^function QL($express,$symbol='?')$/;"	f	signature:($express, $symbol = '...')
+QUERY	../src/pylon/interface/ioc.php	/^    const QUERY            = 'query' ;$/;"	d	class:XBox
+QUEUE_HEAD	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  QUEUE_HEAD='queue_top';$/;"	d	class:StatQueue
+QUEUE_MAX_MSG	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  QUEUE_MAX_MSG=50;$/;"	d	class:StatQueue
+QUEUE_TAIL	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  QUEUE_TAIL='queue_tail';$/;"	d	class:StatQueue
+Query	../src/pylon/impl/framework/query.php	/^class Query$/;"	c
+ROUTER	../src/pylon/interface/ioc.php	/^    const ROUTER      = 'router'  ;$/;"	d	class:XBox
+RUBY	../src/pylon/impl/framework/other.php	/^    const RUBY  = 1;$/;"	d	class:ApiStyle
+Relation	../src/pylon/impl/framework/entity.php	/^    class Relation extends XProperty   implements IAutoUpdate$/;"	c	inherits:XProperty,IAutoUpdate	implementation:abstract
+SHORT_CONN	../src/pylon/extends/sql_executor.php	/^    const SHORT_CONN=false;$/;"	d	class:FastSQLExecutor
+SQLDelStatement	../src/pylon/impl/dba/sql_constructor.php	/^class SQLDelStatement extends SQLStatement$/;"	c	inherits:SQLStatement
+SQLE	../src/pylon/interface/ioc.php	/^    const SQLE             = 'SQLExecuter' ;$/;"	d	class:XBox
+SQLInsertStatment	../src/pylon/impl/dba/sql_constructor.php	/^class SQLInsertStatment extends  SQLStatement $/;"	c	inherits:SQLStatement
+SQLLockImp	../src/pylon/impl/basesvc/locks.php	/^class SQLLockImp implements Lockable$/;"	c	inherits:Lockable
+SQLSelectStatement	../src/pylon/impl/dba/sql_constructor.php	/^    function SQLSelectStatement($view , $viewCond=null)$/;"	f	class:SQLSelectStatement	signature:($view, $viewCond = null)
+SQLSelectStatement	../src/pylon/impl/dba/sql_constructor.php	/^class SQLSelectStatement extends SQLStatement$/;"	c	inherits:SQLStatement
+SQLStatement	../src/pylon/impl/dba/sql_constructor.php	/^    function SQLStatement($tableName )$/;"	f	class:SQLStatement	signature:($tableName)
+SQLStatement	../src/pylon/impl/dba/sql_constructor.php	/^abstract class SQLStatement$/;"	c	implementation:abstract
+SQLUpdateStatment	../src/pylon/impl/dba/sql_constructor.php	/^class SQLUpdateStatment extends SQLStatement$/;"	c	inherits:SQLStatement
+SUCCESS	../src/pylon/interface/exception.php	/^    const SUCCESS      = 0 ;$/;"	d	class:XErrCode
+SYS_UNKNOW	../src/pylon/interface/exception.php	/^    const SYS_UNKNOW   = 1001 ;$/;"	d	class:XErrCode
+ScopeAction	../src/pylon/utls/utility.php	/^class ScopeAction$/;"	c
+ScopeAutoTrans	../src/pylon/impl/framework/unitwork.php	/^class ScopeAutoTrans$/;"	c
+ScopeEchoLog	../src/pylon/impl/utls/logutls.php	/^class ScopeEchoLog extends ScopeExeCode$/;"	c	inherits:ScopeExeCode
+ScopeExeCode	../src/pylon/utls/utility.php	/^class ScopeExeCode$/;"	c
+ScopeExec	../src/pylon/impl/utls/logutls.php	/^class ScopeExec$/;"	c
+ScopeSqlLog	../src/pylon/impl/utls/logutls.php	/^class ScopeSqlLog extends ScopeExec$/;"	c	inherits:ScopeExec
+SessionSvc	../src/pylon/impl/basesvc/session_svc.php	/^class SessionSvc$/;"	c
+SimpleDaoFactory	../src/pylon/impl/framework/daobase.php	/^class SimpleDaoFactory$/;"	c
+SimpleMapping	../src/pylon/impl/framework/entity.php	/^class SimpleMapping implements IMappingStg$/;"	c	inherits:IMappingStg
+SimpleQueryFactory	../src/pylon/impl/framework/query.php	/^class SimpleQueryFactory$/;"	c
+SmartyRenderer	../src/pylon/impl/web/xmvc_ex.php	/^class SmartyRenderer implements XRenderer$/;"	c	inherits:XRenderer
+SqlCollector	../src/pylon/impl/dba/translation.php	/^    function SqlCollector()$/;"	f	class:SqlCollector	signature:()
+SqlCollector	../src/pylon/impl/dba/translation.php	/^class SqlCollector$/;"	c
+SqlProcUtls	../src/pylon/impl/framework/query.php	/^class SqlProcUtls$/;"	c
+StatControl	../src/pylon/impl/basesvc/monitor_svc.php	/^class StatControl$/;"	c
+StatMDB	../src/pylon/impl/basesvc/monitor_svc.php	/^class StatMDB extends LMDB$/;"	c	inherits:LMDB
+StatQueue	../src/pylon/impl/basesvc/monitor_svc.php	/^class StatQueue$/;"	c
+StatWatcher	../src/pylon/impl/basesvc/monitor_svc.php	/^class StatWatcher$/;"	c
+StatusDirect	../src/pylon/utls/status_machine.php	/^class StatusDirect$/;"	c
+StatusMachine	../src/pylon/utls/status_machine.php	/^class StatusMachine$/;"	c
+StdMapping	../src/pylon/impl/framework/entity.php	/^class StdMapping implements IMappingStg$/;"	c	inherits:IMappingStg
+StgUtls	../src/pylon/impl/dba/express.php	/^class StgUtls$/;"	c
+SysVersion	../src/pylon/impl/utls/version.php	/^class SysVersion$/;"	c
+TestCaseExec	../src/pylon/impl/autoload/tc_support.php	/^class TestCaseExec$/;"	c
+TransManager	../src/pylon/impl/dba/trans_manager.php	/^class TransManager$/;"	c
+Translation	../src/pylon/impl/dba/translation.php	/^class Translation$/;"	c
+TxtExpress	../src/pylon/impl/dba/express.php	/^class TxtExpress extends Express$/;"	c	inherits:Express
+UNDEFINE	../src/pylon/interface/exception.php	/^    const UNDEFINE     = 1000 ;$/;"	d	class:XErrCode
+UnitWork	../src/pylon/impl/framework/unitwork.php	/^interface UnitWork$/;"	i
+UnitWorkImpl	../src/pylon/impl/framework/unitwork.php	/^class UnitWorkImpl extends ObjUpdater implements UnitWork$/;"	c	inherits:ObjUpdater,UnitWork
+UserFunStg	../src/pylon/impl/dba/express.php	/^    function UserFunStg($fun)$/;"	f	class:UserFunStg	signature:($fun)
+UserFunStg	../src/pylon/impl/dba/express.php	/^class UserFunStg extends GenerateStg$/;"	c	inherits:GenerateStg
+ValueColumnStg	../src/pylon/impl/dba/express.php	/^    function ValueColumnStg($value)$/;"	f	class:ValueColumnStg	signature:($value)
+ValueColumnStg	../src/pylon/impl/dba/express.php	/^class ValueColumnStg extends GenerateStg$/;"	c	inherits:GenerateStg
+WATCH_KEY	../src/pylon/impl/basesvc/monitor_svc.php	/^    const  WATCH_KEY='watch_key';$/;"	d	class:StatWatcher
+XAop	../src/pylon/interface/ioc.php	/^class XAop$/;"	c
+XAopRule	../src/pylon/impl/web/aop.php	/^class XAopRule$/;"	c
+XAopRuleSet	../src/pylon/impl/web/aop.php	/^class XAopRuleSet$/;"	c
+XAppSession	../src/pylon/interface/ent.php	/^class XAppSession$/;"	c
+XAssembly	../src/pylon/interface/ioc.php	/^interface XAssembly$/;"	i
+XBR	../src/pylon/utls/biz.php	/^class XBR$/;"	c
+XBizException	../src/pylon/interface/exception.php	/^class XBizException extends XRuntimeException$/;"	c	inherits:XRuntimeException
+XBizResult	../src/pylon/utls/biz.php	/^class XBizResult$/;"	c
+XBox	../src/pylon/interface/ioc.php	/^class XBox$/;"	c
+XConfigException	../src/pylon/interface/exception.php	/^class XConfigException extends XLogicException$/;"	c	inherits:XLogicException
+XDBCException	../src/pylon/interface/exception.php	/^class XDBCException extends XLogicException$/;"	c	inherits:XLogicException
+XDBException	../src/pylon/interface/exception.php	/^class XDBException extends XRuntimeException$/;"	c	inherits:XRuntimeException
+XDaoUtls	../src/pylon/interface/ent.php	/^class XDaoUtls$/;"	c
+XDataPage	../src/pylon/utls/datapage.php	/^class XDataPage extends XProperty$/;"	c	inherits:XProperty
+XEntity	../src/pylon/interface/ent.php	/^class XEntity extends EntityImpl$/;"	c	inherits:EntityImpl
+XEntityCtrl	../src/pylon/impl/framework/other.php	/^class XEntityCtrl$/;"	c
+XErrCode	../src/pylon/interface/exception.php	/^class XErrCode$/;"	c
+XExceptionUtls	../src/pylon/utls/exception.php	/^class XExceptionUtls$/;"	c
+XHtmlResp	../src/pylon/interface/webimpl.php	/^class XHtmlResp   implements XResponse$/;"	c	inherits:XResponse
+XHttpCall	../src/pylon/utls/unittest.php	/^class XHttpCall$/;"	c
+XHttpResult	../src/pylon/utls/unittest.php	/^class XHttpResult$/;"	c
+XID	../src/pylon/impl/framework/entity.php	/^class  XID extends XProperty$/;"	c	inherits:XProperty
+XIDGenerator	../src/pylon/interface/plugin.php	/^interface XIDGenerator$/;"	i
+XIRouter	../src/pylon/interface/plugin.php	/^interface XIRouter$/;"	i
+XIntercepterTarget	../src/pylon/impl/web/aop.php	/^class XIntercepterTarget$/;"	c
+XInterceptor	../src/pylon/interface/web.php	/^abstract class XInterceptor$/;"	c	implementation:abstract
+XInterceptorRuner	../src/pylon/impl/web/rest.php	/^class XInterceptorRuner extends XInterceptor$/;"	c	inherits:XInterceptor
+XLogKit	../src/pylon/pylon.php	/^class XLogKit$/;"	c
+XLogSpeed	../src/pylon/utls/utility.php	/^class XLogSpeed$/;"	c
+XLogger	../src/pylon/pylon.php	/^class XLogger extends Logger$/;"	c	inherits:Logger
+XLogicException	../src/pylon/interface/exception.php	/^class XLogicException extends LogicException$/;"	c	inherits:LogicException
+XNotFound	../src/pylon/interface/exception.php	/^class XNotFound extends XRuntimeException$/;"	c	inherits:XRuntimeException
+XNotImplemented	../src/pylon/interface/exception.php	/^class XNotImplemented extends XRuntimeException$/;"	c	inherits:XRuntimeException
+XProperty	../src/pylon/interface/base.php	/^class XProperty$/;"	c
+XPylon	../src/pylon/pylon.php	/^class XPylon$/;"	c
+XQarr	../src/pylon/interface/ent.php	/^class XQarr$/;"	c
+XQobj	../src/pylon/interface/ent.php	/^class XQobj$/;"	c
+XQuery	../src/pylon/interface/ent.php	/^class XQuery$/;"	c
+XResponse	../src/pylon/interface/web.php	/^interface XResponse$/;"	i
+XRestResp	../src/pylon/interface/webimpl.php	/^class XRestResp implements XResponse$/;"	c	inherits:XResponse
+XRouter	../src/pylon/impl/web/rest.php	/^class XRouter$/;"	c
+XRuleService	../src/pylon/interface/webimpl.php	/^class XRuleService implements XService$/;"	c	inherits:XService
+XRuntimeException	../src/pylon/interface/exception.php	/^class XRuntimeException extends RuntimeException$/;"	c	inherits:RuntimeException
+XSQLExecuter	../src/pylon/interface/plugin.php	/^interface XSQLExecuter$/;"	i
+XScopeLogEvent	../src/pylon/utls/log.php	/^class XScopeLogEvent$/;"	c
+XScopeLogTag	../src/pylon/utls/log.php	/^class XScopeLogTag$/;"	c
+XService	../src/pylon/interface/web.php	/^interface XService$/;"	i
+XSetting	../src/pylon/pylon.php	/^class XSetting$/;"	c
+XSimpleService	../src/pylon/interface/webimpl.php	/^class XSimpleService implements XService$/;"	c	inherits:XService
+XUnAuthorized	../src/pylon/interface/exception.php	/^class XUnAuthorized extends XRuntimeException$/;"	c	inherits:XRuntimeException
+XUnitTestIntecept	../src/pylon/utls/unittest.php	/^class XUnitTestIntecept extends XInterceptor$/;"	c	inherits:XInterceptor
+XUnitViewIntecept	../src/pylon/utls/unittest.php	/^class XUnitViewIntecept extends XInterceptor$/;"	c	inherits:XInterceptor
+XUserInputException	../src/pylon/interface/exception.php	/^class XUserInputException extends RuntimeException$/;"	c	inherits:RuntimeException
+XWriter	../src/pylon/interface/ent.php	/^class XWriter$/;"	c
+__call	../src/pylon/extends/sql_executor.php	/^    public function __call($name, $arguments)$/;"	f	class:LZLExecutor	access:public	signature:($name, $arguments)
+__call	../src/pylon/impl/autoload/cache_svc.php	/^    public function __call($name,$params) $/;"	f	class:CacheProxy	access:public	signature:($name, $params)
+__call	../src/pylon/impl/autoload/cache_svc.php	/^    public function __call($name,$params) $/;"	f	class:PylCacheSvc	access:public	signature:($name, $params)
+__call	../src/pylon/impl/framework/other.php	/^    public function __call($name,$params)$/;"	f	class:NullEntity	access:public	signature:($name, $params)
+__call	../src/pylon/impl/framework/proxy.php	/^    public function __call($name,$params)$/;"	f	class:CallWrapper	access:public	signature:($name, $params)
+__call	../src/pylon/impl/framework/proxy.php	/^    public function __call($name,$params)$/;"	f	class:LDProxy	access:public	signature:($name, $params)
+__call	../src/pylon/impl/web/aop.php	/^    public function __call($name,$params)$/;"	f	class:XAopRuleSet	access:public	signature:($name, $params)
+__call	../src/pylon/interface/ent.php	/^    public function __call($name,$params)$/;"	f	class:XQarr	access:public	signature:($name, $params)
+__call	../src/pylon/interface/ent.php	/^    public function __call($name,$params)$/;"	f	class:XQobj	access:public	signature:($name, $params)
+__call	../src/pylon/interface/ent.php	/^    public function __call($name,$params)$/;"	f	class:XWriter	access:public	signature:($name, $params)
+__callStatic	../src/pylon/interface/ent.php	/^    public static function __callStatic($name,$params)$/;"	f	class:XQarr	access:public	signature:($name, $params)
+__callStatic	../src/pylon/interface/ent.php	/^    public static function __callStatic($name,$params)$/;"	f	class:XWriter	access:public	signature:($name, $params)
+__callStatic	../src/pylon/interface/ioc.php	/^    static function __callStatic($name,$arguments)$/;"	f	class:XAop	signature:($name, $arguments)
+__construct	../src/pylon/extends/idgenerator.php	/^    public function __construct($executer,$clone=true,$second=false)$/;"	f	class:MySqlIDGenerator	access:public	signature:($executer, $clone = true, $second = false)
+__construct	../src/pylon/extends/rest_finder.php	/^    public function __construct($data_file)$/;"	f	class:FastRouter	access:public	signature:($data_file)
+__construct	../src/pylon/extends/session_memcache.php	/^    public function __construct($memCacheSvc,$life=1440) $/;"	f	class:MemcacheSessDriver	access:public	signature:($memCacheSvc, $life = 1440)
+__construct	../src/pylon/extends/session_mysql.php	/^   public function __construct($dbhost,$dbname,$dbuser,$dbpasswd,$life=1440) $/;"	f	class:MySqlSessDriver	access:public	signature:($dbhost, $dbname, $dbuser, $dbpasswd, $life = 1440)
+__construct	../src/pylon/extends/sql_executor.php	/^    public function __construct($first,$second)$/;"	f	class:Pair	access:public	signature:($first, $second)
+__construct	../src/pylon/extends/sql_executor.php	/^    public function __construct($host, $userName, $password, $dbName,$connType=FastSQLExecutor::SHORT_CONN,$charset='GBK', $cls = "FastSQLExecutor" , $port="3306")$/;"	f	class:LZLExecutor	access:public	signature:($host, $userName, $password, $dbName, $connType = FastSQLExecutor:: SHORT_CONN, $charset = '...', $cls = '...', $port = '...')
+__construct	../src/pylon/extends/sql_executor.php	/^    public function __construct($host, $userName, $password, $dbName,$connType=FastSQLExecutor::SHORT_CONN,$charset='GBK',$port=3306)$/;"	f	class:FastSQLExecutor	access:public	signature:($host, $userName, $password, $dbName, $connType = FastSQLExecutor:: SHORT_CONN, $charset = '...', $port = 3306)
+__construct	../src/pylon/impl/autoload/build_includes.php	/^    function __construct( $fileName )$/;"	f	class:PYLFile	signature:($fileName)
+__construct	../src/pylon/impl/autoload/cache_svc.php	/^    public function __construct($cache,$dao,$prefix)$/;"	f	class:CacheProxy	access:public	signature:($cache, $dao, $prefix)
+__construct	../src/pylon/impl/autoload/cache_svc.php	/^    public function __construct($driver,$stg)$/;"	f	class:CacheSpace	access:public	signature:($driver, $stg)
+__construct	../src/pylon/impl/autoload/cache_svc.php	/^    public function __construct($expire,$getkeyfun=null) $/;"	f	class:CacheStg	access:public	signature:($expire, $getkeyfun = null)
+__construct	../src/pylon/impl/autoload/cache_svc.php	/^    public function __construct($name,$driver,$stg)$/;"	f	class:PylCacheSvc	access:public	signature:($name, $driver, $stg)
+__construct	../src/pylon/impl/autoload/cache_svc.php	/^    public function __construct($servers,$prefix="_")$/;"	f	class:MemCacheSvc	access:public	signature:($servers, $prefix = '...')
+__construct	../src/pylon/impl/basesvc/locks.php	/^    public function __construct($key)$/;"	f	class:FileLockImp	access:public	signature:($key)
+__construct	../src/pylon/impl/basesvc/locks.php	/^    public function __construct($key)$/;"	f	class:SQLLockImp	access:public	signature:($key)
+__construct	../src/pylon/impl/basesvc/monitor_svc.php	/^    private function __construct()$/;"	f	class:LMDB	access:private	signature:()
+__construct	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function __construct($firstCache,$secondCache,$fstCacheSec=60,$incGap=10)$/;"	f	class:LMutiLevelCache	access:public	signature:($firstCache, $secondCache, $fstCacheSec = 60, $incGap = 10)
+__construct	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function __construct($mdb)$/;"	f	class:StatControl	access:public	signature:($mdb)
+__construct	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function __construct($mdb)$/;"	f	class:StatQueue	access:public	signature:($mdb)
+__construct	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function __construct($mdb)$/;"	f	class:StatWatcher	access:public	signature:($mdb)
+__construct	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function __construct($servers,$port=11211)$/;"	f	class:LMemCacheDriver	access:public	signature:($servers, $port = 11211)
+__construct	../src/pylon/impl/basesvc/session_svc.php	/^    public function __construct($sessName,$driver)$/;"	f	class:SessionSvc	access:public	signature:($sessName, $driver)
+__construct	../src/pylon/impl/dba/express.php	/^    public function __construct($args)$/;"	f	class:Ands	access:public	signature:($args)
+__construct	../src/pylon/impl/dba/express.php	/^    public function __construct($args)$/;"	f	class:Ors	access:public	signature:($args)
+__construct	../src/pylon/impl/dba/express.php	/^    public function __construct($column, $value,$stg=null)$/;"	f	class:Eq	access:public	signature:($column, $value, $stg = null)
+__construct	../src/pylon/impl/dba/express.php	/^    public function __construct($column1, $column2)$/;"	f	class:EqColumn	access:public	signature:($column1, $column2)
+__construct	../src/pylon/impl/dba/express.php	/^    public function __construct($column1, $column2)$/;"	f	class:GreatEqColumn	access:public	signature:($column1, $column2)
+__construct	../src/pylon/impl/dba/express.php	/^    public function __construct($column1, $column2)$/;"	f	class:LessEqColumn	access:public	signature:($column1, $column2)
+__construct	../src/pylon/impl/dba/express.php	/^    public function __construct($stg=null)$/;"	f	class:Express	access:public	signature:($stg = null)
+__construct	../src/pylon/impl/dba/express.php	/^    public function __construct($txtSql)$/;"	f	class:TxtExpress	access:public	signature:($txtSql)
+__construct	../src/pylon/impl/dba/sql_constructor.php	/^        public function __construct($tableName)$/;"	f	class:SQLUpdateStatment	access:public	signature:($tableName)
+__construct	../src/pylon/impl/dba/sql_constructor.php	/^    public function __construct($tableName)$/;"	f	class:SQLDelStatement	access:public	signature:($tableName)
+__construct	../src/pylon/impl/dba/sql_constructor.php	/^    public function __construct($tableName)$/;"	f	class:SQLInsertStatment	access:public	signature:($tableName)
+__construct	../src/pylon/impl/dba/translation.php	/^    public function __construct($executer )$/;"	f	class:Translation	access:public	signature:($executer)
+__construct	../src/pylon/impl/framework/control.php	/^    public function __construct($cls,$clearMap)$/;"	f	class:DaoInnerCacheCtrl	access:public	signature:($cls, $clearMap)
+__construct	../src/pylon/impl/framework/control.php	/^    public function __construct($default,$excepts)$/;"	f	class:DiyKeyControl	access:public	signature:($default, $excepts)
+__construct	../src/pylon/impl/framework/control.php	/^    public function __construct($defaultFun)$/;"	f	class:MappingConf	access:public	signature:($defaultFun)
+__construct	../src/pylon/impl/framework/daobase.php	/^    public function __construct($cls,$execer,$view,$mappingStg,$hashStoreFun=null)$/;"	f	class:DaoImp	access:public	signature:($cls, $execer, $view, $mappingStg, $hashStoreFun = null)
+__construct	../src/pylon/impl/framework/daobase.php	/^    public function __construct($cls,$executer=NULL,$tableFinder=NULL)$/;"	f	class:DaoBase	access:public	signature:($cls, $executer = NULL, $tableFinder = NULL)
+__construct	../src/pylon/impl/framework/daobase.php	/^    public function __construct($execr)$/;"	f	class:SimpleDaoFactory	access:public	signature:($execr)
+__construct	../src/pylon/impl/framework/entity.php	/^        public function __construct($prop=null)$/;"	f	class:Relation	access:public	signature:($prop = null)
+__construct	../src/pylon/impl/framework/entity.php	/^    protected function __construct(&$items,$objType)$/;"	f	class:ObjUpdater	access:protected	signature:(& $items, $objType)
+__construct	../src/pylon/impl/framework/entity.php	/^    public function __construct($id,$ver,$cTime,$uTime)$/;"	f	class:XID	access:public	signature:($id, $ver, $cTime, $uTime)
+__construct	../src/pylon/impl/framework/entity.php	/^    public function __construct($xid,$prop=null)$/;"	f	class:EntityImpl	access:public	signature:($xid, $prop = null)
+__construct	../src/pylon/impl/framework/other.php	/^    public function __construct($clsName)$/;"	f	class:NullEntity	access:public	signature:($clsName)
+__construct	../src/pylon/impl/framework/proxy.php	/^    public function __construct($fun,$args)$/;"	f	class:LDProxy	access:public	signature:($fun, $args)
+__construct	../src/pylon/impl/framework/proxy.php	/^    public function __construct($fun,$obj)$/;"	f	class:CallWrapper	access:public	signature:($fun, $obj)
+__construct	../src/pylon/impl/framework/query.php	/^    public function __construct($execr)$/;"	f	class:SimpleQueryFactory	access:public	signature:($execr)
+__construct	../src/pylon/impl/framework/query.php	/^    public function __construct($exer,$name=null)$/;"	f	class:Query	access:public	signature:($exer, $name = null)
+__construct	../src/pylon/impl/framework/query.php	/^    public function __construct($express,$symbol='?')$/;"	f	class:DQLObj	access:public	signature:($express, $symbol = '...')
+__construct	../src/pylon/impl/framework/unitwork.php	/^    public function __construct($exer)$/;"	f	class:ScopeAutoTrans	access:public	signature:($exer)
+__construct	../src/pylon/impl/framework/unitwork.php	/^    public function __construct()$/;"	f	class:UnitWorkImpl	access:public	signature:()
+__construct	../src/pylon/impl/utls/diagnosis.php	/^    private  function __construct($name)$/;"	f	class:DiagnoseContext	access:private	signature:($name)
+__construct	../src/pylon/impl/utls/logutls.php	/^    protected function __construct($beginFun,$endFun,$arg)$/;"	f	class:ScopeExec	access:protected	signature:($beginFun, $endFun, $arg)
+__construct	../src/pylon/impl/utls/logutls.php	/^    public function __construct($executer)$/;"	f	class:ScopeEchoLog	access:public	signature:($executer)
+__construct	../src/pylon/impl/utls/logutls.php	/^    public function __construct()$/;"	f	class:CombinLogger	access:public	signature:()
+__construct	../src/pylon/impl/utls/version.php	/^    public function __construct($struct,$feature,$fixbug,$commitNo)$/;"	f	class:SysVersion	access:public	signature:($struct, $feature, $fixbug, $commitNo)
+__construct	../src/pylon/impl/web/aop.php	/^    public function __construct($intcpt,$xcontext,$request,$response)$/;"	f	class:AutoScopeIntc	access:public	signature:($intcpt, $xcontext, $request, $response)
+__construct	../src/pylon/impl/web/aop.php	/^    public function __construct($pos,$isMatch,$regex,$args)$/;"	f	class:XAopRule	access:public	signature:($pos, $isMatch, $regex, $args)
+__construct	../src/pylon/impl/web/aop.php	/^    public function __construct($request)$/;"	f	class:XIntercepterTarget	access:public	signature:($request)
+__construct	../src/pylon/impl/web/rest.php	/^    public function __construct($itcs)$/;"	f	class:XInterceptorRuner	access:public	signature:($itcs)
+__construct	../src/pylon/impl/web/xmvc_ex.php	/^    public function __construct($smartyRoot,$templarRoot)$/;"	f	class:SmartyRenderer	access:public	signature:($smartyRoot, $templarRoot)
+__construct	../src/pylon/interface/base.php	/^	public function __construct($arr=array())$/;"	f	class:XProperty	access:public	signature:($arr = array())
+__construct	../src/pylon/interface/ent.php	/^    protected function __construct($unitWork,$where_begin)$/;"	f	class:XAppSession	access:protected	signature:($unitWork, $where_begin)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($message)$/;"	f	class:XUserInputException	access:public	signature:($message)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($msg)$/;"	f	class:XDBException	access:public	signature:($msg)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($msg,$code=XErrCode::LOGIC_BUG,$status_code=500)$/;"	f	class:XLogicException	access:public	signature:($msg, $code = XErrCode:: LOGIC_BUG, $status_code = 500)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($msg="",$code=XErrCode::BIZ_UNKNOW)$/;"	f	class:XBizException	access:public	signature:($msg = '...', $code = XErrCode:: BIZ_UNKNOW)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($msg="",$code=XErrCode::BIZ_UNKNOW)$/;"	f	class:XNotFound	access:public	signature:($msg = '...', $code = XErrCode:: BIZ_UNKNOW)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($msg="",$code=XErrCode::BIZ_UNKNOW)$/;"	f	class:XNotImplemented	access:public	signature:($msg = '...', $code = XErrCode:: BIZ_UNKNOW)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($msg="",$code=XErrCode::BIZ_UNKNOW)$/;"	f	class:XUnAuthorized	access:public	signature:($msg = '...', $code = XErrCode:: BIZ_UNKNOW)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($msg="",$code=XErrCode::CONF_BUG)$/;"	f	class:XConfigException	access:public	signature:($msg = '...', $code = XErrCode:: CONF_BUG)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($msg="",$code=XErrCode::LOGIC_BUG)$/;"	f	class:XDBCException	access:public	signature:($msg = '...', $code = XErrCode:: LOGIC_BUG)
+__construct	../src/pylon/interface/exception.php	/^    public function __construct($status_code,$msg,$code)$/;"	f	class:XRuntimeException	access:public	signature:($status_code, $msg, $code)
+__construct	../src/pylon/interface/webimpl.php	/^    public function __construct()$/;"	f	class:XRestResp	access:public	signature:()
+__construct	../src/pylon/utls/datapage.php	/^    public function __construct($pageRows=20)$/;"	f	class:XDataPage	access:public	signature:($pageRows = 20)
+__construct	../src/pylon/utls/log.php	/^    public function __construct($event)$/;"	f	class:XScopeLogEvent	access:public	signature:($event)
+__construct	../src/pylon/utls/log.php	/^    public function __construct($logName,$tag)$/;"	f	class:XScopeLogTag	access:public	signature:($logName, $tag)
+__construct	../src/pylon/utls/status_machine.php	/^    public  function __construct()$/;"	f	class:StatusMachine	access:public	signature:()
+__construct	../src/pylon/utls/status_machine.php	/^    public function __construct($from,$to)$/;"	f	class:StatusDirect	access:public	signature:($from, $to)
+__construct	../src/pylon/utls/unittest.php	/^    protected function  __construct()$/;"	f	class:XHttpCall	access:protected	signature:()
+__construct	../src/pylon/utls/unittest.php	/^    public function __construct($code,$body)$/;"	f	class:XHttpResult	access:public	signature:($code, $body)
+__construct	../src/pylon/utls/utility.php	/^    public function __construct($action="")$/;"	f	class:XLogSpeed	access:public	signature:($action = '...')
+__construct	../src/pylon/utls/utility.php	/^    public function __construct($begCode,$endCode)$/;"	f	class:ScopeExeCode	access:public	signature:($begCode, $endCode)
+__construct	../src/pylon/utls/utility.php	/^    public function __construct($begFun,$endFun)$/;"	f	class:ScopeAction	access:public	signature:($begFun, $endFun)
+__destruct	../src/pylon/impl/autoload/cache_svc.php	/^    public function __destruct()$/;"	f	class:MemCacheSvc	access:public	signature:()
+__destruct	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function __destruct()$/;"	f	class:LMemCacheDriver	access:public	signature:()
+__destruct	../src/pylon/impl/dba/translation.php	/^    public function __destruct()$/;"	f	class:Translation	access:public	signature:()
+__destruct	../src/pylon/impl/framework/entity.php	/^    public function __destruct()$/;"	f	class:ObjUpdater	access:public	signature:()
+__destruct	../src/pylon/impl/framework/unitwork.php	/^    public function __destruct()$/;"	f	class:ScopeAutoTrans	access:public	signature:()
+__destruct	../src/pylon/impl/framework/unitwork.php	/^    public function __destruct()$/;"	f	class:UnitWorkImpl	access:public	signature:()
+__destruct	../src/pylon/impl/utls/diagnosis.php	/^    public function __destruct()$/;"	f	class:DiagnoseContext	access:public	signature:()
+__destruct	../src/pylon/impl/utls/logutls.php	/^    public function __destruct()$/;"	f	class:ScopeExec	access:public	signature:()
+__destruct	../src/pylon/impl/web/aop.php	/^    public function __destruct()$/;"	f	class:AutoScopeIntc	access:public	signature:()
+__destruct	../src/pylon/interface/ent.php	/^    public function __destruct()$/;"	f	class:XAppSession	access:public	signature:()
+__destruct	../src/pylon/utls/log.php	/^    public function __destruct()$/;"	f	class:XScopeLogEvent	access:public	signature:()
+__destruct	../src/pylon/utls/log.php	/^    public function __destruct()$/;"	f	class:XScopeLogTag	access:public	signature:()
+__destruct	../src/pylon/utls/unittest.php	/^    public function __destruct()$/;"	f	class:XHttpCall	access:public	signature:()
+__destruct	../src/pylon/utls/utility.php	/^    public function __destruct()$/;"	f	class:ScopeAction	access:public	signature:()
+__destruct	../src/pylon/utls/utility.php	/^    public function __destruct()$/;"	f	class:ScopeExeCode	access:public	signature:()
+__destruct	../src/pylon/utls/utility.php	/^    public function __destruct()$/;"	f	class:XLogSpeed	access:public	signature:()
+__get	../src/pylon/impl/autoload/cache_svc.php	/^    public function __get($name)$/;"	f	class:CacheProxy	access:public	signature:($name)
+__get	../src/pylon/impl/framework/proxy.php	/^    public function __get($name)$/;"	f	class:LDProxy	access:public	signature:($name)
+__get	../src/pylon/interface/base.php	/^	public function __get($name)$/;"	f	class:XProperty	access:public	signature:($name)
+__response	../src/pylon/utls/unittest.php	/^    public $__response = null;$/;"	v	class:XUnitTestIntecept	access:public
+__set	../src/pylon/impl/framework/proxy.php	/^    public function __set($name,$value)$/;"	f	class:LDProxy	access:public	signature:($name, $value)
+__set	../src/pylon/interface/base.php	/^	public function __set($name,$val)$/;"	f	class:XProperty	access:public	signature:($name, $val)
+__wakeup	../src/pylon/impl/framework/entity.php	/^    public function __wakeup()$/;"	f	class:EntityImpl	access:public	signature:()
+_after	../src/pylon/impl/framework/control.php	/^    public function _after($name,$params)$/;"	f	class:EmptyControl	access:public	signature:($name, $params)
+_after	../src/pylon/impl/framework/control.php	/^    public function _after($name,$params);$/;"	f	class:IControl	access:public	signature:($name, $params)
+_after	../src/pylon/impl/web/rest.php	/^    public function _after($xcontext,$request,$response)$/;"	f	class:XInterceptorRuner	access:public	signature:($xcontext, $request, $response)
+_after	../src/pylon/impl/web/xmvc_ex.php	/^    public function _after($request,$xcontext)$/;"	f	class:DebugSupportInter	access:public	signature:($request, $xcontext)
+_after	../src/pylon/interface/web.php	/^    public function _after($xcontext,$request,$response) {}$/;"	f	class:XInterceptor	access:public	signature:($xcontext, $request, $response)
+_after	../src/pylon/interface/web.php	/^    public function _after($xcontext,$request,$response);$/;"	f	class:XService	access:public	signature:($xcontext, $request, $response)
+_after	../src/pylon/interface/webimpl.php	/^    public function _after($xcontext,$request,$response){$/;"	f	class:XRuleService	access:public	signature:($xcontext, $request, $response)
+_after	../src/pylon/interface/webimpl.php	/^    public function _after($xcontext,$request,$response){$/;"	f	class:XSimpleService	access:public	signature:($xcontext, $request, $response)
+_after	../src/pylon/utls/unittest.php	/^    public function _after($xcontext,$request,$response)$/;"	f	class:XUnitTestIntecept	access:public	signature:($xcontext, $request, $response)
+_after	../src/pylon/utls/unittest.php	/^    public function _after($xcontext,$request,$response)$/;"	f	class:XUnitViewIntecept	access:public	signature:($xcontext, $request, $response)
+_before	../src/pylon/impl/framework/control.php	/^    public function _before($name,$params)$/;"	f	class:EmptyControl	access:public	signature:($name, $params)
+_before	../src/pylon/impl/framework/control.php	/^    public function _before($name,$params);$/;"	f	class:IControl	access:public	signature:($name, $params)
+_before	../src/pylon/impl/web/rest.php	/^    public function _before($xcontext,$request,$response)$/;"	f	class:XInterceptorRuner	access:public	signature:($xcontext, $request, $response)
+_before	../src/pylon/impl/web/xmvc_ex.php	/^    public function _before($request,$xcontext)$/;"	f	class:DebugSupportInter	access:public	signature:($request, $xcontext)
+_before	../src/pylon/interface/web.php	/^    public function _before($xcontext,$request,$response) {}$/;"	f	class:XInterceptor	access:public	signature:($xcontext, $request, $response)
+_before	../src/pylon/interface/web.php	/^    public function _before($xcontext,$request,$response);$/;"	f	class:XService	access:public	signature:($xcontext, $request, $response)
+_before	../src/pylon/interface/webimpl.php	/^    public function _before($xcontext,$request,$response){$/;"	f	class:XRuleService	access:public	signature:($xcontext, $request, $response)
+_before	../src/pylon/interface/webimpl.php	/^    public function _before($xcontext,$request,$response){$/;"	f	class:XSimpleService	access:public	signature:($xcontext, $request, $response)
+_before	../src/pylon/utls/unittest.php	/^    public function _before($xcontext,$request,$response)$/;"	f	class:XUnitTestIntecept	access:public	signature:($xcontext, $request, $response)
+_before	../src/pylon/utls/unittest.php	/^    public function _before($xcontext,$request,$response)$/;"	f	class:XUnitViewIntecept	access:public	signature:($xcontext, $request, $response)
+_collector	../src/pylon/impl/dba/translation.php	/^    var $_collector;$/;"	v	class:Translation	access:public
+_column	../src/pylon/impl/dba/express.php	/^    var $_column;$/;"	v	class:Eq	access:public
+_column	../src/pylon/impl/dba/express.php	/^    var $_column;$/;"	v	class:Great	access:public
+_column	../src/pylon/impl/dba/express.php	/^    var $_column;$/;"	v	class:GreatEq	access:public
+_column	../src/pylon/impl/dba/express.php	/^    var $_column;$/;"	v	class:Less	access:public
+_column	../src/pylon/impl/dba/express.php	/^    var $_column;$/;"	v	class:LessEq	access:public
+_column1	../src/pylon/impl/dba/express.php	/^    var $_column1;$/;"	v	class:EqColumn	access:public
+_column1	../src/pylon/impl/dba/express.php	/^    var $_column1;$/;"	v	class:GreatEqColumn	access:public
+_column1	../src/pylon/impl/dba/express.php	/^    var $_column1;$/;"	v	class:LessEqColumn	access:public
+_column2	../src/pylon/impl/dba/express.php	/^    var $_column2;$/;"	v	class:EqColumn	access:public
+_column2	../src/pylon/impl/dba/express.php	/^    var $_column2;$/;"	v	class:GreatEqColumn	access:public
+_column2	../src/pylon/impl/dba/express.php	/^    var $_column2;$/;"	v	class:LessEqColumn	access:public
+_columns	../src/pylon/impl/dba/express.php	/^    var $_columns;$/;"	v	class:ColumnStg	access:public
+_columns	../src/pylon/impl/dba/sql_constructor.php	/^    var $_columns;$/;"	v	class:SQLInsertStatment	access:public
+_columns	../src/pylon/impl/dba/sql_constructor.php	/^    var $_columns=" * ";$/;"	v	class:SQLSelectStatement	access:public
+_compress	../src/pylon/impl/autoload/cache_svc.php	/^    private $_compress=false;$/;"	v	class:MemCacheSvc	access:private
+_compress	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $_compress=false;$/;"	v	class:LMemCacheDriver	access:private
+_condition	../src/pylon/impl/dba/sql_constructor.php	/^        var $_condition;$/;"	v	class:SQLUpdateStatment	access:public
+_condition	../src/pylon/impl/dba/sql_constructor.php	/^    var $_condition;$/;"	v	class:SQLDelStatement	access:public
+_connectInfo	../src/pylon/extends/sql_executor.php	/^    private $_connectInfo=null;$/;"	v	class:FastSQLExecutor	access:private
+_datas	../src/pylon/impl/dba/sql_constructor.php	/^    var $_datas;$/;"	v	class:SQLInsertStatment	access:public
+_dbh	../src/pylon/extends/sql_executor.php	/^    private $_dbh = null;$/;"	v	class:FastSQLExecutor	access:private
+_dbh	../src/pylon/impl/basesvc/locks.php	/^    private $_dbh;$/;"	v	class:SQLLockImp	access:private
+_debuger	../src/pylon/impl/dba/translation.php	/^    var $_debuger;$/;"	v	class:Translation	access:public
+_delete	../src/pylon/interface/web.php	/^    public function _delete($xcontext,$request,$response);$/;"	f	class:XService	access:public	signature:($xcontext, $request, $response)
+_delete	../src/pylon/interface/webimpl.php	/^    public function _delete($xcontext,$request,$response)$/;"	f	class:XRuleService	access:public	signature:($xcontext, $request, $response)
+_delete	../src/pylon/interface/webimpl.php	/^    public function _delete($xcontext,$request,$response)$/;"	f	class:XSimpleService	access:public	signature:($xcontext, $request, $response)
+_draw	../src/pylon/impl/web/xmvc_ex.php	/^    public function _draw($xcontext)$/;"	f	class:SmartyRenderer	access:public	signature:($xcontext)
+_endCode	../src/pylon/utls/utility.php	/^    private $_endCode;$/;"	v	class:ScopeExeCode	access:private
+_endFun	../src/pylon/utls/utility.php	/^    private $_endFun;$/;"	v	class:ScopeAction	access:private
+_exception	../src/pylon/impl/web/aop.php	/^    public function _exception($e,$xcontext,$request,$response)$/;"	f	class:AutoScopeIntc	access:public	signature:($e, $xcontext, $request, $response)
+_exception	../src/pylon/impl/web/rest.php	/^    public function _exception($e,$xcontext,$request,$response)$/;"	f	class:XInterceptorRuner	access:public	signature:($e, $xcontext, $request, $response)
+_exception	../src/pylon/interface/web.php	/^	public function _exception($e,$xcontext,$request,$response) {}$/;"	f	class:XInterceptor	access:public	signature:($e, $xcontext, $request, $response)
+_exception	../src/pylon/utls/unittest.php	/^    public function _exception($e,$xcontext,$request,$response)$/;"	f	class:XUnitTestIntecept	access:public	signature:($e, $xcontext, $request, $response)
+_exception	../src/pylon/utls/unittest.php	/^    public function _exception($e,$xcontext,$request,$response)$/;"	f	class:XUnitViewIntecept	access:public	signature:($e, $xcontext, $request, $response)
+_exectorLoader	../src/pylon/impl/dba/trans_manager.php	/^    static $_exectorLoader;$/;"	v	class:TransManager
+_executer	../src/pylon/extends/idgenerator.php	/^    private $_executer;$/;"	v	class:MySqlIDGenerator	access:private
+_executer	../src/pylon/impl/dba/translation.php	/^    var $_executer;$/;"	v	class:Translation	access:public
+_executer	../src/pylon/impl/framework/daobase.php	/^    public $_executer   = null;$/;"	v	class:DaoBase	access:public
+_executer	../src/pylon/impl/utls/logutls.php	/^    public $_executer = null;$/;"	v	class:ScopeEchoLog	access:public
+_fileName	../src/pylon/impl/autoload/build_includes.php	/^    var $_fileName;$/;"	v	class:PYLFile	access:public
+_fileNameTemplate	../src/pylon/impl/autoload/build_includes.php	/^    private static $_fileNameTemplate = array('php');$/;"	v	class:PYLAssemblyBuilder	access:private
+_find	../src/pylon/extends/rest_finder.php	/^    public function _find($uri)$/;"	f	class:FastRouter	access:public	signature:($uri)
+_find	../src/pylon/interface/plugin.php	/^    public function _find($uri);$/;"	f	class:XIRouter	access:public	signature:($uri)
+_fp	../src/pylon/impl/basesvc/locks.php	/^    private $_fp=null;$/;"	v	class:FileLockImp	access:private
+_fun	../src/pylon/impl/dba/express.php	/^    var $_fun;$/;"	v	class:UserFunStg	access:public
+_get	../src/pylon/interface/web.php	/^    public function _get($xcontext,$request,$response);$/;"	f	class:XService	access:public	signature:($xcontext, $request, $response)
+_get	../src/pylon/interface/webimpl.php	/^    public function _get($xcontext,$request,$response)$/;"	f	class:XRuleService	access:public	signature:($xcontext, $request, $response)
+_get	../src/pylon/interface/webimpl.php	/^    public function _get($xcontext,$request,$response)$/;"	f	class:XSimpleService	access:public	signature:($xcontext, $request, $response)
+_groupBy	../src/pylon/impl/dba/sql_constructor.php	/^    var $_groupBy=null;$/;"	v	class:SQLSelectStatement	access:public
+_handler	../src/pylon/impl/autoload/build_includes.php	/^    var $_handler;$/;"	v	class:PYLFile	access:public
+_help	../src/pylon/interface/web.php	/^    public function _help($xcontext,$request,$response);$/;"	f	class:XService	access:public	signature:($xcontext, $request, $response)
+_help	../src/pylon/interface/webimpl.php	/^    public function _help($xcontext,$request,$response)$/;"	f	class:XRuleService	access:public	signature:($xcontext, $request, $response)
+_help	../src/pylon/interface/webimpl.php	/^    public function _help($xcontext,$request,$response)$/;"	f	class:XSimpleService	access:public	signature:($xcontext, $request, $response)
+_idsets	../src/pylon/extends/idgenerator.php	/^    private $_idsets = array() ;$/;"	v	class:MySqlIDGenerator	access:private
+_isEnd	../src/pylon/impl/dba/translation.php	/^    var $_isEnd=false;$/;"	v	class:Translation	access:public
+_isReged	../src/pylon/impl/dba/translation.php	/^    var $_isReged = false;$/;"	v	class:Translation	access:public
+_isStart	../src/pylon/impl/basesvc/session_svc.php	/^    static $_isStart = false;$/;"	v	class:SessionSvc
+_items	../src/pylon/impl/dba/express.php	/^    var $_items;$/;"	v	class:Ands	access:public
+_items	../src/pylon/impl/dba/express.php	/^    var $_items;$/;"	v	class:Ors	access:public
+_joinTables	../src/pylon/impl/dba/sql_constructor.php	/^    var $_joinTables=array();$/;"	v	class:SQLSelectStatement	access:public
+_limit	../src/pylon/impl/dba/sql_constructor.php	/^    var $_limit = "";$/;"	v	class:SQLSelectStatement	access:public
+_memcache	../src/pylon/impl/autoload/cache_svc.php	/^    private $_memcache;$/;"	v	class:MemCacheSvc	access:private
+_memcache	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $_memcache;$/;"	v	class:LMemCacheDriver	access:private
+_mode	../src/pylon/impl/autoload/build_includes.php	/^    var $_mode;$/;"	v	class:PYLFile	access:public
+_need	../src/pylon/impl/framework/control.php	/^    public function _need($name,$params)$/;"	f	class:DiyKeyControl	access:public	signature:($name, $params)
+_need	../src/pylon/impl/framework/control.php	/^    public function _need($name,$params)$/;"	f	class:EmptyControl	access:public	signature:($name, $params)
+_need	../src/pylon/impl/framework/control.php	/^    public function _need($name,$params);$/;"	f	class:IControl	access:public	signature:($name, $params)
+_objs	../src/pylon/interface/ioc.php	/^    static $_objs    = array();$/;"	v	class:XBox
+_orderBy	../src/pylon/impl/dba/sql_constructor.php	/^    var $_orderBy=null;$/;"	v	class:SQLSelectStatement	access:public
+_other	../src/pylon/impl/framework/control.php	/^    public function _other($name,$params)$/;"	f	class:DaoInnerCacheCtrl	access:public	signature:($name, $params)
+_other	../src/pylon/impl/framework/control.php	/^    public function _other($name,$params)$/;"	f	class:EmptyControl	access:public	signature:($name, $params)
+_other	../src/pylon/impl/framework/control.php	/^    public function _other($name,$params);$/;"	f	class:IControl	access:public	signature:($name, $params)
+_pageCond	../src/pylon/impl/dba/sql_constructor.php	/^    var $_pageCond = "";$/;"	v	class:SQLSelectStatement	access:public
+_paths	../src/pylon/impl/autoload/build_includes.php	/^    private static $_paths = array();$/;"	v	class:PYLAssemblyBuilder	access:private
+_port	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $_port=11211;$/;"	v	class:LMemCacheDriver	access:private
+_post	../src/pylon/interface/web.php	/^    public function _post($xcontext,$request,$response);$/;"	f	class:XService	access:public	signature:($xcontext, $request, $response)
+_post	../src/pylon/interface/webimpl.php	/^    public function _post($xcontext,$request,$response)$/;"	f	class:XRuleService	access:public	signature:($xcontext, $request, $response)
+_post	../src/pylon/interface/webimpl.php	/^    public function _post($xcontext,$request,$response)$/;"	f	class:XSimpleService	access:public	signature:($xcontext, $request, $response)
+_prefix	../src/pylon/impl/autoload/cache_svc.php	/^    private $_prefix;$/;"	v	class:MemCacheSvc	access:private
+_put	../src/pylon/interface/web.php	/^    public function _put($xcontext,$request,$response);$/;"	f	class:XService	access:public	signature:($xcontext, $request, $response)
+_put	../src/pylon/interface/webimpl.php	/^    public function _put($xcontext,$request,$response)$/;"	f	class:XRuleService	access:public	signature:($xcontext, $request, $response)
+_put	../src/pylon/interface/webimpl.php	/^    public function _put($xcontext,$request,$response)$/;"	f	class:XSimpleService	access:public	signature:($xcontext, $request, $response)
+_reads	../src/pylon/impl/dba/translation.php	/^    var $_reads;$/;"	v	class:SqlCollector	access:public
+_selfStg	../src/pylon/impl/dba/express.php	/^    var $_selfStg=null;$/;"	v	class:Express	access:public
+_servers	../src/pylon/impl/autoload/cache_svc.php	/^    private $_servers;$/;"	v	class:MemCacheSvc	access:private
+_servers	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $_servers;$/;"	v	class:LMemCacheDriver	access:private
+_skipFiles	../src/pylon/impl/autoload/build_includes.php	/^    private static $_skipFiles= array('qmb_client_.*\\.php');$/;"	v	class:PYLAssemblyBuilder	access:private
+_skipFolders	../src/pylon/impl/autoload/build_includes.php	/^    private static $_skipFolders = array('web-inf', 'tmp', '.svn',  'logs', 'project','personal');$/;"	v	class:PYLAssemblyBuilder	access:private
+_sql	../src/pylon/impl/dba/express.php	/^    var $_sql;$/;"	v	class:Express	access:public
+_sqlCollector	../src/pylon/extends/sql_executor.php	/^    private $_sqlCollector =null;$/;"	v	class:FastSQLExecutor	access:private
+_sqlLogger	../src/pylon/extends/sql_executor.php	/^    private $_sqlLogger  = null;$/;"	v	class:FastSQLExecutor	access:private
+_tableName	../src/pylon/impl/dba/sql_constructor.php	/^    protected $_tableName;$/;"	v	class:SQLStatement	access:protected
+_txtSql	../src/pylon/impl/dba/express.php	/^    private $_txtSql = null;$/;"	v	class:TxtExpress	access:private
+_updateColumns	../src/pylon/impl/dba/sql_constructor.php	/^        var $_updateColumns;$/;"	v	class:SQLUpdateStatment	access:public
+_value	../src/pylon/impl/dba/express.php	/^    var $_value ;$/;"	v	class:LessValueColunmStg	access:public
+_value	../src/pylon/impl/dba/express.php	/^    var $_value ;$/;"	v	class:ValueColumnStg	access:public
+_value	../src/pylon/impl/dba/express.php	/^    var $_value;$/;"	v	class:Eq	access:public
+_value	../src/pylon/impl/dba/express.php	/^    var $_value;$/;"	v	class:Great	access:public
+_value	../src/pylon/impl/dba/express.php	/^    var $_value;$/;"	v	class:GreatEq	access:public
+_value	../src/pylon/impl/dba/express.php	/^    var $_value;$/;"	v	class:Less	access:public
+_value	../src/pylon/impl/dba/express.php	/^    var $_value;$/;"	v	class:LessEq	access:public
+_view	../src/pylon/impl/dba/sql_constructor.php	/^    var $_view =null;$/;"	v	class:SQLSelectStatement	access:public
+_viewCond	../src/pylon/impl/dba/sql_constructor.php	/^    var $_viewCond=null;$/;"	v	class:SQLSelectStatement	access:public
+_whereCond	../src/pylon/impl/dba/sql_constructor.php	/^    var $_whereCond=null;$/;"	v	class:SQLSelectStatement	access:public
+_wheres	../src/pylon/interface/ioc.php	/^    static $_wheres  = array();$/;"	v	class:XBox
+_writes	../src/pylon/impl/dba/translation.php	/^    var $_writes;$/;"	v	class:SqlCollector	access:public
+_wsqlLogger	../src/pylon/extends/sql_executor.php	/^    private $_wsqlLogger  = null;$/;"	v	class:FastSQLExecutor	access:private
+a	../src/pylon/impl/autoload/build_includes.php	/^{$/;"	v
+accessCnt	../src/pylon/impl/basesvc/monitor_svc.php	/^    public $accessCnt=0;$/;"	v	class:LArrayDriver	access:public
+add	../src/pylon/impl/autoload/cache_svc.php	/^    public function add($key, $value, $expire=0)$/;"	f	class:MemCacheSvc	access:public	signature:($key, $value, $expire = 0)
+add	../src/pylon/impl/framework/daobase.php	/^    public function add($obj)$/;"	f	class:DaoBase	access:public	signature:($obj)
+add	../src/pylon/interface/ent.php	/^    public function add($obj);$/;"	f	class:Dao	access:public	signature:($obj)
+add	../src/pylon/utls/status_machine.php	/^    public function add()$/;"	f	class:StatusMachine	access:public	signature:()
+addAddtions	../src/pylon/impl/framework/control.php	/^    public function addAddtions($key,$values)$/;"	f	class:MappingConf	access:public	signature:($key, $values)
+addExcepts	../src/pylon/impl/framework/control.php	/^    public function addExcepts($appends)$/;"	f	class:DiyKeyControl	access:public	signature:($appends)
+addImpl	../src/pylon/impl/framework/daobase.php	/^    protected function addImpl($pairs,$hashKey)$/;"	f	class:DaoBase	access:protected	signature:($pairs, $hashKey)
+addImpl	../src/pylon/impl/framework/unitwork.php	/^    public function addImpl($obj)$/;"	f	class:UnitWorkImpl	access:public	signature:($obj)
+addReadCmd	../src/pylon/impl/dba/translation.php	/^    function addReadCmd($cmd)$/;"	f	class:SqlCollector	signature:($cmd)
+addSon	../src/pylon/utls/status_machine.php	/^    public function addSon($parent, $son1)$/;"	f	class:StatusMachine	access:public	signature:($parent, $son1)
+addWriteCmd	../src/pylon/impl/dba/translation.php	/^    function addWriteCmd($cmd)$/;"	f	class:SqlCollector	signature:($cmd)
+additems	../src/pylon/impl/framework/entity.php	/^    protected $additems         = array();$/;"	v	class:ObjUpdater	access:protected
+allItcs	../src/pylon/impl/web/rest.php	/^    private $allItcs  = null ;$/;"	v	class:XInterceptorRuner	access:private
+allLoadStg	../src/pylon/impl/framework/daobase.php	/^    static $allLoadStg=null;$/;"	v	class:DaoImp
+allTags	../src/pylon/utls/log.php	/^    static $allTags = array();$/;"	v	class:XScopeLogTag
+ands	../src/pylon/impl/dba/express.php	/^    static public function ands()$/;"	f	class:Express	access:public	signature:()
+appsys__autoload	../src/pylon/pylon.php	/^function appsys__autoload($classname)$/;"	f	signature:($classname)
+arg	../src/pylon/impl/utls/logutls.php	/^    protected $arg;$/;"	v	class:ScopeExec	access:protected
+args	../src/pylon/impl/framework/proxy.php	/^    private  $args;$/;"	v	class:LDProxy	access:private
+args	../src/pylon/impl/web/aop.php	/^    private $args    =null;$/;"	v	class:AutoScopeIntc	access:private
+args	../src/pylon/impl/web/aop.php	/^    public $args;$/;"	v	class:XAopRule	access:public
+arr	../src/pylon/interface/ent.php	/^    static public function arr()$/;"	f	class:XQuery	access:public	signature:()
+assembly	../src/pylon/impl/framework/entity.php	/^    static public function assembly($unitwork)$/;"	f	class:EntityUtls	access:public	signature:($unitwork)
+assembly	../src/pylon/pylon.php	/^    static public  $assembly     = "" ;$/;"	v	class:XSetting	access:public
+assign	../src/pylon/utls/utility.php	/^function assign($array, $index, $default = '')$/;"	f	signature:($array, $index, $default = '...')
+attr	../src/pylon/interface/base.php	/^	public $attr=null;$/;"	v	class:XProperty	access:public
+batchExec	../src/pylon/impl/autoload/tc_support.php	/^    static public function batchExec($tclistfile)$/;"	f	class:TestCaseExec	access:public	signature:($tclistfile)
+beforedItcs	../src/pylon/impl/web/rest.php	/^    private $beforedItcs = null ;$/;"	v	class:XInterceptorRuner	access:private
+begin	../src/pylon/interface/ent.php	/^    static public function begin($uwork=null)$/;"	f	class:XAppSession	access:public	signature:($uwork = null)
+beginTrans	../src/pylon/extends/sql_executor.php	/^    public function beginTrans()$/;"	f	class:FastSQLExecutor	access:public	signature:()
+beginTrans	../src/pylon/interface/plugin.php	/^    public function beginTrans();$/;"	f	class:XSQLExecuter	access:public	signature:()
+bidirecMoveable	../src/pylon/utls/status_machine.php	/^    public function bidirecMoveable($first, $second)$/;"	f	class:StatusMachine	access:public	signature:($first, $second)
+bindCond	../src/pylon/impl/framework/query.php	/^    static public function bindCond($key,$val)$/;"	f	class:SqlProcUtls	access:public	signature:($key, $val)
+bindUpdate	../src/pylon/impl/framework/query.php	/^    static public function  bindUpdate($key,$val)$/;"	f	class:SqlProcUtls	access:public	signature:($key, $val)
+binder	../src/pylon/impl/framework/entity.php	/^    private static $binder=null;$/;"	v	class:DaoFinderUtls	access:private
+bizcode	../src/pylon/interface/exception.php	/^    static public function bizcode($code)$/;"	f	class:XErrCode	access:public	signature:($code)
+buildCondProp	../src/pylon/impl/framework/dao_utls.php	/^    static public function buildCondProp($condnames,$params,&$extraParams)$/;"	f	class:DynCallParser	access:public	signature:($condnames, $params, & $extraParams)
+buildEntityProp	../src/pylon/impl/framework/entity.php	/^    public function buildEntityProp(&$array,$argsmap=array())$/;"	f	class:SimpleMapping	access:public	signature:(& $array, $argsmap = array())
+buildEntityProp	../src/pylon/impl/framework/entity.php	/^    public function buildEntityProp(&$array,$argsmap=array())$/;"	f	class:StdMapping	access:public	signature:(& $array, $argsmap = array())
+buildEntityProp	../src/pylon/impl/framework/entity.php	/^    public function buildEntityProp(&$array,$argsmap=array());$/;"	f	class:IMappingStg	access:public	signature:(& $array, $argsmap = array())
+buildSummery	../src/pylon/impl/framework/entity.php	/^        public function buildSummery()$/;"	f	class:Relation	access:public	signature:()
+buildSummery	../src/pylon/impl/framework/entity.php	/^    public function buildSummery()$/;"	f	class:EntityImpl	access:public	signature:()
+buildSummery	../src/pylon/impl/framework/entity.php	/^    public function buildSummery();$/;"	f	class:IAutoUpdate	access:public	signature:()
+buildUpdateArray	../src/pylon/impl/framework/dao_utls.php	/^    static public function buildUpdateArray($updatenames,$condnames,$params)$/;"	f	class:DynCallParser	access:public	signature:($updatenames, $condnames, $params)
+cache	../src/pylon/impl/autoload/cache_svc.php	/^    private  $cache;$/;"	v	class:CacheProxy	access:private
+cache	../src/pylon/impl/basesvc/monitor_svc.php	/^    static $cache=null;$/;"	v	class:LMDB
+caches	../src/pylon/impl/autoload/cache_svc.php	/^    public $caches = array();$/;"	v	class:CacheSpace	access:public
+caches	../src/pylon/impl/autoload/cache_svc.php	/^    static public $caches = array();$/;"	v	class:CacheAdmin	access:public
+callImpl	../src/pylon/interface/ent.php	/^    public function callImpl($op,$cls,$catch4add,$name,$paramNames,$params)$/;"	f	class:XQobj	access:public	signature:($op, $cls, $catch4add, $name, $paramNames, $params)
+callImpl	../src/pylon/interface/ent.php	/^    public function callImpl($op,$table,$name,$paramNames,$params)$/;"	f	class:XQarr	access:public	signature:($op, $table, $name, $paramNames, $params)
+callMethod	../src/pylon/interface/webimpl.php	/^    private function callMethod($xcontext,$request,$response)$/;"	f	class:XRuleService	access:private	signature:($xcontext, $request, $response)
+callRemote	../src/pylon/utls/unittest.php	/^    private function callRemote($method,$url,$timeout=0)$/;"	f	class:XHttpCall	access:private	signature:($method, $url, $timeout = 0)
+callService	../src/pylon/impl/web/rest.php	/^    static private function callService($conf,$xcontext,$request,$response)$/;"	f	class:XRouter	access:private	signature:($conf, $xcontext, $request, $response)
+canMoveTo	../src/pylon/utls/status_machine.php	/^    public function canMoveTo($status)$/;"	f	class:StatusMachine	access:public	signature:($status)
+ch	../src/pylon/utls/unittest.php	/^    private $ch;$/;"	v	class:XHttpCall	access:private
+chMod	../src/pylon/impl/autoload/build_includes.php	/^    function chMod( $inFile, $mode = 0644 )$/;"	f	class:PYLFile	signature:($inFile, $mode = 0644)
+charset	../src/pylon/extends/sql_executor.php	/^    public $charset;$/;"	v	class:LZLExecutor	access:public
+className	../src/pylon/impl/framework/other.php	/^    private $className;$/;"	v	class:NullEntity	access:private
+className	../src/pylon/pylon.php	/^    static public function className($clsname)$/;"	f	class:XPylon	access:public	signature:($clsname)
+class_have_exists	../src/pylon/impl/autoload/class_loads.php	/^function class_have_exists($clsname)$/;"	f	signature:($clsname)
+clean	../src/pylon/impl/framework/entity.php	/^    public function clean()$/;"	f	class:ObjUpdater	access:public	signature:()
+clean	../src/pylon/impl/framework/entity.php	/^    static public function clean()$/;"	f	class:DaoFinderUtls	access:public	signature:()
+clean	../src/pylon/impl/framework/unitwork.php	/^    public function clean()$/;"	f	class:EmptyUnitWork	access:public	signature:()
+clean	../src/pylon/interface/ent.php	/^    static public function clean()$/;"	f	class:XDaoUtls	access:public	signature:()
+clean	../src/pylon/interface/ioc.php	/^    static public function clean($key=null)$/;"	f	class:XBox	access:public	signature:($key = null)
+cleanItem	../src/pylon/impl/framework/entity.php	/^    public function cleanItem(&$items)$/;"	f	class:ObjUpdater	access:public	signature:(& $items)
+clear	../src/pylon/impl/autoload/cache_svc.php	/^    public function clear()$/;"	f	class:PylCacheSvc	access:public	signature:()
+clear	../src/pylon/impl/basesvc/session_svc.php	/^    static function clear()$/;"	f	class:SessionSvc	signature:()
+clear	../src/pylon/utls/datapage.php	/^    public function clear()$/;"	f	class:XDataPage	access:public	signature:()
+clearAll	../src/pylon/impl/autoload/cache_svc.php	/^    public function clearAll()$/;"	f	class:CacheSpace	access:public	signature:()
+clearArr	../src/pylon/impl/autoload/cache_svc.php	/^    public function clearArr($arr)$/;"	f	class:CacheSpace	access:public	signature:($arr)
+clearBinder	../src/pylon/impl/framework/entity.php	/^    static public function clearBinder()$/;"	f	class:DaoFinderUtls	access:public	signature:()
+clearCacheStg	../src/pylon/impl/framework/other.php	/^    static public function clearCacheStg()$/;"	f	class:XEntityCtrl	access:public	signature:()
+clearFilter	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function clearFilter()$/;"	f	class:StatQueue	access:public	signature:()
+clears	../src/pylon/impl/autoload/cache_svc.php	/^    public function clears()$/;"	f	class:CacheSpace	access:public	signature:()
+close	../src/pylon/impl/autoload/build_includes.php	/^    function close()$/;"	f	class:PYLFile	signature:()
+cls	../src/pylon/extends/sql_executor.php	/^    public $cls;$/;"	v	class:LZLExecutor	access:public
+cls	../src/pylon/impl/framework/daobase.php	/^    public $cls         = null;$/;"	v	class:DaoBase	access:public
+clsName	../src/pylon/impl/framework/relation.php	/^    protected $clsName;$/;"	v	class:ObjectSet	access:protected
+cls_is_a	../src/pylon/impl/framework/daobase.php	/^    static function cls_is_a($parentcls,$cls)$/;"	f	class:DaoBase	signature:($parentcls, $cls)
+cntCall	../src/pylon/interface/ent.php	/^    private function cntCall($op,$cls,$catch4add,$name,$paramNames,$params)$/;"	f	class:XQobj	access:private	signature:($op, $cls, $catch4add, $name, $paramNames, $params)
+collectLog	../src/pylon/impl/utls/logutls.php	/^    static public function collectLog($executer, $collectLog)$/;"	f	class:ScopeSqlLog	access:public	signature:($executer, $collectLog)
+collectWLog	../src/pylon/impl/utls/logutls.php	/^    static public function collectWLog($executer, $collectLog)$/;"	f	class:ScopeSqlLog	access:public	signature:($executer, $collectLog)
+columnArray	../src/pylon/impl/dba/sql_constructor.php	/^    public function columnArray($columns)$/;"	f	class:SQLInsertStatment	access:public	signature:($columns)
+columns	../src/pylon/impl/dba/sql_constructor.php	/^    function columns($columns)$/;"	f	class:SQLSelectStatement	signature:($columns)
+columns	../src/pylon/impl/dba/sql_constructor.php	/^    public function columns($columns)$/;"	f	class:SQLInsertStatment	access:public	signature:($columns)
+commit	../src/pylon/extends/sql_executor.php	/^    public function commit()$/;"	f	class:FastSQLExecutor	access:public	signature:()
+commit	../src/pylon/impl/dba/translation.php	/^    public function commit()$/;"	f	class:Translation	access:public	signature:()
+commit	../src/pylon/impl/framework/unitwork.php	/^    public function commit()$/;"	f	class:EmptyUnitWork	access:public	signature:()
+commit	../src/pylon/impl/framework/unitwork.php	/^    public function commit()$/;"	f	class:UnitWorkImpl	access:public	signature:()
+commit	../src/pylon/impl/framework/unitwork.php	/^    public function commit();$/;"	f	class:UnitWork	access:public	signature:()
+commit	../src/pylon/impl/utls/version.php	/^    public function commit()$/;"	f	class:SysVersion	access:public	signature:()
+commit	../src/pylon/interface/ent.php	/^    public function commit()$/;"	f	class:XAppSession	access:public	signature:()
+commit	../src/pylon/interface/plugin.php	/^    public function commit();$/;"	f	class:XSQLExecuter	access:public	signature:()
+commitNo	../src/pylon/impl/utls/version.php	/^    public $commitNo=0;$/;"	v	class:SysVersion	access:public
+commitRelationSet	../src/pylon/impl/framework/daobase.php	/^    protected function commitRelationSet($relationSets)$/;"	f	class:DaoBase	access:protected	signature:($relationSets)
+commitUpdate	../src/pylon/impl/framework/entity.php	/^    protected function commitUpdate($addfun,$delfun,$updatefun)$/;"	f	class:ObjUpdater	access:protected	signature:($addfun, $delfun, $updatefun)
+complex_delete	../src/pylon/utls/unittest.php	/^    public function complex_delete($url,$data,$timeout=0)$/;"	f	class:XHttpCall	access:public	signature:($url, $data, $timeout = 0)
+condObjParse	../src/pylon/impl/framework/dao_utls.php	/^    static public function condObjParse($callName)$/;"	f	class:DynCallParser	access:public	signature:($callName)
+condUpdateObjParse	../src/pylon/impl/framework/dao_utls.php	/^    static public function condUpdateObjParse($callName)$/;"	f	class:DynCallParser	access:public	signature:($callName)
+configDao	../src/pylon/interface/ent.php	/^    static public function configDao($cls,$table,$mapping="simple",$hashfun=null)$/;"	f	class:XDaoUtls	access:public	signature:($cls, $table, $mapping = '...', $hashfun = null)
+connType	../src/pylon/extends/sql_executor.php	/^    public $connType;$/;"	v	class:LZLExecutor	access:public
+connect	../src/pylon/extends/sql_executor.php	/^    public function connect()$/;"	f	class:FastSQLExecutor	access:public	signature:()
+contexts	../src/pylon/impl/utls/diagnosis.php	/^    static $contexts=array();$/;"	v	class:DiagnoseMonitor
+convertDTO	../src/pylon/impl/framework/entity.php	/^    public function convertDTO($vars)$/;"	f	class:SimpleMapping	access:public	signature:($vars)
+convertDTO	../src/pylon/impl/framework/entity.php	/^    public function convertDTO($vars)$/;"	f	class:StdMapping	access:public	signature:($vars)
+convertDTO	../src/pylon/impl/framework/entity.php	/^    public function convertDTO($vars);$/;"	f	class:IMappingStg	access:public	signature:($vars)
+convertObj	../src/pylon/impl/framework/daobase.php	/^    protected function convertObj($row)$/;"	f	class:DaoBase	access:protected	signature:($row)
+copy	../src/pylon/impl/autoload/build_includes.php	/^    function copy( $inFile, $outFile )$/;"	f	class:PYLFile	signature:($inFile, $outFile)
+countOfCmd	../src/pylon/impl/framework/query.php	/^    private function countOfCmd($cmd,$valsArr=array())$/;"	f	class:Query	access:private	signature:($cmd, $valsArr = array())
+create	../src/pylon/impl/framework/dao_utls.php	/^    static public function create($arr=array())$/;"	f	class:FilterProp	access:public	signature:($arr = array())
+create	../src/pylon/impl/framework/daobase.php	/^    public function create($cls)$/;"	f	class:SimpleDaoFactory	access:public	signature:($cls)
+create	../src/pylon/impl/framework/entity.php	/^    static public function create($idname='other')$/;"	f	class:XID	access:public	signature:($idname = '...')
+create	../src/pylon/impl/framework/query.php	/^    public function create($name)$/;"	f	class:SimpleQueryFactory	access:public	signature:($name)
+create	../src/pylon/impl/utls/diagnosis.php	/^    static function create($name)$/;"	f	class:DiagnoseContext	signature:($name)
+create	../src/pylon/utls/log.php	/^    static function create($name,$tag)$/;"	f	class:XScopeLogTag	signature:($name, $tag)
+createByBiz	../src/pylon/impl/framework/relation.php	/^    static public function createByBiz($clsName)$/;"	f	class:ObjectSet	access:public	signature:($clsName)
+createDir	../src/pylon/impl/autoload/build_includes.php	/^    function createDir( $dirName, $/;"	f	class:PYLFile	signature:($dirName, $mode = FILE_DEFAULT_DIRECTORY_CREATION_MODE)
+createID	../src/pylon/extends/idgenerator.php	/^    public function createID($idname='other')$/;"	f	class:MySqlIDGenerator	access:public	signature:($idname = '...')
+createID	../src/pylon/interface/plugin.php	/^    public function createID($idname='other');$/;"	f	class:XIDGenerator	access:public	signature:($idname = '...')
+createIDimp	../src/pylon/extends/idgenerator.php	/^    private function createIDimp($objName)$/;"	f	class:MySqlIDGenerator	access:private	signature:($objName)
+createIns	../src/pylon/interface/ent.php	/^    static public function createIns($cls)$/;"	f	class:XEntity	access:public	signature:($cls)
+createPureID	../src/pylon/impl/framework/entity.php	/^    static public function createPureID($idname='other')$/;"	f	class:EntityUtls	access:public	signature:($idname = '...')
+createTime	../src/pylon/interface/ent.php	/^    public function createTime()$/;"	f	class:XEntity	access:public	signature:()
+createTrans	../src/pylon/impl/dba/trans_manager.php	/^	static function &createTrans()$/;"	f	class:TransManager	signature:()
+curStatus	../src/pylon/utls/status_machine.php	/^    public function  curStatus()$/;"	f	class:StatusMachine	access:public	signature:()
+currentStatus	../src/pylon/utls/status_machine.php	/^    private $currentStatus;$/;"	v	class:StatusMachine	access:private
+dao	../src/pylon/impl/autoload/cache_svc.php	/^    public   $dao;$/;"	v	class:CacheProxy	access:public
+dao	../src/pylon/impl/framework/unitwork.php	/^    public function dao($obj)$/;"	f	class:UnitWorkImpl	access:public	signature:($obj)
+dao	../src/pylon/interface/ent.php	/^    static public function dao($cls)$/;"	f	class:XDaoUtls	access:public	signature:($cls)
+daoCache	../src/pylon/impl/framework/other.php	/^    static public function daoCache()$/;"	f	class:XEntityCtrl	access:public	signature:()
+data	../src/pylon/impl/basesvc/monitor_svc.php	/^    public $data=array();$/;"	v	class:LArrayDriver	access:public
+data	../src/pylon/interface/webimpl.php	/^    private $data      = array() ;$/;"	v	class:XRestResp	access:private
+data	../src/pylon/utls/unittest.php	/^    public $data;$/;"	v	class:XHttpResult	access:public
+dataArray	../src/pylon/impl/dba/sql_constructor.php	/^    public function dataArray($datas)$/;"	f	class:SQLInsertStatment	access:public	signature:($datas)
+datas	../src/pylon/impl/dba/sql_constructor.php	/^    public function datas($datas)$/;"	f	class:SQLInsertStatment	access:public	signature:($datas)
+dbName	../src/pylon/extends/sql_executor.php	/^    public $dbName;$/;"	v	class:LZLExecutor	access:public
+debugLogger	../src/pylon/impl/web/xmvc_ex.php	/^    private $debugLogger = NULL;$/;"	v	class:DebugSupportInter	access:private
+defaultException	../src/pylon/impl/web/rest.php	/^    private function defaultException($plog,$e,$response)$/;"	f	class:XInterceptorRuner	access:private	signature:($plog, $e, $response)
+del	../src/pylon/impl/basesvc/session_svc.php	/^    public function del($key)$/;"	f	class:SessionSvc	access:public	signature:($key)
+del	../src/pylon/impl/framework/daobase.php	/^    public function del($obj,$keys=array('id'))$/;"	f	class:DaoBase	access:public	signature:($obj, $keys = array('...'))
+del	../src/pylon/impl/framework/entity.php	/^    public function del()$/;"	f	class:EntityImpl	access:public	signature:()
+del	../src/pylon/interface/ent.php	/^    public function del($obj);$/;"	f	class:Dao	access:public	signature:($obj)
+delByID	../src/pylon/impl/framework/daobase.php	/^    public function delByID($id,$hashKey=null)$/;"	f	class:DaoBase	access:public	signature:($id, $hashKey = null)
+delByProp	../src/pylon/impl/framework/daobase.php	/^    public function delByProp($prop,$hashKey=null)$/;"	f	class:DaoBase	access:public	signature:($prop, $hashKey = null)
+delCall	../src/pylon/interface/ent.php	/^    private function delCall($op,$cls,$catch4add,$name,$paramNames,$params)$/;"	f	class:XQobj	access:private	signature:($op, $cls, $catch4add, $name, $paramNames, $params)
+delCall	../src/pylon/interface/ent.php	/^    protected function delCall($name,$params)$/;"	f	class:XWriter	access:protected	signature:($name, $params)
+delImpl	../src/pylon/impl/framework/unitwork.php	/^    public function delImpl($obj)$/;"	f	class:UnitWorkImpl	access:public	signature:($obj)
+delete	../src/pylon/impl/autoload/build_includes.php	/^    function delete( $file = null )$/;"	f	class:PYLFile	signature:($file = null)
+delete	../src/pylon/impl/autoload/cache_svc.php	/^    public function delete($key)$/;"	f	class:APCDriver	access:public	signature:($key)
+delete	../src/pylon/impl/autoload/cache_svc.php	/^    public function delete($key)$/;"	f	class:EADriver	access:public	signature:($key)
+delete	../src/pylon/impl/autoload/cache_svc.php	/^    public function delete($key)$/;"	f	class:InnerCache	access:public	signature:($key)
+delete	../src/pylon/impl/autoload/cache_svc.php	/^    public function delete($key)$/;"	f	class:MemCacheSvc	access:public	signature:($key)
+delete	../src/pylon/impl/autoload/cache_svc.php	/^    public function delete($key)$/;"	f	class:NullDriver	access:public	signature:($key)
+delete	../src/pylon/impl/autoload/cache_svc.php	/^    public function delete($key)$/;"	f	class:PylCacheSvc	access:public	signature:($key)
+delete	../src/pylon/impl/autoload/cache_svc.php	/^    public function delete($key);$/;"	f	class:Cachable	access:public	signature:($key)
+delete	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function delete($key)$/;"	f	class:LArrayDriver	access:public	signature:($key)
+delete	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function delete($key)$/;"	f	class:LEADriver	access:public	signature:($key)
+delete	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function delete($key)$/;"	f	class:LMDB	access:public	signature:($key)
+delete	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function delete($key)$/;"	f	class:LMemCacheDriver	access:public	signature:($key)
+delete	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function delete($key)$/;"	f	class:LMutiLevelCache	access:public	signature:($key)
+delete	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function delete($key);$/;"	f	class:LCachable	access:public	signature:($key)
+delete	../src/pylon/utls/unittest.php	/^    public function delete($url,$timeout=0)$/;"	f	class:XHttpCall	access:public	signature:($url, $timeout = 0)
+deleteDir	../src/pylon/impl/autoload/build_includes.php	/^    function deleteDir( $dirName, $recursive = false, $onlyFiles = false )$/;"	f	class:PYLFile	signature:($dirName, $recursive = false, $onlyFiles = false)
+delitems	../src/pylon/impl/framework/entity.php	/^    protected $delitems         = array();$/;"	v	class:ObjUpdater	access:protected
+destroy	../src/pylon/impl/basesvc/session_svc.php	/^    public function destroy($key)$/;"	f	class:SessionSvc	access:public	signature:($key)
+destroyAll	../src/pylon/impl/basesvc/session_svc.php	/^    public function destroyAll()$/;"	f	class:SessionSvc	access:public	signature:()
+disable	../src/pylon/impl/autoload/cache_svc.php	/^    public function disable()$/;"	f	class:MemCacheSvc	access:public	signature:()
+disable	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function disable()$/;"	f	class:LMemCacheDriver	access:public	signature:()
+disableException	../src/pylon/impl/autoload/class_loads.php	/^    public static function disableException($point)$/;"	f	class:PylonGod	access:public	signature:($point)
+diykey_tolower	../src/pylon/impl/framework/control.php	/^function  diykey_tolower(&$item,$key)$/;"	f	signature:(& $item, $key)
+doException	../src/pylon/impl/web/rest.php	/^    static private function doException($intcs,$e,$xcontext,$request,$response)$/;"	f	class:XInterceptorRuner	access:private	signature:($intcs, $e, $xcontext, $request, $response)
+dofailAction	../src/pylon/impl/utls/args_checker.php	/^    static private function dofailAction($msg)$/;"	f	class:ArgsChecker	access:private	signature:($msg)
+dofailAction	../src/pylon/utls/dbc.php	/^    static private function dofailAction($msg)$/;"	f	class:DBC	access:private	signature:($msg)
+driver	../src/pylon/impl/autoload/cache_svc.php	/^    public $driver = null;$/;"	v	class:CacheSpace	access:public
+driver	../src/pylon/impl/basesvc/session_svc.php	/^    private $driver;$/;"	v	class:SessionSvc	access:private
+echoCollectLog	../src/pylon/impl/utls/logutls.php	/^    static public function echoCollectLog($executer, $collectLog)$/;"	f	class:ScopeSqlLog	access:public	signature:($executer, $collectLog)
+echoCollectWLog	../src/pylon/impl/utls/logutls.php	/^    static public function echoCollectWLog($executer, $collectLog)$/;"	f	class:ScopeSqlLog	access:public	signature:($executer, $collectLog)
+echoLog	../src/pylon/impl/utls/logutls.php	/^    static public function echoLog($executer)$/;"	f	class:ScopeSqlLog	access:public	signature:($executer)
+echoMemCacheInfo	../src/pylon/impl/autoload/cache_svc.php	/^    public function echoMemCacheInfo()$/;"	f	class:MemCacheSvc	access:public	signature:()
+echoMemCacheInfo	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function echoMemCacheInfo()$/;"	f	class:LMemCacheDriver	access:public	signature:()
+enable	../src/pylon/impl/autoload/cache_svc.php	/^    public function enable()$/;"	f	class:MemCacheSvc	access:public	signature:()
+enable	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function enable()$/;"	f	class:LMemCacheDriver	access:public	signature:()
+enable_second	../src/pylon/extends/idgenerator.php	/^    private $enable_second = false;$/;"	v	class:MySqlIDGenerator	access:private
+endFun	../src/pylon/impl/utls/logutls.php	/^    protected $endFun;$/;"	v	class:ScopeExec	access:protected
+ensureEnv	../src/pylon/pylon.php	/^    public static function ensureEnv($key)$/;"	f	class:XSetting	access:public	signature:($key)
+ensureNotEmpty	../src/pylon/utls/biz.php	/^    static public function ensureNotEmpty($result,$info)$/;"	f	class:XBizResult	access:public	signature:($result, $info)
+ensureNotFalse	../src/pylon/utls/biz.php	/^    static public function ensureNotFalse($result,$info)$/;"	f	class:XBizResult	access:public	signature:($result, $info)
+ensureNotNull	../src/pylon/utls/biz.php	/^    static public function ensureNotNull($result, $info)$/;"	f	class:XBizResult	access:public	signature:($result, $info)
+ensureNull	../src/pylon/utls/biz.php	/^    static public function ensureNull( $result,$info)$/;"	f	class:XBizResult	access:public	signature:($result, $info)
+ensureStarOnce	../src/pylon/impl/basesvc/session_svc.php	/^    static private function ensureStarOnce()$/;"	f	class:SessionSvc	access:private	signature:()
+entLazyload	../src/pylon/pylon.php	/^    static public  $entLazyload  = true ;$/;"	v	class:XSetting	access:public
+eof	../src/pylon/impl/autoload/build_includes.php	/^    function eof()$/;"	f	class:PYLFile	signature:()
+eq	../src/pylon/impl/dba/express.php	/^    static public function eq($column, $value,$stg=null)$/;"	f	class:Express	access:public	signature:($column, $value, $stg = null)
+eqColumn	../src/pylon/impl/dba/express.php	/^    static public function eqColumn($column1, $column2,$stg=null)$/;"	f	class:Express	access:public	signature:($column1, $column2, $stg = null)
+equal	../src/pylon/impl/framework/entity.php	/^    public function equal($other)$/;"	f	class:ObjUpdater	access:public	signature:($other)
+equalsMsg	../src/pylon/utls/dbc.php	/^    static private function equalsMsg($first,$second,$firstName)$/;"	f	class:DBC	access:private	signature:($first, $second, $firstName)
+errmsg	../src/pylon/interface/webimpl.php	/^    public $errmsg    = "unknown";$/;"	v	class:XRestResp	access:public
+errmsg	../src/pylon/utls/unittest.php	/^    public $errmsg;$/;"	v	class:XHttpResult	access:public
+errno	../src/pylon/interface/webimpl.php	/^    public $errno     = 1 ;$/;"	v	class:XRestResp	access:public
+errno	../src/pylon/utls/unittest.php	/^    public $errno;$/;"	v	class:XHttpResult	access:public
+errno2exception	../src/pylon/utls/unittest.php	/^    public function errno2exception()$/;"	f	class:XHttpResult	access:public	signature:()
+error	../src/pylon/interface/web.php	/^    public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$status_code = 500);$/;"	f	class:XResponse	access:public	signature:($errmsg, $errno = XErrCode:: BIZ_UNKNOW, $status_code = 500)
+error	../src/pylon/interface/webimpl.php	/^    public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$status_code = 500)$/;"	f	class:XHtmlResp	access:public	signature:($errmsg, $errno = XErrCode:: BIZ_UNKNOW, $status_code = 500)
+error	../src/pylon/interface/webimpl.php	/^    public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$status_code = 500)$/;"	f	class:XRestResp	access:public	signature:($errmsg, $errno = XErrCode:: BIZ_UNKNOW, $status_code = 500)
+event	../src/pylon/pylon.php	/^    public static function event($evt)$/;"	f	class:XLogKit	access:public	signature:($evt)
+exceptionClass	../src/pylon/impl/utls/args_checker.php	/^    public static  $exceptionClass='UserInputException';$/;"	v	class:ArgsChecker	access:public
+exeNoQuery	../src/pylon/extends/sql_executor.php	/^    public function exeNoQuery($sql, $values=array())$/;"	f	class:FastSQLExecutor	access:public	signature:($sql, $values = array())
+exeNoQuery	../src/pylon/interface/plugin.php	/^    public function exeNoQuery($cmd);$/;"	f	class:XSQLExecuter	access:public	signature:($cmd)
+exeNoQueryDirect	../src/pylon/extends/sql_executor.php	/^    public function exeNoQueryDirect($sql, $values=array())$/;"	f	class:FastSQLExecutor	access:public	signature:($sql, $values = array())
+exeNoQueryDirect	../src/pylon/interface/plugin.php	/^    public function exeNoQueryDirect($cmd);$/;"	f	class:XSQLExecuter	access:public	signature:($cmd)
+exeNoQuerys	../src/pylon/extends/sql_executor.php	/^    public function exeNoQuerys($cmds)$/;"	f	class:FastSQLExecutor	access:public	signature:($cmds)
+execTC	../src/pylon/impl/autoload/tc_support.php	/^    static public function execTC($argv,$tclistfile)$/;"	f	class:TestCaseExec	access:public	signature:($argv, $tclistfile)
+execr	../src/pylon/impl/framework/daobase.php	/^    private $execr = null;$/;"	v	class:SimpleDaoFactory	access:private
+execr	../src/pylon/impl/framework/query.php	/^    private $execr = null;$/;"	v	class:SimpleQueryFactory	access:private
+execute	../src/pylon/extends/sql_executor.php	/^    public function execute($sql, $values=array())$/;"	f	class:FastSQLExecutor	access:public	signature:($sql, $values = array())
+exer	../src/pylon/impl/framework/query.php	/^    public $exer=null;$/;"	v	class:Query	access:public
+exer	../src/pylon/impl/framework/unitwork.php	/^    private $exer;$/;"	v	class:ScopeAutoTrans	access:private
+exists	../src/pylon/impl/autoload/build_includes.php	/^    function exists( $fileName = null ) $/;"	f	class:PYLFile	signature:($fileName = null)
+expireSet	../src/pylon/impl/autoload/cache_svc.php	/^    public $expireSet;$/;"	v	class:CacheStg	access:public
+express	../src/pylon/impl/framework/query.php	/^    public $express;$/;"	v	class:DQLObj	access:public
+extend	../src/pylon/pylon.php	/^    static public function extend($key,$val)$/;"	f	class:XSetting	access:public	signature:($key, $val)
+extendData	../src/pylon/pylon.php	/^    static public  $extendData  = array() ;$/;"	v	class:XSetting	access:public
+factory	../src/pylon/impl/framework/entity.php	/^    const factory='##factory';$/;"	d	class:DaoFinderUtls
+failAction	../src/pylon/utls/dbc.php	/^    public static  $failAction = DBC::DO_EXCEPTION;$/;"	v	class:DBC	access:public
+fast_class_load	../src/pylon/impl/autoload/class_loads.php	/^function fast_class_load($classname)$/;"	f	signature:($classname)
+featureNo	../src/pylon/impl/utls/version.php	/^    public $featureNo=0;$/;"	v	class:SysVersion	access:public
+featureUpgrade	../src/pylon/impl/utls/version.php	/^    public function featureUpgrade()$/;"	f	class:SysVersion	access:public	signature:()
+filterCondVal	../src/pylon/impl/framework/query.php	/^    static public function filterCondVal($arr)$/;"	f	class:SqlProcUtls	access:public	signature:($arr)
+filterEmpty	../src/pylon/impl/dba/express.php	/^    static public function filterEmpty()$/;"	f	class:StgUtls	access:public	signature:()
+filterNull	../src/pylon/impl/dba/express.php	/^    static public function filterNull()$/;"	f	class:StgUtls	access:public	signature:()
+find	../src/pylon/impl/autoload/cache_svc.php	/^    public function find($name)$/;"	f	class:CacheSpace	access:public	signature:($name)
+find	../src/pylon/impl/framework/entity.php	/^    static public function find($obj)$/;"	f	class:DaoFinderUtls	access:public	signature:($obj)
+findByCls	../src/pylon/impl/framework/entity.php	/^    static protected function findByCls($clsName)$/;"	f	class:DaoFinderUtls	access:protected	signature:($clsName)
+findClassFromAFile	../src/pylon/impl/autoload/build_includes.php	/^    static private function findClassFromAFile($file)$/;"	f	class:PYLAssemblyBuilder	access:private	signature:($file)
+findClasses	../src/pylon/impl/autoload/build_includes.php	/^    static private function findClasses($files)$/;"	f	class:PYLAssemblyBuilder	access:private	signature:($files)
+findFiles	../src/pylon/impl/autoload/build_includes.php	/^    static private function findFiles($dirname)$/;"	f	class:PYLAssemblyBuilder	access:private	signature:($dirname)
+find_	../src/pylon/impl/framework/entity.php	/^    static public function find_($obj)$/;"	f	class:DaoFinderUtls	access:public	signature:($obj)
+find_conf	../src/pylon/impl/web/rest.php	/^    static private function find_conf($uri)$/;"	f	class:XRouter	access:private	signature:($uri)
+first	../src/pylon/extends/sql_executor.php	/^    public $first;$/;"	v	class:Pair	access:public
+firstCache	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $firstCache=null;$/;"	v	class:LMutiLevelCache	access:private
+fixbug	../src/pylon/impl/utls/version.php	/^    public function fixbug()$/;"	f	class:SysVersion	access:public	signature:()
+fixbugNo	../src/pylon/impl/utls/version.php	/^    public $fixbugNo=0;$/;"	v	class:SysVersion	access:public
+flush	../src/pylon/impl/autoload/cache_svc.php	/^    public function flush()$/;"	f	class:APCDriver	access:public	signature:()
+flush	../src/pylon/impl/autoload/cache_svc.php	/^    public function flush()$/;"	f	class:EADriver	access:public	signature:()
+flush	../src/pylon/impl/autoload/cache_svc.php	/^    public function flush()$/;"	f	class:InnerCache	access:public	signature:()
+flush	../src/pylon/impl/autoload/cache_svc.php	/^    public function flush()$/;"	f	class:MemCacheSvc	access:public	signature:()
+flush	../src/pylon/impl/autoload/cache_svc.php	/^    public function flush()$/;"	f	class:NullDriver	access:public	signature:()
+flush	../src/pylon/impl/autoload/cache_svc.php	/^    public function flush();$/;"	f	class:Cachable	access:public	signature:()
+flush	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function flush()$/;"	f	class:LArrayDriver	access:public	signature:()
+flush	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function flush()$/;"	f	class:LEADriver	access:public	signature:()
+flush	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function flush()$/;"	f	class:LMemCacheDriver	access:public	signature:()
+flush	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function flush()$/;"	f	class:LMutiLevelCache	access:public	signature:()
+flush	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function flush();$/;"	f	class:LCachable	access:public	signature:()
+from	../src/pylon/utls/status_machine.php	/^    public $from;$/;"	v	class:StatusDirect	access:public
+fromArray	../src/pylon/interface/base.php	/^    static public function fromArray($arr=array())$/;"	f	class:XProperty	access:public	signature:($arr = array())
+fun	../src/pylon/impl/framework/proxy.php	/^    private  $fun;$/;"	v	class:LDProxy	access:private
+funIns	../src/pylon/impl/framework/daobase.php	/^    static public function funIns($executer)$/;"	f	class:SimpleDaoFactory	access:public	signature:($executer)
+funIns	../src/pylon/impl/framework/query.php	/^    static public function funIns($executer,$isSelfDefFun=null)$/;"	f	class:SimpleQueryFactory	access:public	signature:($executer, $isSelfDefFun = null)
+ge	../src/pylon/impl/dba/express.php	/^    static public function ge($column, $value,$stg=null)$/;"	f	class:Express	access:public	signature:($column, $value, $stg = null)
+genKeyVal	../src/pylon/impl/framework/daobase.php	/^    protected function genKeyVal($keys,$pairs)$/;"	f	class:DaoBase	access:protected	signature:($keys, $pairs)
+generateCountSql	../src/pylon/impl/dba/sql_constructor.php	/^    function generateCountSql()$/;"	f	class:SQLSelectStatement	signature:()
+generateSql	../src/pylon/impl/dba/express.php	/^    function generateSql($stg)$/;"	f	class:EqColumn	signature:($stg)
+generateSql	../src/pylon/impl/dba/express.php	/^    function generateSql($stg)$/;"	f	class:GreatEqColumn	signature:($stg)
+generateSql	../src/pylon/impl/dba/express.php	/^    function generateSql($stg)$/;"	f	class:LessEqColumn	signature:($stg)
+generateSql	../src/pylon/impl/dba/express.php	/^    function generateSql($stgs )$/;"	f	class:TxtExpress	signature:($stgs)
+generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stg )$/;"	f	class:Express	access:public	signature:($stg)
+generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stg)$/;"	f	class:Less	access:public	signature:($stg)
+generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stgs)$/;"	f	class:Ands	access:public	signature:($stgs)
+generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stgs)$/;"	f	class:Eq	access:public	signature:($stgs)
+generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stgs)$/;"	f	class:Great	access:public	signature:($stgs)
+generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stgs)$/;"	f	class:GreatEq	access:public	signature:($stgs)
+generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stgs)$/;"	f	class:LessEq	access:public	signature:($stgs)
+generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stgs)$/;"	f	class:Ors	access:public	signature:($stgs)
+generateSql	../src/pylon/impl/dba/sql_constructor.php	/^        public function generateSql()$/;"	f	class:SQLUpdateStatment	access:public	signature:()
+generateSql	../src/pylon/impl/dba/sql_constructor.php	/^    abstract public function generateSql();$/;"	f	class:SQLStatement	access:public	implementation:abstract	signature:()
+generateSql	../src/pylon/impl/dba/sql_constructor.php	/^    function generateSql()$/;"	f	class:SQLInsertStatment	signature:()
+generateSql	../src/pylon/impl/dba/sql_constructor.php	/^    public function generateSql()$/;"	f	class:SQLDelStatement	access:public	signature:()
+generateSql	../src/pylon/impl/dba/sql_constructor.php	/^    public function generateSql()$/;"	f	class:SQLSelectStatement	access:public	signature:()
+generatorAssemblyFile	../src/pylon/impl/autoload/build_includes.php	/^    static private function generatorAssemblyFile($classes,$srcRoot,$outFileArr)$/;"	f	class:PYLAssemblyBuilder	access:private	signature:($classes, $srcRoot, $outFileArr)
+get	../src/pylon/impl/autoload/cache_svc.php	/^    public function get($key)$/;"	f	class:APCDriver	access:public	signature:($key)
+get	../src/pylon/impl/autoload/cache_svc.php	/^    public function get($key)$/;"	f	class:EADriver	access:public	signature:($key)
+get	../src/pylon/impl/autoload/cache_svc.php	/^    public function get($key)$/;"	f	class:InnerCache	access:public	signature:($key)
+get	../src/pylon/impl/autoload/cache_svc.php	/^    public function get($key)$/;"	f	class:MemCacheSvc	access:public	signature:($key)
+get	../src/pylon/impl/autoload/cache_svc.php	/^    public function get($key)$/;"	f	class:NullDriver	access:public	signature:($key)
+get	../src/pylon/impl/autoload/cache_svc.php	/^    public function get($key)$/;"	f	class:PylCacheSvc	access:public	signature:($key)
+get	../src/pylon/impl/autoload/cache_svc.php	/^    public function get($key);$/;"	f	class:Cachable	access:public	signature:($key)
+get	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function get($key)$/;"	f	class:LArrayDriver	access:public	signature:($key)
+get	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function get($key)$/;"	f	class:LEADriver	access:public	signature:($key)
+get	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function get($key)$/;"	f	class:LMDB	access:public	signature:($key)
+get	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function get($key)$/;"	f	class:LMemCacheDriver	access:public	signature:($key)
+get	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function get($key)$/;"	f	class:LMutiLevelCache	access:public	signature:($key)
+get	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function get($key);$/;"	f	class:LCachable	access:public	signature:($key)
+get	../src/pylon/impl/basesvc/session_svc.php	/^    public function get($key)$/;"	f	class:SessionSvc	access:public	signature:($key)
+get	../src/pylon/impl/framework/entity.php	/^    public function get($index)$/;"	f	class:ObjUpdater	access:public	signature:($index)
+get	../src/pylon/impl/web/aop.php	/^    public function get($key)$/;"	f	class:XIntercepterTarget	access:public	signature:($key)
+get	../src/pylon/interface/base.php	/^	public function get($name,$default=null)$/;"	f	class:XProperty	access:public	signature:($name, $default = null)
+get	../src/pylon/interface/ioc.php	/^    static public function get($key,$space='\/')$/;"	f	class:XBox	access:public	signature:($key, $space = '...')
+get	../src/pylon/utls/unittest.php	/^    public function get($url,$timeout=0)$/;"	f	class:XHttpCall	access:public	signature:($url, $timeout = 0)
+getAll	../src/pylon/impl/basesvc/session_svc.php	/^    public function getAll()$/;"	f	class:SessionSvc	access:public	signature:()
+getBatchID	../src/pylon/extends/idgenerator.php	/^    public function getBatchID($objName)$/;"	f	class:MySqlIDGenerator	access:public	signature:($objName)
+getByCmd	../src/pylon/impl/framework/daobase.php	/^    public function getByCmd($cmd,$argvals=array())$/;"	f	class:DaoBase	access:public	signature:($cmd, $argvals = array())
+getByCmd	../src/pylon/impl/framework/query.php	/^    public function getByCmd($cmd,$valsArr=array())$/;"	f	class:Query	access:public	signature:($cmd, $valsArr = array())
+getByID	../src/pylon/impl/framework/daobase.php	/^    public function getByID($id,$hashKey=null)$/;"	f	class:DaoBase	access:public	signature:($id, $hashKey = null)
+getByID	../src/pylon/interface/ent.php	/^    public function getByID($id);$/;"	f	class:Dao	access:public	signature:($id)
+getByObj	../src/pylon/impl/framework/entity.php	/^    public function getByObj($indexObj)$/;"	f	class:ObjUpdater	access:public	signature:($indexObj)
+getByProp	../src/pylon/impl/framework/daobase.php	/^    public function getByProp($prop,$hashKey=null)$/;"	f	class:DaoBase	access:public	signature:($prop, $hashKey = null)
+getByProp	../src/pylon/impl/framework/query.php	/^    public function getByProp($prop,$view,$viewCond='',$columns="*",$addiWhereCmd ="", $order=null)$/;"	f	class:Query	access:public	signature:($prop, $view, $viewCond = '...', $columns = '...', $addiWhereCmd = '...', $order = null)
+getCall	../src/pylon/interface/ent.php	/^    private function getCall($op,$cls,$catch4add,$name,$paramNames,$params)$/;"	f	class:XQobj	access:private	signature:($op, $cls, $catch4add, $name, $paramNames, $params)
+getCall	../src/pylon/interface/ent.php	/^    private function getCall($table,$paramNames,$params)$/;"	f	class:XQarr	access:private	signature:($table, $paramNames, $params)
+getClass	../src/pylon/impl/framework/other.php	/^    public function getClass()$/;"	f	class:NullEntity	access:public	signature:()
+getClassName	../src/pylon/impl/framework/daobase.php	/^    public function getClassName($cls)$/;"	f	class:SimpleDaoFactory	access:public	signature:($cls)
+getClassPos	../src/pylon/impl/autoload/build_includes.php	/^    public function getClassPos($path)$/;"	f	class:PYLAssemblyBuilder	access:public	signature:($path)
+getClsName	../src/pylon/impl/framework/relation.php	/^    public function getClsName()$/;"	f	class:ObjectSet	access:public	signature:()
+getCount	../src/pylon/impl/framework/daobase.php	/^    public function getCount($prop,$hashKey=null)$/;"	f	class:DaoBase	access:public	signature:($prop, $hashKey = null)
+getCount	../src/pylon/impl/framework/query.php	/^    public function getCount($prop,$hashKey=null)$/;"	f	class:Query	access:public	signature:($prop, $hashKey = null)
+getCountImpl	../src/pylon/impl/framework/query.php	/^    private function getCountImpl($statement,$valsArr=array())$/;"	f	class:Query	access:private	signature:($statement, $valsArr = array())
+getDTO	../src/pylon/impl/framework/entity.php	/^        public function getDTO($mappingStg)$/;"	f	class:Relation	access:public	signature:($mappingStg)
+getDTO	../src/pylon/impl/framework/entity.php	/^    public function getDTO($mappingStg)$/;"	f	class:EntityImpl	access:public	signature:($mappingStg)
+getDao	../src/pylon/interface/ent.php	/^    private function getDao($cls)$/;"	f	class:XQobj	access:private	signature:($cls)
+getData	../src/pylon/interface/webimpl.php	/^    public function getData()$/;"	f	class:XRestResp	access:public	signature:()
+getExecuter	../src/pylon/impl/framework/daobase.php	/^    public function getExecuter()$/;"	f	class:DaoBase	access:public	signature:()
+getExecuter	../src/pylon/impl/framework/query.php	/^    public function getExecuter()$/;"	f	class:Query	access:public	signature:()
+getExecuterList	../src/pylon/impl/framework/entity.php	/^    static public function getExecuterList()$/;"	f	class:DaoFinderUtls	access:public	signature:()
+getFileSuffix	../src/pylon/impl/autoload/build_includes.php	/^    static private function getFileSuffix($fileName)$/;"	f	class:PYLAssemblyBuilder	access:private	signature:($fileName)
+getID	../src/pylon/extends/idgenerator.php	/^    private function getID($id)$/;"	f	class:MySqlIDGenerator	access:private	signature:($id)
+getLastInsertID	../src/pylon/extends/sql_executor.php	/^    public function getLastInsertID()$/;"	f	class:FastSQLExecutor	access:public	signature:()
+getObj	../src/pylon/impl/framework/proxy.php	/^    public function getObj()$/;"	f	class:LDProxy	access:public	signature:()
+getObjsCountImpl	../src/pylon/impl/framework/daobase.php	/^    private function getObjsCountImpl($statement,$valsArr=array())$/;"	f	class:DaoBase	access:private	signature:($statement, $valsArr = array())
+getObjsCountImpl	../src/pylon/impl/framework/query.php	/^    private function getObjsCountImpl($statement,$valsArr=array())$/;"	f	class:Query	access:private	signature:($statement, $valsArr = array())
+getPropArray	../src/pylon/interface/base.php	/^    public function getPropArray()$/;"	f	class:XProperty	access:public	signature:()
+getRegName	../src/pylon/impl/framework/query.php	/^    public function getRegName()$/;"	f	class:Query	access:public	signature:()
+getRelationSets	../src/pylon/impl/framework/entity.php	/^        public function getRelationSets()$/;"	f	class:Relation	access:public	signature:()
+getRelationSets	../src/pylon/impl/framework/entity.php	/^    public function getRelationSets()$/;"	f	class:EntityImpl	access:public	signature:()
+getRowRange	../src/pylon/utls/datapage.php	/^    public function getRowRange(&$begin,&$count)$/;"	f	class:XDataPage	access:public	signature:(& $begin, & $count)
+getSessionID	../src/pylon/impl/basesvc/session_svc.php	/^    public function getSessionID()$/;"	f	class:SessionSvc	access:public	signature:()
+getSize	../src/pylon/impl/autoload/build_includes.php	/^    function getSize( $fileName = null )$/;"	f	class:PYLFile	signature:($fileName = null)
+getStoreTable	../src/pylon/impl/framework/daobase.php	/^    public function getStoreTable($hashKey=null)$/;"	f	class:DaoBase	access:public	signature:($hashKey = null)
+getStyle	../src/pylon/interface/ent.php	/^    private function getStyle($params)$/;"	f	class:XQarr	access:private	signature:($params)
+getStyle	../src/pylon/interface/ent.php	/^    private function getStyle($params)$/;"	f	class:XWriter	access:private	signature:($params)
+getTableName	../src/pylon/impl/dba/sql_constructor.php	/^    function getTableName()$/;"	f	class:SQLStatement	signature:()
+getTempName	../src/pylon/impl/autoload/build_includes.php	/^    function getTempName()$/;"	f	class:PYLFile	signature:()
+get_class_name	../src/pylon/impl/autoload/class_loads.php	/^function get_class_name($clsname)$/;"	f	signature:($clsname)
+get_impl	../src/pylon/impl/framework/entity.php	/^    static public function get_impl($key,$cls)$/;"	f	class:DaoFinderUtls	access:public	signature:($key, $cls)
+getkefun	../src/pylon/impl/autoload/cache_svc.php	/^    public $getkefun;$/;"	v	class:CacheStg	access:public
+getkey	../src/pylon/impl/autoload/cache_svc.php	/^    public function getkey($value)$/;"	f	class:CacheStg	access:public	signature:($value)
+gotoPage	../src/pylon/utls/datapage.php	/^    public function gotoPage($pageNum)$/;"	f	class:XDataPage	access:public	signature:($pageNum)
+groupBy	../src/pylon/impl/dba/sql_constructor.php	/^    function groupBy($groupBy)$/;"	f	class:SQLSelectStatement	signature:($groupBy)
+gt	../src/pylon/impl/dba/express.php	/^    static public function gt($column, $value,$stg=null)$/;"	f	class:Express	access:public	signature:($column, $value, $stg = null)
+hasKey	../src/pylon/impl/framework/daobase.php	/^    public $hasKey      = null;$/;"	v	class:DaoBase	access:public
+hashStoreKey	../src/pylon/impl/framework/entity.php	/^        public function hashStoreKey()$/;"	f	class:Relation	access:public	signature:()
+hashStoreKey	../src/pylon/interface/ent.php	/^    public function hashStoreKey()$/;"	f	class:XEntity	access:public	signature:()
+have	../src/pylon/interface/base.php	/^	public function have($name)$/;"	f	class:XProperty	access:public	signature:($name)
+haveChange	../src/pylon/impl/framework/entity.php	/^    public function haveChange()$/;"	f	class:ObjUpdater	access:public	signature:()
+haveClass	../src/pylon/pylon.php	/^    static public function haveClass($clsname)$/;"	f	class:XPylon	access:public	signature:($clsname)
+haveCollector	../src/pylon/extends/sql_executor.php	/^    public function haveCollector()$/;"	f	class:FastSQLExecutor	access:public	signature:()
+haveCollector	../src/pylon/interface/plugin.php	/^    public function haveCollector();$/;"	f	class:XSQLExecuter	access:public	signature:()
+header_info	../src/pylon/impl/utls/http.php	/^    static function header_info($status_code)$/;"	f	class:PYL_HttpHeader	signature:($status_code)
+host	../src/pylon/extends/sql_executor.php	/^    public $host;$/;"	v	class:LZLExecutor	access:public
+host	../src/pylon/utls/unittest.php	/^    public  $host;$/;"	v	class:XHttpCall	access:public
+html_out	../src/pylon/utls/exception.php	/^    static public function html_out($e)$/;"	f	class:XExceptionUtls	access:public	signature:($e)
+http_body	../src/pylon/utls/unittest.php	/^    public $http_body;$/;"	v	class:XHttpResult	access:public
+id	../src/pylon/impl/framework/entity.php	/^        public function id()$/;"	f	class:Relation	access:public	signature:()
+id	../src/pylon/interface/ent.php	/^    public function id()$/;"	f	class:XEntity	access:public	signature:()
+incGap	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $incGap=10;$/;"	v	class:LMutiLevelCache	access:private
+increment	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function increment($key,$expire=600,$v=1)$/;"	f	class:LArrayDriver	access:public	signature:($key, $expire = 600, $v = 1)
+increment	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function increment($key,$expire=600,$v=1)$/;"	f	class:LEADriver	access:public	signature:($key, $expire = 600, $v = 1)
+increment	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function increment($key,$expire=600,$v=1)$/;"	f	class:LMDB	access:public	signature:($key, $expire = 600, $v = 1)
+increment	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function increment($key,$expire=600,$v=1)$/;"	f	class:LMemCacheDriver	access:public	signature:($key, $expire = 600, $v = 1)
+increment	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function increment($key,$expire=600,$v=1)$/;"	f	class:LMutiLevelCache	access:public	signature:($key, $expire = 600, $v = 1)
+increment	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function increment($key,$expire=600,$v=1);$/;"	f	class:LCachable	access:public	signature:($key, $expire = 600, $v = 1)
+index	../src/pylon/impl/framework/entity.php	/^    public function index()$/;"	f	class:EntityImpl	access:public	signature:()
+index	../src/pylon/impl/framework/entity.php	/^    public function index();$/;"	f	class:IAutoUpdate	access:public	signature:()
+init	../src/pylon/extends/session_memcache.php	/^    public function init()$/;"	f	class:MemcacheSessDriver	access:public	signature:()
+init	../src/pylon/extends/session_mysql.php	/^   public function init()$/;"	f	class:MySqlSessDriver	access:public	signature:()
+init	../src/pylon/impl/basesvc/session_svc.php	/^    public function init()$/;"	f	class:NullSessionDriver	access:public	signature:()
+init	../src/pylon/impl/utls/version.php	/^    static public function init($file)$/;"	f	class:SysVersion	access:public	signature:($file)
+init	../src/pylon/interface/plugin.php	/^    public function init();$/;"	f	class:ISessionDriver	access:public	signature:()
+initTotalRows	../src/pylon/utls/datapage.php	/^    public function initTotalRows($totalRows)$/;"	f	class:XDataPage	access:public	signature:($totalRows)
+initVer	../src/pylon/impl/autoload/cache_svc.php	/^    public function initVer()$/;"	f	class:PylCacheSvc	access:public	signature:()
+innerCacheSpace	../src/pylon/impl/autoload/cache_svc.php	/^    static public $innerCacheSpace=null;$/;"	v	class:CacheAdmin	access:public
+innerJoin	../src/pylon/impl/dba/sql_constructor.php	/^    function innerJoin($tableName,$condition)$/;"	f	class:SQLSelectStatement	signature:($tableName, $condition)
+ins	../src/pylon/extends/sql_executor.php	/^    public $ins = null;$/;"	v	class:LZLExecutor	access:public
+ins	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function ins()$/;"	f	class:StatControl	access:public	signature:()
+ins	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function ins()$/;"	f	class:StatQueue	access:public	signature:()
+ins	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function ins()$/;"	f	class:StatWatcher	access:public	signature:()
+ins	../src/pylon/impl/dba/express.php	/^    public static function ins()$/;"	f	class:NULLColumnStg	access:public	signature:()
+ins	../src/pylon/impl/framework/entity.php	/^    static private $ins=null;$/;"	v	class:SimpleMapping	access:private
+ins	../src/pylon/impl/framework/entity.php	/^    static private $ins=null;$/;"	v	class:StdMapping	access:private
+ins	../src/pylon/impl/framework/entity.php	/^    static public function ins()$/;"	f	class:SimpleMapping	access:public	signature:()
+ins	../src/pylon/impl/framework/entity.php	/^    static public function ins()$/;"	f	class:StdMapping	access:public	signature:()
+ins	../src/pylon/impl/utls/version.php	/^    static public function  ins()$/;"	f	class:SysVersion	access:public	signature:()
+ins	../src/pylon/interface/ent.php	/^    static public function ins()$/;"	f	class:XQarr	access:public	signature:()
+ins	../src/pylon/interface/ent.php	/^    static public function ins()$/;"	f	class:XQobj	access:public	signature:()
+ins	../src/pylon/interface/ent.php	/^    static public function ins()$/;"	f	class:XWriter	access:public	signature:()
+instance	../src/pylon/impl/basesvc/monitor_svc.php	/^    static $instance=null; $/;"	v	class:StatControl
+instance	../src/pylon/impl/basesvc/monitor_svc.php	/^    static $instance=null; $/;"	v	class:StatQueue
+instance	../src/pylon/impl/basesvc/monitor_svc.php	/^    static $instance=null; $/;"	v	class:StatWatcher
+instance	../src/pylon/impl/utls/version.php	/^    static public $instance=null;$/;"	v	class:SysVersion	access:public
+intcpt	../src/pylon/impl/web/aop.php	/^    private $intcpt  =null;$/;"	v	class:AutoScopeIntc	access:private
+isCancle	../src/pylon/interface/ent.php	/^    private     $isCancle=true;$/;"	v	class:XAppSession	access:private
+isDir	../src/pylon/impl/autoload/build_includes.php	/^    function isDir( $file = null )$/;"	f	class:PYLFile	signature:($file = null)
+isEmpty	../src/pylon/interface/base.php	/^    public function isEmpty()$/;"	f	class:XProperty	access:public	signature:()
+isEmpty	../src/pylon/utls/biz.php	/^    static public function isEmpty($result,$info)$/;"	f	class:XBR	access:public	signature:($result, $info)
+isEnable	../src/pylon/impl/autoload/cache_svc.php	/^    static public function isEnable()  $/;"	f	class:APCDriver	access:public	signature:()
+isEnable	../src/pylon/impl/autoload/cache_svc.php	/^    static public function isEnable()  $/;"	f	class:EADriver	access:public	signature:()
+isEnable	../src/pylon/impl/autoload/cache_svc.php	/^    static public function isEnable()  $/;"	f	class:MemCacheSvc	access:public	signature:()
+isEnable	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function isEnable()  $/;"	f	class:LEADriver	access:public	signature:()
+isEnable	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function isEnable()  $/;"	f	class:LMemCacheDriver	access:public	signature:()
+isInFileTemplates	../src/pylon/impl/autoload/build_includes.php	/^    static private function isInFileTemplates($file)$/;"	f	class:PYLAssemblyBuilder	access:private	signature:($file)
+isMatch	../src/pylon/impl/web/aop.php	/^    public $isMatch;$/;"	v	class:XAopRule	access:public
+isNull	../src/pylon/utls/biz.php	/^    static public function isNull( $result,$info)$/;"	f	class:XBR	access:public	signature:($result, $info)
+isParentSonRelation	../src/pylon/utls/status_machine.php	/^    public function isParentSonRelation($parent, $son)$/;"	f	class:StatusMachine	access:public	signature:($parent, $son)
+isReadable	../src/pylon/impl/autoload/build_includes.php	/^    function isReadable( $file = null )$/;"	f	class:PYLFile	signature:($file = null)
+isSelfDefFun	../src/pylon/impl/framework/daobase.php	/^    private $isSelfDefFun=null;$/;"	v	class:SimpleDaoFactory	access:private
+isSelfDefFun	../src/pylon/impl/framework/query.php	/^    private $isSelfDefFun=null;$/;"	v	class:SimpleQueryFactory	access:private
+isSkipFolders	../src/pylon/impl/autoload/build_includes.php	/^    static private function isSkipFolders($file)$/;"	f	class:PYLAssemblyBuilder	access:private	signature:($file)
+isSuccess	../src/pylon/impl/framework/unitwork.php	/^    public function isSuccess()$/;"	f	class:ScopeAutoTrans	access:public	signature:()
+isSucess	../src/pylon/utls/unittest.php	/^    public function isSucess()$/;"	f	class:XHttpResult	access:public	signature:()
+isTrue	../src/pylon/utls/biz.php	/^    static public function isTrue($result,$info)$/;"	f	class:XBR	access:public	signature:($result, $info)
+isTrustAcess	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function  isTrustAcess($who)$/;"	f	class:StatControl	access:public	signature:($who)
+isWritable	../src/pylon/impl/autoload/build_includes.php	/^    function isWritable( $file = null )$/;"	f	class:PYLFile	signature:($file = null)
+is_success	../src/pylon/interface/webimpl.php	/^    public function is_success()$/;"	f	class:XRestResp	access:public	signature:()
+iskeep	../src/pylon/impl/utls/diagnosis.php	/^    public $iskeep=true;$/;"	v	class:DiagnoseContext	access:public
+issuc	../src/pylon/impl/framework/unitwork.php	/^    private $issuc=false;$/;"	v	class:ScopeAutoTrans	access:private
+items	../src/pylon/impl/framework/entity.php	/^    protected $items            = array();$/;"	v	class:ObjUpdater	access:protected
+items	../src/pylon/impl/framework/entity.php	/^    public function &items()$/;"	f	class:ObjUpdater	access:public	signature:()
+j2csv	../src/pylon/impl/utls/join_utls.php	/^    static public function j2csv($arr)$/;"	f	class:JoinUtls	access:public	signature:($arr)
+j2str	../src/pylon/impl/utls/join_utls.php	/^    static public function  j2str()$/;"	f	class:JoinUtls	access:public	signature:()
+jarray	../src/pylon/impl/utls/join_utls.php	/^    static public function  jarray($glue,$array)$/;"	f	class:JoinUtls	access:public	signature:($glue, $array)
+jarrayEx	../src/pylon/impl/utls/join_utls.php	/^    static public function jarrayEx($glue,$array,$fun)$/;"	f	class:JoinUtls	access:public	signature:($glue, $array, $fun)
+jassoArray	../src/pylon/impl/utls/join_utls.php	/^    static public function jassoArray($glue,$tag,$array)$/;"	f	class:JoinUtls	access:public	signature:($glue, $tag, $array)
+jassoArrayEx	../src/pylon/impl/utls/join_utls.php	/^    static public function jassoArrayEx($glue,$array,$fun)$/;"	f	class:JoinUtls	access:public	signature:($glue, $array, $fun)
+joinPage	../src/pylon/impl/dba/sql_constructor.php	/^    function joinPage($dataPage)$/;"	f	class:SQLSelectStatement	signature:($dataPage)
+joinPath	../src/pylon/impl/utls/join_utls.php	/^    static public function joinPath()$/;"	f	class:JoinUtls	access:public	signature:()
+joinWCmds	../src/pylon/impl/dba/translation.php	/^    function joinWCmds()$/;"	f	class:SqlCollector	signature:()
+jsortArray	../src/pylon/impl/utls/join_utls.php	/^    static public function jsortArray($glue,$sort,$array)$/;"	f	class:JoinUtls	access:public	signature:($glue, $sort, $array)
+jumpURL	../src/pylon/interface/webimpl.php	/^    protected $jumpURL     = null ;$/;"	v	class:XHtmlResp	access:protected
+jwithEgis	../src/pylon/impl/utls/join_utls.php	/^    static public function jwithEgis($glue,$egis,$arr)$/;"	f	class:JoinUtls	access:public	signature:($glue, $egis, $arr)
+key	../src/pylon/impl/basesvc/locks.php	/^    private $key;$/;"	v	class:FileLockImp	access:private
+last_resp	../src/pylon/utls/unittest.php	/^    protected $last_resp = null;$/;"	v	class:XHttpCall	access:protected
+le	../src/pylon/impl/dba/express.php	/^    static public function le($column, $value,$stg=null)$/;"	f	class:Express	access:public	signature:($column, $value, $stg = null)
+leftJoin	../src/pylon/impl/dba/sql_constructor.php	/^    function leftJoin($tableName,$condition)$/;"	f	class:SQLSelectStatement	signature:($tableName, $condition)
+limit	../src/pylon/impl/dba/sql_constructor.php	/^    function limit($from,$num)$/;"	f	class:SQLSelectStatement	signature:($from, $num)
+listByCmd	../src/pylon/impl/framework/daobase.php	/^    public function listByCmd($cmd,$argvals=array())$/;"	f	class:DaoBase	access:public	signature:($cmd, $argvals = array())
+listByCmd	../src/pylon/impl/framework/query.php	/^    public function listByCmd($cmd,$valsArr=array())$/;"	f	class:Query	access:public	signature:($cmd, $valsArr = array())
+listByCmdPage	../src/pylon/impl/framework/query.php	/^    public function listByCmdPage($cmd,$page,$valsArr=array())$/;"	f	class:Query	access:public	signature:($cmd, $page, $valsArr = array())
+listByProp	../src/pylon/impl/framework/daobase.php	/^    public function listByProp($prop=null,$page=null,$orderkey=null,$ordertype='DESC',$hashKey=null)$/;"	f	class:DaoBase	access:public	signature:($prop = null, $page = null, $orderkey = null, $ordertype = '...', $hashKey = null)
+listByProp	../src/pylon/impl/framework/query.php	/^    public function listByProp($view,$viewCond,$columns,$prop=null,$page=null,$orderkey=null,$ordertype='DESC',$addiWhereCmd="")$/;"	f	class:Query	access:public	signature:($view, $viewCond, $columns, $prop = null, $page = null, $orderkey = null, $ordertype = '...', $addiWhereCmd = '...')
+listByPropExt	../src/pylon/impl/framework/query.php	/^    public function listByPropExt($view,$viewCond,$columns,$prop=null,$page=null,$order=null,$addiWhereCmd="")$/;"	f	class:Query	access:public	signature:($view, $viewCond, $columns, $prop = null, $page = null, $order = null, $addiWhereCmd = '...')
+listCall	../src/pylon/interface/ent.php	/^    private function listCall($op,$cls,$catch4add,$name,$paramNames,$params)$/;"	f	class:XQobj	access:private	signature:($op, $cls, $catch4add, $name, $paramNames, $params)
+listCall	../src/pylon/interface/ent.php	/^    private function listCall($table,$paramNames,$params)$/;"	f	class:XQarr	access:private	signature:($table, $paramNames, $params)
+listMsgs	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function listMsgs()$/;"	f	class:StatQueue	access:public	signature:()
+listWatchedRequests	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function listWatchedRequests($v)$/;"	f	class:StatWatcher	access:public	signature:($v)
+load	../src/pylon/impl/framework/entity.php	/^    public static function load(&$array)$/;"	f	class:XID	access:public	signature:(& $array)
+load	../src/pylon/impl/framework/relation.php	/^    static public function load($clsName,$items)$/;"	f	class:ObjectSet	access:public	signature:($clsName, $items)
+load	../src/pylon/pylon.php	/^    static private function load()$/;"	f	class:XPylon	access:private	signature:()
+loadEntity	../src/pylon/impl/framework/entity.php	/^    static public function loadEntity($cls,$array,$mappingStg,$clsmap=array())$/;"	f	class:EntityImpl	access:public	signature:($cls, $array, $mappingStg, $clsmap = array())
+loadEntity2	../src/pylon/impl/framework/entity.php	/^    static public function loadEntity2($cls,$array,$oprop,$mappingStg,$clsName=array())$/;"	f	class:EntityImpl	access:public	signature:($cls, $array, $oprop, $mappingStg, $clsName = array())
+loadObj	../src/pylon/impl/framework/proxy.php	/^    public function loadObj()$/;"	f	class:LDProxy	access:public	signature:()
+loadObjByID	../src/pylon/impl/framework/entity.php	/^    static public function loadObjByID($prop)$/;"	f	class:EntityUtls	access:public	signature:($prop)
+loadRelation	../src/pylon/impl/framework/entity.php	/^        static public function  loadRelation($cls,$array,$mappingStg)$/;"	f	class:Relation	access:public	signature:($cls, $array, $mappingStg)
+loadRelation	../src/pylon/impl/framework/entity.php	/^    static public function loadRelation($cls,$array,$loadstg,$clsmap=array(),$argsmap=array())$/;"	f	class:EntityUtls	access:public	signature:($cls, $array, $loadstg, $clsmap = array(), $argsmap = array())
+loadStg	../src/pylon/impl/framework/daobase.php	/^    public $loadStg     = null;$/;"	v	class:DaoBase	access:public
+loadStg	../src/pylon/interface/ent.php	/^    private $loadStg=null;$/;"	v	class:XQobj	access:private
+loaditemSummerys	../src/pylon/impl/framework/entity.php	/^    protected $loaditemSummerys = array();$/;"	v	class:ObjUpdater	access:protected
+loaditems	../src/pylon/impl/framework/entity.php	/^    protected $loaditems        = array();$/;"	v	class:ObjUpdater	access:protected
+localIns	../src/pylon/utls/unittest.php	/^    public static function localIns($host,$port=8360,$logname="sdk_test")$/;"	f	class:XHttpCall	access:public	signature:($host, $port = 8360, $logname = '...')
+local_settting	../src/pylon/utls/unittest.php	/^    private function local_settting($url)$/;"	f	class:XHttpCall	access:private	signature:($url)
+localhostConf	../src/pylon/impl/autoload/cache_svc.php	/^    static public function localhostConf()$/;"	f	class:MemCacheSvc	access:public	signature:()
+location	../src/pylon/interface/webimpl.php	/^    public function location($url)$/;"	f	class:XHtmlResp	access:public	signature:($url)
+lock	../src/pylon/impl/basesvc/locks.php	/^    public function lock( $timeout)$/;"	f	class:SQLLockImp	access:public	signature:($timeout)
+lock	../src/pylon/impl/basesvc/locks.php	/^    public function lock( $timeout);$/;"	f	class:Lockable	access:public	signature:($timeout)
+lock	../src/pylon/impl/basesvc/locks.php	/^    public function lock($timeout)$/;"	f	class:FileLockImp	access:public	signature:($timeout)
+log	../src/pylon/impl/dba/executer.php	/^    public function log()$/;"	f	class:NullLogger	access:public	signature:()
+log	../src/pylon/impl/utls/diagnosis.php	/^    public function log($msg)$/;"	f	class:DContextImpl	access:public	signature:($msg)
+log	../src/pylon/impl/utls/diagnosis.php	/^    public function log($msg)$/;"	f	class:DiagnoseContext	access:public	signature:($msg)
+log	../src/pylon/impl/utls/logutls.php	/^    public function log($msg)$/;"	f	class:CombinLogger	access:public	signature:($msg)
+log	../src/pylon/impl/utls/logutls.php	/^    public function log($msg)$/;"	f	class:EchoLogger	access:public	signature:($msg)
+log	../src/pylon/impl/utls/logutls.php	/^    public function log($msg)$/;"	f	class:MemCollectLogger	access:public	signature:($msg)
+log4benchmark	../src/pylon/pylon.php	/^    private static function log4benchmark()$/;"	f	class:XPylon	access:private	signature:()
+log4debug	../src/pylon/pylon.php	/^    private static function log4debug()$/;"	f	class:XPylon	access:private	signature:()
+log4fast	../src/pylon/pylon.php	/^    private static function log4fast($prj,$tag="")$/;"	f	class:XPylon	access:private	signature:($prj, $tag = '...')
+log4online	../src/pylon/pylon.php	/^    private static function log4online()$/;"	f	class:XPylon	access:private	signature:()
+logAll	../src/pylon/pylon.php	/^    static public  $logAll       = True ;$/;"	v	class:XSetting	access:public
+logAllSql	../src/pylon/extends/sql_executor.php	/^    public function logAllSql($dc,$sql, $values=array(),$e="")$/;"	f	class:FastSQLExecutor	access:public	signature:($dc, $sql, $values = array(), $e = '...')
+logConf	../src/pylon/pylon.php	/^    private static function logConf()$/;"	f	class:XPylon	access:private	signature:()
+logLevel	../src/pylon/pylon.php	/^    public static function logLevel($name,$level)$/;"	f	class:XSetting	access:public	signature:($name, $level)
+logMode	../src/pylon/pylon.php	/^    static public  $logMode      = "DEBUG";$/;"	v	class:XSetting	access:public
+logMsgs	../src/pylon/impl/utls/logutls.php	/^    public $logMsgs=array();$/;"	v	class:MemCollectLogger	access:public
+logTag	../src/pylon/pylon.php	/^    public static function logTag($name,$tag)$/;"	f	class:XSetting	access:public	signature:($name, $tag)
+logTag	../src/pylon/pylon.php	/^    static public  $logTag       = "" ;$/;"	v	class:XSetting	access:public
+logWritedSql	../src/pylon/extends/sql_executor.php	/^    public function logWritedSql($dc,$sql, $values=array())$/;"	f	class:FastSQLExecutor	access:public	signature:($dc, $sql, $values = array())
+log_request	../src/pylon/impl/web/rest.php	/^    static private function log_request($logger,$level='info')$/;"	f	class:XRouter	access:private	signature:($logger, $level = '...')
+logers	../src/pylon/impl/utls/logutls.php	/^    private $logers=null;$/;"	v	class:CombinLogger	access:private
+logger	../src/pylon/impl/web/aop.php	/^    private $logger;$/;"	v	class:XAopRule	access:private
+logger	../src/pylon/interface/ioc.php	/^    static private function logger()$/;"	f	class:XAop	access:private	signature:()
+logger	../src/pylon/pylon.php	/^    public static function logger($name)$/;"	f	class:XLogKit	access:public	signature:($name)
+logger	../src/pylon/utls/unittest.php	/^    public  $logger;$/;"	v	class:XHttpCall	access:public
+lt	../src/pylon/impl/dba/express.php	/^    static public function lt($column, $value,$stg=null)$/;"	f	class:Express	access:public	signature:($column, $value, $stg = null)
+make	../src/pylon/impl/framework/dao_utls.php	/^    static public function make($key,$value)$/;"	f	class:CondProp	access:public	signature:($key, $value)
+makeByObj	../src/pylon/impl/framework/dao_utls.php	/^    static public function makeByObj($obj)$/;"	f	class:CondProp	access:public	signature:($obj)
+mappingStg	../src/pylon/impl/framework/daobase.php	/^    private $mappingStg=null;$/;"	v	class:DaoImp	access:private
+match	../src/pylon/impl/autoload/php_cls_loads.php	/^    static private function match($find,$keys)$/;"	f	class:Prompt	access:private	signature:($find, $keys)
+mdb	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $mdb=null;$/;"	v	class:StatControl	access:private
+mdb	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $mdb=null;$/;"	v	class:StatQueue	access:private
+mdb	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $mdb=null;$/;"	v	class:StatWatcher	access:private
+mem_svc	../src/pylon/extends/session_memcache.php	/^    static $mem_svc ;$/;"	v	class:MemcacheSessDriver
+merge	../src/pylon/interface/base.php	/^	public function merge($other)$/;"	f	class:XProperty	access:public	signature:($other)
+mergeArray	../src/pylon/interface/base.php	/^	public function mergeArray($other)$/;"	f	class:XProperty	access:public	signature:($other)
+messages	../src/pylon/impl/utls/diagnosis.php	/^    public $messages=array();$/;"	v	class:DContextImpl	access:public
+messages	../src/pylon/impl/utls/diagnosis.php	/^    public $messages=array();$/;"	v	class:DiagnoseContext	access:public
+modleFiles	../src/pylon/impl/autoload/class_loads.php	/^    static $modleFiles=array();$/;"	v	class:PylonModule
+modleFiles	../src/pylon/pylon.php	/^    static $modleFiles=array();$/;"	v	class:PylonModule
+moveTo	../src/pylon/utls/status_machine.php	/^    public function moveTo($status)$/;"	f	class:StatusMachine	access:public	signature:($status)
+moveable	../src/pylon/utls/status_machine.php	/^    public function moveable()$/;"	f	class:StatusMachine	access:public	signature:()
+moveableDirects	../src/pylon/utls/status_machine.php	/^    private $moveableDirects ;$/;"	v	class:StatusMachine	access:private
+msgs	../src/pylon/impl/utls/diagnosis.php	/^    static public function msgs()$/;"	f	class:DiagnoseMonitor	access:public	signature:()
+multiOrderBy	../src/pylon/impl/dba/sql_constructor.php	/^    function multiOrderBy($orderByArr)$/;"	f	class:SQLSelectStatement	signature:($orderByArr)
+must_get	../src/pylon/interface/ioc.php	/^    static public function must_get($key,$space='\/')$/;"	f	class:XBox	access:public	signature:($key, $space = '...')
+mutiTableDao	../src/pylon/impl/framework/daobase.php	/^    public static function mutiTableDao($cls,$execer,$hashStoreFun)$/;"	f	class:DaoImp	access:public	signature:($cls, $execer, $hashStoreFun)
+name	../src/pylon/impl/utls/diagnosis.php	/^    public $name;$/;"	v	class:DContextImpl	access:public
+name	../src/pylon/impl/utls/diagnosis.php	/^    public $name;$/;"	v	class:DiagnoseContext	access:public
+needGe	../src/pylon/impl/dba/express.php	/^    function needGe($stgs,$column,$value)$/;"	f	class:Express	signature:($stgs, $column, $value)
+needGenerate	../src/pylon/impl/dba/express.php	/^    function needGenerate($column, $value)$/;"	f	class:ColumnStg	signature:($column, $value)
+needGenerate	../src/pylon/impl/dba/express.php	/^    function needGenerate($column, $value)$/;"	f	class:GenerateStg	signature:($column, $value)
+needGenerate	../src/pylon/impl/dba/express.php	/^    function needGenerate($column, $value)$/;"	f	class:LessValueColunmStg	signature:($column, $value)
+needGenerate	../src/pylon/impl/dba/express.php	/^    function needGenerate($column, $value)$/;"	f	class:NULLColumnStg	signature:($column, $value)
+needGenerate	../src/pylon/impl/dba/express.php	/^    function needGenerate($column, $value)$/;"	f	class:NULLStg	signature:($column, $value)
+needGenerate	../src/pylon/impl/dba/express.php	/^    function needGenerate($column, $value)$/;"	f	class:UserFunStg	signature:($column, $value)
+needGenerate	../src/pylon/impl/dba/express.php	/^    function needGenerate($column, $value)$/;"	f	class:ValueColumnStg	signature:($column, $value)
+needRecord	../src/pylon/extends/sql_executor.php	/^    public $needRecord= true;$/;"	v	class:LZLExecutor	access:public
+needWatch	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function needWatch($v)$/;"	f	class:StatWatcher	access:public	signature:($v)
+netCacheSpace	../src/pylon/impl/autoload/cache_svc.php	/^    static public $netCacheSpace= null;$/;"	v	class:CacheAdmin	access:public
+nextPage	../src/pylon/utls/datapage.php	/^    public function nextPage()$/;"	f	class:XDataPage	access:public	signature:()
+notEqualsMsg	../src/pylon/utls/dbc.php	/^    static private function notEqualsMsg($first,$second,$firstName)$/;"	f	class:DBC	access:private	signature:($first, $second, $firstName)
+notNull	../src/pylon/utls/biz.php	/^    static public function notNull($result, $info)$/;"	f	class:XBR	access:public	signature:($result, $info)
+notkeep	../src/pylon/impl/utls/diagnosis.php	/^    public function notkeep()$/;"	f	class:DiagnoseContext	access:public	signature:()
+nullMsg	../src/pylon/impl/utls/args_checker.php	/^    static private function nullMsg($val,$type)$/;"	f	class:ArgsChecker	access:private	signature:($val, $type)
+nullMsg	../src/pylon/utls/dbc.php	/^    static private function nullMsg($val,$type)$/;"	f	class:DBC	access:private	signature:($val, $type)
+obj	../src/pylon/impl/framework/proxy.php	/^    private  $obj = null;$/;"	v	class:LDProxy	access:private
+obj	../src/pylon/interface/ent.php	/^    static public function obj()$/;"	f	class:XQuery	access:public	signature:()
+obj2row	../src/pylon/impl/framework/daobase.php	/^    public function obj2row($obj)$/;"	f	class:DaoImp	access:public	signature:($obj)
+obj2row	../src/pylon/interface/ent.php	/^    public function obj2row($obj);$/;"	f	class:Dao	access:public	signature:($obj)
+objLazyLoad	../src/pylon/impl/framework/other.php	/^    static public function objLazyLoad()$/;"	f	class:XEntityCtrl	access:public	signature:()
+objMsg	../src/pylon/utls/dbc.php	/^    static private function objMsg($obj,$msg)$/;"	f	class:DBC	access:private	signature:($obj, $msg)
+objcomp	../src/pylon/impl/framework/entity.php	/^    public function  objcomp($a,$b)$/;"	f	class:ObjUpdater	access:public	signature:($a, $b)
+objmap	../src/pylon/impl/autoload/cache_svc.php	/^    public $objmap=array();$/;"	v	class:InnerCache	access:public
+open	../src/pylon/impl/autoload/build_includes.php	/^    function open( $mode = "r" )$/;"	f	class:PYLFile	signature:($mode = '...')
+optimizeSetup	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function optimizeSetup($memSvrs,$port=11211,$throwErr=false)$/;"	f	class:LMDB	access:public	signature:($memSvrs, $port = 11211, $throwErr = false)
+orderBy	../src/pylon/impl/dba/sql_constructor.php	/^    function orderBy($orderBy,$orderType='DESC')$/;"	f	class:SQLSelectStatement	signature:($orderBy, $orderType = '...')
+originStatus	../src/pylon/utls/status_machine.php	/^    private $originStatus;$/;"	v	class:StatusMachine	access:private
+ors	../src/pylon/impl/dba/express.php	/^    static public function ors()$/;"	f	class:Express	access:public	signature:()
+out_header	../src/pylon/impl/utls/http.php	/^    static function  out_header($status_code)$/;"	f	class:PYL_HttpHeader	signature:($status_code)
+parentSonsMap	../src/pylon/utls/status_machine.php	/^    private $parentSonsMap   ;$/;"	v	class:StatusMachine	access:private
+parentStatus	../src/pylon/utls/status_machine.php	/^    public function  parentStatus($son)$/;"	f	class:StatusMachine	access:public	signature:($son)
+parse_conf	../src/pylon/impl/web/rest.php	/^    static private function parse_conf($uri)$/;"	f	class:XRouter	access:private	signature:($uri)
+password	../src/pylon/extends/sql_executor.php	/^    public $password;$/;"	v	class:LZLExecutor	access:public
+plog	../src/pylon/impl/web/rest.php	/^    private $plog     = null ;$/;"	v	class:XInterceptorRuner	access:private
+pop	../src/pylon/impl/utls/diagnosis.php	/^    static public function pop()$/;"	f	class:DiagnoseMonitor	access:public	signature:()
+port	../src/pylon/extends/sql_executor.php	/^    public $port;$/;"	v	class:LZLExecutor	access:public
+port	../src/pylon/utls/unittest.php	/^    public  $port;$/;"	v	class:XHttpCall	access:public
+pos	../src/pylon/impl/web/aop.php	/^    public $pos;$/;"	v	class:XAopRule	access:public
+post	../src/pylon/utls/unittest.php	/^    public function post($url,$data,$timeout=0)$/;"	f	class:XHttpCall	access:public	signature:($url, $data, $timeout = 0)
+prefix	../src/pylon/impl/autoload/cache_svc.php	/^    private  $prefix;$/;"	v	class:CacheProxy	access:private
+prjName	../src/pylon/pylon.php	/^    static public  $prjName      = "" ;$/;"	v	class:XSetting	access:public
+prop2cmd	../src/pylon/impl/framework/query.php	/^    static public function prop2cmd($prop,&$valsArr)$/;"	f	class:Query	access:public	signature:($prop, & $valsArr)
+proxy	../src/pylon/utls/unittest.php	/^    public  $proxy;$/;"	v	class:XHttpCall	access:public
+push	../src/pylon/impl/utls/diagnosis.php	/^    static public function push($context)$/;"	f	class:DiagnoseMonitor	access:public	signature:($context)
+pushMsg	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function pushMsg($msg) $/;"	f	class:StatQueue	access:public	signature:($msg)
+put	../src/pylon/utls/unittest.php	/^    public function put($url,$data,$timeout=0)$/;"	f	class:XHttpCall	access:public	signature:($url, $data, $timeout = 0)
+pyl_stg_not_empty	../src/pylon/impl/dba/express.php	/^function pyl_stg_not_empty($col,$val)$/;"	f	signature:($col, $val)
+pyl_stg_not_null	../src/pylon/impl/dba/express.php	/^function pyl_stg_not_null($col,$val)$/;"	f	signature:($col, $val)
+pylon__unload	../src/pylon/pylon.php	/^function pylon__unload($classname)$/;"	f	signature:($classname)
+pylon_autoload	../src/pylon/impl/autoload/class_loads.php	/^function pylon_autoload($classname)$/;"	f	signature:($classname)
+pylon_using_module	../src/pylon/impl/autoload/class_loads.php	/^function pylon_using_module($root,$relapath="")$/;"	f	signature:($root, $relapath = '...')
+pylonlib__autoload	../src/pylon/pylon.php	/^function pylonlib__autoload($classname)$/;"	f	signature:($classname)
+query	../src/pylon/extends/sql_executor.php	/^    public function query($sql, $values=array())$/;"	f	class:FastSQLExecutor	access:public	signature:($sql, $values = array())
+query	../src/pylon/impl/framework/entity.php	/^    static public function query($clsName)$/;"	f	class:DaoFinderUtls	access:public	signature:($clsName)
+query	../src/pylon/interface/ent.php	/^    static public function query($clsName)$/;"	f	class:XDaoUtls	access:public	signature:($clsName)
+query	../src/pylon/interface/plugin.php	/^    public function query($cmd);$/;"	f	class:XSQLExecuter	access:public	signature:($cmd)
+querys	../src/pylon/extends/sql_executor.php	/^    public function querys($sql, $values=array())$/;"	f	class:FastSQLExecutor	access:public	signature:($sql, $values = array())
+querys	../src/pylon/interface/plugin.php	/^    public function querys($cmd);$/;"	f	class:XSQLExecuter	access:public	signature:($cmd)
+querysPage	../src/pylon/interface/plugin.php	/^    public function querysPage($cmd, $begin, $count);$/;"	f	class:XSQLExecuter	access:public	signature:($cmd, $begin, $count)
+read	../src/pylon/impl/autoload/build_includes.php	/^    function read( $size = 4096 )$/;"	f	class:PYLFile	signature:($size = 4096)
+readFile	../src/pylon/impl/autoload/build_includes.php	/^    function readFile()$/;"	f	class:PYLFile	signature:()
+readIDSets	../src/pylon/extends/idgenerator.php	/^    private function readIDSets()$/;"	f	class:MySqlIDGenerator	access:private	signature:()
+recommend	../src/pylon/impl/autoload/php_cls_loads.php	/^    static public function recommend($find,$keys)$/;"	f	class:Prompt	access:public	signature:($find, $keys)
+reconnect	../src/pylon/extends/sql_executor.php	/^    public function reconnect()$/;"	f	class:FastSQLExecutor	access:public	signature:()
+recordCalls	../src/pylon/extends/sql_executor.php	/^    public $recordCalls= null;$/;"	v	class:LZLExecutor	access:public
+regAdd	../src/pylon/impl/framework/entity.php	/^    public function regAdd($obj)$/;"	f	class:ObjUpdater	access:public	signature:($obj)
+regAdd	../src/pylon/impl/framework/unitwork.php	/^    public function regAdd($obj)$/;"	f	class:EmptyUnitWork	access:public	signature:($obj)
+regAdd	../src/pylon/impl/framework/unitwork.php	/^    public function regAdd($obj);$/;"	f	class:UnitWork	access:public	signature:($obj)
+regAll2Del	../src/pylon/impl/framework/entity.php	/^    public function regAll2Del()$/;"	f	class:ObjUpdater	access:public	signature:()
+regBinder	../src/pylon/impl/framework/entity.php	/^    static public function regBinder($binder)$/;"	f	class:DaoFinderUtls	access:public	signature:($binder)
+regCollector	../src/pylon/extends/sql_executor.php	/^    public function regCollector($collector)$/;"	f	class:FastSQLExecutor	access:public	signature:($collector)
+regCollector	../src/pylon/interface/plugin.php	/^    public function regCollector($collector);$/;"	f	class:XSQLExecuter	access:public	signature:($collector)
+regDel	../src/pylon/impl/framework/entity.php	/^    public function regDel($obj)$/;"	f	class:ObjUpdater	access:public	signature:($obj)
+regDel	../src/pylon/impl/framework/unitwork.php	/^    public function regDel($obj)$/;"	f	class:EmptyUnitWork	access:public	signature:($obj)
+regDel	../src/pylon/impl/framework/unitwork.php	/^    public function regDel($obj);$/;"	f	class:UnitWork	access:public	signature:($obj)
+regExectorLoader	../src/pylon/impl/dba/trans_manager.php	/^    static function regExectorLoader($funName) $/;"	f	class:TransManager	signature:($funName)
+regLoad	../src/pylon/impl/framework/entity.php	/^    public function regLoad($obj)$/;"	f	class:ObjUpdater	access:public	signature:($obj)
+regLoad	../src/pylon/impl/framework/unitwork.php	/^    public function regLoad($obj)$/;"	f	class:EmptyUnitWork	access:public	signature:($obj)
+regLoad	../src/pylon/impl/framework/unitwork.php	/^    public function regLoad($obj);$/;"	f	class:UnitWork	access:public	signature:($obj)
+regLogger	../src/pylon/extends/sql_executor.php	/^    public function regLogger($sqlLogger,$wirteSqlLogger) $/;"	f	class:FastSQLExecutor	access:public	signature:($sqlLogger, $wirteSqlLogger)
+regLogger	../src/pylon/interface/plugin.php	/^    public function regLogger($writeLogger, $readLogger);$/;"	f	class:XSQLExecuter	access:public	signature:($writeLogger, $readLogger)
+regLogger4test	../src/pylon/extends/sql_executor.php	/^    public function regLogger4test($sqlLogger,$wirteSqlLogger) $/;"	f	class:FastSQLExecutor	access:public	signature:($sqlLogger, $wirteSqlLogger)
+regex	../src/pylon/impl/web/aop.php	/^    public $regex;$/;"	v	class:XAopRule	access:public
+regist	../src/pylon/interface/ent.php	/^    static public function regist($entity)$/;"	f	class:XEntity	access:public	signature:($entity)
+regist	../src/pylon/interface/ioc.php	/^    static public function regist($key,$obj,$where,$space='\/')$/;"	f	class:XBox	access:public	signature:($key, $obj, $where, $space = '...')
+registByCLS	../src/pylon/interface/ioc.php	/^    static public function registByCLS($obj,$space='\/',$force=false)$/;"	f	class:XBox	access:public	signature:($obj, $space = '...', $force = false)
+registImpl	../src/pylon/interface/ioc.php	/^    static private function registImpl($key,$obj,$space='\/',$force=false,$where='')$/;"	f	class:XBox	access:private	signature:($key, $obj, $space = '...', $force = false, $where = '...')
+regist_impl	../src/pylon/impl/framework/entity.php	/^    static public function regist_impl($key,$cls,$obj)$/;"	f	class:DaoFinderUtls	access:public	signature:($key, $cls, $obj)
+regist_where	../src/pylon/interface/ioc.php	/^    static public function regist_where($call_level)$/;"	f	class:XBox	access:public	signature:($call_level)
+register	../src/pylon/impl/framework/entity.php	/^    static public function register($dao)$/;"	f	class:DaoFinderUtls	access:public	signature:($dao)
+register	../src/pylon/interface/ent.php	/^    static public function register($dao)$/;"	f	class:XDaoUtls	access:public	signature:($dao)
+registerAll	../src/pylon/impl/framework/entity.php	/^    static public function registerAll($dao,$query)$/;"	f	class:DaoFinderUtls	access:public	signature:($dao, $query)
+registerAll	../src/pylon/interface/ent.php	/^    static public function registerAll($dao,$query)$/;"	f	class:XDaoUtls	access:public	signature:($dao, $query)
+registerDao	../src/pylon/interface/ent.php	/^    static public function registerDao($dao)$/;"	f	class:XDaoUtls	access:public	signature:($dao)
+registerDaos	../src/pylon/interface/ent.php	/^    static public function registerDaos()$/;"	f	class:XDaoUtls	access:public	signature:()
+registerExer	../src/pylon/impl/framework/entity.php	/^    static private function registerExer($cls ,$exec)$/;"	f	class:DaoFinderUtls	access:private	signature:($cls, $exec)
+registerFactory	../src/pylon/impl/framework/entity.php	/^    static public function registerFactory($daoFactory,$queryFactory)$/;"	f	class:DaoFinderUtls	access:public	signature:($daoFactory, $queryFactory)
+registerFactory	../src/pylon/interface/ent.php	/^    static public function registerFactory($daoFactory,$queryFactory)$/;"	f	class:XDaoUtls	access:public	signature:($daoFactory, $queryFactory)
+registerQuery	../src/pylon/impl/framework/entity.php	/^    static public function registerQuery($query)$/;"	f	class:DaoFinderUtls	access:public	signature:($query)
+registerQuery	../src/pylon/interface/ent.php	/^    static public function registerQuery($query)$/;"	f	class:XDaoUtls	access:public	signature:($query)
+registerQuerys	../src/pylon/interface/ent.php	/^    static public function registerQuerys()$/;"	f	class:XDaoUtls	access:public	signature:()
+remove	../src/pylon/interface/base.php	/^    public function remove($name)$/;"	f	class:XProperty	access:public	signature:($name)
+rename	../src/pylon/impl/autoload/build_includes.php	/^    function rename( $inFile, $outFile = null )$/;"	f	class:PYLFile	signature:($inFile, $outFile = null)
+replace	../src/pylon/impl/autoload/cache_svc.php	/^    public function replace($key, $value, $expire=0)$/;"	f	class:MemCacheSvc	access:public	signature:($key, $value, $expire = 0)
+replace	../src/pylon/impl/web/aop.php	/^    public function replace($args)$/;"	f	class:XAopRuleSet	access:public	signature:($args)
+replace	../src/pylon/interface/ioc.php	/^    static public function replace($key,$obj,$where,$space='\/')$/;"	f	class:XBox	access:public	signature:($key, $obj, $where, $space = '...')
+requireArray	../src/pylon/impl/utls/args_checker.php	/^    static public function requireArray($arr,$msg="value is not  Array")$/;"	f	class:ArgsChecker	access:public	signature:($arr, $msg = '...')
+requireArray	../src/pylon/utls/dbc.php	/^    static public function requireArray($arr,$msg="value is not  Array")$/;"	f	class:DBC	access:public	signature:($arr, $msg = '...')
+requireEquals	../src/pylon/impl/utls/args_checker.php	/^    static public function requireEquals($first,$second,$msg= "first value != second value")$/;"	f	class:ArgsChecker	access:public	signature:($first, $second, $msg = '...')
+requireEquals	../src/pylon/utls/dbc.php	/^    static public function requireEquals($first,$second,$msg= "first value != second value")$/;"	f	class:DBC	access:public	signature:($first, $second, $msg = '...')
+requireIsA	../src/pylon/impl/utls/args_checker.php	/^    static public function requireIsA($first,$parentClass,$msg="value is not subclass of ")$/;"	f	class:ArgsChecker	access:public	signature:($first, $parentClass, $msg = '...')
+requireIsA	../src/pylon/utls/dbc.php	/^    static public function requireIsA($first,$parentClass,$msg="value is not subclass of ")$/;"	f	class:DBC	access:public	signature:($first, $parentClass, $msg = '...')
+requireNotEquals	../src/pylon/impl/utls/args_checker.php	/^    static public function requireNotEquals($first,$second,$msg="first value == second value")$/;"	f	class:ArgsChecker	access:public	signature:($first, $second, $msg = '...')
+requireNotEquals	../src/pylon/utls/dbc.php	/^    static public function requireNotEquals($first,$second,$msg="first value == second value")$/;"	f	class:DBC	access:public	signature:($first, $second, $msg = '...')
+requireNotNull	../src/pylon/impl/utls/args_checker.php	/^    static public function requireNotNull($obj,$msg="value is  null ")$/;"	f	class:ArgsChecker	access:public	signature:($obj, $msg = '...')
+requireNotNull	../src/pylon/utls/dbc.php	/^    static public function requireNotNull($obj,$msg="value is  null ")$/;"	f	class:DBC	access:public	signature:($obj, $msg = '...')
+requireNull	../src/pylon/impl/utls/args_checker.php	/^    static public function requireNull($obj,$msg="value is not null")$/;"	f	class:ArgsChecker	access:public	signature:($obj, $msg = '...')
+requireNull	../src/pylon/utls/dbc.php	/^    static public function requireNull($obj,$msg="value is not null")$/;"	f	class:DBC	access:public	signature:($obj, $msg = '...')
+requireObj	../src/pylon/impl/utls/args_checker.php	/^    static public function requireObj($obj,$msg="value is not object")$/;"	f	class:ArgsChecker	access:public	signature:($obj, $msg = '...')
+requireObj	../src/pylon/utls/dbc.php	/^    static public function requireObj($obj,$msg="value is not object")$/;"	f	class:DBC	access:public	signature:($obj, $msg = '...')
+requireTrue	../src/pylon/impl/utls/args_checker.php	/^    static public function requireTrue($obj,$msg="require true ,but is false")$/;"	f	class:ArgsChecker	access:public	signature:($obj, $msg = '...')
+requireTrue	../src/pylon/utls/dbc.php	/^    static public function requireTrue($obj,$msg="require true ,but is false")$/;"	f	class:DBC	access:public	signature:($obj, $msg = '...')
+reset	../src/pylon/impl/framework/control.php	/^    public function reset($default,$excepts)$/;"	f	class:DiyKeyControl	access:public	signature:($default, $excepts)
+reset	../src/pylon/impl/framework/control.php	/^    public function reset($defaultFun)$/;"	f	class:MappingConf	access:public	signature:($defaultFun)
+respClass	../src/pylon/pylon.php	/^    static public  $respClass   = 'XRestResp' ;$/;"	v	class:XSetting	access:public
+rest_decode	../src/pylon/utls/unittest.php	/^    public function rest_decode()$/;"	f	class:XHttpResult	access:public	signature:()
+rollback	../src/pylon/extends/sql_executor.php	/^    public function rollback()$/;"	f	class:FastSQLExecutor	access:public	signature:()
+rollback	../src/pylon/impl/dba/translation.php	/^    public function rollback()$/;"	f	class:Translation	access:public	signature:()
+rollback	../src/pylon/interface/plugin.php	/^    public function rollback();$/;"	f	class:XSQLExecuter	access:public	signature:()
+root	../src/pylon/interface/webimpl.php	/^    protected $root        = "" ;$/;"	v	class:XHtmlResp	access:protected
+rootStatus	../src/pylon/utls/status_machine.php	/^    private $rootStatus=null;$/;"	v	class:StatusMachine	access:private
+row2obj	../src/pylon/impl/framework/daobase.php	/^    public function row2obj($cls,$row)$/;"	f	class:DaoImp	access:public	signature:($cls, $row)
+row2obj	../src/pylon/interface/ent.php	/^    public function row2obj($cls,$row);$/;"	f	class:Dao	access:public	signature:($cls, $row)
+rowByCmd	../src/pylon/impl/framework/daobase.php	/^    public function rowByCmd($cmd,$argvals=array())$/;"	f	class:DaoBase	access:public	signature:($cmd, $argvals = array())
+rowsByCmd	../src/pylon/impl/framework/daobase.php	/^    public function rowsByCmd($cmd,$argvals=array())$/;"	f	class:DaoBase	access:public	signature:($cmd, $argvals = array())
+rule	../src/pylon/interface/ioc.php	/^	static public function rule()$/;"	f	class:XAop	access:public	signature:()
+rules	../src/pylon/interface/ioc.php	/^	static public $rules= null ;$/;"	v	class:XAop	access:public
+run	../src/pylon/impl/autoload/build_includes.php	/^    public function run($srcRoot,$rootPath,$outfiles)$/;"	f	class:PYLAssemblyBuilder	access:public	signature:($srcRoot, $rootPath, $outfiles)
+runPath	../src/pylon/pylon.php	/^    static public  $runPath      = "" ;$/;"	v	class:XSetting	access:public
+s_clearCacheStg	../src/pylon/impl/framework/other.php	/^    static public $s_clearCacheStg = null;$/;"	v	class:XEntityCtrl	access:public
+s_daoCacheCtrl	../src/pylon/impl/framework/other.php	/^    static public $s_daoCacheCtrl = null;$/;"	v	class:XEntityCtrl	access:public
+s_objLoadCtrl	../src/pylon/impl/framework/other.php	/^    static public $s_objLoadCtrl = null;$/;"	v	class:XEntityCtrl	access:public
+safe_int	../src/pylon/impl/utls/version.php	/^    public function safe_int($val )$/;"	f	class:SysVersion	access:public	signature:($val)
+save	../src/pylon/impl/basesvc/session_svc.php	/^    public function save($key, $var='')$/;"	f	class:SessionSvc	access:public	signature:($key, $var = '...')
+save	../src/pylon/impl/utls/version.php	/^    public function save()$/;"	f	class:SysVersion	access:public	signature:()
+saveDateSet	../src/pylon/impl/framework/relation.php	/^    public function saveDateSet($dao)$/;"	f	class:ObjectSet	access:public	signature:($dao)
+sec	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $sec=60;$/;"	v	class:LMutiLevelCache	access:private
+second	../src/pylon/extends/sql_executor.php	/^    public $second;$/;"	v	class:Pair	access:public
+secondCache	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $secondCache=null;$/;"	v	class:LMutiLevelCache	access:private
+selfMoveable	../src/pylon/utls/status_machine.php	/^    public function selfMoveable($status)$/;"	f	class:StatusMachine	access:public	signature:($status)
+selfdefSetup	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function selfdefSetup($cache)$/;"	f	class:LMDB	access:public	signature:($cache)
+send	../src/pylon/interface/web.php	/^    public function send($logger,$set_header=true) ;$/;"	f	class:XResponse	access:public	signature:($logger, $set_header = true)
+send	../src/pylon/interface/webimpl.php	/^    public function send($logger,$set_header=true)$/;"	f	class:XHtmlResp	access:public	signature:($logger, $set_header = true)
+send	../src/pylon/interface/webimpl.php	/^    public function send($logger,$set_header=true)$/;"	f	class:XRestResp	access:public	signature:($logger, $set_header = true)
+separatorOfBy	../src/pylon/impl/framework/dao_utls.php	/^    static private function separatorOfBy($by)$/;"	f	class:DynCallParser	access:private	signature:($by)
+separatorOfSet	../src/pylon/impl/framework/dao_utls.php	/^    static private function separatorOfSet($by)$/;"	f	class:DynCallParser	access:private	signature:($by)
+server	../src/pylon/utls/unittest.php	/^    public  $server;$/;"	v	class:XHttpCall	access:public
+serving	../src/pylon/impl/web/rest.php	/^    static public function serving($http_status=true)$/;"	f	class:XRouter	access:public	signature:($http_status = true)
+serving	../src/pylon/pylon.php	/^    static public function serving()$/;"	f	class:XPylon	access:public	signature:()
+sess_close	../src/pylon/extends/session_memcache.php	/^    public static  function sess_close()$/;"	f	class:MemcacheSessDriver	access:public	signature:()
+sess_close	../src/pylon/extends/session_mysql.php	/^function sess_close() $/;"	f	signature:()
+sess_destroy	../src/pylon/extends/session_memcache.php	/^    public static  function sess_destroy($sessionID)$/;"	f	class:MemcacheSessDriver	access:public	signature:($sessionID)
+sess_destroy	../src/pylon/extends/session_mysql.php	/^function sess_destroy($key) $/;"	f	signature:($key)
+sess_gc	../src/pylon/extends/session_memcache.php	/^    public static  function sess_gc($maxlifetime)$/;"	f	class:MemcacheSessDriver	access:public	signature:($maxlifetime)
+sess_gc	../src/pylon/extends/session_mysql.php	/^function sess_gc($maxlifetime) $/;"	f	signature:($maxlifetime)
+sess_init	../src/pylon/extends/session_mysql.php	/^function sess_init($dbhost,$dbname,$dbuser,$dbpasswd,$life=1440)$/;"	f	signature:($dbhost, $dbname, $dbuser, $dbpasswd, $life = 1440)
+sess_life	../src/pylon/extends/session_memcache.php	/^    static $sess_life ;$/;"	v	class:MemcacheSessDriver
+sess_open	../src/pylon/extends/session_memcache.php	/^    public static  function sess_open($save_path="", $session_name="")$/;"	f	class:MemcacheSessDriver	access:public	signature:($save_path = '...', $session_name = '...')
+sess_open	../src/pylon/extends/session_mysql.php	/^function sess_open($save_path="", $session_name="") $/;"	f	signature:($save_path = '...', $session_name = '...')
+sess_read	../src/pylon/extends/session_memcache.php	/^    public static  function sess_read($sessionID)$/;"	f	class:MemcacheSessDriver	access:public	signature:($sessionID)
+sess_read	../src/pylon/extends/session_mysql.php	/^function sess_read($key) $/;"	f	signature:($key)
+sess_write	../src/pylon/extends/session_memcache.php	/^    public static  function sess_write($sessionID,$val)$/;"	f	class:MemcacheSessDriver	access:public	signature:($sessionID, $val)
+sess_write	../src/pylon/extends/session_mysql.php	/^function sess_write($key, $val) $/;"	f	signature:($key, $val)
+set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f	class:APCDriver	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f	class:EADriver	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f	class:InnerCache	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f	class:MemCacheSvc	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f	class:NullDriver	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0);$/;"	f	class:Cachable	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key,$value,$expire=null)$/;"	f	class:PylCacheSvc	access:public	signature:($key, $value, $expire = null)
+set	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f	class:LArrayDriver	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f	class:LMemCacheDriver	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f	class:LMutiLevelCache	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key, $value, $expire=0);$/;"	f	class:LCachable	access:public	signature:($key, $value, $expire = 0)
+set	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key, $value, $expire=600)$/;"	f	class:LEADriver	access:public	signature:($key, $value, $expire = 600)
+set	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key,$v,$expire=3600)$/;"	f	class:LMDB	access:public	signature:($key, $v, $expire = 3600)
+set	../src/pylon/impl/web/aop.php	/^    public $set=array();$/;"	v	class:XAopRuleSet	access:public
+setCurrentStatus	../src/pylon/utls/status_machine.php	/^    public function setCurrentStatus( $status)$/;"	f	class:StatusMachine	access:public	signature:($status)
+setFilter	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function setFilter($item,$exp)$/;"	f	class:StatQueue	access:public	signature:($item, $exp)
+setHashStoreKey	../src/pylon/impl/framework/daobase.php	/^    public function setHashStoreKey($key)$/;"	f	class:DaoBase	access:public	signature:($key)
+setLoadStg	../src/pylon/interface/ent.php	/^    public function setLoadStg($stg)$/;"	f	class:XQobj	access:public	signature:($stg)
+setRoot	../src/pylon/interface/webimpl.php	/^    public function setRoot($root)$/;"	f	class:XHtmlResp	access:public	signature:($root)
+setSessionID	../src/pylon/impl/basesvc/session_svc.php	/^    public function setSessionID($id)$/;"	f	class:SessionSvc	access:public	signature:($id)
+setWatchConf	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function setWatchConf($v)$/;"	f	class:StatWatcher	access:public	signature:($v)
+setup	../src/pylon/impl/autoload/cache_svc.php	/^    static public function setup($driver,$stg)$/;"	f	class:CacheAdmin	access:public	signature:($driver, $stg)
+setup	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function setup($memSvrs,$port=11211,$throwErr=false)$/;"	f	class:LMDB	access:public	signature:($memSvrs, $port = 11211, $throwErr = false)
+setup	../src/pylon/interface/ioc.php	/^    public function setup() ;$/;"	f	class:XAssembly	access:public	signature:()
+signAdd	../src/pylon/impl/framework/entity.php	/^    public function signAdd()$/;"	f	class:EntityImpl	access:public	signature:()
+signLoad	../src/pylon/impl/framework/entity.php	/^    public function signLoad()$/;"	f	class:EntityImpl	access:public	signature:()
+simpleDao	../src/pylon/impl/framework/daobase.php	/^    public static function simpleDao($cls,$execer)$/;"	f	class:DaoImp	access:public	signature:($cls, $execer)
+simpleSetup	../src/pylon/interface/ent.php	/^    static public function simpleSetup($sql_exec = null,$idgenter=null)$/;"	f	class:XDaoUtls	access:public	signature:($sql_exec = null, $idgenter = null)
+simpleTableDao	../src/pylon/impl/framework/daobase.php	/^    public static function simpleTableDao($cls,$table,$execer)$/;"	f	class:DaoImp	access:public	signature:($cls, $table, $execer)
+simple_trace	../src/pylon/utls/exception.php	/^    static public function simple_trace($e)$/;"	f	class:XExceptionUtls	access:public	signature:($e)
+singleExec	../src/pylon/impl/autoload/tc_support.php	/^    static public function singleExec($tcfile)$/;"	f	class:TestCaseExec	access:public	signature:($tcfile)
+singleTableStore	../src/pylon/impl/framework/daobase.php	/^    public function singleTableStore($key)$/;"	f	class:DaoImp	access:public	signature:($key)
+skipFiles	../src/pylon/impl/autoload/build_includes.php	/^    static private function skipFiles($file)$/;"	f	class:PYLAssemblyBuilder	access:private	signature:($file)
+smarty	../src/pylon/impl/web/xmvc_ex.php	/^    public $smarty=null;$/;"	v	class:SmartyRenderer	access:public
+space	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $space="_df";$/;"	v	class:LMDB	access:private
+spaceIns	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function spaceIns($name)$/;"	f	class:LMDB	access:public	signature:($name)
+space_keys	../src/pylon/interface/ioc.php	/^    static public function space_keys($key)$/;"	f	class:XBox	access:public	signature:($key)
+space_objs	../src/pylon/interface/ioc.php	/^    static public function space_objs($key)$/;"	f	class:XBox	access:public	signature:($key)
+sqlprocutls_ins_not_dqlobj	../src/pylon/impl/framework/query.php	/^function sqlprocutls_ins_not_dqlobj($item)$/;"	f	signature:($item)
+statusInfo	../src/pylon/impl/autoload/cache_svc.php	/^    public function statusInfo()$/;"	f	class:APCDriver	access:public	signature:()
+statusInfo	../src/pylon/impl/autoload/cache_svc.php	/^    public function statusInfo()$/;"	f	class:EADriver	access:public	signature:()
+statusInfo	../src/pylon/impl/autoload/cache_svc.php	/^    public function statusInfo()$/;"	f	class:InnerCache	access:public	signature:()
+statusInfo	../src/pylon/impl/autoload/cache_svc.php	/^    public function statusInfo()$/;"	f	class:MemCacheSvc	access:public	signature:()
+statusInfo	../src/pylon/impl/autoload/cache_svc.php	/^    public function statusInfo()$/;"	f	class:NullDriver	access:public	signature:()
+statusInfo	../src/pylon/impl/autoload/cache_svc.php	/^    public function statusInfo();$/;"	f	class:Cachable	access:public	signature:()
+statusInfo	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function statusInfo()$/;"	f	class:LArrayDriver	access:public	signature:()
+statusInfo	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function statusInfo()$/;"	f	class:LEADriver	access:public	signature:()
+statusInfo	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function statusInfo()$/;"	f	class:LMDB	access:public	signature:()
+statusInfo	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function statusInfo()$/;"	f	class:LMemCacheDriver	access:public	signature:()
+statusInfo	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function statusInfo();$/;"	f	class:LCachable	access:public	signature:()
+status_code	../src/pylon/interface/webimpl.php	/^    public $status_code = 500 ;$/;"	v	class:XHtmlResp	access:public
+status_code	../src/pylon/interface/webimpl.php	/^    public $status_code = 500 ;$/;"	v	class:XRestResp	access:public
+status_code	../src/pylon/utls/unittest.php	/^    public $status_code;$/;"	v	class:XHttpResult	access:public
+stdSqlValues	../src/pylon/extends/sql_executor.php	/^    static public function stdSqlValues($arr)$/;"	f	class:FastSQLExecutor	access:public	signature:($arr)
+stg	../src/pylon/impl/autoload/cache_svc.php	/^    public $stg    = null;$/;"	v	class:CacheSpace	access:public
+storeKey	../src/pylon/impl/basesvc/monitor_svc.php	/^    private function storeKey($key)$/;"	f	class:LMDB	access:private	signature:($key)
+structNo	../src/pylon/impl/utls/version.php	/^    public $structNo=0;$/;"	v	class:SysVersion	access:public
+structUpgrade	../src/pylon/impl/utls/version.php	/^    public function structUpgrade()$/;"	f	class:SysVersion	access:public	signature:()
+success	../src/pylon/interface/webimpl.php	/^    public function success($data,$status_code = 200 )$/;"	f	class:XRestResp	access:public	signature:($data, $status_code = 200)
+swapSpace	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function  swapSpace($v)$/;"	f	class:LMDB	access:public	signature:($v)
+switchLazyLoad	../src/pylon/impl/framework/other.php	/^    static public function  switchLazyLoad($switch)$/;"	f	class:XEntityCtrl	access:public	signature:($switch)
+symbol	../src/pylon/impl/framework/query.php	/^    public $symbol;$/;"	v	class:DQLObj	access:public
+tableFinder	../src/pylon/impl/framework/daobase.php	/^    public $tableFinder = null;$/;"	v	class:DaoBase	access:public
+throwNoClass	../src/pylon/impl/autoload/class_loads.php	/^    public static $throwNoClass=1; $/;"	v	class:PylonGod	access:public
+timeScopeLock	../src/pylon/impl/basesvc/locks.php	/^    static public function timeScopeLock($key,$time,$type)$/;"	f	class:LockUtil	access:public	signature:($key, $time, $type)
+timeout	../src/pylon/utls/unittest.php	/^    public  $timeout;$/;"	v	class:XHttpCall	access:public
+to	../src/pylon/utls/status_machine.php	/^    public $to;$/;"	v	class:StatusDirect	access:public
+toEntity	../src/pylon/impl/framework/query.php	/^    static public function toEntity($cls,$data)$/;"	f	class:Query	access:public	signature:($cls, $data)
+toLimitStr	../src/pylon/utls/datapage.php	/^    public function toLimitStr()$/;"	f	class:XDataPage	access:public	signature:()
+tosql	../src/pylon/impl/framework/query.php	/^    public function tosql($symbolVal)$/;"	f	class:DQLObj	access:public	signature:($symbolVal)
+touch	../src/pylon/impl/autoload/build_includes.php	/^    function touch( $fileName = null )$/;"	f	class:PYLFile	signature:($fileName = null)
+tpl	../src/pylon/interface/webimpl.php	/^    public function tpl($_xc,$file)$/;"	f	class:XHtmlResp	access:public	signature:($_xc, $file)
+transCommit	../src/pylon/impl/framework/unitwork.php	/^    private function transCommit($exers)$/;"	f	class:UnitWorkImpl	access:private	signature:($exers)
+truncate	../src/pylon/impl/autoload/build_includes.php	/^    function truncate( $length = 0 )$/;"	f	class:PYLFile	signature:($length = 0)
+trust	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function trust($who)$/;"	f	class:StatControl	access:public	signature:($who)
+txt	../src/pylon/impl/dba/express.php	/^    static public function txt($cmd)$/;"	f	class:Express	access:public	signature:($cmd)
+unExpect	../src/pylon/utls/dbc.php	/^    static  public function unExpect($obj,$msg= "unexcept!")$/;"	f	class:DBC	access:public	signature:($obj, $msg = '...')
+unImplement	../src/pylon/utls/dbc.php	/^    static public function unImplement($msg="have not implment")$/;"	f	class:DBC	access:public	signature:($msg = '...')
+unRegCollector	../src/pylon/extends/sql_executor.php	/^    public function unRegCollector()$/;"	f	class:FastSQLExecutor	access:public	signature:()
+unRegCollector	../src/pylon/interface/plugin.php	/^    public function unRegCollector();$/;"	f	class:XSQLExecuter	access:public	signature:()
+unTrust	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function unTrust($who)$/;"	f	class:StatControl	access:public	signature:($who)
+undo	../src/pylon/utls/status_machine.php	/^    public function undo()$/;"	f	class:StatusMachine	access:public	signature:()
+unitWork	../src/pylon/impl/framework/entity.php	/^    static public function unitWork($unitwork=null)$/;"	f	class:EntityImpl	access:public	signature:($unitwork = null)
+unitWork	../src/pylon/interface/ent.php	/^    protected   $unitWork=null;$/;"	v	class:XAppSession	access:protected
+unlock	../src/pylon/impl/basesvc/locks.php	/^    public function unlock($key)$/;"	f	class:SQLLockImp	access:public	signature:($key)
+unlock	../src/pylon/impl/basesvc/locks.php	/^    public function unlock()$/;"	f	class:FileLockImp	access:public	signature:()
+unlock	../src/pylon/impl/basesvc/locks.php	/^    public function unlock();$/;"	f	class:Lockable	access:public	signature:()
+update	../src/pylon/impl/framework/daobase.php	/^    public function update($obj,$keys=array('id'))$/;"	f	class:DaoBase	access:public	signature:($obj, $keys = array('...'))
+update	../src/pylon/interface/ent.php	/^    public function update($obj);$/;"	f	class:Dao	access:public	signature:($obj)
+updateByArray	../src/pylon/impl/framework/daobase.php	/^    public function updateByArray($updateArr,$condArr,$hashKey)$/;"	f	class:DaoBase	access:public	signature:($updateArr, $condArr, $hashKey)
+updateByProp	../src/pylon/impl/framework/daobase.php	/^    public function updateByProp($updateProp,$condProp,$hashKey)$/;"	f	class:DaoBase	access:public	signature:($updateProp, $condProp, $hashKey)
+updateCall	../src/pylon/interface/ent.php	/^    protected function updateCall($name,$params)$/;"	f	class:XWriter	access:protected	signature:($name, $params)
+updateColumns	../src/pylon/impl/dba/sql_constructor.php	/^        public function updateColumns($str)$/;"	f	class:SQLUpdateStatment	access:public	signature:($str)
+updateImpl	../src/pylon/impl/framework/daobase.php	/^    protected function updateImpl($keys, $pairs,$hashKey)$/;"	f	class:DaoBase	access:protected	signature:($keys, $pairs, $hashKey)
+updateImpl	../src/pylon/impl/framework/unitwork.php	/^    public function updateImpl($obj)$/;"	f	class:UnitWorkImpl	access:public	signature:($obj)
+updateTime	../src/pylon/interface/ent.php	/^    public function updateTime()$/;"	f	class:XEntity	access:public	signature:()
+upgrade	../src/pylon/impl/framework/entity.php	/^    public function upgrade()$/;"	f	class:XID	access:public	signature:()
+upgrade	../src/pylon/interface/ent.php	/^    public function upgrade()$/;"	f	class:XEntity	access:public	signature:()
+useDaos	../src/pylon/interface/ent.php	/^    protected   $useDaos=array();$/;"	v	class:XAppSession	access:protected
+useEnv	../src/pylon/pylon.php	/^    static public function useEnv()$/;"	f	class:XPylon	access:public	signature:()
+userName	../src/pylon/extends/sql_executor.php	/^    public $userName;$/;"	v	class:LZLExecutor	access:public
+usetime	../src/pylon/utls/unittest.php	/^    public $usetime;$/;"	v	class:XHttpResult	access:public
+using	../src/pylon/impl/web/aop.php	/^    public function using($itarget)$/;"	f	class:XAopRule	access:public	signature:($itarget)
+using	../src/pylon/impl/web/aop.php	/^    public function using($itarget)$/;"	f	class:XAopRuleSet	access:public	signature:($itarget)
+using	../src/pylon/interface/ioc.php	/^	static public function using($conf)$/;"	f	class:XAop	access:public	signature:($conf)
+using_all	../src/pylon/impl/web/aop.php	/^    public function using_all()$/;"	f	class:XAopRule	access:public	signature:()
+using_all	../src/pylon/impl/web/aop.php	/^    public function using_all()$/;"	f	class:XAopRuleSet	access:public	signature:()
+using_all	../src/pylon/interface/ioc.php	/^	static public function using_all($pos)$/;"	f	class:XAop	access:public	signature:($pos)
+value	../src/pylon/pylon.php	/^    static public function value($key)$/;"	f	class:XSetting	access:public	signature:($key)
+values	../src/pylon/impl/framework/control.php	/^    public function values($key)$/;"	f	class:MappingConf	access:public	signature:($key)
+ver	../src/pylon/interface/ent.php	/^    public function ver()$/;"	f	class:XEntity	access:public	signature:()
+verinfo	../src/pylon/impl/utls/version.php	/^    public function verinfo()$/;"	f	class:SysVersion	access:public	signature:()
+versionFile	../src/pylon/impl/utls/version.php	/^    static public $versionFile="";$/;"	v	class:SysVersion	access:public
+watch	../src/pylon/utls/debug_utls.php	/^    static public function watch($file,$line,$var,$varName="UnKonw") $/;"	f	class:Debug	access:public	signature:($file, $line, $var, $varName = '...')
+watchConf	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function watchConf()$/;"	f	class:StatWatcher	access:public	signature:()
+watchRequest	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function watchRequest($v,$req)$/;"	f	class:StatWatcher	access:public	signature:($v, $req)
+websvc	../src/pylon/pylon.php	/^    static public function websvc()$/;"	f	class:XPylon	access:public	signature:()
+where	../src/pylon/impl/dba/sql_constructor.php	/^        public function where($condition)$/;"	f	class:SQLUpdateStatment	access:public	signature:($condition)
+where	../src/pylon/impl/dba/sql_constructor.php	/^    function where($condition)$/;"	f	class:SQLSelectStatement	signature:($condition)
+where	../src/pylon/impl/dba/sql_constructor.php	/^    public function where($condition)$/;"	f	class:SQLDelStatement	access:public	signature:($condition)
+write	../src/pylon/impl/autoload/build_includes.php	/^    function write( $data )$/;"	f	class:PYLFile	signature:($data)
+writeLines	../src/pylon/impl/autoload/build_includes.php	/^    function writeLines( $lines )$/;"	f	class:PYLFile	signature:($lines)
+xcontext	../src/pylon/impl/web/aop.php	/^    private $xcontext=null;$/;"	v	class:AutoScopeIntc	access:private

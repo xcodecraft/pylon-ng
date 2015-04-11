@@ -1,39 +1,38 @@
 __env:
-    dev: !R.vars
-            PRJ_ROOT    : "${HOME}/devspace/pylon"
-            DOMAIN      :  "api.pylon360.com"
-            PYLON       :   "${PRJ_ROOT}/src"
-            ENV         :   "dev"
-    online: !R.vars
-            PRJ_ROOT    : "/home/x/php/pylon2_doc"
-            DOMAIN      :  "api.pylon360.com"
-            ENV         : "online"
-    os54 : !R.vars
+    - !R.env
+        _name : "dev"
+        PRJ_ROOT    : "${HOME}/devspace/pylon"
+        DOMAIN      :  "api.pylon360.com"
+        PYLON       :   "${PRJ_ROOT}/src"
+    - !R.env
+        _name : "online"
+        PRJ_ROOT    : "/home/x/php/pylon2_doc"
+        DOMAIN      :  "api.pylon360.com"
+        ENV         : "online"
+    - !R.env
+        _name : "os54"
         OS_VER      : "centos-5.4-64.bit"
-    os62 : !R.vars
-        OS_VER      : "centos-6.2-64.bit"
-    php52  : !R.vars
-        PHP_VER     : "5.2"
-        PHP_INI_TPL : "tpl_web_php.ini"
-    php53  : !R.vars
+    - !R.env
+        _name : "php53"
         PHP_VER     : "5.3"
         PHP_INI_TPL : "tpl_web_php.ini"
-    php56  : !R.vars
+    - !R.env
+        _name : "php56"
         PHP_VER     : "5.6"
         PHP_INI_TPL : "tpl_web_php_56.ini"
-    pylon30 : !R.vars
+    - !R.env
+        _name : "pylon"
         PYLON_MVER  : "30"
-    pylon22 : !R.vars
-        PYLON_MVER  : "22"
 
-__prj: !R.prj
-       res:
+_prj: !R.project
+        _name : "pylon"
+        _res  :
             - !R.vars
                 PRJ_NAME  : "pylon"
                 PRJ_KEY   : "pylon"
-                DB_HOST   : "220.181.127.215"
+                DB_HOST   : "127.0.0.1"
                 DB_USER   : "dev"
-                DB_PWD    : "wan@qihoo@CN"
+                DB_PWD    : ""
                 DB_NAME   : "pylon_${USER}"
                 PHP_ERROR : "E_ALL & ~E_NOTICE"
             - !R.path
@@ -99,7 +98,7 @@ __sys:
                 password      : "${DB_PWD}"
                 root          : "dev"
                 rootpwd       : "${DB_PWD}"
-                allow_addr    : "172.28.0.%"
+                allow_addr    : "127.0.1.%"
                 sql           : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
 
             - !R.phpunit2

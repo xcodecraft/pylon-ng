@@ -1,0 +1,200 @@
+_env:
+    - !R.env
+        _name : "dev"
+        _res  :
+            - !R.vars
+                # PRJ_ROOT    : "${HOME}/devspace/pylon"
+                DOMAIN      : "api.pylon360.com"
+    - !R.env
+        _name : "online"
+        _res  :
+            - !R.vars
+                PRJ_ROOT    : "/home/x/php/pylon2_doc"
+                DOMAIN      :  "api.pylon360.com"
+    - !R.env
+        _name : "os54"
+        _res  :
+            - !R.vars
+                OS_VER      : "centos-5.4-64.bit"
+    - !R.env
+        _name : "php53"
+        _res  :
+            - !R.vars
+                PHP_VER     : "5.3"
+                PHP_INI_TPL : "tpl_web_php.ini"
+    - !R.env
+        _name : "php56"
+        _res  :
+            - !R.vars
+                PHP_VER     : "5.6"
+                PHP_INI_TPL : "tpl_web_php_56.ini"
+    - !R.env
+        _name : "pylon"
+        _res  :
+            - !R.vars
+                PYLON_MVER  : "30"
+
+    - !R.env
+        _name : "base"
+        _res  :
+            - !R.project
+                name : "pylon"
+                root : "${HOME}/devspace/pylon-ng"
+
+            - !R.vars
+                PYLON       : "${PRJ_ROOT}/src"
+                DB_HOST   : "127.0.0.1"
+                DB_USER   : "dev"
+                DB_PWD    : ""
+                DB_NAME   : "pylon_${USER}"
+                PHP_ERROR : "E_ALL & ~E_NOTICE"
+            - !R.path
+                dst: "${PRJ_ROOT}/conf/used/"
+            - !R.path
+                dst: "${PRJ_ROOT}/tmp"
+# _mod :
+    # - !R.module
+    #     _name : "m_phpcgi"
+    #     _res:
+    #         - !R.vars
+    #             PHP_INI  : "${PRJ_ROOT}/conf/used/${PRJ_NAME}_${APP_SYS}_php.ini"
+    #             RUN_PATH : "${PRJ_ROOT}/run/${APP_SYS}"
+    #
+    #         - !R.file_tpl
+    #             tpl      : "${PRJ_ROOT}/conf/options/${PHP_INI_TPL}"
+    #             dst      : "${PHP_INI}"
+    #         - !R.fpm_svc
+    #             fpm_conf : 'dev'
+    #         - !R.autoload
+    #             src      : "${PRJ_ROOT}/src/pylon"
+    #             root     : "${PRJ_ROOT}/src/pylon"
+    #             dst      : "${PRJ_ROOT}/src/pylon/class_index"
+    #
+    #         - !R.autoload
+    #             src      : "${AUTOLOAD_PATH}"
+
+    # - !R.module
+    #     _name : "m_nginx"
+    #     _res:
+    #         - !R.nginx
+    #             sudo : True
+    #         - !R.nginx_conf_tpl
+    #             tpl  : "${PRJ_ROOT}/conf/options/tpl_${APP_SYS}_ngx.conf"
+    #             dst  : "${PRJ_ROOT}/conf/used/${USER}_${PRJ_NAME}_${APP_SYS}_ngx.conf"
+    #             sudo : True
+
+_sys:
+    - !R.system
+        _name: "smasher"
+        _res :
+                - !R.vars
+                    SOCK_FILE: "${RUN_PATH}/demo.sock"
+                    OS_VER:    "ubuntu-14"
+                    EXT_VER:   "30"
+                - !R.path
+                    dst    : "${PRJ_ROOT}/smasher/used"
+                - !R.file_tpl
+                    dst    : "${PRJ_ROOT}/smasher/used/php.ini"
+                    tpl    : "${PRJ_ROOT}/smasher/options/php.ini"
+                - !R.link
+                    src : "/usr/lib/php5/20121212/opcache.so"
+                    dst : "${PRJ_ROOT}/smasher/lib/opcache.so"
+
+                # - !R.shell
+                #     script : "${PRJ_ROOT}/smasher/build.sh"
+                - !R.shell
+                    script : "${PRJ_ROOT}/smasher/build_phpext.sh"
+                - !R.php
+                    ini    : "${PRJ_ROOT}/smasher/used/php.ini"
+                    script : "${PRJ_ROOT}/smasher/pylonphp/pylonphp.php"
+
+    - !R.system
+        _name: "demo"
+        _res :
+                - !R.vars
+                    APP_SYS       : "demo"
+                    DOMAIN        : "${USER}.demo.pylon360.com"
+                    SOCK_FILE     : "${RUN_PATH}/demo.sock"
+
+
+                - !R.echo
+                    value         : "${RUN_PATH}"
+                - !R.pylon_autoload
+                    include       : "${PYLON}"
+                - !R.pylon_router
+                    include       : "${PRJ_ROOT}/demo/"
+                - !R.fpm_pool
+                    sudo          : True
+
+                - !R.nginx_conf
+                    tpl:  "${PRJ_ROOT}/conf/options/tpl_demo_ngx.conf"
+                    src:  "${PRJ_ROOT}/conf/used/demo_ngx.conf"
+                    sudo: True
+                # - !R.using
+                #     modul : "m_nginx"
+                # - !R.using
+                #     modul : "m_phpcgi"
+
+    # - !R.system
+    #     _name : "test"
+    #     _res  :
+    #         - !R.vars
+    #             APP_SYS       : "test"
+    #             RUN_PATH      : "${PRJ_ROOT}/run/test"
+    #             PHP_INI       : "${PRJ_ROOT}/test/pylon/config/used/php_test.ini"
+    #             ASSEMBLY      : "test_assembly"
+    #             AUTOLOAD_PATH : "${PYLON}/:/home/x/php/svc_utls:/usr/local/php/lib/php/"
+    #         - !R.path
+    #             dst           : "${PRJ_ROOT}/test/pylon/config/used/"
+    #         - !R.file_tpl
+    #             tpl           : "${PRJ_ROOT}/test/pylon/config/options/php_tpl.ini"
+    #             dst           : "${PHP_INI}"
+    #         - !R.file_tpl
+    #             tpl           : "${PRJ_ROOT}/test/pylon/config/options/conf_tpl.php"
+    #             dst           : "${PRJ_ROOT}/test/pylon/config/used/config_test.php"
+    #
+    #         - !R.autoload
+    #             src           : "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
+    #
+    #         - !R.mysql
+    #             host          : "${DB_HOST}"
+    #             name          : "${DB_NAME}"
+    #             user          : "${DB_USER}"
+    #             password      : "${DB_PWD}"
+    #             root          : "dev"
+    #             rootpwd       : "${DB_PWD}"
+    #             allow_addr    : "127.0.1.%"
+    #             sql           : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
+    #
+    #         - !R.phpunit2
+    #             bin           : "/usr/local/php/bin/phpunit"
+    #             path          : "test/pylon"
+
+    # doc:  !R.system2
+    #         res:
+    #             - !R.vars
+    #                 NOTHING : "NOTHING"
+    #             - !R.path
+    #                 dst     : "${PRJ_ROOT}/conf/used"
+    #             - !R.nginx
+    #                 sudo    : True
+    #             - !R.nginx_conf_tpl
+    #                 tpl     : "${PRJ_ROOT}/conf/options/doc_ngx_tpl.conf"
+    #                 dst     : "${PRJ_ROOT}/conf/used/${PRJ_NAME}_${USER}_doc_ngx.conf"
+    #                 sudo    : True
+    #             - !R.shell
+    #                 script  : "${PRJ_ROOT}/_prj/doc.sh"
+    #
+    # college: !R.system2
+    #     res:
+    #             - !R.vars
+    #                 APP_SYS       : "college"
+    #                 DOMAIN        : "${USER}.pylon360.com"
+    #                 AUTOLOAD_PATH : "${PYLON}/:${PRJ_ROOT}/college"
+    #                 RUN_PATH      : "${PRJ_ROOT}/run/college"
+    #             - !R.rest
+    #                 src           : "${PRJ_ROOT}/college/"
+    #             - !R.using
+    #                 refs          :
+    #                     - *m_nginx
+    #                     - *m_phpcgi

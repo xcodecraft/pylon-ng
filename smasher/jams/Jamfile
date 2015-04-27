@@ -1,14 +1,15 @@
 import os ;
 import python ;
 using python ;
-local cur_os   = [ modules.peek : CUR_OS ] ;
-local home = [ modules.peek : HOME ] ;
-local root = $(home)/devspace/pylon ;
-local sun  = $(home)/devspace/sun  ;
+local os_ver  = [ modules.peek : OS_VER ] ;
+local ext_ver = [ modules.peek : EXT_VER ] ;
+local home    = [ modules.peek : HOME ] ;
+local root    = $(home)/devspace/pylon-ng ;
+local sun     = $(home)/devspace/sun  ;
 local machine = [ SHELL "uname -m " ] ;
 
-constant VERSION : "30" ;
-local smasher = pylon_smasher-$(VERSION) ;
+# constant VERSION : "30" ;
+local smasher = pylon_smasher-$(ext_ver) ;
 
 Source =
      smasher.cpp dict.cpp shm_dict.cpp log_sysl.cpp rest.cpp
@@ -47,4 +48,4 @@ exe sdict_speed
 
 stage dist1 :   $(smasher) data_loader  data_clean data_find smasher_test smasher_speed sdict_speed : <location>$(root)/smasher/lib/ ;
 
-stage dist2 :   $(smasher)  : <location>$(root)/src/lib/$(cur_os) ;
+stage dist2 :   $(smasher)  : <location>$(root)/src/lib/$(os_ver) ;

@@ -1,17 +1,17 @@
 import modules ;
 local home = [ modules.peek : HOME ] ;
-local root = $(home)/devspace/pylon ;
+local root = $(home)/devspace/pylon-ng ;
 local sun  = $(home)/devspace/sun  ;
 
-project qfox 
-        : requirements <include>/usr/local/include/ 
-        : requirements <include>$(sun)/include/ 
-        : requirements <include>/usr/include 
-        : requirements <include>$(root)/smasher/include  
-        : default-build <threading>multi 
+project qfox
+        : requirements <include>/usr/local/include/
+        : requirements <include>$(sun)/include/
+        : requirements <include>/usr/include
+        : requirements <include>$(root)/smasher/include
+        : default-build <threading>multi
         : build-dir     $(root)/build
         ;
-        
 
 
-build-project jams ;
+
+build-project $(root)/smasher/jams ;

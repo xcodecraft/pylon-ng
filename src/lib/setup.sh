@@ -22,13 +22,13 @@ cp -u ./libpylon_smasher*.so  /usr/local/lib/
 function deploy_phpext ()
 {
     VER=$1
-    if test -d /usr/local/php-$VER/extensions/
+    DST=/usr/local/php-$VER/extensions
+    DST=/usr/lib/php5/20121212/
+    if test -d $DST
     then
-        cp -u ./php-$VER/pylonphp*.so   /usr/local/php-$VER/extensions/
+        cp -u ./php-$VER/pylonphp*.so  $DST
     fi
 
 }
-deploy_phpext 5.6
-deploy_phpext 5.3
-deploy_phpext 5.2
+deploy_phpext 5.5
 /sbin/ldconfig

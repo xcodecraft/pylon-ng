@@ -1,4 +1,6 @@
 <?php
+echo "haha";
+exit;
 include "pylon/pylon.php" ;
 
 XSetting::$logMode   = XSetting::LOG_DEBUG_MODE ;

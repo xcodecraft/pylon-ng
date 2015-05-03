@@ -113,8 +113,10 @@ _sys:
         _res :
                 - !R.vars
                     APP_SYS       : "demo"
+                    RUN_PATH      : "${PRJ_ROOT}/run/demo"
                     DOMAIN        : "${USER}.demo.pylon360.com"
-                    SOCK_FILE     : "${RUN_PATH}/demo.sock"
+                    SOCK_FILE     : "${RUN_PATH}/fpm.sock"
+                    AUTOLOAD_PATH : "${PYLON}/:/home/x/php/svc_utls:/usr/local/php/lib/php/"
 
 
                 - !R.echo
@@ -123,7 +125,11 @@ _sys:
                     include       : "${PYLON}"
                 - !R.pylon_router
                     include       : "${PRJ_ROOT}/demo/"
-                - !R.fpm_pool
+#                - !R.fpm_pool
+#                    sudo          : True
+                - !R.fpm
+                    ini_tpl       : "${PRJ_ROOT}/conf/options/tpl_web_php_56.ini"
+                    conf_tpl      : "${PRJ_ROOT}/conf/options/fpm.conf"
                     sudo          : True
 
                 - !R.nginx_conf

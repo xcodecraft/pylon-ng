@@ -1,1 +1,2 @@
-boost-build  /usr/share/boost-build/kernel ;
+#boost-build  ../../sun/boost-build/kernel ;
+boost-build  /usr/local/boost/tools/build/src/kernel ;

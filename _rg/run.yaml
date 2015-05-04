@@ -89,7 +89,7 @@ _sys:
         _res :
                 - !R.vars
                     SOCK_FILE: "${RUN_PATH}/demo.sock"
-                    OS_VER:    "centos-6.2-64.bit"
+                    OS_VER:    "centos-6"
                     EXT_VER:   "30"
                 - !R.path
                     dst    : "${PRJ_ROOT}/smasher/used"
@@ -102,11 +102,11 @@ _sys:
 
                 - !R.shell
                     script : "${PRJ_ROOT}/smasher/build.sh"
-#                - !R.shell
-#                    script : "${PRJ_ROOT}/smasher/build_phpext.sh"
-                - !R.php
-                    ini    : "${PRJ_ROOT}/smasher/used/php.ini"
-                    script : "${PRJ_ROOT}/smasher/pylonphp/pylonphp.php"
+                # - !R.shell
+                #     script : "${PRJ_ROOT}/smasher/build_phpext.sh"
+                # - !R.php
+                #     ini    : "${PRJ_ROOT}/smasher/used/php.ini"
+                #     script : "${PRJ_ROOT}/smasher/pylonphp/pylonphp.php"
 
     - !R.system
         _name: "demo"

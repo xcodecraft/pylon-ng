@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .svn
 *.swp
 *.pyc
@@ -13,4 +14,17 @@ tmp/_rg/
 demo/conf/used
 conf/used/
 .gitignore
+=======
+.*
+build/
+run.log
+*.swp
+smasher/lib/data_clean
+smasher/lib/data_loader
+smasher/lib/libpylon_smasher*
+smasher/lib/opcache.so
+smasher/lib/sdict_speed
+smasher/lib/smasher_speed
+smasher/lib/smasher_test
+>>>>>>> c151e977d231b18aa5a7daabc5f9044c2bd9ed5c
 smasher/used/

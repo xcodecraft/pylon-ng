@@ -89,7 +89,7 @@ _sys:
         _res :
                 - !R.vars
                     SOCK_FILE: "${RUN_PATH}/demo.sock"
-                    OS_VER:    "ubuntu-14"
+                    OS_VER:    "centos-6.2-64.bit"
                     EXT_VER:   "30"
                 - !R.path
                     dst    : "${PRJ_ROOT}/smasher/used"
@@ -100,10 +100,10 @@ _sys:
                     src : "/usr/lib/php5/20121212/opcache.so"
                     dst : "${PRJ_ROOT}/smasher/lib/opcache.so"
 
-                # - !R.shell
-                #     script : "${PRJ_ROOT}/smasher/build.sh"
                 - !R.shell
-                    script : "${PRJ_ROOT}/smasher/build_phpext.sh"
+                    script : "${PRJ_ROOT}/smasher/build.sh"
+#                - !R.shell
+#                    script : "${PRJ_ROOT}/smasher/build_phpext.sh"
                 - !R.php
                     ini    : "${PRJ_ROOT}/smasher/used/php.ini"
                     script : "${PRJ_ROOT}/smasher/pylonphp/pylonphp.php"

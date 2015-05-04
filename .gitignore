@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .svn
 *.swp
 *.pyc
@@ -14,7 +13,6 @@ tmp/_rg/
 demo/conf/used
 conf/used/
 .gitignore
-=======
 .*
 build/
 run.log

@@ -1,0 +1,8 @@
+pylonphp.lo: /home/luopan/devspace/pylon-ng/smasher/pylonphp/pylonphp.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/luopan/devspace/pylon-ng/smasher/pylonphp $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/luopan/devspace/pylon-ng/smasher/pylonphp/pylonphp.c -o pylonphp.lo 
+$(phplibdir)/pylonphp.la: ./pylonphp.la
+	$(LIBTOOL) --mode=install cp ./pylonphp.la $(phplibdir)
+
+./pylonphp.la: $(shared_objects_pylonphp) $(PYLONPHP_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylonphp) $(PYLONPHP_SHARED_LIBADD)
+

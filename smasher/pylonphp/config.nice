@@ -1,0 +1,9 @@
+#! /bin/sh
+#
+# Created by configure
+
+CC='g++' \
+'./configure' \
+'CC=g++' \
+'--with-php-config=/usr/local/php-5.6.8/bin//php-config' \
+"$@"

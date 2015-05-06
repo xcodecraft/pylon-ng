@@ -49,24 +49,23 @@ pylon_sdict_create("php_test",1,1,1);
 pylon_sdict_data("/home/luopan/devspace/pylon-ng/smasher/lib/data_1.txt","=","****");
 var_dump(pylon_sdict_find("=cls_xaop"));
 var_dump(pylon_sdict_count());
-exit;
 
 
-pylon_dict_data("../lib/data_2.txt","=","****");
+pylon_dict_data("/home/luopan/devspace/pylon-ng/smasher/lib/data_2.txt","=","****");
 var_dump(pylon_dict_find("=XAop"));
-var_dump(pylon_sdict_count());
+var_dump(pylon_dict_count());
 
-pylon_dict_data("../lib/data_2.txt","=","****");
+pylon_dict_data("/home/luopan/devspace/pylon-ng/smasher/lib/data_2.txt","=","****");
 var_dump(pylon_dict_find("=XAop"));
-var_dump(pylon_sdict_count());
+var_dump(pylon_dict_count());
 log_ins("test")->debug("xxxxdebug");
 //log_kit::conf("all",0,1);
 log_ins("test")->debug("xxxxdebug");
 log_ins("_pylon")->debug("xxxxdebug");
 
 
-pylon_rest_data("../lib/rest_1.txt");
-echo pylon_rest_find("/mygoods1/1234");
-pylon_sdict_remove("php_test");
+//pylon_rest_data("/home/luopan/devspace/pylon-ng/smasher/lib/rest_1.txt");
+//echo pylon_rest_find("/mygoods1/1234");
+//pylon_sdict_remove("php_test");
 //log_kit::clear();
 ?>

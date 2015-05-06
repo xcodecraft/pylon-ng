@@ -6,7 +6,6 @@ export PHPBIN=/usr/local/php$POSTFIX/bin/
 function build_ext()
 {
 
-    POSTFIX=$1
     PHP_VER=$1
     # export EXT_VER=`cat ../src/version.txt  | sed  "s#\([0-9]\)\.\([0-9]\).*#\1\2#"`
 
@@ -16,6 +15,8 @@ function build_ext()
         exit -1 ;
     fi
     cd $PYLON_HOME/smasher/pylonphp
+    echo $PHPIZE
+    exit;
     $PHPIZE --clean ;
     $PHPIZE ;
     ./configure CC=g++  --with-php-config=$PHPBIN/php-config
@@ -23,23 +24,17 @@ function build_ext()
     make
     make test
 
-    cp $PYLON_HOME/smasher/pylonphp/modules/pylonphp.so $PYLON_HOME/smasher/lib/pylonphp.so
 
-    if ! test -e $PYLON_HOME/smasher/lib/pylonphp.so ; then
+    if ! test -e $PYLON_HOME/smasher/pylonphp/modules/pylonphp.so ; then
         echo "编译失败 "
         exit -1
     fi
 
-    $PHPBIN/php -c $PYLON_HOME/smasher/used/php.ini -f $PYLON_HOME/smasher/pylonphp/pylonphp.php
+    cp $PYLON_HOME/smasher/pylonphp/modules/pylonphp.so $PYLON_HOME/smasher/lib
 
-    # echo "pushd . ;  cd ../lib ; ./php_test.sh   $PHP_VER ; popd "
-    # pushd . ;  cd ../lib ; ./php_test.sh  $PHP_VER ; popd
+     echo "pushd . ;  cd ../lib ; ./php_test.sh   $PHP_VER ; popd "
+     pushd . ;  cd ../lib ; ./php_test.sh  $PHP_VER ; popd
 
-    # DIST=src/lib/$OS_VER/php$POSTFIX
-    # SO=pylon-$EXT_VER.so
-    # mkdir -p ../../$DIST
-    # cp ./.libs/pylon.so  ../../$DIST/$SO
-    # cd ..
 }
 
 case $1 in
@@ -47,7 +42,7 @@ case $1 in
         exit ;
         ;;
     _start)
-        build_ext "-5.5"
+        build_ext $POSTFIX
         exit ;
         ;;
 esac

@@ -4180,19 +4180,19 @@ $as_echo "$ext_output" >&6; }
 
 
   if test "$ext_shared" = "yes"; then
-    PYLONPHP_SHARED_LIBADD="-lpylon_smasher-30 $PYLONPHP_SHARED_LIBADD"
-    if test -n "$PYLON_HOME/src/lib/centos-6"; then
+    PYLONPHP_SHARED_LIBADD="-lpylon_smasher-${EXT_VER} $PYLONPHP_SHARED_LIBADD"
+    if test -n "$PYLON_HOME/src/lib/$OS_VER"; then
 
-  if test "$PYLON_HOME/src/lib/centos-6" != "/usr/$PHP_LIBDIR" && test "$PYLON_HOME/src/lib/centos-6" != "/usr/lib"; then
+  if test "$PYLON_HOME/src/lib/$OS_VER" != "/usr/$PHP_LIBDIR" && test "$PYLON_HOME/src/lib/$OS_VER" != "/usr/lib"; then
 
-  if test -z "$PYLON_HOME/src/lib/centos-6" || echo "$PYLON_HOME/src/lib/centos-6" | grep '^/' >/dev/null ; then
-    ai_p=$PYLON_HOME/src/lib/centos-6
+  if test -z "$PYLON_HOME/src/lib/$OS_VER" || echo "$PYLON_HOME/src/lib/$OS_VER" | grep '^/' >/dev/null ; then
+    ai_p=$PYLON_HOME/src/lib/$OS_VER
   else
 
-    ep_dir=`echo $PYLON_HOME/src/lib/centos-6|$SED 's%/*[^/][^/]*/*$%%'`
+    ep_dir=`echo $PYLON_HOME/src/lib/$OS_VER|$SED 's%/*[^/][^/]*/*$%%'`
 
     ep_realdir=`(cd "$ep_dir" && pwd)`
-    ai_p="$ep_realdir"/`basename "$PYLON_HOME/src/lib/centos-6"`
+    ai_p="$ep_realdir"/`basename "$PYLON_HOME/src/lib/$OS_VER"`
   fi
 
 
@@ -4224,18 +4224,18 @@ $as_echo "$ext_output" >&6; }
   else
 
 
-  if test -n "$PYLON_HOME/src/lib/centos-6"; then
+  if test -n "$PYLON_HOME/src/lib/$OS_VER"; then
 
-  if test "$PYLON_HOME/src/lib/centos-6" != "/usr/$PHP_LIBDIR" && test "$PYLON_HOME/src/lib/centos-6" != "/usr/lib"; then
+  if test "$PYLON_HOME/src/lib/$OS_VER" != "/usr/$PHP_LIBDIR" && test "$PYLON_HOME/src/lib/$OS_VER" != "/usr/lib"; then
 
-  if test -z "$PYLON_HOME/src/lib/centos-6" || echo "$PYLON_HOME/src/lib/centos-6" | grep '^/' >/dev/null ; then
-    ai_p=$PYLON_HOME/src/lib/centos-6
+  if test -z "$PYLON_HOME/src/lib/$OS_VER" || echo "$PYLON_HOME/src/lib/$OS_VER" | grep '^/' >/dev/null ; then
+    ai_p=$PYLON_HOME/src/lib/$OS_VER
   else
 
-    ep_dir=`echo $PYLON_HOME/src/lib/centos-6|$SED 's%/*[^/][^/]*/*$%%'`
+    ep_dir=`echo $PYLON_HOME/src/lib/$OS_VER|$SED 's%/*[^/][^/]*/*$%%'`
 
     ep_realdir=`(cd "$ep_dir" && pwd)`
-    ai_p="$ep_realdir"/`basename "$PYLON_HOME/src/lib/centos-6"`
+    ai_p="$ep_realdir"/`basename "$PYLON_HOME/src/lib/$OS_VER"`
   fi
 
 
@@ -4261,10 +4261,10 @@ $as_echo "$ext_output" >&6; }
   fi
 
 
-  case pylon_smasher-30 in
+  case pylon_smasher-${EXT_VER} in
   c|c_r|pthread*) ;;
   *)
-      LIBS="-lpylon_smasher-30 $LIBS"
+      LIBS="-lpylon_smasher-${EXT_VER} $LIBS"
    ;;
   esac
 

@@ -45,7 +45,7 @@ dnl [  --enable-pylonphp           Enable pylonphp support])
 
   dnl # --with-pylonphp -> check for lib and symbol presence
   dnl LIBNAME=pylonphp # you may want to change this
-  dnl LIBSYMBOL=pylonphp # you most likely want to change this 
+  dnl LIBSYMBOL=pylonphp # you most likely want to change this
 
   dnl PHP_CHECK_LIBRARY($LIBNAME,$LIBSYMBOL,
   dnl [
@@ -57,11 +57,11 @@ dnl [  --enable-pylonphp           Enable pylonphp support])
   dnl   -L$PYLONPHP_DIR/lib -lm -ldl
   dnl ])
   dnl
-  PHP_SUBST(PYLONPHP_SHARED_LIBADD)
 
-  dnl LIBNAME=pylonphp-$EXT_VER 
-  dnl LIBSYMBOL=pylonphp # you most likely want to change this 
+  dnl LIBNAME=pylonphp-$EXT_VER
+  dnl LIBSYMBOL=pylonphp # you most likely want to change this
   PHP_ADD_INCLUDE($PYLON_HOME/smasher/include)
-  PHP_ADD_LIBRARY_WITH_PATH(pylon_smasher-21, $PYLON_HOME/src/lib/$OSVER, PYLONPHP_SHARED_LIBADD)
+  PHP_ADD_LIBRARY_WITH_PATH(pylon_smasher-30,$PYLON_HOME/src/lib/centos-6, PYLONPHP_SHARED_LIBADD)
   PHP_NEW_EXTENSION(pylonphp, pylonphp.c, $ext_shared)
+  PHP_SUBST(PYLONPHP_SHARED_LIBADD)
  fi

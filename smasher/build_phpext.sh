@@ -23,15 +23,18 @@ function build_ext()
     make
     make test
 
-    if ! test -e ./.libs/pylon.so ; then
+    cp $PYLON_HOME/smasher/pylonphp/modules/pylonphp.so $PYLON_HOME/smasher/lib/pylonphp.so
+
+    if ! test -e $PYLON_HOME/smasher/lib/pylonphp.so ; then
         echo "编译失败 "
         exit -1
     fi
-    cp ./.libs/pylon.so  $PYLON_HOME/smasher/lib
-    #
+
+    $PHPBIN/php -c $PYLON_HOME/smasher/used/php.ini -f $PYLON_HOME/smasher/pylonphp/pylonphp.php
+
     # echo "pushd . ;  cd ../lib ; ./php_test.sh   $PHP_VER ; popd "
     # pushd . ;  cd ../lib ; ./php_test.sh  $PHP_VER ; popd
-    #
+
     # DIST=src/lib/$OS_VER/php$POSTFIX
     # SO=pylon-$EXT_VER.so
     # mkdir -p ../../$DIST

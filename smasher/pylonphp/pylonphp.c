@@ -159,9 +159,9 @@ PHP_FUNCTION(confirm_pylonphp_compiled)
 	RETURN_STRINGL(strg, len, 0);
 }
 /* }}} */
-/* The previous line is meant for vim and emacs, so it can correctly fold and 
-   unfold functions in source code. See the corresponding marks just before 
-   function definition, where the functions purpose is also documented. Please 
+/* The previous line is meant for vim and emacs, so it can correctly fold and
+   unfold functions in source code. See the corresponding marks just before
+   function definition, where the functions purpose is also documented. Please
    follow this convention for the convenience of others editing your code.
 */
 
@@ -271,7 +271,7 @@ PHP_FUNCTION(pylon_sdict_find)
     memset(buf,0,BUF_SIZE);
     if(shared_dict_find(key,buf,BUF_SIZE))
     {
-        RETURN_STRING(buf, 1);         
+        RETURN_STRING(buf, 1);
     }
     else
     {
@@ -293,7 +293,7 @@ PHP_FUNCTION(pylon_dict_find)
     memset(buf,0,BUF_SIZE);
     if(dict_find(key,buf,BUF_SIZE))
     {
-        RETURN_STRING(buf, 1);         
+        RETURN_STRING(buf, 1);
     }
     else
     {
@@ -316,7 +316,7 @@ PHP_FUNCTION(pylon_rest_find)
     memset(buf,0,BUF_SIZE);
     if(rest_find(key,buf,BUF_SIZE))
     {
-        RETURN_STRING(buf, 1);         
+        RETURN_STRING(buf, 1);
     }
     else
     {
@@ -356,7 +356,7 @@ PHP_FUNCTION(pylon_dict_prompt)
     memset(buf,0,BUF_SIZE);
     if(dict_prompt(key,buf,BUF_SIZE))
     {
-        RETURN_STRING(buf, 1);         
+        RETURN_STRING(buf, 1);
     }
     else
     {
@@ -433,7 +433,7 @@ zend_object_value logger_create_handler(zend_class_entry *type TSRMLS_DC){
     zend_hash_copy(object->std.properties, &type->default_properties,
             (copy_ctor_func_t)zval_add_ref, (void *)&tmp, sizeof(zval *));
 
-#endif 
+#endif
     retval.handle = zend_objects_store_put(object, NULL, logger_free_storage, NULL TSRMLS_CC);
 
 
@@ -464,9 +464,9 @@ zend_object_value logger_create_handler(zend_class_entry *type TSRMLS_DC){
 
 PHP_METHOD(log_kit,init)
 {
-    char* name= "unknow" ;
+    const char* name= "unknow" ;
     int   name_len;
-    char* tag= ""  ;
+    const char* tag= ""  ;
     int   tag_len;
     long level = (long)log_kit::error ;
     int   argc = ZEND_NUM_ARGS();
@@ -517,7 +517,7 @@ PHP_METHOD(log_kit,tag)
 {
     char* name= NULL ;
     int   name_len;
-    char* tag= ""  ;
+    const char* tag= ""  ;
     int   tag_len;
     int   argc = ZEND_NUM_ARGS();
     if (argc == 2 )
@@ -529,7 +529,7 @@ PHP_METHOD(log_kit,tag)
 
 PHP_METHOD(log_kit,channel)
 {
-    long in_chn = 6; 
+    long in_chn = 6;
     int   argc = ZEND_NUM_ARGS();
     if (argc == 1 )
     {
@@ -543,7 +543,7 @@ PHP_METHOD(log_kit,channel)
 }
 PHP_METHOD(log_kit,toall)
 {
-    bool enable = false  ; 
+    bool enable = false  ;
     int   argc = ZEND_NUM_ARGS();
     if (argc == 1 )
     {
@@ -571,7 +571,7 @@ PHP_METHOD(logger, __construct)
 
     char* name= NULL ;
     int   name_len;
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &name,&name_len) == FAILURE) 
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &name,&name_len) == FAILURE)
     {
         RETURN_NULL();
     }
@@ -667,7 +667,7 @@ zend_function_entry logger_methods []  = {
  */
 PHP_MINIT_FUNCTION(pylonphp)
 {
-	/* If you have INI entries, uncomment these lines 
+	/* If you have INI entries, uncomment these lines
 	REGISTER_INI_ENTRIES();
 	*/
     zend_class_entry ce ;

@@ -60,8 +60,8 @@ dnl [  --enable-pylonphp           Enable pylonphp support])
 
   dnl LIBNAME=pylonphp-$EXT_VER
   dnl LIBSYMBOL=pylonphp # you most likely want to change this
-  PHP_ADD_INCLUDE(/home/zuowenjian/devspace/pylon-ng/smasher/include)
-  PHP_ADD_LIBRARY_WITH_PATH(pylon_smasher-30,$PYLON_HOME/src/lib/centos-6, PYLONPHP_SHARED_LIBADD)
-  PHP_NEW_EXTENSION(pylon30_56, pylonphp.c, $ext_shared)
+  PHP_ADD_INCLUDE(${PRJ_ROOT}/smasher/include)
+  PHP_ADD_LIBRARY_WITH_PATH(pylon_smasher-${EXT_VER},$PYLON_HOME/src/lib/${OS_VER}, PYLONPHP_SHARED_LIBADD)
+  PHP_NEW_EXTENSION(${EXT_NAME}, pylonphp.c, $ext_shared)
   PHP_SUBST(PYLONPHP_SHARED_LIBADD)
  fi

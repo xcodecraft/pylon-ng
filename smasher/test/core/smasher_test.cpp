@@ -1,6 +1,6 @@
 #include "log_sysl.h"
 #include "smasher.h"
-#define BOOST_TEST_MODULE TEST_ERROR_INS 
+#define BOOST_TEST_MODULE TEST_ERROR_INS
 #include <boost/test/included/unit_test.hpp>
 #define  PLOG   log_kit::log_ins("pylon")
 
@@ -8,10 +8,10 @@ using namespace std;
 
 #if defined OS_UNIX
     #define ROOT_PATH   L"/tmp"
-    #define C         
+    #define C
 #else
     #define ROOT_PATH   L"D:/"
-    #define C       L      
+    #define C       L
 #endif
 
 
@@ -58,33 +58,11 @@ const char* make_rest_reuslt(const char* rule, const char* cls, const char* ukey
 BOOST_AUTO_TEST_CASE(test_rule)
 {
     log_kit::init("pylon","",log_kit::debug);
-    rest_data("./rest_1.txt");
+    rest_data("../data/_router.idx");
     char buffer[1024];
-    BOOST_CHECK(rest_find("/mygoods1/l234", buffer,1024));
-    BOOST_CHECK_EQUAL("{ \"rule\" : \"/mygoods1/$uid\",  \"cls\" : \"mygoods1\"   , \"uri\": {\"uid\" : \"l234\"} }",buffer) ;
-    cout << buffer << endl ;
-    BOOST_CHECK(rest_find("/mygoods1/l234/", buffer,1024));
-    cout << buffer << endl ;
-    BOOST_CHECK(rest_find("/mygoods/l234/sn/223", buffer,1024));
-    cout << buffer << endl ;
-    BOOST_CHECK(rest_find("/mygoods/l234/sn/223", buffer,1024));
-    cout << buffer << endl ;
-    BOOST_CHECK(rest_find("/mygoods4/1234", buffer,1024));
-    cout << buffer << endl ;
-    BOOST_CHECK_EQUAL(buffer,make_rest_reuslt("/mygoods4/$uid","mygoods4","uid","1234"));
-    BOOST_CHECK(rest_find("/mygoods4/1234?a=x", buffer,1024));
-    cout << buffer << endl ;
-    BOOST_CHECK_EQUAL(buffer,make_rest_reuslt("/mygoods4/$uid","mygoods4","uid","1234"));
-    BOOST_CHECK(rest_find("/mygoods5/1234", buffer,1024));
-    cout << buffer << endl ;
-    BOOST_CHECK_EQUAL(buffer,make_rest_reuslt("/mygoods5/$uid","mygoods5","uid","1234"));
-    BOOST_CHECK(rest_find("/mygoods6/1234", buffer,1024));
-    cout << buffer << endl ;
-    BOOST_CHECK_EQUAL(buffer,make_rest_reuslt("/mygoods6/$uid","mygoods5","uid","1234"));
-
-    BOOST_CHECK(rest_find("/mygoods6/1234?xxx=1", buffer,1024));
-    cout << buffer << endl ;
-    BOOST_CHECK_EQUAL(buffer,make_rest_reuslt("/mygoods6/$uid","mygoods5","uid","1234"));
+    BOOST_CHECK(rest_find("/mygame/1234", buffer,1024));
+    BOOST_CHECK_EQUAL(buffer,make_rest_reuslt("/mygame/$uid","MyGameSvc","uid","1234"));
+    // cout << buffer << endl ;
 }
 
 BOOST_AUTO_TEST_CASE( test_dict )
@@ -94,17 +72,17 @@ BOOST_AUTO_TEST_CASE( test_dict )
     char buffer[1024] ;
     memset(buffer,0,1024 ) ;
     int cnt = 0 ;
-    cnt = dict_data("./_autoload_clspath.idx","","", false);
+    cnt = dict_data("../data/_autoload_clspath.idx","","", false);
     cout << "load data cnt : " << cnt  << endl ;
     BOOST_CHECK( cnt >  0 ) ;
 
-    cnt = dict_data("./not_found.idx","","",true);
+    cnt = dict_data("../data/not_found.idx","","",true);
     BOOST_CHECK( cnt == 0 ) ;
 
-    cnt = dict_data("./_autoload_clspath.idx","","", false);
+    cnt = dict_data("../data/_autoload_clspath.idx","","", false);
     BOOST_CHECK( cnt == 0 ) ;
 
-    cnt = dict_data("./_autoload_clspath.idx","","", true);
+    cnt = dict_data("../data/_autoload_clspath.idx","","", true);
     BOOST_CHECK( cnt >  0 ) ;
 
     int val =  dict_find("XPylon",buffer,1024 );
@@ -129,17 +107,6 @@ BOOST_AUTO_TEST_CASE( test_dict )
     BOOST_CHECK(val == 0);
 }
 
-//    void shared_dict_create(const char*  proc_space, int msize);
-
-//    void shared_dict_using(const char*  proc_space );
-
-//    void shared_dict_remove(const char*  proc_space);
-
-//    void shared_dict_data(const char * data_file,const char* key_prefix , const char* data_prefix);
-
-//    int  shared_dict_find(const char* cls, char * buf , int buf_len);
-
-//    int  shared_dict_count();
 
 BOOST_AUTO_TEST_CASE( test_sdict )
 {
@@ -149,17 +116,17 @@ BOOST_AUTO_TEST_CASE( test_sdict )
     shared_dict_create("sdict_ut", 10) ;
 
     int cnt = 0 ;
-    cnt = shared_dict_data("./_autoload_clspath.idx","","", false);
+    cnt = shared_dict_data("../data/_autoload_clspath.idx","","", false);
     cout << "shared load data cnt : " << cnt  << endl ;
     BOOST_CHECK( cnt >  0 ) ;
 
-    cnt = shared_dict_data("./not_found.idx","","",true);
+    cnt = shared_dict_data("../data/not_found.idx","","",true);
     BOOST_CHECK( cnt == 0 ) ;
 
-    cnt = shared_dict_data("./_autoload_clspath.idx","","", false);
+    cnt = shared_dict_data("../data/_autoload_clspath.idx","","", false);
     BOOST_CHECK( cnt == 0 ) ;
 
-    cnt = shared_dict_data("./_autoload_clspath.idx","","", true);
+    cnt = shared_dict_data("../data/_autoload_clspath.idx","","", true);
     BOOST_CHECK( cnt >  0 ) ;
 
     int val =  shared_dict_find("XPylon",buffer,1024 );

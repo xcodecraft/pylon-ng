@@ -19,8 +19,8 @@ void prompt(const char * key)
 
 int main()
 {
-    const char * data1= "./gamedata_chk.txt";
-    const char * data2= "./data_2.txt";
+    const char * data1= "../data/gamedata_chk.txt";
+    const char * data2= "../data/data_2.txt";
 //    const char * data1= "./data_1.txt";
 //    const char * data2= "./data_2.txt";
     shared_dict_create("PYLON_TEST",10);

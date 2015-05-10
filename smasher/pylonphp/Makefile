@@ -1,20 +1,20 @@
-srcdir = /home/luopan/devspace/pylon-ng/smasher/pylonphp
-builddir = /home/luopan/devspace/pylon-ng/smasher/pylonphp
-top_srcdir = /home/luopan/devspace/pylon-ng/smasher/pylonphp
-top_builddir = /home/luopan/devspace/pylon-ng/smasher/pylonphp
+srcdir = /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp
+builddir = /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp
+top_srcdir = /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp
+top_builddir = /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp
 EGREP = /bin/grep -E
 SED = /bin/sed
-CONFIGURE_COMMAND = './configure' 'CC=g++' '--with-php-config=/usr/local/php-5.6.8/bin//php-config'
-CONFIGURE_OPTIONS = 'CC=g++' '--with-php-config=/usr/local/php-5.6.8/bin//php-config'
+CONFIGURE_COMMAND = './configure' 'CC=g++' '--with-php-config=/usr/local/php-5.6/bin//php-config'
+CONFIGURE_OPTIONS = 'CC=g++' '--with-php-config=/usr/local/php-5.6/bin//php-config'
 SHLIB_SUFFIX_NAME = so
 SHLIB_DL_SUFFIX_NAME = so
 ZEND_EXT_TYPE = zend_extension
 RE2C = exit 0;
 AWK = gawk
-shared_objects_pylonphp = pylonphp.lo
-PHP_PECL_EXTENSION = pylonphp
-PYLONPHP_SHARED_LIBADD = -Wl,-rpath,/home/luopan/devspace/pylon-ng/src/lib/centos-6 -L/home/luopan/devspace/pylon-ng/src/lib/centos-6 -lpylon_smasher-30
-PHP_MODULES = $(phplibdir)/pylonphp.la
+shared_objects_pylon30_56 = pylonphp.lo
+PHP_PECL_EXTENSION = pylon30_56
+PYLONPHP_SHARED_LIBADD = -Wl,-rpath,/src/lib/centos-6 -L/src/lib/centos-6 -lpylon_smasher-30
+PHP_MODULES = $(phplibdir)/pylon30_56.la
 PHP_ZEND_EX =
 all_targets = $(PHP_MODULES) $(PHP_ZEND_EX)
 install_targets = install-modules install-headers
@@ -22,7 +22,7 @@ prefix = /usr/local/php-5.6.8
 exec_prefix = $(prefix)
 libdir = ${exec_prefix}/lib
 prefix = /usr/local/php-5.6.8
-phplibdir = /home/luopan/devspace/pylon-ng/smasher/pylonphp/modules
+phplibdir = /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp/modules
 phpincludedir = /usr/local/php-5.6.8/include/php
 CC = g++
 CFLAGS = -g -O2
@@ -36,7 +36,7 @@ EXTENSION_DIR = /usr/local/php-5.6.8/lib/php/extensions/no-debug-non-zts-2013122
 PHP_EXECUTABLE = /usr/local/php-5.6.8/bin/php
 EXTRA_LDFLAGS =
 EXTRA_LIBS =
-INCLUDES = -I/usr/local/php-5.6.8/include/php -I/usr/local/php-5.6.8/include/php/main -I/usr/local/php-5.6.8/include/php/TSRM -I/usr/local/php-5.6.8/include/php/Zend -I/usr/local/php-5.6.8/include/php/ext -I/usr/local/php-5.6.8/include/php/ext/date/lib -I/home/luopan/devspace/pylon-ng/smasher/include
+INCLUDES = -I/usr/local/php-5.6.8/include/php -I/usr/local/php-5.6.8/include/php/main -I/usr/local/php-5.6.8/include/php/TSRM -I/usr/local/php-5.6.8/include/php/Zend -I/usr/local/php-5.6.8/include/php/ext -I/usr/local/php-5.6.8/include/php/ext/date/lib -I/home/zuowenjian/devspace/pylon-ng/smasher/include
 LFLAGS =
 LDFLAGS =
 SHARED_LIBTOOL =
@@ -177,11 +177,11 @@ distclean: clean
 
 .PHONY: all clean install distclean test
 .NOEXPORT:
-pylonphp.lo: /home/luopan/devspace/pylon-ng/smasher/pylonphp/pylonphp.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/luopan/devspace/pylon-ng/smasher/pylonphp $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/luopan/devspace/pylon-ng/smasher/pylonphp/pylonphp.c -o pylonphp.lo 
-$(phplibdir)/pylonphp.la: ./pylonphp.la
-	$(LIBTOOL) --mode=install cp ./pylonphp.la $(phplibdir)
+pylonphp.lo: /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp/pylonphp.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/zuowenjian/devspace/pylon-ng/smasher/pylonphp $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp/pylonphp.c -o pylonphp.lo 
+$(phplibdir)/pylon30_56.la: ./pylon30_56.la
+	$(LIBTOOL) --mode=install cp ./pylon30_56.la $(phplibdir)
 
-./pylonphp.la: $(shared_objects_pylonphp) $(PYLONPHP_SHARED_DEPENDENCIES)
-	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylonphp) $(PYLONPHP_SHARED_LIBADD)
+./pylon30_56.la: $(shared_objects_pylon30_56) $(PYLON30_56_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylon30_56) $(PYLON30_56_SHARED_LIBADD)
 

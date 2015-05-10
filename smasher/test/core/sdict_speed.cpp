@@ -7,7 +7,7 @@ int main()
 {
     shared_dict_create("sdict_ut", 10) ;
     int cnt = 0 ;
-    cnt = shared_dict_data("./_autoload_clspath.idx","","", false);
+    cnt = shared_dict_data("../data/_autoload_clspath.idx","","", false);
     char buffer[1024] ;
     for( int i = 0 ; i < 1000000 ; ++ i)
     {

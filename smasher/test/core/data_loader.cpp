@@ -11,7 +11,7 @@ void find(const char * key)
 }
 int main()
 {
-    const char * data1= "./gamedata_chk.txt";
+    const char * data1= "../data/gamedata_chk.txt";
     shared_dict_create("PYLON_TEST",40);
     shared_dict_data(data1,"","",true);
     find("ee8ad032e984a4d1af27fb7b767d9b43");

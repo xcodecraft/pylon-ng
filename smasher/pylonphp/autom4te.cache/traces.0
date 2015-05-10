@@ -263,10 +263,10 @@ m4trace:configure.in:134: -1- AC_SUBST([AWK])
 m4trace:configure.in:134: -1- AC_SUBST_TRACE([AWK])
 m4trace:configure.in:134: -1- m4_pattern_allow([^AWK$])
 m4trace:configure.in:136: -1- sinclude([config.m4])
-m4trace:config.m4:65: -1- AC_DEFINE_TRACE_LITERAL([COMPILE_DL_PYLONPHP])
-m4trace:config.m4:65: -1- m4_pattern_allow([^COMPILE_DL_PYLONPHP$])
-m4trace:config.m4:65: -1- AH_OUTPUT([COMPILE_DL_PYLONPHP], [/* Whether to build pylonphp as dynamic module */
-#undef COMPILE_DL_PYLONPHP])
+m4trace:config.m4:65: -1- AC_DEFINE_TRACE_LITERAL([COMPILE_DL_PYLON30_56])
+m4trace:config.m4:65: -1- m4_pattern_allow([^COMPILE_DL_PYLON30_56$])
+m4trace:config.m4:65: -1- AH_OUTPUT([COMPILE_DL_PYLON30_56], [/* Whether to build pylon30_56 as dynamic module */
+#undef COMPILE_DL_PYLON30_56])
 m4trace:configure.in:149: -1- AC_PROG_LIBTOOL
 m4trace:configure.in:149: -1- AC_SUBST([LN_S], [$as_ln_s])
 m4trace:configure.in:149: -1- AC_SUBST_TRACE([LN_S])

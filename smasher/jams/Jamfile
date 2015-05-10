@@ -10,6 +10,7 @@ local machine = [ SHELL "uname -m " ] ;
 
 # constant VERSION : "30" ;
 local smasher = pylon_smasher-$(ext_ver) ;
+local coretest = $(root)/smasher/test/core ;
 
 Source =
      smasher.cpp dict.cpp shm_dict.cpp log_sysl.cpp rest.cpp
@@ -23,29 +24,29 @@ lib $(smasher)
 
 
 exe data_loader
-    : $(root)/test/smasher/data_loader.cpp  $(smasher)
+    : $(coretest)/data_loader.cpp  $(smasher)
     ;
 
 exe data_clean
-    : $(root)/test/smasher/data_clean.cpp  $(smasher)
+    : $(coretest)/data_clean.cpp  $(smasher)
     ;
 
 exe data_find
-    : $(root)/test/smasher/data_find.cpp  $(smasher)
+    : $(coretest)/data_find.cpp  $(smasher)
     ;
 
 exe smasher_test
-    : $(root)/test/smasher/smasher_test.cpp  $(smasher)
+    : $(coretest)/smasher_test.cpp  $(smasher)
     ;
 
 exe smasher_speed
-    : $(root)/test/smasher/smasher_speed.cpp  $(smasher)
+    : $(coretest)/smasher_speed.cpp  $(smasher)
     ;
 
 exe sdict_speed
-    : $(root)/test/smasher/sdict_speed.cpp  $(smasher)
+    : $(coretest)/sdict_speed.cpp  $(smasher)
     ;
 
-stage dist1 :   $(smasher) data_loader  data_clean data_find smasher_test smasher_speed sdict_speed : <location>$(root)/smasher/lib/ ;
+stage dist1 :   $(smasher) data_loader  data_clean data_find smasher_test smasher_speed sdict_speed : <location>$(root)/smasher/bin/ ;
 
 stage dist2 :   $(smasher)  : <location>$(root)/src/lib/$(os_ver) ;

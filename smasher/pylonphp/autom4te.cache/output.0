@@ -4147,16 +4147,16 @@ $as_echo "$ext_output" >&6; }
       
                     
       
-  if test "$PYLON_HOME/smasher/include" != "/usr/include"; then
+  if test "/home/zuowenjian/devspace/pylon-ng/smasher/include" != "/usr/include"; then
     
-  if test -z "$PYLON_HOME/smasher/include" || echo "$PYLON_HOME/smasher/include" | grep '^/' >/dev/null ; then
-    ai_p=$PYLON_HOME/smasher/include
+  if test -z "/home/zuowenjian/devspace/pylon-ng/smasher/include" || echo "/home/zuowenjian/devspace/pylon-ng/smasher/include" | grep '^/' >/dev/null ; then
+    ai_p=/home/zuowenjian/devspace/pylon-ng/smasher/include
   else
     
-    ep_dir=`echo $PYLON_HOME/smasher/include|$SED 's%/*[^/][^/]*/*$%%'`
+    ep_dir=`echo /home/zuowenjian/devspace/pylon-ng/smasher/include|$SED 's%/*[^/][^/]*/*$%%'`
     
     ep_realdir=`(cd "$ep_dir" && pwd)`
-    ai_p="$ep_realdir"/`basename "$PYLON_HOME/smasher/include"`
+    ai_p="$ep_realdir"/`basename "/home/zuowenjian/devspace/pylon-ng/smasher/include"`
   fi
 
     
@@ -4180,19 +4180,19 @@ $as_echo "$ext_output" >&6; }
   
 
   if test "$ext_shared" = "yes"; then
-    PYLONPHP_SHARED_LIBADD="-lpylon_smasher-${EXT_VER} $PYLONPHP_SHARED_LIBADD"
-    if test -n "$PYLON_HOME/src/lib/$OS_VER"; then
+    PYLONPHP_SHARED_LIBADD="-lpylon_smasher-30 $PYLONPHP_SHARED_LIBADD"
+    if test -n "$PYLON_HOME/src/lib/centos-6"; then
       
-  if test "$PYLON_HOME/src/lib/$OS_VER" != "/usr/$PHP_LIBDIR" && test "$PYLON_HOME/src/lib/$OS_VER" != "/usr/lib"; then
+  if test "$PYLON_HOME/src/lib/centos-6" != "/usr/$PHP_LIBDIR" && test "$PYLON_HOME/src/lib/centos-6" != "/usr/lib"; then
     
-  if test -z "$PYLON_HOME/src/lib/$OS_VER" || echo "$PYLON_HOME/src/lib/$OS_VER" | grep '^/' >/dev/null ; then
-    ai_p=$PYLON_HOME/src/lib/$OS_VER
+  if test -z "$PYLON_HOME/src/lib/centos-6" || echo "$PYLON_HOME/src/lib/centos-6" | grep '^/' >/dev/null ; then
+    ai_p=$PYLON_HOME/src/lib/centos-6
   else
     
-    ep_dir=`echo $PYLON_HOME/src/lib/$OS_VER|$SED 's%/*[^/][^/]*/*$%%'`
+    ep_dir=`echo $PYLON_HOME/src/lib/centos-6|$SED 's%/*[^/][^/]*/*$%%'`
     
     ep_realdir=`(cd "$ep_dir" && pwd)`
-    ai_p="$ep_realdir"/`basename "$PYLON_HOME/src/lib/$OS_VER"`
+    ai_p="$ep_realdir"/`basename "$PYLON_HOME/src/lib/centos-6"`
   fi
 
     
@@ -4224,18 +4224,18 @@ $as_echo "$ext_output" >&6; }
   else
     
 
-  if test -n "$PYLON_HOME/src/lib/$OS_VER"; then
+  if test -n "$PYLON_HOME/src/lib/centos-6"; then
     
-  if test "$PYLON_HOME/src/lib/$OS_VER" != "/usr/$PHP_LIBDIR" && test "$PYLON_HOME/src/lib/$OS_VER" != "/usr/lib"; then
+  if test "$PYLON_HOME/src/lib/centos-6" != "/usr/$PHP_LIBDIR" && test "$PYLON_HOME/src/lib/centos-6" != "/usr/lib"; then
     
-  if test -z "$PYLON_HOME/src/lib/$OS_VER" || echo "$PYLON_HOME/src/lib/$OS_VER" | grep '^/' >/dev/null ; then
-    ai_p=$PYLON_HOME/src/lib/$OS_VER
+  if test -z "$PYLON_HOME/src/lib/centos-6" || echo "$PYLON_HOME/src/lib/centos-6" | grep '^/' >/dev/null ; then
+    ai_p=$PYLON_HOME/src/lib/centos-6
   else
     
-    ep_dir=`echo $PYLON_HOME/src/lib/$OS_VER|$SED 's%/*[^/][^/]*/*$%%'`
+    ep_dir=`echo $PYLON_HOME/src/lib/centos-6|$SED 's%/*[^/][^/]*/*$%%'`
     
     ep_realdir=`(cd "$ep_dir" && pwd)`
-    ai_p="$ep_realdir"/`basename "$PYLON_HOME/src/lib/$OS_VER"`
+    ai_p="$ep_realdir"/`basename "$PYLON_HOME/src/lib/centos-6"`
   fi
 
     
@@ -4261,10 +4261,10 @@ $as_echo "$ext_output" >&6; }
   fi
   
   
-  case pylon_smasher-${EXT_VER} in
+  case pylon_smasher-30 in
   c|c_r|pthread*) ;;
   *) 
-      LIBS="-lpylon_smasher-${EXT_VER} $LIBS" 
+      LIBS="-lpylon_smasher-30 $LIBS" 
    ;;
   esac
 
@@ -4281,7 +4281,7 @@ $as_echo "$ext_output" >&6; }
   ac_extra=
 
   if test "$ext_shared" != "shared" && test "$ext_shared" != "yes" && test "" != "cli"; then
-    PHP_PYLONPHP_SHARED=no
+    PHP_PYLON30_56_SHARED=no
     
   
   case "" in
@@ -4325,13 +4325,13 @@ EOF
   done
 
 
-    EXT_STATIC="$EXT_STATIC pylonphp"
+    EXT_STATIC="$EXT_STATIC pylon30_56"
     if test "$ext_shared" != "nocli"; then
-      EXT_CLI_STATIC="$EXT_CLI_STATIC pylonphp"
+      EXT_CLI_STATIC="$EXT_CLI_STATIC pylon30_56"
     fi
   else
     if test "$ext_shared" = "shared" || test "$ext_shared" = "yes"; then
-      PHP_PYLONPHP_SHARED=yes
+      PHP_PYLON30_56_SHARED=yes
       
   case "" in
   "") ac_srcdir="$abs_srcdir/"; unset ac_bdir; ac_inc="-I. -I$abs_srcdir" ;;
@@ -4358,7 +4358,7 @@ EOF
       ac_obj=$1
       IFS=$old_IFS
       
-      shared_objects_pylonphp="$shared_objects_pylonphp $ac_bdir$ac_obj.lo"
+      shared_objects_pylon30_56="$shared_objects_pylon30_56 $ac_bdir$ac_obj.lo"
 
       case $ac_src in
         *.c) ac_comp="$b_c_pre $ac_extra $ac_inc $b_c_meta -c $ac_srcdir$ac_src -o $ac_bdir$ac_obj.$b_lo $b_c_post" ;;
@@ -4381,31 +4381,31 @@ EOF
   case $host_alias in
     *aix*)
       suffix=so
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/phppylonphp.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylonphp) $(PHPPYLONPHP_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/phppylonphp.so '$ext_builddir'/phppylonphp.so'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/phppylon30_56.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylon30_56) $(PHPPYLON30_56_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/phppylon30_56.so '$ext_builddir'/phppylon30_56.so'
       ;;
     *netware*)
       suffix=nlm
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylonphp) -L$(top_builddir)/netware -lphp5lib $(PYLONPHP_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylon30_56) -L$(top_builddir)/netware -lphp5lib $(PYLON30_56_SHARED_LIBADD)'
       ;;
     *)
       suffix=la
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylonphp) $(PHPPYLONPHP_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylon30_56) $(PHPPYLON30_56_SHARED_LIBADD)'
       ;;
   esac
 
   if test "x" = "xyes"; then
-    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phppylonphp.$suffix"
+    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/phppylon30_56.$suffix"
   else
-    PHP_MODULES="$PHP_MODULES \$(phplibdir)/phppylonphp.$suffix"
+    PHP_MODULES="$PHP_MODULES \$(phplibdir)/phppylon30_56.$suffix"
   fi
   
-  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_pylonphp"
+  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_pylon30_56"
 
   cat >>Makefile.objects<<EOF
-\$(phplibdir)/phppylonphp.$suffix: $ext_builddir/phppylonphp.$suffix
-	\$(LIBTOOL) --mode=install cp $ext_builddir/phppylonphp.$suffix \$(phplibdir)
+\$(phplibdir)/phppylon30_56.$suffix: $ext_builddir/phppylon30_56.$suffix
+	\$(LIBTOOL) --mode=install cp $ext_builddir/phppylon30_56.$suffix \$(phplibdir)
 
-$ext_builddir/phppylonphp.$suffix: \$(shared_objects_pylonphp) \$(PHPPYLONPHP_SHARED_DEPENDENCIES)
+$ext_builddir/phppylon30_56.$suffix: \$(shared_objects_pylon30_56) \$(PHPPYLON30_56_SHARED_DEPENDENCIES)
 	$link_cmd
 
 EOF
@@ -4418,31 +4418,31 @@ EOF
   case $host_alias in
     *aix*)
       suffix=so
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/pylonphp.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylonphp) $(PYLONPHP_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/pylonphp.so '$ext_builddir'/pylonphp.so'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -Wl,-G -o '$ext_builddir'/pylon30_56.la -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylon30_56) $(PYLON30_56_SHARED_LIBADD) && mv -f '$ext_builddir'/.libs/pylon30_56.so '$ext_builddir'/pylon30_56.so'
       ;;
     *netware*)
       suffix=nlm
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylonphp) -L$(top_builddir)/netware -lphp5lib $(ONPHP_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -shared -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylon30_56) -L$(top_builddir)/netware -lphp5lib $(ON30_56_SHARED_LIBADD)'
       ;;
     *)
       suffix=la
-      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylonphp) $(PYLONPHP_SHARED_LIBADD)'
+      link_cmd='$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylon30_56) $(PYLON30_56_SHARED_LIBADD)'
       ;;
   esac
 
   if test "x" = "xyes"; then
-    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/pylonphp.$suffix"
+    PHP_ZEND_EX="$PHP_ZEND_EX \$(phplibdir)/pylon30_56.$suffix"
   else
-    PHP_MODULES="$PHP_MODULES \$(phplibdir)/pylonphp.$suffix"
+    PHP_MODULES="$PHP_MODULES \$(phplibdir)/pylon30_56.$suffix"
   fi
   
-  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_pylonphp"
+  PHP_VAR_SUBST="$PHP_VAR_SUBST shared_objects_pylon30_56"
 
   cat >>Makefile.objects<<EOF
-\$(phplibdir)/pylonphp.$suffix: $ext_builddir/pylonphp.$suffix
-	\$(LIBTOOL) --mode=install cp $ext_builddir/pylonphp.$suffix \$(phplibdir)
+\$(phplibdir)/pylon30_56.$suffix: $ext_builddir/pylon30_56.$suffix
+	\$(LIBTOOL) --mode=install cp $ext_builddir/pylon30_56.$suffix \$(phplibdir)
 
-$ext_builddir/pylonphp.$suffix: \$(shared_objects_pylonphp) \$(PYLONPHP_SHARED_DEPENDENCIES)
+$ext_builddir/pylon30_56.$suffix: \$(shared_objects_pylon30_56) \$(PYLON30_56_SHARED_DEPENDENCIES)
 	$link_cmd
 
 EOF
@@ -4451,14 +4451,14 @@ EOF
       esac
       
 cat >>confdefs.h <<_ACEOF
-@%:@define COMPILE_DL_PYLONPHP 1
+@%:@define COMPILE_DL_PYLON30_56 1
 _ACEOF
 
     fi
   fi
 
   if test "$ext_shared" != "shared" && test "$ext_shared" != "yes" && test "" = "cli"; then
-    PHP_PYLONPHP_SHARED=no
+    PHP_PYLON30_56_SHARED=no
     case "$PHP_SAPI" in
       cgi|embed)
         
@@ -4504,7 +4504,7 @@ EOF
   done
 
 
-        EXT_STATIC="$EXT_STATIC pylonphp"
+        EXT_STATIC="$EXT_STATIC pylon30_56"
         ;;
       *)
         
@@ -4552,7 +4552,7 @@ EOF
 
         ;;
     esac
-    EXT_CLI_STATIC="$EXT_CLI_STATIC pylonphp"
+    EXT_CLI_STATIC="$EXT_CLI_STATIC pylon30_56"
   fi
   
   
@@ -4561,7 +4561,7 @@ EOF
 
 
   if test "$ext_builddir" = "."; then
-    PHP_PECL_EXTENSION=pylonphp
+    PHP_PECL_EXTENSION=pylon30_56
     
   PHP_VAR_SUBST="$PHP_VAR_SUBST PHP_PECL_EXTENSION"
 

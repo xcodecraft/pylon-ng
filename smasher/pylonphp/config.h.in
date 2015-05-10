@@ -1,7 +1,7 @@
 /* config.h.in.  Generated from configure.in by autoheader.  */
 
-/* Whether to build pylonphp as dynamic module */
-#undef COMPILE_DL_PYLONPHP
+/* Whether to build pylon30_56 as dynamic module */
+#undef COMPILE_DL_PYLON30_56
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H

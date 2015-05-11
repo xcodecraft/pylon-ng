@@ -50,6 +50,11 @@ _env:
                 DB_PWD    : ""
                 DB_NAME   : "pylon_${USER}"
                 PHP_ERROR : "E_ALL & ~E_NOTICE"
+
+                EXT_VER  : "30"
+                EXT_NAME : "pylon"
+                EXT_TAG  : "${EXT_VER}-${PHP_VER}"
+                FULL_EXT : "${EXT_NAME}_${EXT_TAG}.so"
             - !R.path
                 dst: "${PRJ_ROOT}/conf/used/"
             - !R.path
@@ -61,11 +66,7 @@ _sys:
         _name: "smasher"
         _res :
                 - !R.vars
-                    OS_VER   : "centos-6"
-                    EXT_VER  : "30"
-                    EXT_NAME : "pylon"
-                    EXT_TAG  : "${EXT_VER}-${PHP_VER}"
-                    FULL_EXT : "${EXT_NAME}_${EXT_TAG}.so"
+                    OS_VER   : "centos-6.6"
                 - !R.path
                     dst    : "${PRJ_ROOT}/smasher/conf/used"
                 - !R.file_tpl
@@ -76,13 +77,16 @@ _sys:
                     script : "${PRJ_ROOT}/smasher/build.sh"
                 - !R.shell
                     script : "${PRJ_ROOT}/smasher/build_phpext.sh"
-                - !R.copy
-                    script : "${PRJ_ROOT}/smasher/build_phpext.sh"
 
                 - !R.php
                     bin    : "/usr/local/php-${PHP_VER}/bin/php"
                     ini    : "${PRJ_ROOT}/smasher/conf/used/php.ini"
                     script : "${PRJ_ROOT}/smasher/test/ext/pylon_test.php"
+
+                - !R.copy
+                    src    : "${PRJ_ROOT}/smasher/bin/${FULL_EXT}"
+                    dst    : "${PRJ_ROOT}/src/modules/${OS_VER}/${PHP_VER}/${FULL_EXT}"
+                    run    : "start"
 
     - !R.system
         _name: "demo"
@@ -111,26 +115,24 @@ _sys:
                     src:  "${PRJ_ROOT}/conf/used/demo_ngx.conf"
                     sudo: True
 
-    # - !R.system
-    #     _name : "test"
-    #     _res  :
-    #         - !R.vars
-    #             APP_SYS       : "test"
-    #             RUN_PATH      : "${PRJ_ROOT}/run/test"
-    #             PHP_INI       : "${PRJ_ROOT}/test/pylon/config/used/php_test.ini"
-    #             ASSEMBLY      : "test_assembly"
-    #             AUTOLOAD_PATH : "${PYLON}/:/home/x/php/svc_utls:/usr/local/php/lib/php/"
-    #         - !R.path
-    #             dst           : "${PRJ_ROOT}/test/pylon/config/used/"
-    #         - !R.file_tpl
-    #             tpl           : "${PRJ_ROOT}/test/pylon/config/options/php_tpl.ini"
-    #             dst           : "${PHP_INI}"
-    #         - !R.file_tpl
-    #             tpl           : "${PRJ_ROOT}/test/pylon/config/options/conf_tpl.php"
-    #             dst           : "${PRJ_ROOT}/test/pylon/config/used/config_test.php"
-    #
-    #         - !R.autoload
-    #             src           : "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
+    - !R.system
+        _name : "test"
+        _res  :
+            - !R.vars
+                OS_VER   : "centos-6.6"
+                PHP_INI       : "${PRJ_ROOT}/test/pylon/config/used/php_test.ini"
+                ASSEMBLY      : "test_assembly"
+            - !R.path
+                dst           : "${PRJ_ROOT}/test/pylon/config/used/"
+            - !R.file_tpl
+                tpl           : "${PRJ_ROOT}/test/pylon/config/options/php_tpl.ini"
+                dst           : "${PHP_INI}"
+            - !R.file_tpl
+                tpl           : "${PRJ_ROOT}/test/pylon/config/options/conf_tpl.php"
+                dst           : "${PRJ_ROOT}/test/pylon/config/used/config_test.php"
+
+            - !R.pylon_autoload
+                include: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
     #
     #         - !R.mysql
     #             host          : "${DB_HOST}"

@@ -49,4 +49,4 @@ exe sdict_speed
 
 stage dist1 :   $(smasher) data_loader  data_clean data_find smasher_test smasher_speed sdict_speed : <location>$(root)/smasher/bin/ ;
 
-stage dist2 :   $(smasher)  : <location>$(root)/src/lib/$(os_ver) ;
+stage dist2 :   $(smasher)  : <location>$(root)/src/modules/$(os_ver) ;

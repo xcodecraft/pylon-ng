@@ -175,7 +175,7 @@ function pylonlib__autoload($classname)
 
     $lib_root  = dirname(__FILE__);
     pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
-    pylon_dict_data("$lib_root/_autoload_clsname.idx","","");
+    pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
 
     $key       = "PYLON2_CLASS:".$classname ;
     $glogger   = new logger("_pylon");
@@ -193,8 +193,8 @@ function appsys__autoload($classname)
 
     $runpath = XSetting::$runPath ;
     array_push(PylonModule::$modleFiles,"$runpath/_autoload_clspath.idx");
-    pylon_dict_data("$runpath/_autoload_clspath.idx","CLASS:","");
-    pylon_dict_data("$runpath/_autoload_clsname.idx","","");
+    pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
+    pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
 
     $key        =  "CLASS:".$classname ;
     $glogger    =  new logger("_pylon");

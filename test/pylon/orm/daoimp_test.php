@@ -80,6 +80,9 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             $bookDao->add($book);
             $bookDao->add($book2);
             $bookDao->add($book3);
+            $this->app->commit();
+            unset($this->app) ;
+            $this->app = XAppSession::begin(new EmptyUnitWork()) ;
 //           $log =  new  ScopeEchoLog($executer);
 
             $books = XQuery::obj()->list_Book_by_price(QL('# > 10 and # < 10.5 ','#'));
@@ -130,6 +133,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
                 "price" => "desc",
             );
             $books = XQuery::arr()->list_Book($where,$order);
+            Debug::watch(__FILE__,__LINE__,$books,'$books');
             $this->assertTrue(count($books)==3 && $books[0]["id"] == 45
                 && $books[1]["id"] == 43 && $books[2]["id"] == 44);
             $books = XQuery::arr()->list_Book_by_name("c++",null,"price","desc");

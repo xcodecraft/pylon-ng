@@ -51,37 +51,3 @@ class TestIntcpt2 extends XInterceptor
     {}
 }
 
-//class XmvcTest extends UnitTestCase
-//{
-//    public $controller =null;
-//    public function setup()
-//    {
-//        TestIntcpt::init();
-//        TestIntcpt2::init();
-//        $loader = XLoader::load('XMVC_TEST1','confMaps1','pylon/test/xmvc/acts_conf.php');
-//        $this->controller = new XController($loader);
-//    }
-//    public function testXmvc()
-//    {
-//        $get =array();
-//        $get['do']='xtest';
-//        $request=  new XPeropty($get);
-//        $this->controller->processEx($request,"do","xtest",null);
-//        $this->assertEqual(TestIntcpt::$beforeCall,2);
-//        $this->assertEqual(TestIntcpt::$afterCall,2);
-
-//    }
-
-//    public function testXmvc1()
-//    {
-//        $get =array();
-//        $get['do']='xtest1';
-//        $request=  new XPeropty($get);
-//        $this->controller->processEx($request,"do","xtest",null);
-
-//        $this->assertEqual(TestIntcpt::$beforeCall,1);
-//        $this->assertEqual(TestIntcpt2::$beforeCall,0);
-//    }
-
-//}
-?>

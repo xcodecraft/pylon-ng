@@ -9,6 +9,8 @@ drop table if exists second_id_genter    ;
 drop table if exists sessions     ;
 drop table if exists user_1       ;
 drop table if exists user_2       ;
+drop table if exists trans_test          ;
+drop table if exists trans_test_1  ;
 
 /*==============================================================*/
 /* table: sessions                                              */

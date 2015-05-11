@@ -1,9 +1,14 @@
-drop table if exists id_genter;
-drop table if exists second_id_genter;
-drop table if exists sessions; 
-drop table if exists book; 
-drop table if exists car_item; 
-drop table if exists buycar; 
+
+drop table if exists author   ;
+drop table if exists book     ;
+drop table if exists book2    ;
+drop table if exists buycar ;
+drop table if exists car_item ;
+drop table if exists id_genter   ;
+drop table if exists second_id_genter    ;
+drop table if exists sessions     ;
+drop table if exists user_1       ;
+drop table if exists user_2       ;
 
 /*==============================================================*/
 /* table: sessions                                              */
@@ -15,8 +20,7 @@ create table sessions
     value                          text,
     primary key(sesskey)
 )/*}}}*/
-comment = "mysql table"
-type = innodb;
+comment = "mysql table" ;
 
 create table id_genter
 (
@@ -47,7 +51,7 @@ create table book
     summary                         varchar(255),
     primary key (id)
 )
-type = innodb;
+;
 
 
 create table book2
@@ -63,8 +67,8 @@ create table book2
     summary                         varchar(255),
     primary key (id)
 )
-type = innodb;
 
+;
 create table user_1
 (
     id                              integer(11),
@@ -76,8 +80,8 @@ create table user_1
     passwd                          varchar(30),
     primary key (id)
 )
-type = innodb;
 
+;
 create table user_2
 (
     id                              integer(11),
@@ -89,7 +93,7 @@ create table user_2
     passwd                          varchar(30),
     primary key (id)
 )
-type = innodb;
+;
 
 create table author
 (
@@ -102,8 +106,8 @@ create table author
     lang                            varchar(30),
     primary key (id)
 )
-type = innodb;
 
+;
 
 create table car_item
 (
@@ -112,8 +116,8 @@ create table car_item
     book__id                              integer(11),
     count                               integer(11)
 )
-type = innodb;
 
+;
 
 create table buycar
 (
@@ -125,7 +129,7 @@ create table buycar
     updatetime                      datetime,
     primary key (id)
 )
-type = innodb;
 
+;
 
 

@@ -3,19 +3,22 @@ _env:
         _name : "dev"
         _res  :
             - !R.vars
-                # PRJ_ROOT    : "${HOME}/devspace/pylon"
                 DOMAIN      : "api.pylon360.com"
     - !R.env
         _name : "online"
         _res  :
             - !R.vars
-                PRJ_ROOT    : "/home/x/php/pylon2_doc"
                 DOMAIN      :  "api.pylon360.com"
     - !R.env
-        _name : "os54"
+        _name : "centos54"
         _res  :
             - !R.vars
-                OS_VER      : "centos-5.4-64.bit"
+                OS_VER      : "centos-5.4"
+    - !R.env
+        _name : "centos66"
+        _res  :
+            - !R.vars
+                OS_VER      : "centos-6.6"
     - !R.env
         _name : "php53"
         _res  :
@@ -30,11 +33,6 @@ _env:
                 PHP_VER     : "5.6"
                 PHP_VER_TAG : "56"
                 PHP_INI_TPL : "tpl_web_php_56.ini"
-    - !R.env
-        _name : "pylon"
-        _res  :
-            - !R.vars
-                PYLON_MVER  : "30"
 
     - !R.env
         _name : "base"
@@ -44,29 +42,32 @@ _env:
                 root : "${HOME}/devspace/pylon-ng"
 
             - !R.vars
-                PYLON       : "${PRJ_ROOT}/src"
-                DB_HOST   : "127.0.0.1"
-                DB_USER   : "dev"
-                DB_PWD    : ""
+
+                # //mysql -h ayidev02.mysql.rds.aliyuncs.com -udev -pdev-ayibang
+                PYLON     : "${PRJ_ROOT}/src"
+                DB_HOST   : "ayidev02.mysql.rds.aliyuncs.com"
+                DB_USER   : "pylon"
+                DB_PWD    : "pylon123"
                 DB_NAME   : "pylon_${USER}"
                 PHP_ERROR : "E_ALL & ~E_NOTICE"
 
-                EXT_VER  : "30"
-                EXT_NAME : "pylon"
-                EXT_TAG  : "${EXT_VER}-${PHP_VER}"
-                FULL_EXT : "${EXT_NAME}_${EXT_TAG}.so"
+                EXT_VER   : "30"
+                EXT_NAME  : "pylon"
+                EXT_TAG   : "${EXT_VER}-${PHP_VER}"
+                FULL_EXT  : "${EXT_NAME}_${EXT_TAG}.so"
             - !R.path
                 dst: "${PRJ_ROOT}/conf/used/"
             - !R.path
                 dst: "${PRJ_ROOT}/tmp"
 
+    - !R.env
+        _name : "zwj"
+        _mix: "dev,php56,centos66,base"
 
 _sys:
     - !R.system
-        _name: "smasher"
+        _name: "ext"
         _res :
-                - !R.vars
-                    OS_VER   : "centos-6.6"
                 - !R.path
                     dst    : "${PRJ_ROOT}/smasher/conf/used"
                 - !R.file_tpl
@@ -119,7 +120,6 @@ _sys:
         _name : "test"
         _res  :
             - !R.vars
-                OS_VER   : "centos-6.6"
                 PHP_INI       : "${PRJ_ROOT}/test/pylon/config/used/php_test.ini"
                 ASSEMBLY      : "test_assembly"
             - !R.path
@@ -133,20 +133,16 @@ _sys:
 
             - !R.pylon_autoload
                 include: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
-    #
-    #         - !R.mysql
-    #             host          : "${DB_HOST}"
-    #             name          : "${DB_NAME}"
-    #             user          : "${DB_USER}"
-    #             password      : "${DB_PWD}"
-    #             root          : "dev"
-    #             rootpwd       : "${DB_PWD}"
-    #             allow_addr    : "127.0.1.%"
-    #             sql           : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
-    #
-    #         - !R.phpunit2
-    #             bin           : "/usr/local/php/bin/phpunit"
-    #             path          : "test/pylon"
+
+            - !R.mysql
+                host          : "ayidev02.mysql.rds.aliyuncs.com"
+                name          : "pylon_zuowenjian"
+                user          : "pylon"
+                password      : "pylon123"
+                sql           : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
+
+            - !R.shell
+                script : "${PRJ_ROOT}/test/pylon/test.sh"
 
 
     # college: !R.system2

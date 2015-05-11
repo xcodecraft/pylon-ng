@@ -3,7 +3,6 @@
 class DBconf
 {
     public $host='${DB_HOST}';
-//    public $host='127.0.0.1';
     public $name='${DB_NAME}';
     public $user='${DB_USER}';
     public $password='${DB_PWD}';

@@ -61,29 +61,28 @@ _sys:
         _name: "smasher"
         _res :
                 - !R.vars
-                    OS_VER:    "centos-6"
-                    EXT_VER:   "30"
-                    EXT_NAME : "pylon${EXT_VER}_${PHP_VER_TAG}"
+                    OS_VER   : "centos-6"
+                    EXT_VER  : "30"
+                    EXT_NAME : "pylon"
+                    EXT_TAG  : "${EXT_VER}-${PHP_VER}"
+                    FULL_EXT : "${EXT_NAME}_${EXT_TAG}.so"
                 - !R.path
-                    dst    : "${PRJ_ROOT}/smasher/used"
+                    dst    : "${PRJ_ROOT}/smasher/conf/used"
                 - !R.file_tpl
-                    tpl    : "${PRJ_ROOT}/smasher/options/php.ini"
-                    dst    : "${PRJ_ROOT}/smasher/used/php.ini"
-                - !R.file_tpl
-                    tpl    : "${PRJ_ROOT}/smasher/options/config.m4"
-                    dst    : "${PRJ_ROOT}/smasher/pylonphp/config.m4"
-                # - !R.link
-                #     src : "/usr/lib/php5/20121212/opcache.so"
-                #     dst : "${PRJ_ROOT}/smasher/lib/opcache.so"
+                    tpl    : "${PRJ_ROOT}/smasher/conf/options/php.ini"
+                    dst    : "${PRJ_ROOT}/smasher/conf/used/php.ini"
 
                 - !R.shell
                     script : "${PRJ_ROOT}/smasher/build.sh"
                 - !R.shell
                     script : "${PRJ_ROOT}/smasher/build_phpext.sh"
+                - !R.copy
+                    script : "${PRJ_ROOT}/smasher/build_phpext.sh"
+
                 - !R.php
                     bin    : "/usr/local/php-${PHP_VER}/bin/php"
-                    ini    : "${PRJ_ROOT}/smasher/used/php.ini"
-                    script : "${PRJ_ROOT}/smasher/pylonphp/pylonphp.php"
+                    ini    : "${PRJ_ROOT}/smasher/conf/used/php.ini"
+                    script : "${PRJ_ROOT}/smasher/test/ext/pylon_test.php"
 
     - !R.system
         _name: "demo"

@@ -1,8 +1,0 @@
-pylonphp.lo: /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp/pylonphp.c
-	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/zuowenjian/devspace/pylon-ng/smasher/pylonphp $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/zuowenjian/devspace/pylon-ng/smasher/pylonphp/pylonphp.c -o pylonphp.lo 
-$(phplibdir)/pylon30_56.la: ./pylon30_56.la
-	$(LIBTOOL) --mode=install cp ./pylon30_56.la $(phplibdir)
-
-./pylon30_56.la: $(shared_objects_pylon30_56) $(PYLON30_56_SHARED_DEPENDENCIES)
-	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pylon30_56) $(PYLON30_56_SHARED_LIBADD)
-

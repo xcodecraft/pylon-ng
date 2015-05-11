@@ -22,7 +22,7 @@ if (extension_loaded($module)) {
     $str = "Module $module is not compiled into PHP";
 }
 echo "$str\n";
-log_kit::init("unknow1","tagx",0);
+log_kit::init("pylon-ng","tagx",0);
 log_kit::toall(false);
 log_kit::channel(6);
 log_kit::tag("_pylon","tagy");
@@ -42,26 +42,30 @@ $l3 = new logger("event");
 $l3->debug("xxxxdebug","r");
 $l3->info("xxxxinfo","w");
 
+
 pylon_sdict_remove("php_test");
 pylon_sdict_create("php_test",1);
 pylon_sdict_create("php_test",1,1);
 pylon_sdict_create("php_test",1,1,1);
-pylon_sdict_data("/home/luopan/devspace/pylon-ng/smasher/lib/data_1.txt","=","****");
+$root=$_SERVER['HOME'] . "/devspace/pylon-ng/smasher/data/" ;
+echo $root;
+pylon_sdict_data("$root/data_1.txt","=","****");
 var_dump(pylon_sdict_find("=cls_xaop"));
 var_dump(pylon_sdict_count());
 
 
-pylon_dict_data("/home/luopan/devspace/pylon-ng/smasher/lib/data_2.txt","=","****");
+pylon_dict_data("$root/data_2.txt","=","****");
 var_dump(pylon_dict_find("=XAop"));
 var_dump(pylon_dict_count());
 
-pylon_dict_data("/home/luopan/devspace/pylon-ng/smasher/lib/data_2.txt","=","****");
+pylon_dict_data("$root/data_2.txt","=","****");
 var_dump(pylon_dict_find("=XAop"));
 var_dump(pylon_dict_count());
 log_ins("test")->debug("xxxxdebug");
 //log_kit::conf("all",0,1);
 log_ins("test")->debug("xxxxdebug");
 log_ins("_pylon")->debug("xxxxdebug");
+
 
 
 //pylon_rest_data("/home/luopan/devspace/pylon-ng/smasher/lib/rest_1.txt");

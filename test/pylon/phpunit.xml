@@ -11,13 +11,16 @@
         <!-- <testsuite name="dba"> -->
         <!--     <directory suffix="test.php">dba</directory> -->
         <!-- </testsuite> -->
-        <testsuite name="orm">
-            <directory suffix="test.php">orm</directory>
-        </testsuite>
+        <!-- <testsuite name="orm"> -->
+        <!--     <directory suffix="test.php">orm</directory> -->
+        <!-- </testsuite> -->
         <!-- <testsuite name="utls"> -->
         <!--     <directory suffix="test.php">utls</directory> -->
         <!-- </testsuite> -->
         <!-- <testsuite name="xmvc"> -->
         <!--     <directory suffix="test.php">xmvc</directory> -->
         <!-- </testsuite> -->
+        <testsuite name="router">
+            <directory suffix="test.php">router</directory>
+        </testsuite>
 </phpunit>

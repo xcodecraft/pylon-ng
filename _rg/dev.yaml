@@ -1,0 +1,9 @@
+_dev:
+    - !C.project
+        name : "pylon-ng"
+        root : "${HOME}/devspace/pylon-ng"
+    - !C.version
+        file : "src/version.txt"
+    - !C.git
+        remote : "git@github.com:xcodecraft/pylon-ng.git"
+

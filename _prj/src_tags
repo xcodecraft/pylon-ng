@@ -3,7 +3,7 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+!_TAG_PROGRAM_VERSION	5.8	//
 APCDriver	../src/pylon/impl/autoload/cache_svc.php	/^class APCDriver implements Cachable$/;"	c
 Ands	../src/pylon/impl/dba/express.php	/^class Ands extends Express$/;"	c
 ApiStyle	../src/pylon/impl/framework/other.php	/^class ApiStyle$/;"	c
@@ -99,6 +99,7 @@ PYLFile	../src/pylon/impl/autoload/build_includes.php	/^class PYLFile$/;"	c
 PYL_HttpHeader	../src/pylon/impl/utls/http.php	/^class PYL_HttpHeader$/;"	c
 Pair	../src/pylon/extends/sql_executor.php	/^class Pair$/;"	c
 Prompt	../src/pylon/impl/autoload/php_cls_loads.php	/^class Prompt$/;"	c
+PropertyObj	../src/pylon/impl/utls/property.php	/^\/\/ class PropertyObj$/;"	c
 PylCacheSvc	../src/pylon/impl/autoload/cache_svc.php	/^class  PylCacheSvc$/;"	c
 PylonGod	../src/pylon/impl/autoload/class_loads.php	/^class PylonGod$/;"	c
 PylonModule	../src/pylon/impl/autoload/class_loads.php	/^class PylonModule$/;"	c
@@ -259,6 +260,7 @@ __construct	../src/pylon/impl/utls/diagnosis.php	/^    private  function __const
 __construct	../src/pylon/impl/utls/logutls.php	/^    protected function __construct($beginFun,$endFun,$arg)$/;"	f
 __construct	../src/pylon/impl/utls/logutls.php	/^    public function __construct($executer)$/;"	f
 __construct	../src/pylon/impl/utls/logutls.php	/^    public function __construct()$/;"	f
+__construct	../src/pylon/impl/utls/property.php	/^\/\/     protected function __construct($arr=array())$/;"	f
 __construct	../src/pylon/impl/utls/version.php	/^    public function __construct($struct,$feature,$fixbug,$commitNo)$/;"	f
 __construct	../src/pylon/impl/web/aop.php	/^    public function __construct($intcpt,$xcontext,$request,$response)$/;"	f
 __construct	../src/pylon/impl/web/aop.php	/^    public function __construct($pos,$isMatch,$regex,$args)$/;"	f
@@ -299,11 +301,13 @@ __destruct	../src/pylon/utls/unittest.php	/^    public function __destruct()$/;"
 __destruct	../src/pylon/utls/utility.php	/^    public function __destruct()$/;"	f
 __get	../src/pylon/impl/autoload/cache_svc.php	/^    public function __get($name)$/;"	f
 __get	../src/pylon/impl/framework/proxy.php	/^    public function __get($name)$/;"	f
+__get	../src/pylon/impl/utls/property.php	/^\/\/     public function __get($name)$/;"	f
 __get	../src/pylon/interface/base.php	/^	public function __get($name)$/;"	f
 __response	../src/pylon/utls/unittest.php	/^        $this->__response = $xcontext;$/;"	v
 __response	../src/pylon/utls/unittest.php	/^        $this->__response = null;$/;"	v
 __response	../src/pylon/utls/unittest.php	/^    public $__response = null;$/;"	v
 __set	../src/pylon/impl/framework/proxy.php	/^    public function __set($name,$value)$/;"	f
+__set	../src/pylon/impl/utls/property.php	/^\/\/     public function __set($name,$val)$/;"	f
 __set	../src/pylon/interface/base.php	/^	public function __set($name,$val)$/;"	f
 __wakeup	../src/pylon/impl/framework/entity.php	/^    public function __wakeup()$/;"	f
 _after	../src/pylon/impl/framework/control.php	/^    public function _after($name,$params)$/;"	f
@@ -314,6 +318,12 @@ _after	../src/pylon/interface/web.php	/^    public function _after($xcontext,$re
 _after	../src/pylon/interface/web.php	/^    public function _after($xcontext,$request,$response);$/;"	f
 _after	../src/pylon/interface/webimpl.php	/^    public function _after($xcontext,$request,$response){$/;"	f
 _after	../src/pylon/utls/unittest.php	/^    public function _after($xcontext,$request,$response)$/;"	f
+_attrs	../src/pylon/impl/utls/property.php	/^\/\/             $this->_attrs= array_filter($this->_attrs);$/;"	v
+_attrs	../src/pylon/impl/utls/property.php	/^\/\/             $this->_attrs= array_filter($this->_attrs,$fun);$/;"	v
+_attrs	../src/pylon/impl/utls/property.php	/^\/\/         $this->_attrs =  array();$/;"	v
+_attrs	../src/pylon/impl/utls/property.php	/^\/\/         $this->_attrs = $arr;$/;"	v
+_attrs	../src/pylon/impl/utls/property.php	/^\/\/         $this->_attrs = array_merge($this->_attrs,$other->_attrs);$/;"	v
+_attrs	../src/pylon/impl/utls/property.php	/^\/\/     protected $_attrs = array();$/;"	v
 _before	../src/pylon/impl/framework/control.php	/^    public function _before($name,$params)$/;"	f
 _before	../src/pylon/impl/framework/control.php	/^    public function _before($name,$params);$/;"	f
 _before	../src/pylon/impl/web/rest.php	/^    public function _before($xcontext,$request,$response)$/;"	f
@@ -448,6 +458,9 @@ _sql	../src/pylon/impl/dba/express.php	/^            $this->_sql = sprintf("(%s 
 _sql	../src/pylon/impl/dba/express.php	/^            $this->_sql = sprintf("(%s > \\"%s\\")", $this->_column, $this->_value);$/;"	v
 _sql	../src/pylon/impl/dba/express.php	/^            $this->_sql = sprintf("(%s >= \\"%s\\")", $this->_column, $this->_value);$/;"	v
 _sql	../src/pylon/impl/dba/express.php	/^        $this->_sql = "";$/;"	v
+_sql	../src/pylon/impl/dba/express.php	/^        return $this->_sql = sprintf("(%s <= %s)", $this->_column1, $this->_column2);$/;"	v
+_sql	../src/pylon/impl/dba/express.php	/^        return $this->_sql = sprintf("(%s = %s)", $this->_column1, $this->_column2);$/;"	v
+_sql	../src/pylon/impl/dba/express.php	/^        return $this->_sql = sprintf("(%s >= %s)", $this->_column1, $this->_column2);$/;"	v
 _sql	../src/pylon/impl/dba/express.php	/^    var $_sql;$/;"	v
 _sqlCollector	../src/pylon/extends/sql_executor.php	/^        $this->_sqlCollector = $collector;$/;"	v
 _sqlCollector	../src/pylon/extends/sql_executor.php	/^        $this->_sqlCollector = null;$/;"	v
@@ -456,6 +469,7 @@ _sqlLogger	../src/pylon/extends/sql_executor.php	/^        $this->_sqlLogger = $
 _sqlLogger	../src/pylon/extends/sql_executor.php	/^    private $_sqlLogger  = null;$/;"	v
 _tableName	../src/pylon/impl/dba/sql_constructor.php	/^        $this->_tableName = $tableName;$/;"	v
 _tableName	../src/pylon/impl/dba/sql_constructor.php	/^    protected $_tableName;$/;"	v
+_tableName	../src/pylon/impl/dba/sql_constructor.php	/^\/\/    public $_tableName;$/;"	v
 _txtSql	../src/pylon/impl/dba/express.php	/^        $this->_txtSql = $txtSql;$/;"	v
 _txtSql	../src/pylon/impl/dba/express.php	/^    private $_txtSql = null;$/;"	v
 _updateColumns	../src/pylon/impl/dba/sql_constructor.php	/^            $this->_updateColumns =$str;$/;"	v
@@ -479,6 +493,7 @@ _wsqlLogger	../src/pylon/extends/sql_executor.php	/^    private $_wsqlLogger  = 
 a	../src/pylon/impl/autoload/build_includes.php	/^    $a = new PYLAssemblyBuilder();$/;"	v
 accessCnt	../src/pylon/impl/basesvc/monitor_svc.php	/^    public $accessCnt=0;$/;"	v
 acl	../src/pylon/impl/basesvc/monitor_svc.php	/^        $acl=$this->mdb->get($who);$/;"	v
+acl	../src/pylon/impl/basesvc/monitor_svc.php	/^        if($acl == false ||  $acl == null  || $acl !== 'F')$/;"	v
 action	../src/pylon/utls/utility.php	/^        $this->action = $action ;$/;"	v
 add	../src/pylon/impl/autoload/cache_svc.php	/^    public function add($key, $value, $expire=0)$/;"	f
 add	../src/pylon/impl/framework/daobase.php	/^    public function add($obj)$/;"	f
@@ -525,7 +540,11 @@ attr	../src/pylon/interface/base.php	/^		$this->attr = array_merge($this->attr,$
 attr	../src/pylon/interface/base.php	/^		$this->attr = array_merge($this->attr,array_change_key_case($other));$/;"	v
 attr	../src/pylon/interface/base.php	/^		$this->attr= &$arr;$/;"	v
 attr	../src/pylon/interface/base.php	/^	public $attr=null;$/;"	v
+attr	../src/pylon/interface/base.php	/^    \/\/         $this->attr= array_filter($this->attr);$/;"	v
+attr	../src/pylon/interface/base.php	/^    \/\/         $this->attr= array_filter($this->attr,$fun);$/;"	v
 autoSpeed	../src/pylon/impl/web/rest.php	/^        $autoSpeed    = new XLogSpeed("rest[$uri]");$/;"	v
+autoSpeed	../src/pylon/utls/utility.php	/^ * $autoSpeed = new XLogSpeed("myaction");$/;"	v
+autoSpeed	../src/pylon/utls/utility.php	/^ * $autoSpeed = null;$/;"	v
 batchExec	../src/pylon/impl/autoload/tc_support.php	/^    static public function batchExec($tclistfile)$/;"	f
 beforedItcs	../src/pylon/impl/web/rest.php	/^        $this->beforedItcs = array() ;$/;"	v
 beforedItcs	../src/pylon/impl/web/rest.php	/^    private $beforedItcs = null ;$/;"	v
@@ -567,6 +586,9 @@ callImpl	../src/pylon/interface/ent.php	/^    public function callImpl($op,$tabl
 callMethod	../src/pylon/interface/webimpl.php	/^    private function callMethod($xcontext,$request,$response)$/;"	f
 callRemote	../src/pylon/utls/unittest.php	/^    private function callRemote($method,$url,$timeout=0)$/;"	f
 callService	../src/pylon/impl/web/rest.php	/^    static private function callService($conf,$xcontext,$request,$response)$/;"	f
+can	../src/pylon/impl/autoload/build_includes.php	/^     * This function can be used as static if inFile and outFile are both $/;"	f
+can	../src/pylon/impl/autoload/build_includes.php	/^     * current file will be used (note that this function can be used as$/;"	f
+can	../src/pylon/impl/autoload/build_includes.php	/^     * currently opened. Please note that this function can$/;"	f
 canMoveTo	../src/pylon/utls/status_machine.php	/^    public function canMoveTo($status)$/;"	f
 catch4add	../src/pylon/interface/ent.php	/^        $catch4add=false;$/;"	v
 ch	../src/pylon/utls/unittest.php	/^        $this->ch      = curl_init();$/;"	v
@@ -574,6 +596,9 @@ ch	../src/pylon/utls/unittest.php	/^    private $ch;$/;"	v
 chMod	../src/pylon/impl/autoload/build_includes.php	/^    function chMod( $inFile, $mode = 0644 )$/;"	f
 charset	../src/pylon/extends/sql_executor.php	/^        $this->charset  = $charset;$/;"	v
 charset	../src/pylon/extends/sql_executor.php	/^    public $charset;$/;"	v
+class	../src/pylon/impl/autoload/build_includes.php	/^        foreach (self::findClasses($files) as $class => $filename)$/;"	v
+class	../src/pylon/interface/webimpl.php	/^ *   1. 基于规则, 如： \/user\/profile\/gets?   ==>  $class=user_prifile,$method=gets$/;"	v
+class	../src/pylon/interface/webimpl.php	/^ *   2. 基于配置, 如： \/gexample\/test2\/xsd\/score? + REST_RULE: \/gexample\/test2\/$gkey\/$method   ==>  $class=gexample_test2,$gkey=xsd,$method=score$/;"	v
 className	../src/pylon/impl/framework/other.php	/^        $this->className=$clsName;$/;"	v
 className	../src/pylon/impl/framework/other.php	/^    private $className;$/;"	v
 className	../src/pylon/pylon.php	/^    static public function className($clsname)$/;"	f
@@ -598,6 +623,7 @@ close	../src/pylon/impl/autoload/build_includes.php	/^    function close()$/;"	f
 cls	../src/pylon/extends/sql_executor.php	/^                $cls = $this->cls;$/;"	v
 cls	../src/pylon/extends/sql_executor.php	/^        $this->cls      = $cls;$/;"	v
 cls	../src/pylon/extends/sql_executor.php	/^    public $cls;$/;"	v
+cls	../src/pylon/extends/sql_executor.php	/^    public function __construct($host, $userName, $password, $dbName,$connType=FastSQLExecutor::SHORT_CONN,$charset='GBK', $cls = "FastSQLExecutor" , $port="3306")$/;"	v
 cls	../src/pylon/impl/autoload/class_loads.php	/^    $cls=  "cls_" . strtolower($clsname);$/;"	v
 cls	../src/pylon/impl/framework/daobase.php	/^        $this->cls         = $cls;$/;"	v
 cls	../src/pylon/impl/framework/daobase.php	/^    public $cls         = null;$/;"	v
@@ -621,8 +647,10 @@ cnt	../src/pylon/impl/framework/entity.php	/^        $cnt = count($items);$/;"	v
 cntCall	../src/pylon/interface/ent.php	/^    private function cntCall($op,$cls,$catch4add,$name,$paramNames,$params)$/;"	f
 cntcmd	../src/pylon/impl/framework/query.php	/^            $cntcmd = preg_replace("\/(select .+)(from .+)\/i","select 1 \\$2",$cmd);$/;"	v
 cntcmd	../src/pylon/impl/framework/query.php	/^            $cntcmd = preg_replace("\/(select .+)(from .+)\/i","select count(1) as cnt \\$2",$cmd);$/;"	v
+col	../src/pylon/impl/dba/sql_constructor.php	/^        foreach($orderByArr as $col => $type)$/;"	v
 col	../src/pylon/impl/framework/entity.php	/^                $col=$argsmap[$key];$/;"	v
 col	../src/pylon/impl/framework/entity.php	/^            $col=$key;$/;"	v
+col	../src/pylon/impl/framework/entity.php	/^        foreach ( $array as $col=>$val)$/;"	v
 collectLog	../src/pylon/impl/utls/logutls.php	/^    static public function collectLog($executer, $collectLog)$/;"	f
 collectWLog	../src/pylon/impl/utls/logutls.php	/^    static public function collectWLog($executer, $collectLog)$/;"	f
 collector	../src/pylon/impl/dba/translation.php	/^            $collector = $this->_executer->unRegCollector();$/;"	v
@@ -719,6 +747,7 @@ data	../src/pylon/extends/session_memcache.php	/^            $data = $memSvc->ge
 data	../src/pylon/impl/basesvc/monitor_svc.php	/^                $data=array_merge($data,$box);$/;"	v
 data	../src/pylon/impl/basesvc/monitor_svc.php	/^            $data = $this->mdb->get($keys);$/;"	v
 data	../src/pylon/impl/basesvc/monitor_svc.php	/^            $data =array();$/;"	v
+data	../src/pylon/impl/basesvc/monitor_svc.php	/^            if($data==false) $data=array();$/;"	v
 data	../src/pylon/impl/basesvc/monitor_svc.php	/^        $data=array();$/;"	v
 data	../src/pylon/impl/basesvc/monitor_svc.php	/^        $this->data =array();$/;"	v
 data	../src/pylon/impl/basesvc/monitor_svc.php	/^    public $data=array();$/;"	v
@@ -744,7 +773,11 @@ debugLogger	../src/pylon/impl/web/xmvc_ex.php	/^            $this->debugLogger =
 debugLogger	../src/pylon/impl/web/xmvc_ex.php	/^        $this->debugLogger = NULL;$/;"	v
 debugLogger	../src/pylon/impl/web/xmvc_ex.php	/^    private $debugLogger = NULL;$/;"	v
 default	../src/pylon/impl/framework/control.php	/^        $this->default= $default;$/;"	v
+default	../src/pylon/utls/utility.php	/^function assign($array, $index, $default = '')$/;"	v
 defaultException	../src/pylon/impl/web/rest.php	/^    private function defaultException($plog,$e,$response)$/;"	f
+defaultVal	../src/pylon/impl/utls/property.php	/^\/\/         $this->defaultVal = $value;$/;"	v
+defaultVal	../src/pylon/impl/utls/property.php	/^\/\/     protected $defaultVal=null;$/;"	v
+defaultValue	../src/pylon/impl/utls/property.php	/^\/\/     public function defaultValue($hasDefault=true, $value="")$/;"	f
 del	../src/pylon/impl/basesvc/session_svc.php	/^    public function del($key)$/;"	f
 del	../src/pylon/impl/framework/daobase.php	/^    public function del($obj,$keys=array('id'))$/;"	f
 del	../src/pylon/impl/framework/entity.php	/^    public function del($obj);$/;"	f
@@ -813,9 +846,11 @@ errmsg	../src/pylon/utls/unittest.php	/^        $this->errmsg       =  "http cod
 errmsg	../src/pylon/utls/unittest.php	/^    public $errmsg;$/;"	v
 errno	../src/pylon/interface/webimpl.php	/^        $this->errno            = $errno ;$/;"	v
 errno	../src/pylon/interface/webimpl.php	/^        $this->errno        = 0  ;$/;"	v
+errno	../src/pylon/interface/webimpl.php	/^        return  $this->errno == 0 ;$/;"	v
 errno	../src/pylon/interface/webimpl.php	/^    public $errno     = 1 ;$/;"	v
 errno	../src/pylon/utls/unittest.php	/^            $this->errno  =  $result['errno'];$/;"	v
 errno	../src/pylon/utls/unittest.php	/^        $this->errno        =  3 ;$/;"	v
+errno	../src/pylon/utls/unittest.php	/^        return  $this->errno == 0 ;$/;"	v
 errno	../src/pylon/utls/unittest.php	/^    public $errno;$/;"	v
 errno2exception	../src/pylon/utls/unittest.php	/^    public function errno2exception()$/;"	f
 errono	../src/pylon/utls/unittest.php	/^        $errono     = curl_errno($this->ch);$/;"	v
@@ -839,6 +874,7 @@ execr	../src/pylon/impl/framework/query.php	/^        $this->execr = $execr;$/;"
 execr	../src/pylon/impl/framework/query.php	/^    private $execr = null;$/;"	v
 exector	../src/pylon/impl/dba/trans_manager.php	/^        $exector = call_user_func(self::$_exectorLoader);$/;"	v
 execute	../src/pylon/extends/sql_executor.php	/^    public function execute($sql, $values=array())$/;"	f
+executer	../src/pylon/extends/sql_executor.php	/^ *          $executer = new LZLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name,$/;"	v
 executer	../src/pylon/interface/ent.php	/^        $executer = XBox::get(SQLE,"\/$cls");$/;"	v
 executer	../src/pylon/interface/ent.php	/^        $executer = XBox::must_get(XBox::SQLE);$/;"	v
 exer	../src/pylon/impl/framework/query.php	/^        $this->exer=$exer;$/;"	v
@@ -848,6 +884,13 @@ exer	../src/pylon/impl/framework/unitwork.php	/^    private $exer;$/;"	v
 exers	../src/pylon/impl/framework/unitwork.php	/^        $exers = DaoFinderUtls::getExecuterList();$/;"	v
 exists	../src/pylon/impl/autoload/build_includes.php	/^    function exists( $fileName = null ) $/;"	f
 expire	../src/pylon/impl/autoload/cache_svc.php	/^            $expire= $this->stg->expireSet;$/;"	v
+expire	../src/pylon/impl/autoload/cache_svc.php	/^    public function add($key, $value, $expire=0)$/;"	v
+expire	../src/pylon/impl/autoload/cache_svc.php	/^    public function replace($key, $value, $expire=0)$/;"	v
+expire	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0)$/;"	v
+expire	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0);$/;"	v
+expire	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key, $value, $expire=0)$/;"	v
+expire	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key, $value, $expire=0);$/;"	v
+expire	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function set($key, $value, $expire=600)$/;"	v
 expireSet	../src/pylon/impl/autoload/cache_svc.php	/^        $this->expireSet = $expire;$/;"	v
 expireSet	../src/pylon/impl/autoload/cache_svc.php	/^    public $expireSet;$/;"	v
 expiry	../src/pylon/extends/session_mysql.php	/^	$expiry = time() + $sess_life;  $/;"	v
@@ -868,14 +911,26 @@ featureNo	../src/pylon/impl/utls/version.php	/^        $this->featureNo = safe_i
 featureNo	../src/pylon/impl/utls/version.php	/^    public $featureNo=0;$/;"	v
 featureUpgrade	../src/pylon/impl/utls/version.php	/^    public function featureUpgrade()$/;"	f
 file	../src/pylon/impl/autoload/build_includes.php	/^             $file = "$dirname\/$file";$/;"	v
+file	../src/pylon/impl/autoload/build_includes.php	/^             if ($file == "." || $file == ".." || self::isSkipFolders($file))$/;"	v
 file	../src/pylon/impl/autoload/build_includes.php	/^            $file = $this->_fileName;$/;"	v
+file	../src/pylon/impl/autoload/build_includes.php	/^        if( $file == null )$/;"	v
+file	../src/pylon/impl/autoload/build_includes.php	/^    function delete( $file = null )$/;"	v
+file	../src/pylon/impl/autoload/build_includes.php	/^    function isDir( $file = null )$/;"	v
+file	../src/pylon/impl/autoload/build_includes.php	/^    function isReadable( $file = null )$/;"	v
+file	../src/pylon/impl/autoload/build_includes.php	/^    function isWritable( $file = null )$/;"	v
 file	../src/pylon/impl/autoload/tc_support.php	/^            $file=$argv[2];$/;"	v
 file	../src/pylon/interface/webimpl.php	/^        $file = $this->root . "\/" . $file ;$/;"	v
 file	../src/pylon/utls/exception.php	/^            $file = basename($i['file']);$/;"	v
 fileName	../src/pylon/impl/autoload/build_includes.php	/^            $fileName = $this->_fileName;$/;"	v
+fileName	../src/pylon/impl/autoload/build_includes.php	/^        if( $fileName == null )$/;"	v
+fileName	../src/pylon/impl/autoload/build_includes.php	/^    function exists( $fileName = null ) $/;"	v
+fileName	../src/pylon/impl/autoload/build_includes.php	/^    function getSize( $fileName = null )$/;"	v
+fileName	../src/pylon/impl/autoload/build_includes.php	/^    function touch( $fileName = null )$/;"	v
 filelist	../src/pylon/impl/autoload/build_includes.php	/^         $filelist = array();$/;"	v
 files	../src/pylon/impl/autoload/build_includes.php	/^        $files = Glob::myGlob( $dirName, "*" );$/;"	v
 files	../src/pylon/impl/autoload/build_includes.php	/^        $files = self::findFiles($path);$/;"	v
+filter	../src/pylon/impl/utls/property.php	/^\/\/     public function filter($value=null,$fun=null)$/;"	f
+filter	../src/pylon/interface/base.php	/^    \/\/ public function filter($value=null,$fun=null)$/;"	f
 filterCondVal	../src/pylon/impl/framework/query.php	/^    static public function filterCondVal($arr)$/;"	f
 filterEmpty	../src/pylon/impl/dba/express.php	/^    static public function filterEmpty()$/;"	f
 filterExp	../src/pylon/impl/basesvc/monitor_svc.php	/^        $filterExp= $this->mdb->get(self::FILTER_EXP);$/;"	v
@@ -895,9 +950,12 @@ finds	../src/pylon/impl/autoload/php_cls_loads.php	/^        $finds = str_split(
 first	../src/pylon/extends/sql_executor.php	/^        $this->first    = $first;$/;"	v
 first	../src/pylon/extends/sql_executor.php	/^    public $first;$/;"	v
 first	../src/pylon/impl/framework/dao_utls.php	/^        $first = count($condnames);$/;"	v
+first	../src/pylon/utls/dbc.php	/^        if(is_bool($first) ) $first = $first? "bool:true":"bool:false";$/;"	v
+first	../src/pylon/utls/dbc.php	/^        if(is_null($first) ) $first = "null";$/;"	v
 firstCache	../src/pylon/impl/basesvc/monitor_svc.php	/^        $this->firstCache= $firstCache;$/;"	v
 firstCache	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $firstCache=null;$/;"	v
 firstPart	../src/pylon/impl/autoload/build_includes.php	/^        $firstPart = substr($dirName,0,strrpos($dirName, "\/" ));           $/;"	v
+firstPart	../src/pylon/impl/autoload/build_includes.php	/^        \/\/ $firstPart = "\/a\/b"$/;"	v
 first_where	../src/pylon/interface/ioc.php	/^                $first_where = $space_where[$space];$/;"	v
 fixbug	../src/pylon/impl/utls/version.php	/^        $fixbug  = empty($fixbug) ?  0:$fixbug;$/;"	v
 fixbug	../src/pylon/impl/utls/version.php	/^    public function fixbug()$/;"	f
@@ -916,12 +974,15 @@ frame	../src/pylon/interface/ioc.php	/^            $frame  = $bt[$call_level];$/
 from	../src/pylon/impl/dba/sql_constructor.php	/^        $from = intval($from);$/;"	v
 from	../src/pylon/utls/status_machine.php	/^        $this->from = $from;$/;"	v
 from	../src/pylon/utls/status_machine.php	/^    public $from;$/;"	v
+fromArray	../src/pylon/impl/utls/property.php	/^\/\/     static public function fromArray($arr=array())$/;"	f
 fromArray	../src/pylon/interface/base.php	/^    static public function fromArray($arr=array())$/;"	f
 fromRow	../src/pylon/impl/dba/sql_constructor.php	/^        $fromRow =0 ;                                                                                                                  $/;"	v
 fun	../src/pylon/impl/autoload/cache_svc.php	/^        $fun=$this->getkeyfun;$/;"	v
 fun	../src/pylon/impl/dba/express.php	/^        $fun= $this->_fun;$/;"	v
 fun	../src/pylon/impl/framework/proxy.php	/^        $this->fun = $fun;$/;"	v
 fun	../src/pylon/impl/framework/proxy.php	/^    private  $fun;$/;"	v
+fun	../src/pylon/impl/utls/property.php	/^\/\/             $fun = create_function('$v','return  $v != '.$value.'; ');$/;"	v
+fun	../src/pylon/interface/base.php	/^    \/\/         $fun = create_function('$v','return  $v != '.$value.'; ');$/;"	v
 fun	../src/pylon/utls/exception.php	/^            $fun  = $i['function'];$/;"	v
 funIns	../src/pylon/impl/framework/daobase.php	/^    static public function funIns($executer)$/;"	f
 funIns	../src/pylon/impl/framework/query.php	/^    static public function funIns($executer,$isSelfDefFun=null)$/;"	f
@@ -934,6 +995,7 @@ generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql(
 generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stg)$/;"	f
 generateSql	../src/pylon/impl/dba/express.php	/^    public function generateSql($stgs)$/;"	f
 generateSql	../src/pylon/impl/dba/sql_constructor.php	/^        public function generateSql()$/;"	f
+generateSql	../src/pylon/impl/dba/sql_constructor.php	/^    abstract public function generateSql();$/;"	f
 generateSql	../src/pylon/impl/dba/sql_constructor.php	/^    function generateSql()$/;"	f
 generateSql	../src/pylon/impl/dba/sql_constructor.php	/^    public function generateSql()$/;"	f
 generatorAssemblyFile	../src/pylon/impl/autoload/build_includes.php	/^    static private function generatorAssemblyFile($classes,$srcRoot,$outFileArr)$/;"	f
@@ -977,6 +1039,7 @@ getLastInsertID	../src/pylon/extends/sql_executor.php	/^    public function getL
 getObj	../src/pylon/impl/framework/proxy.php	/^    public function getObj()$/;"	f
 getObjsCountImpl	../src/pylon/impl/framework/daobase.php	/^    private function getObjsCountImpl($statement,$valsArr=array())$/;"	f
 getObjsCountImpl	../src/pylon/impl/framework/query.php	/^    private function getObjsCountImpl($statement,$valsArr=array())$/;"	f
+getPropArray	../src/pylon/impl/utls/property.php	/^\/\/     public function getPropArray()$/;"	f
 getPropArray	../src/pylon/interface/base.php	/^    public function getPropArray()$/;"	f
 getRegName	../src/pylon/impl/framework/query.php	/^    public function getRegName()$/;"	f
 getRelationSets	../src/pylon/impl/framework/entity.php	/^    public function getRelationSets()$/;"	f
@@ -999,6 +1062,8 @@ glogger	../src/pylon/pylon.php	/^    $glogger  = new logger("_pylon");$/;"	v
 gotoPage	../src/pylon/utls/datapage.php	/^    public function gotoPage($pageNum)$/;"	f
 groupBy	../src/pylon/impl/dba/sql_constructor.php	/^    function groupBy($groupBy)$/;"	f
 gt	../src/pylon/impl/dba/express.php	/^    static public function gt($column, $value,$stg=null)$/;"	f
+hasDefault	../src/pylon/impl/utls/property.php	/^\/\/         $this->hasDefault = $hasDefault;$/;"	v
+hasDefault	../src/pylon/impl/utls/property.php	/^\/\/     protected $hasDefault=false;$/;"	v
 hasKey	../src/pylon/impl/framework/daobase.php	/^    public $hasKey      = null;$/;"	v
 hashKey	../src/pylon/impl/framework/daobase.php	/^        $hashKey   = $obj->hashStoreKey();$/;"	v
 hashKey	../src/pylon/impl/framework/daobase.php	/^        $this->hashKey     = null;$/;"	v
@@ -1006,11 +1071,13 @@ hashKey	../src/pylon/impl/framework/daobase.php	/^        $this->hashKey=$key;$/
 hashStoreKey	../src/pylon/impl/framework/entity.php	/^    public function hashStoreKey()$/;"	f
 hashStoreKey	../src/pylon/interface/ent.php	/^    public function hashStoreKey()$/;"	f
 hashval	../src/pylon/impl/basesvc/monitor_svc.php	/^        $hashval=base_convert(substr(md5($req),0,4),36,10);$/;"	v
+have	../src/pylon/impl/utls/property.php	/^\/\/     public function have($name)$/;"	f
 have	../src/pylon/interface/base.php	/^	public function have($name)$/;"	f
 haveChange	../src/pylon/impl/framework/entity.php	/^    public function haveChange()$/;"	f
 haveClass	../src/pylon/pylon.php	/^    static public function haveClass($clsname)$/;"	f
 haveCollector	../src/pylon/extends/sql_executor.php	/^    public function haveCollector()$/;"	f
 haveCollector	../src/pylon/interface/plugin.php	/^    public function haveCollector();$/;"	f
+haveSet	../src/pylon/impl/utls/property.php	/^\/\/     public function haveSet($name)$/;"	f
 head	../src/pylon/impl/basesvc/monitor_svc.php	/^            $head = self::QUEUE_MAX_MSG;$/;"	v
 head	../src/pylon/impl/basesvc/monitor_svc.php	/^        $head =  $this->mdb->get(self::QUEUE_HEAD);$/;"	v
 head	../src/pylon/impl/basesvc/monitor_svc.php	/^        $head =  $this->mdb->increment(self::QUEUE_HEAD);$/;"	v
@@ -1025,6 +1092,7 @@ html_out	../src/pylon/utls/exception.php	/^    static public function html_out($
 http_body	../src/pylon/utls/unittest.php	/^        $this->http_body    = $body ;$/;"	v
 http_body	../src/pylon/utls/unittest.php	/^    public $http_body;$/;"	v
 i	../src/pylon/extends/sql_executor.php	/^        $i = 0;$/;"	v
+i	../src/pylon/impl/autoload/build_includes.php	/^        for( $i = 0; $i < count( $contents ); $i++ )$/;"	v
 id	../src/pylon/impl/framework/entity.php	/^        $id = new XID(intval($array['id']),intval($array['ver']),$array['createtime'],$array['updatetime']);$/;"	v
 id	../src/pylon/impl/framework/entity.php	/^        $id= $idSvc->createID($idname);$/;"	v
 id	../src/pylon/impl/framework/entity.php	/^        $id= EntityUtls::createPureID($idname);$/;"	v
@@ -1055,6 +1123,7 @@ info	../src/pylon/utls/exception.php	/^        $info = "";$/;"	v
 init	../src/pylon/extends/session_memcache.php	/^    public function init()$/;"	f
 init	../src/pylon/extends/session_mysql.php	/^   public function init()$/;"	f
 init	../src/pylon/impl/basesvc/session_svc.php	/^    public function init()$/;"	f
+init	../src/pylon/impl/utls/property.php	/^\/\/     public function init($name,$val)$/;"	f
 init	../src/pylon/impl/utls/version.php	/^    static public function init($file)$/;"	f
 init	../src/pylon/interface/plugin.php	/^    public function init();$/;"	f
 initTotalRows	../src/pylon/utls/datapage.php	/^    public function initTotalRows($totalRows)$/;"	f
@@ -1084,6 +1153,7 @@ ip	../src/pylon/impl/web/rest.php	/^        $ip             = $_SERVER['REMOTE_A
 isCancle	../src/pylon/interface/ent.php	/^        $this->isCancle=true;$/;"	v
 isCancle	../src/pylon/interface/ent.php	/^    private     $isCancle=true;$/;"	v
 isDir	../src/pylon/impl/autoload/build_includes.php	/^    function isDir( $file = null )$/;"	f
+isEmpty	../src/pylon/impl/utls/property.php	/^\/\/     public function isEmpty()$/;"	f
 isEmpty	../src/pylon/interface/base.php	/^    public function isEmpty()$/;"	f
 isEmpty	../src/pylon/utls/biz.php	/^    static public function isEmpty($result,$info)$/;"	f
 isEnable	../src/pylon/impl/autoload/cache_svc.php	/^    static public function isEnable()  $/;"	f
@@ -1111,7 +1181,9 @@ issuc	../src/pylon/impl/framework/unitwork.php	/^        $this->issuc=true;$/;"	
 issuc	../src/pylon/impl/framework/unitwork.php	/^    private $issuc=false;$/;"	v
 itarget	../src/pylon/impl/web/rest.php	/^        $itarget = new XIntercepterTarget($request);$/;"	v
 itc	../src/pylon/impl/web/rest.php	/^        $itc   = new XInterceptorRuner(XAop::using($itarget)) ;$/;"	v
+item	../src/pylon/impl/framework/dao_utls.php	/^        \/\/            ' if (is_string($item) && strstr($item,"?")) $item = new DQLObj($item,"?");' ));$/;"	v
 item	../src/pylon/impl/framework/relation.php	/^        $item=array();$/;"	v
+item1	../src/pylon/impl/utls/property.php	/^\/\/         $item1 = strtolower($item1);$/;"	v
 itemDao	../src/pylon/impl/framework/daobase.php	/^            $itemDao =  DaoFinderUtls::find($set->getClsName());$/;"	v
 items	../src/pylon/impl/framework/entity.php	/^        $this->items= array();$/;"	v
 items	../src/pylon/impl/framework/entity.php	/^    protected $items            = array();$/;"	v
@@ -1134,6 +1206,8 @@ jumpURL	../src/pylon/interface/webimpl.php	/^        $this->jumpURL = $url ;$/;"
 jumpURL	../src/pylon/interface/webimpl.php	/^    protected $jumpURL     = null ;$/;"	v
 jwithEgis	../src/pylon/impl/utls/join_utls.php	/^    static public function jwithEgis($glue,$egis,$arr)$/;"	f
 key	../src/pylon/extends/session_mysql.php	/^	$key   = mysql_escape_string($key);$/;"	v
+key	../src/pylon/extends/sql_executor.php	/^        foreach($arr as $key => $item)$/;"	v
+key	../src/pylon/impl/autoload/build_includes.php	/^        foreach ($classes as $key => $value)$/;"	v
 key	../src/pylon/impl/autoload/cache_svc.php	/^            $key = $this->stg->getkey($value);$/;"	v
 key	../src/pylon/impl/autoload/cache_svc.php	/^        $key = $this->_prefix . $key ;$/;"	v
 key	../src/pylon/impl/autoload/cache_svc.php	/^        $key = md5($this->prefix."__get".serialize($name));$/;"	v
@@ -1142,15 +1216,24 @@ key	../src/pylon/impl/autoload/cache_svc.php	/^        $key= "{$this->name}_{$th
 key	../src/pylon/impl/autoload/class_loads.php	/^    $key  =  "CLASS:".$classname ;$/;"	v
 key	../src/pylon/impl/basesvc/locks.php	/^        $this->key = $key;$/;"	v
 key	../src/pylon/impl/basesvc/locks.php	/^    private $key;$/;"	v
+key	../src/pylon/impl/basesvc/monitor_svc.php	/^                    foreach($found  as $key => $val)$/;"	v
 key	../src/pylon/impl/basesvc/monitor_svc.php	/^        $key = intval($hashval)%self::MAX_BOX;$/;"	v
 key	../src/pylon/impl/framework/dao_utls.php	/^        $key= strtolower(get_class($obj)) . "__id";$/;"	v
 key	../src/pylon/impl/framework/daobase.php	/^        $key   = !is_null($hashKey)  ? $hashKey : $this->hashKey;$/;"	v
 key	../src/pylon/impl/framework/entity.php	/^                $key= str_replace('__id','',$col);$/;"	v
 key	../src/pylon/impl/framework/entity.php	/^            $key=strtolower($arg->getName());$/;"	v
 key	../src/pylon/impl/framework/entity.php	/^        $key     = serialize($this->getDTO(StdMapping::ins()));$/;"	v
+key	../src/pylon/impl/framework/entity.php	/^        foreach($this->loaditems as $key=>$item)$/;"	v
+key	../src/pylon/impl/framework/entity.php	/^        foreach($vars as $key=>$val)$/;"	v
+key	../src/pylon/impl/framework/query.php	/^        return  " $key = ? " ;$/;"	v
+key	../src/pylon/impl/framework/query.php	/^        return  " $key = ? ";$/;"	v
+key	../src/pylon/impl/utls/join_utls.php	/^        foreach($array as $key => $val)$/;"	v
+key	../src/pylon/impl/web/xmvc_ex.php	/^        foreach($_datas as $key=>$value){$/;"	v
+key	../src/pylon/interface/ioc.php	/^        if ( $key == null)$/;"	v
 key	../src/pylon/pylon.php	/^    $key        =  "CLASS:".$classname ;$/;"	v
 key	../src/pylon/pylon.php	/^    $key       = "PYLON2_CLASS:".$classname ;$/;"	v
 keys	../src/pylon/impl/basesvc/monitor_svc.php	/^            $keys=range($head,$head -  self::QUEUE_MAX_MSG ,-1);$/;"	v
+keys	../src/pylon/impl/utls/property.php	/^\/\/         $keys = array_keys($arr);$/;"	v
 l1Inc	../src/pylon/impl/basesvc/monitor_svc.php	/^        $l1Inc = $this->firstCache->increment("$key-inc",$expire,$v);$/;"	v
 l1Val	../src/pylon/impl/basesvc/monitor_svc.php	/^        $l1Val = $this->firstCache->get($key);$/;"	v
 l2Val	../src/pylon/impl/basesvc/monitor_svc.php	/^             $l2Val= $this->secondCache->increment($key,$expire,$this->incGap);$/;"	v
@@ -1161,6 +1244,7 @@ left2right	../src/pylon/utls/status_machine.php	/^            $left2right = new 
 leftJoin	../src/pylon/impl/dba/sql_constructor.php	/^    function leftJoin($tableName,$condition)$/;"	f
 len	../src/pylon/impl/autoload/php_cls_loads.php	/^        $len = strlen($find);$/;"	v
 len	../src/pylon/utls/status_machine.php	/^        $len = count($statusList);$/;"	v
+length	../src/pylon/impl/autoload/build_includes.php	/^    function truncate( $length = 0 )$/;"	v
 lib_root	../src/pylon/pylon.php	/^    $lib_root  = dirname(__FILE__);$/;"	v
 limit	../src/pylon/impl/dba/sql_constructor.php	/^    function limit($from,$num)$/;"	f
 line	../src/pylon/utls/exception.php	/^            $line = $i['line'];$/;"	v
@@ -1256,21 +1340,28 @@ match	../src/pylon/impl/web/aop.php	/^        $match      = null;$/;"	v
 matchAll	../src/pylon/impl/web/aop.php	/^            $matchAll   = false ;$/;"	v
 matchAll	../src/pylon/impl/web/aop.php	/^            $matchAll  = true ;$/;"	v
 matchAll	../src/pylon/impl/web/aop.php	/^        $matchAll  = false ;$/;"	v
+matchOnce	../src/pylon/impl/web/aop.php	/^                if( !$this->isMatch &&   !preg_match('\/'. $regex . '\/' ,$data ) ) $matchOnce = true ;$/;"	v
+matchOnce	../src/pylon/impl/web/aop.php	/^                if( $this->isMatch  &&    preg_match('\/'.$regex . '\/' ,$data ) )   $matchOnce = true ;$/;"	v
 matchOnce	../src/pylon/impl/web/aop.php	/^            $matchOnce  = false;$/;"	v
 matchs	../src/pylon/impl/framework/dao_utls.php	/^        $matchs=array();$/;"	v
 max	../src/pylon/impl/basesvc/monitor_svc.php	/^        $max=self::QUEUE_MAX_MSG;$/;"	v
 mdb	../src/pylon/impl/basesvc/monitor_svc.php	/^        $this->mdb=$mdb;$/;"	v
 mdb	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $mdb=null;$/;"	v
 memSvc	../src/pylon/extends/session_memcache.php	/^        $memSvc = self::$mem_svc;$/;"	v
+memSvc	../src/pylon/extends/session_memcache.php	/^\/\/        $memSvc = self::$mem_svc;$/;"	v
 mem_svc	../src/pylon/extends/session_memcache.php	/^    static $mem_svc ;$/;"	v
+merge	../src/pylon/impl/utls/property.php	/^\/\/     public function merge($other)$/;"	f
 merge	../src/pylon/interface/base.php	/^	public function merge($other)$/;"	f
 mergeArray	../src/pylon/interface/base.php	/^	public function mergeArray($other)$/;"	f
+merges	../src/pylon/impl/utls/property.php	/^\/\/     public function merges($others)$/;"	f
 messages	../src/pylon/impl/utls/diagnosis.php	/^    public $messages=array();$/;"	v
 method	../src/pylon/impl/web/rest.php	/^        $method         = $_SERVER['REQUEST_METHOD'];$/;"	v
 method	../src/pylon/impl/web/rest.php	/^        $method  = $_SERVER['REQUEST_METHOD'];$/;"	v
 method	../src/pylon/impl/web/rest.php	/^        $method = $uri_arr[$uri_arr_count - 1];$/;"	v
 method	../src/pylon/interface/webimpl.php	/^        $method = $request->method ;$/;"	v
 mode	../src/pylon/impl/autoload/build_includes.php	/^        $mode = FILE_DEFAULT_DIRECTORY_CREATION_MODE )$/;"	v
+mode	../src/pylon/impl/autoload/build_includes.php	/^    function chMod( $inFile, $mode = 0644 )$/;"	v
+mode	../src/pylon/impl/autoload/build_includes.php	/^    function open( $mode = "r" )$/;"	v
 modleFiles	../src/pylon/impl/autoload/class_loads.php	/^    static $modleFiles=array();$/;"	v
 modleFiles	../src/pylon/pylon.php	/^    static $modleFiles=array();$/;"	v
 moveTo	../src/pylon/utls/status_machine.php	/^    public function moveTo($status)$/;"	f
@@ -1294,9 +1385,11 @@ mutiVal	../src/pylon/impl/web/aop.php	/^        $mutiVal    = array();$/;"	v
 n	../src/pylon/impl/autoload/cache_svc.php	/^            $n= strtolower($n);$/;"	v
 name	../src/pylon/impl/autoload/cache_svc.php	/^        $name = strtolower($name);$/;"	v
 name	../src/pylon/impl/autoload/cache_svc.php	/^        $this->name=$name;$/;"	v
+name	../src/pylon/impl/autoload/cache_svc.php	/^        if(!is_string($name) || $name == "array")$/;"	v
 name	../src/pylon/impl/framework/query.php	/^        $this->name=$name;$/;"	v
 name	../src/pylon/impl/utls/diagnosis.php	/^        $this->name = $name;$/;"	v
 name	../src/pylon/impl/utls/diagnosis.php	/^    public $name;$/;"	v
+name	../src/pylon/impl/utls/property.php	/^\/\/         $name=strtolower($name);$/;"	v
 name	../src/pylon/interface/base.php	/^        $name=strtolower($name);$/;"	v
 names	../src/pylon/impl/autoload/cache_svc.php	/^        $names = func_get_args(); $/;"	v
 names	../src/pylon/impl/framework/dao_utls.php	/^            $names  = JoinUtls::jarray(",", $condnames);$/;"	v
@@ -1310,6 +1403,8 @@ needRecord	../src/pylon/extends/sql_executor.php	/^    public $needRecord= true;
 needWatch	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function needWatch($v)$/;"	f
 netCacheSpace	../src/pylon/impl/autoload/cache_svc.php	/^    static public $netCacheSpace= null;$/;"	v
 netcache	../src/pylon/impl/basesvc/monitor_svc.php	/^        $netcache = new MemCacheDriver($memSvrs,$port);$/;"	v
+newarr	../src/pylon/impl/utls/property.php	/^\/\/         $newarr = array_combine($keys,array_values($arr));$/;"	v
+newarr	../src/pylon/impl/utls/property.php	/^\/\/         $newarr=array();$/;"	v
 nextPage	../src/pylon/utls/datapage.php	/^    public function nextPage()$/;"	f
 notEqualsMsg	../src/pylon/utls/dbc.php	/^    static private function notEqualsMsg($first,$second,$firstName)$/;"	f
 notNull	../src/pylon/utls/biz.php	/^    static public function notNull($result, $info)$/;"	f
@@ -1322,6 +1417,7 @@ obj	../src/pylon/impl/autoload/cache_svc.php	/^        $obj = $this->_memcache->
 obj	../src/pylon/impl/autoload/cache_svc.php	/^        $obj = $this->dao->$name;$/;"	v
 obj	../src/pylon/impl/autoload/cache_svc.php	/^        $obj = $this->driver->get($key);$/;"	v
 obj	../src/pylon/impl/autoload/cache_svc.php	/^        $obj = call_user_func_array(array($this->dao,$name),$params);$/;"	v
+obj	../src/pylon/impl/basesvc/monitor_svc.php	/^\/\/            $obj= unserialize($str);$/;"	v
 obj	../src/pylon/impl/framework/daobase.php	/^                $obj = Relation::loadRelation($cls,$row,$this->mappingStg);$/;"	v
 obj	../src/pylon/impl/framework/daobase.php	/^                $obj = XEntity::loadEntity($cls,$row,$this->mappingStg);$/;"	v
 obj	../src/pylon/impl/framework/daobase.php	/^                $obj = call_user_func(array($cls,'load'),$row,$this->mappingStg);$/;"	v
@@ -1347,6 +1443,7 @@ obj	../src/pylon/impl/web/rest.php	/^            $obj     = new $cls;$/;"	v
 obj	../src/pylon/interface/ent.php	/^        $obj = new $cls(XID::create()) ;$/;"	v
 obj	../src/pylon/interface/ent.php	/^        $obj = self::unitWork()->regAdd($entity);$/;"	v
 obj	../src/pylon/interface/ent.php	/^    static public function obj()$/;"	f
+obj	../src/pylon/utls/dbc.php	/^        if(is_null($obj) ) $obj = "null";$/;"	v
 obj2row	../src/pylon/impl/framework/daobase.php	/^    public function obj2row($obj)$/;"	f
 obj2row	../src/pylon/impl/framework/entity.php	/^    public function obj2row($obj);$/;"	f
 objMsg	../src/pylon/utls/dbc.php	/^    static private function objMsg($obj,$msg)$/;"	f
@@ -1362,6 +1459,7 @@ optimizeSetup	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public func
 options	../src/pylon/impl/autoload/class_loads.php	/^        $options = $msg;$/;"	v
 order	../src/pylon/impl/framework/query.php	/^            $order = array($orderkey => $ordertype);$/;"	v
 order	../src/pylon/impl/framework/query.php	/^        $order = null;$/;"	v
+order	../src/pylon/impl/framework/query.php	/^    public function getByProp($prop,$view,$viewCond='',$columns="*",$addiWhereCmd ="", $order=null)$/;"	v
 order	../src/pylon/interface/ent.php	/^                $order = array($orderkey => $ordertype);$/;"	v
 order	../src/pylon/interface/ent.php	/^            $order = isset($params[1])? $params[1] : null;$/;"	v
 orderBy	../src/pylon/impl/dba/sql_constructor.php	/^        $orderBy = "";$/;"	v
@@ -1374,6 +1472,8 @@ originStatus	../src/pylon/utls/status_machine.php	/^    private $originStatus;$/
 ors	../src/pylon/impl/dba/express.php	/^    static public function ors()$/;"	f
 oth	../src/pylon/impl/framework/entity.php	/^        $oth=$other->items();$/;"	v
 outFile	../src/pylon/impl/autoload/build_includes.php	/^            $outFile = $inFile;$/;"	v
+outFile	../src/pylon/impl/autoload/build_includes.php	/^        if( $outFile == null ) {$/;"	v
+outFile	../src/pylon/impl/autoload/build_includes.php	/^    function rename( $inFile, $outFile = null )$/;"	v
 out_header	../src/pylon/impl/utls/http.php	/^    static function  out_header($status_code)$/;"	f
 outfileArr	../src/pylon/impl/autoload/build_includes.php	/^        $outfileArr = explode(":",$outfiles);$/;"	v
 page	../src/pylon/interface/ent.php	/^            $page      = isset($extraParams[0])? $extraParams[0] : null;$/;"	v
@@ -1384,6 +1484,7 @@ pairs	../src/pylon/impl/framework/daobase.php	/^        $pairs        = $this->o
 pairs	../src/pylon/impl/framework/daobase.php	/^        $pairs     = $this->obj2row($obj);$/;"	v
 pairs	../src/pylon/impl/framework/daobase.php	/^        $pairs = $this->obj2row($obj);$/;"	v
 pairsCnt	../src/pylon/impl/framework/daobase.php	/^        $pairsCnt= count($pairs);$/;"	v
+parent	../src/pylon/utls/status_machine.php	/^        foreach($this->parentSonsMap as $parent => $sonlist)$/;"	v
 parentSonsMap	../src/pylon/utls/status_machine.php	/^        $this->parentSonsMap = array();$/;"	v
 parentSonsMap	../src/pylon/utls/status_machine.php	/^    private $parentSonsMap   ;$/;"	v
 parentStatus	../src/pylon/utls/status_machine.php	/^        $parentStatus = array_shift($args); $/;"	v
@@ -1481,6 +1582,7 @@ reconnect	../src/pylon/extends/sql_executor.php	/^    public function reconnect(
 recordCalls	../src/pylon/extends/sql_executor.php	/^                $this->recordCalls = null;$/;"	v
 recordCalls	../src/pylon/extends/sql_executor.php	/^        $this->recordCalls = array();$/;"	v
 recordCalls	../src/pylon/extends/sql_executor.php	/^    public $recordCalls= null;$/;"	v
+recursive	../src/pylon/impl/autoload/build_includes.php	/^    function deleteDir( $dirName, $recursive = false, $onlyFiles = false )$/;"	v
 reflectionObj	../src/pylon/impl/framework/entity.php	/^        $reflectionObj = new ReflectionClass($cls);$/;"	v
 regAdd	../src/pylon/impl/framework/entity.php	/^    public function regAdd($obj)$/;"	f
 regAdd	../src/pylon/impl/framework/unitwork.php	/^    public function regAdd($obj)$/;"	f
@@ -1510,6 +1612,7 @@ registImpl	../src/pylon/interface/ioc.php	/^    static private function registIm
 regist_impl	../src/pylon/impl/framework/entity.php	/^    static public function regist_impl($key,$cls,$obj)$/;"	f
 regist_where	../src/pylon/interface/ioc.php	/^    static public function regist_where($call_level)$/;"	f
 register	../src/pylon/impl/framework/entity.php	/^    static public function register($dao)$/;"	f
+register	../src/pylon/interface/ent.php	/^    \/\/ static public function register($dao)$/;"	f
 registerAll	../src/pylon/impl/framework/entity.php	/^    static public function registerAll($dao,$query)$/;"	f
 registerDao	../src/pylon/interface/ent.php	/^    static public function registerDao($dao)$/;"	f
 registerDaos	../src/pylon/interface/ent.php	/^    static public function registerDaos()$/;"	f
@@ -1520,7 +1623,9 @@ registerQuery	../src/pylon/impl/framework/entity.php	/^    static public functio
 registerQuery	../src/pylon/interface/ent.php	/^    static public function registerQuery($query)$/;"	f
 registerQuerys	../src/pylon/interface/ent.php	/^    static public function registerQuerys()$/;"	f
 relationSets	../src/pylon/impl/framework/daobase.php	/^        $relationSets = $obj->getRelationSets();$/;"	v
+remove	../src/pylon/impl/utls/property.php	/^\/\/     public function remove($name)$/;"	f
 remove	../src/pylon/interface/base.php	/^    public function remove($name)$/;"	f
+removeAll	../src/pylon/impl/utls/property.php	/^\/\/     public function removeAll()$/;"	f
 rename	../src/pylon/impl/autoload/build_includes.php	/^    function rename( $inFile, $outFile = null )$/;"	f
 replace	../src/pylon/impl/autoload/cache_svc.php	/^    public function replace($key, $value, $expire=0)$/;"	f
 replace	../src/pylon/impl/web/aop.php	/^    public function replace($args)$/;"	f
@@ -1534,6 +1639,7 @@ requireEquals	../src/pylon/impl/utls/args_checker.php	/^    static public functi
 requireEquals	../src/pylon/utls/dbc.php	/^    static public function requireEquals($first,$second,$msg= "first value != second value")$/;"	f
 requireIsA	../src/pylon/impl/utls/args_checker.php	/^    static public function requireIsA($first,$parentClass,$msg="value is not subclass of ")$/;"	f
 requireIsA	../src/pylon/utls/dbc.php	/^    static public function requireIsA($first,$parentClass,$msg="value is not subclass of ")$/;"	f
+requireNotEmpty	../src/pylon/utls/dbc.php	/^    \/\/ static public function requireNotEmpty($obj,$msg="value is  empty!")$/;"	f
 requireNotEquals	../src/pylon/impl/utls/args_checker.php	/^    static public function requireNotEquals($first,$second,$msg="first value == second value")$/;"	f
 requireNotEquals	../src/pylon/utls/dbc.php	/^    static public function requireNotEquals($first,$second,$msg="first value == second value")$/;"	f
 requireNotNull	../src/pylon/impl/utls/args_checker.php	/^    static public function requireNotNull($obj,$msg="value is  null ")$/;"	f
@@ -1618,6 +1724,8 @@ sec	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $sec=60;$/;"	v
 second	../src/pylon/extends/sql_executor.php	/^        $this->second   = $second;$/;"	v
 second	../src/pylon/extends/sql_executor.php	/^    public $second;$/;"	v
 second	../src/pylon/impl/framework/dao_utls.php	/^        $second = count($params);$/;"	v
+second	../src/pylon/utls/dbc.php	/^        if(is_bool($second) ) $second= $second? "bool:true":"bool:false";$/;"	v
+second	../src/pylon/utls/dbc.php	/^        if(is_null($second) ) $second= "null";$/;"	v
 secondCache	../src/pylon/impl/basesvc/monitor_svc.php	/^        $this->secondCache = $secondCache;$/;"	v
 secondCache	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $secondCache=null;$/;"	v
 selfCls	../src/pylon/impl/framework/daobase.php	/^        $selfCls = "{$ncls}DaoImpl";$/;"	v
@@ -1632,6 +1740,7 @@ serving	../src/pylon/impl/web/rest.php	/^    static public function serving($htt
 serving	../src/pylon/pylon.php	/^    static public function serving()$/;"	f
 sess_close	../src/pylon/extends/session_memcache.php	/^    public static  function sess_close()$/;"	f
 sess_close	../src/pylon/extends/session_mysql.php	/^function sess_close() $/;"	f
+sess_dbh	../src/pylon/extends/session_mysql.php	/^	if (! $sess_dbh = mysql_connect($sess_dbhost, $sess_dbuser, $sess_dbpass)) $/;"	v
 sess_dbhost	../src/pylon/extends/session_mysql.php	/^	$sess_dbhost = $dbhost;$/;"	v
 sess_dbhost	../src/pylon/extends/session_mysql.php	/^       $sess_dbhost = $dbhost;$/;"	v
 sess_dbname	../src/pylon/extends/session_mysql.php	/^	$sess_dbname = $dbname;$/;"	v
@@ -1654,6 +1763,8 @@ sess_read	../src/pylon/extends/session_memcache.php	/^    public static  functio
 sess_read	../src/pylon/extends/session_mysql.php	/^function sess_read($key) $/;"	f
 sess_write	../src/pylon/extends/session_memcache.php	/^    public static  function sess_write($sessionID,$val)$/;"	f
 sess_write	../src/pylon/extends/session_mysql.php	/^function sess_write($key, $val) $/;"	f
+session_name	../src/pylon/extends/session_memcache.php	/^    public static  function sess_open($save_path="", $session_name="")$/;"	v
+session_name	../src/pylon/extends/session_mysql.php	/^function sess_open($save_path="", $session_name="") $/;"	v
 set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0)$/;"	f
 set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key, $value, $expire=0);$/;"	f
 set	../src/pylon/impl/autoload/cache_svc.php	/^    public function set($key,$value,$expire=null)$/;"	f
@@ -1686,6 +1797,7 @@ simple_trace	../src/pylon/utls/exception.php	/^    static public function simple
 singleExec	../src/pylon/impl/autoload/tc_support.php	/^    static public function singleExec($tcfile)$/;"	f
 singleTableStore	../src/pylon/impl/framework/daobase.php	/^    public function singleTableStore($key)$/;"	f
 size	../src/pylon/impl/autoload/build_includes.php	/^        $size = filesize( $fileName );$/;"	v
+size	../src/pylon/impl/autoload/build_includes.php	/^    function read( $size = 4096 )$/;"	v
 skip	../src/pylon/impl/autoload/build_includes.php	/^            $skip = quotemeta($skip);$/;"	v
 skipFiles	../src/pylon/impl/autoload/build_includes.php	/^    static private function skipFiles($file)$/;"	f
 slog	../src/pylon/extends/sql_executor.php	/^        $slog = new logger("_sql");$/;"	v
@@ -1696,6 +1808,8 @@ son	../src/pylon/utls/status_machine.php	/^        $son = $parentid;$/;"	v
 space	../src/pylon/impl/basesvc/monitor_svc.php	/^        $this->space = $v;$/;"	v
 space	../src/pylon/impl/basesvc/monitor_svc.php	/^    private $space="_df";$/;"	v
 space	../src/pylon/interface/ioc.php	/^                    $space = dirname($space);$/;"	v
+space	../src/pylon/interface/ioc.php	/^                if ($space === '\/'  || $space == null || $space == ""  )$/;"	v
+space	../src/pylon/interface/ioc.php	/^     * @param $space  = '\/'$/;"	v
 spaceIns	../src/pylon/impl/basesvc/monitor_svc.php	/^    static public function spaceIns($name)$/;"	f
 space_keys	../src/pylon/interface/ioc.php	/^    static public function space_keys($key)$/;"	f
 space_obj	../src/pylon/interface/ioc.php	/^            $space_obj = &self::$_objs[$key];$/;"	v
@@ -1772,6 +1886,7 @@ symbol	../src/pylon/impl/framework/query.php	/^        $this->symbol  = $symbol;
 symbol	../src/pylon/impl/framework/query.php	/^    public $symbol;$/;"	v
 t	../src/pylon/impl/framework/entity.php	/^        $t = date("Y-m-d H:i:s",time());$/;"	v
 table	../src/pylon/impl/framework/daobase.php	/^        $table = call_user_func($this->tableFinder,$key);$/;"	v
+table	../src/pylon/interface/ent.php	/^        \/\/        $table = DaoFinder::find($table)->getStoreTable();$/;"	v
 tableFinder	../src/pylon/impl/framework/daobase.php	/^        $this->tableFinder = $tableFinder;$/;"	v
 tableFinder	../src/pylon/impl/framework/daobase.php	/^    public $tableFinder = null;$/;"	v
 tag	../src/pylon/utls/log.php	/^        $this->tag              = $tag ;$/;"	v
@@ -1789,6 +1904,7 @@ to	../src/pylon/utls/status_machine.php	/^        $this->to = $to;$/;"	v
 to	../src/pylon/utls/status_machine.php	/^    public $to;$/;"	v
 toEntity	../src/pylon/impl/framework/query.php	/^    static public function toEntity($cls,$data)$/;"	f
 toLimitStr	../src/pylon/utls/datapage.php	/^    public function toLimitStr()$/;"	f
+tolower	../src/pylon/impl/utls/property.php	/^\/\/     static public function tolower(&$item1,$key)$/;"	f
 tosql	../src/pylon/impl/framework/query.php	/^    public function tosql($symbolVal)$/;"	f
 totalPages	../src/pylon/utls/datapage.php	/^            $this->totalPages = 1;$/;"	v
 totalPages	../src/pylon/utls/datapage.php	/^        $this->totalPages = ceil($totalRows\/$this->pageRows );$/;"	v
@@ -1816,6 +1932,7 @@ unitWork	../src/pylon/interface/ent.php	/^            $this->unitWork = null;$/;
 unitWork	../src/pylon/interface/ent.php	/^        $this->unitWork = $unitWork;$/;"	v
 unitWork	../src/pylon/interface/ent.php	/^    protected   $unitWork=null;$/;"	v
 unitwork	../src/pylon/impl/framework/entity.php	/^        $unitwork = XBox::get("unitwork");$/;"	v
+unitwork	../src/pylon/impl/framework/entity.php	/^        if( $unitwork === null )$/;"	v
 unlock	../src/pylon/impl/basesvc/locks.php	/^    public function unlock($key)$/;"	f
 unlock	../src/pylon/impl/basesvc/locks.php	/^    public function unlock()$/;"	f
 unlock	../src/pylon/impl/basesvc/locks.php	/^    public function unlock();$/;"	f
@@ -1873,8 +1990,19 @@ value	../src/pylon/extends/session_mysql.php	/^	$value = mysql_escape_string($va
 value	../src/pylon/impl/autoload/build_includes.php	/^            $value = str_replace($srcRoot,"\\$ROOT.'",$value);$/;"	v
 value	../src/pylon/impl/basesvc/monitor_svc.php	/^        $value = $this->mdb->get(self::WATCH_KEY);$/;"	v
 value	../src/pylon/impl/basesvc/monitor_svc.php	/^        $value = $this->mdb->set(self::WATCH_KEY,$v,self::KEEP_TIME);$/;"	v
+value	../src/pylon/impl/dba/express.php	/^        if($value === "" || $value === NULL)$/;"	v
+value	../src/pylon/impl/dba/express.php	/^        if($value === $this->_value || $value === NULL)$/;"	v
+value	../src/pylon/impl/utls/property.php	/^\/\/     public function defaultValue($hasDefault=true, $value="")$/;"	v
 value	../src/pylon/pylon.php	/^    static public function value($key)$/;"	f
+values	../src/pylon/extends/sql_executor.php	/^    public function exeNoQuery($sql, $values=array())$/;"	v
+values	../src/pylon/extends/sql_executor.php	/^    public function exeNoQueryDirect($sql, $values=array())$/;"	v
+values	../src/pylon/extends/sql_executor.php	/^    public function execute($sql, $values=array())$/;"	v
+values	../src/pylon/extends/sql_executor.php	/^    public function logAllSql($dc,$sql, $values=array(),$e="")$/;"	v
+values	../src/pylon/extends/sql_executor.php	/^    public function logWritedSql($dc,$sql, $values=array())$/;"	v
+values	../src/pylon/extends/sql_executor.php	/^    public function query($sql, $values=array())$/;"	v
+values	../src/pylon/extends/sql_executor.php	/^    public function querys($sql, $values=array())$/;"	v
 values	../src/pylon/impl/framework/dao_utls.php	/^            $values  = JoinUtls::jarray(",", $params);$/;"	v
+var	../src/pylon/impl/basesvc/session_svc.php	/^    public function save($key, $var='')$/;"	v
 vars	../src/pylon/impl/framework/entity.php	/^        $vars = $this->getPropArray();$/;"	v
 ver	../src/pylon/impl/autoload/cache_svc.php	/^            $ver = 1 ;$/;"	v
 ver	../src/pylon/impl/autoload/cache_svc.php	/^        $this->ver = $this->initVer();$/;"	v
@@ -1886,6 +2014,7 @@ version	../src/pylon/impl/utls/version.php	/^        $version = "{$this->structN
 version	../src/pylon/impl/utls/version.php	/^        $version=@file_get_contents(self::$versionFile);$/;"	v
 versionFile	../src/pylon/impl/utls/version.php	/^    static public $versionFile="";$/;"	v
 view	../src/pylon/impl/framework/daobase.php	/^        $this->view=$view;$/;"	v
+viewCond	../src/pylon/impl/dba/sql_constructor.php	/^    function SQLSelectStatement($view , $viewCond=null)$/;"	v
 watch	../src/pylon/utls/debug_utls.php	/^    static public function watch($file,$line,$var,$varName="UnKonw") $/;"	f
 watchConf	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function watchConf()$/;"	f
 watchRequest	../src/pylon/impl/basesvc/monitor_svc.php	/^    public function watchRequest($v,$req)$/;"	f

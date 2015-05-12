@@ -42,8 +42,6 @@ _env:
                 root : "${HOME}/devspace/pylon-ng"
 
             - !R.vars
-
-                # //mysql -h ayidev02.mysql.rds.aliyuncs.com -udev -pdev-ayibang
                 PYLON     : "${PRJ_ROOT}/src"
                 DB_HOST   : "ayidev02.mysql.rds.aliyuncs.com"
                 DB_USER   : "pylon"
@@ -57,8 +55,6 @@ _env:
                 FULL_EXT  : "${EXT_NAME}_${EXT_TAG}.so"
             - !R.path
                 dst: "${PRJ_ROOT}/conf/used/"
-            - !R.path
-                dst: "${PRJ_ROOT}/tmp"
 
     - !R.env
         _name : "zwj"
@@ -90,24 +86,29 @@ _sys:
                     run    : "start"
 
     - !R.system
+        _name: "ext_setup"
+        _res :
+                - !R.shell
+                    sudo   : True
+                    script : "${PRJ_ROOT}/src/modules/setup.sh"
+
+    - !R.system
         _name: "demo"
         _res :
                 - !R.vars
                     APP_SYS       : "demo"
-                    RUN_PATH      : "${PRJ_ROOT}/run/demo"
                     DOMAIN        : "${USER}.demo.pylon360.com"
                     SOCK_FILE     : "${RUN_PATH}/fpm.sock"
-                    AUTOLOAD_PATH : "${PYLON}/:/home/x/php/svc_utls:/usr/local/php/lib/php/"
+                    PHP_INCLUDE: "${PRJ_ROOT}/src/:${PRJ_ROOT}/demo/:/usr/local/php/lib/php/"
 
 
-                - !R.echo
-                    value         : "${RUN_PATH}"
                 - !R.pylon_autoload
-                    include       : "${PYLON}"
+                    include: "${PHP_INCLUDE}"
+
                 - !R.pylon_router
                     include       : "${PRJ_ROOT}/demo/"
                 - !R.fpm
-                    ini_tpl       : "${PRJ_ROOT}/conf/options/tpl_web_php_56.ini"
+                    ini_tpl       : "${PRJ_ROOT}/conf/options/tpl_web_php.ini"
                     conf_tpl      : "${PRJ_ROOT}/conf/options/fpm.conf"
                     sudo          : True
 

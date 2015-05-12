@@ -174,7 +174,7 @@ function pylonlib__autoload($classname)
 {
 
     $lib_root  = dirname(__FILE__);
-    pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
+    pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON3_CLASS:",$lib_root);
     pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
 
     $key       = "PYLON2_CLASS:".$classname ;
@@ -269,7 +269,7 @@ class XPylon
 
         ob_start();
         self::useEnv();
-        $data_file = XSetting::$runPath . "/_rest_conf.idx" ;
+        $data_file = XSetting::$runPath . "/router/_router.idx" ;
         XBox::regist(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
         XRouter::serving();
         ob_end_flush();

@@ -4,7 +4,8 @@ class HtmlIntc extends XInterceptor
 {
     public function _before($xcontext,$request,$response)
     {
-        $response->setRoot("/home/zuowenjian/devspace/pylon/demo/web") ;
+        $root= $_SERVER['PRJ_ROOT'] ;
+        $response->setRoot("$root/demo/web") ;
     }
     public function _after($xcontext,$request,$response)
     {

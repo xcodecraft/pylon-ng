@@ -99,7 +99,7 @@ _sys:
                     APP_SYS       : "demo"
                     DOMAIN        : "${USER}.demo.pylon360.com"
                     SOCK_FILE     : "${RUN_PATH}/fpm.sock"
-                    PHP_INCLUDE: "${PRJ_ROOT}/src/:${PRJ_ROOT}/demo/:/usr/local/php/lib/php/"
+                    PHP_INCLUDE   : "${PRJ_ROOT}/src:${PRJ_ROOT}/demo/:/usr/local/php/lib/php/"
 
 
                 - !R.pylon_autoload

@@ -62,6 +62,7 @@ class XSetting
     static public  $runPath      = "" ;
     static public  $assembly     = "" ;
     static public  $prjName      = "" ;
+    static public  $bootstrap    = "pylonstrap.php" ;
 
     static public  $entLazyload  = true ;
 
@@ -246,10 +247,7 @@ class XPylon
         {
             throw new LogicException('没有设定 XSetting::$runPath') ;
         }
-        if (empty(XSetting::$assembly))
-        {
-            throw new LogicException('没有设定 XSetting::$assembly') ;
-        }
+        require XSetting::$bootstrap ;
     }
     /**
      * @brief 获得websvc实例

@@ -119,8 +119,6 @@ class XRouter
         $xcontext     = new XProperty();
         $request      = new XProperty($_REQUEST) ;
         $response     = new XSetting::$respClass ;
-        $asmObj       = new XSetting::$assembly ;
-        $asmObj->setup();
         self::log_request($restLog,'info');
         $request->uri = $uri ;
 

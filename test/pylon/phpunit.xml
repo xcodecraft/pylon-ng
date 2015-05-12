@@ -2,21 +2,21 @@
     bootstrap="./bootstrap.php"
     colors="true"
     >
-        <!-- <testsuite name="basesvc"> -->
-        <!--     <directory suffix="test.php">basesvc</directory> -->
-        <!-- </testsuite> -->
-        <!-- <testsuite name="dbc"> -->
-        <!--     <directory suffix="test.php">dbc</directory> -->
-        <!-- </testsuite> -->
-        <!-- <testsuite name="dba"> -->
-        <!--     <directory suffix="test.php">dba</directory> -->
-        <!-- </testsuite> -->
+        <testsuite name="basesvc">
+            <directory suffix="test.php">basesvc</directory>
+        </testsuite>
+        <testsuite name="dbc">
+            <directory suffix="test.php">dbc</directory>
+        </testsuite>
+        <testsuite name="dba">
+            <directory suffix="test.php">dba</directory>
+        </testsuite>
         <!-- <testsuite name="orm"> -->
         <!--     <directory suffix="test.php">orm</directory> -->
         <!-- </testsuite> -->
-        <!-- <testsuite name="utls"> -->
-        <!--     <directory suffix="test.php">utls</directory> -->
-        <!-- </testsuite> -->
+        <testsuite name="utls">
+            <directory suffix="test.php">utls</directory>
+        </testsuite>
         <!-- <testsuite name="xmvc"> -->
         <!--     <directory suffix="test.php">xmvc</directory> -->
         <!-- </testsuite> -->

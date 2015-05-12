@@ -532,7 +532,6 @@ array	../src/pylon/impl/framework/entity.php	/^            $array= &$this->addIt
 array	../src/pylon/impl/framework/entity.php	/^            $array= &$this->delitems;$/;"	v
 array	../src/pylon/impl/framework/entity.php	/^        $array =null;$/;"	v
 arrayCode	../src/pylon/impl/autoload/build_includes.php	/^        $arrayCode = "";$/;"	v
-asmObj	../src/pylon/impl/web/rest.php	/^        $asmObj       = new XSetting::$assembly ;$/;"	v
 assembly	../src/pylon/impl/framework/entity.php	/^    static public function assembly($unitwork)$/;"	f
 assembly	../src/pylon/pylon.php	/^    static public  $assembly     = "" ;$/;"	v
 assign	../src/pylon/utls/utility.php	/^function assign($array, $index, $default = '')$/;"	f
@@ -562,6 +561,7 @@ bindParms	../src/pylon/impl/framework/daobase.php	/^        $bindParms    = arra
 bindUpdate	../src/pylon/impl/framework/query.php	/^    static public function  bindUpdate($key,$val)$/;"	f
 binder	../src/pylon/impl/framework/entity.php	/^    private static $binder=null;$/;"	v
 bizcode	../src/pylon/interface/exception.php	/^    static public function bizcode($code)$/;"	f
+bootstrap	../src/pylon/pylon.php	/^    static public  $bootstrap    = "pylonstrap.php" ;$/;"	v
 box	../src/pylon/impl/basesvc/monitor_svc.php	/^            $box=$this->mdb->get("$v-$i");$/;"	v
 box	../src/pylon/impl/basesvc/monitor_svc.php	/^        $box = $this->mdb->get("$v-$key");$/;"	v
 bt	../src/pylon/interface/ioc.php	/^        $bt     = debug_backtrace();$/;"	v
@@ -758,7 +758,7 @@ data	../src/pylon/utls/unittest.php	/^            $data = http_build_query($data
 data	../src/pylon/utls/unittest.php	/^            $this->data   =  $result['data'];$/;"	v
 data	../src/pylon/utls/unittest.php	/^    public $data;$/;"	v
 dataArray	../src/pylon/impl/dba/sql_constructor.php	/^    public function dataArray($datas)$/;"	f
-data_file	../src/pylon/pylon.php	/^        $data_file = XSetting::$runPath . "\/_rest_conf.idx" ;$/;"	v
+data_file	../src/pylon/pylon.php	/^        $data_file = XSetting::$runPath . "\/router\/_router.idx" ;$/;"	v
 datafile	../src/pylon/impl/autoload/build_includes.php	/^            $datafile= new PYLFile($item);$/;"	v
 datas	../src/pylon/impl/dba/sql_constructor.php	/^    public function datas($datas)$/;"	f
 dbName	../src/pylon/extends/sql_executor.php	/^        $this->dbName   = $dbName;$/;"	v

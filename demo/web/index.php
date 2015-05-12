@@ -6,6 +6,6 @@ XSetting::$logMode   = XSetting::LOG_DEBUG_MODE ;
 XSetting::$prjName   = "pylon-ng" ;
 XSetting::$logTag    = XSetting::ensureEnv("USER") ;
 XSetting::$runPath   = XSetting::ensureEnv("RUN_PATH") ;
-XSetting::$bootstrap = "web/pylonstrap.php" ;
+XSetting::$bootstrap = "web/bootstrap.php" ;
 XSetting::$respClass = "XHtmlResp" ;
 XPylon::serving();

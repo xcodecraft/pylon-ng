@@ -56,7 +56,7 @@ class game_test2_Test extends PHPUnit_Framework_TestCase
     public function setup()
     {
         $user = $_SERVER['USER'] ;
-        $this->curl   = XHttpCall::localIns("$user.demo.pylon360.com");
+        $this->curl   = XHttpCall::localIns("$user.demo.pylon360.com",80);
     }
 
     public function testSuc()

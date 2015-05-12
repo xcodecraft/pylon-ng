@@ -62,7 +62,7 @@ class XSetting
     static public  $runPath      = "" ;
     static public  $assembly     = "" ;
     static public  $prjName      = "" ;
-    static public  $bootstrap    = "pylonstrap.php" ;
+    static public  $bootstrap    = "bootstrap.php" ;
 
     static public  $entLazyload  = true ;
 

@@ -58,25 +58,7 @@ class AfterErr extends XInterceptor
     }
 }
 
-class APIAssemply1
-{
-    public function setup()
-    {
-        XAop::append_by_match_uri("/mygoods/.*", new MyIntcpt());
-        //XBox::replace 可以重复注册
-        XBox::replace(XBox::ROUTER,new RouterStub(),__METHOD__);
-    }
-}
 
-class APIAssemply2
-{
-    public function setup()
-    {
-        XAop::append_by_match_uri("/mygoods/.*", new AfterErr());
-        //XBox::replace 可以重复注册
-        XBox::replace(XBox::ROUTER,new RouterStub(),__METHOD__);
-    }
-}
 
 class RestTest extends PHPUnit_Framework_TestCase
 {
@@ -92,7 +74,11 @@ class RestTest extends PHPUnit_Framework_TestCase
         XLogKit::logger("logtest")->debug("debug","r");
         $url                = "/mygoods/1001?begin=1&limit=10";
         self::http_get($url);
-        XSetting::$assembly = "APIAssemply1" ;
+        // XSetting::$assembly = "APIAssemply1" ;
+        XAop::append_by_match_uri("/mygoods/.*", new MyIntcpt());
+        //XBox::replace 可以重复注册
+        XBox::replace(XBox::ROUTER,new RouterStub(),__METHOD__);
+
         $result             = XRouter::serving(false);
         $this->assertEquals($result->getData(), "pylon is great");
         $this->assertEquals(MyIntcpt::$beforeCall,1);
@@ -106,7 +92,9 @@ class RestTest extends PHPUnit_Framework_TestCase
         $url = "/mygoods/1001?begin=1&limit=10";
         self::http_get($url);
 
-        XSetting::$assembly = "APIAssemply2" ;
+        XAop::append_by_match_uri("/mygoods/.*", new AfterErr());
+        //XBox::replace 可以重复注册
+        XBox::replace(XBox::ROUTER,new RouterStub(),__METHOD__);
         $result             = XRouter::serving(false);
         $this->assertEquals($result->status_code, 500);
         $this->assertEquals($result->errno, 1101);

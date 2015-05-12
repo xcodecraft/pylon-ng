@@ -133,7 +133,12 @@ _sys:
                 dst           : "${PRJ_ROOT}/test/pylon/config/used/config_test.php"
 
             - !R.pylon_autoload
-                include: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
+                include: "${PRJ_ROOT}/src/pylon"
+                dst    : "${PRJ_ROOT}/src/pylon/class_index"
+                relpath: "${PRJ_ROOT}/src/pylon"
+            - !R.pylon_autoload
+                include: "${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
+
 
             - !R.mysql
                 host          : "ayidev02.mysql.rds.aliyuncs.com"

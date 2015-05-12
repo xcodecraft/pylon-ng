@@ -174,7 +174,7 @@ function pylonlib__autoload($classname)
 {
 
     $lib_root  = dirname(__FILE__);
-    pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON3_CLASS:",$lib_root);
+    pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
     pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
 
     $key       = "PYLON2_CLASS:".$classname ;

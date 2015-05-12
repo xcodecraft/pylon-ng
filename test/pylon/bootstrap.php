@@ -6,6 +6,6 @@ XSetting::$logMode   = XSetting::LOG_DEBUG_MODE ;
 XSetting::$prjName   = "pylon-ng" ;
 XSetting::$logTag    = "pylon-ng" ;
 XSetting::$runPath   = "/home/zuowenjian/devspace/pylon-ng/run/test/" ;
-XSetting::$bootstrap  = "pylonstrap.php" ;
+XSetting::$bootstrap = "pylonstrap.php" ;
 date_default_timezone_set('PRC');
 XPylon::useEnv() ;

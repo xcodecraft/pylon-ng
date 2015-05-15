@@ -102,9 +102,16 @@ class XRestResp implements XResponse
 
         if($set_header === true)
             PYL_HttpHeader::out_header($this->status_code);
-        $datas['errno']     = $this->errno ;
-        $datas['errmsg']    = $this->errmsg ;
-        $datas['data']      = $this->data;
+        if($this->errno != 0 )
+        {
+            $datas['errno']     = $this->errno ;
+            $datas['errmsg']    = $this->errmsg ;
+            $datas['data']      = $this->data;
+        }
+        else
+        {
+            $datas = $this->data ;
+        }
         $json_data          = json_encode($datas);
 
         if($this->errno == 0 )

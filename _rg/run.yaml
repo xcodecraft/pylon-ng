@@ -121,34 +121,34 @@ _sys:
         _name : "test"
         _res  :
             - !R.vars
-                PHP_INI       : "${PRJ_ROOT}/test/pylon/config/used/php_test.ini"
-                ASSEMBLY      : "test_assembly"
+                PHP_INI  : "${PRJ_ROOT}/test/pylon/config/used/php_test.ini"
+                ASSEMBLY : "test_assembly"
             - !R.path
-                dst           : "${PRJ_ROOT}/test/pylon/config/used/"
+                dst      : "${PRJ_ROOT}/test/pylon/config/used/"
             - !R.file_tpl
-                tpl           : "${PRJ_ROOT}/test/pylon/config/options/php_tpl.ini"
-                dst           : "${PHP_INI}"
+                tpl      : "${PRJ_ROOT}/test/pylon/config/options/php_tpl.ini"
+                dst      : "${PHP_INI}"
             - !R.file_tpl
-                tpl           : "${PRJ_ROOT}/test/pylon/config/options/conf_tpl.php"
-                dst           : "${PRJ_ROOT}/test/pylon/config/used/config_test.php"
+                tpl      : "${PRJ_ROOT}/test/pylon/config/options/conf_tpl.php"
+                dst      : "${PRJ_ROOT}/test/pylon/config/used/config_test.php"
 
             - !R.pylon_autoload
-                include: "${PRJ_ROOT}/src/pylon"
-                dst    : "${PRJ_ROOT}/src/pylon/class_index"
-                relpath: "${PRJ_ROOT}/src/pylon"
+                include  : "${PRJ_ROOT}/src/pylon"
+                dst      : "${PRJ_ROOT}/src/pylon/class_index"
+                relpath  : "${PRJ_ROOT}/src/pylon"
             - !R.pylon_autoload
-                include: "${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
+                include  : "${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
 
 
             - !R.mysql
-                host          : "ayidev02.mysql.rds.aliyuncs.com"
-                name          : "pylon_zuowenjian"
-                user          : "pylon"
-                password      : "pylon123"
-                sql           : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
+                host     : "ayidev02.mysql.rds.aliyuncs.com"
+                name     : "pylon_zuowenjian"
+                user     : "pylon"
+                password : "pylon123"
+                sql      : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
 
             - !R.shell
-                script : "${PRJ_ROOT}/test/pylon/test.sh"
+                script   : "${PRJ_ROOT}/test/pylon/test.sh"
 
 
     # college: !R.system2

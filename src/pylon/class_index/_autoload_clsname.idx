@@ -19,7 +19,6 @@ cls_daoimp,DaoImp
 cls_dbc,DBC
 cls_dcontextimpl,DContextImpl
 cls_debug,Debug
-cls_debugsupportinter,DebugSupportInter
 cls_diagnosecontext,DiagnoseContext
 cls_diagnosemonitor,DiagnoseMonitor
 cls_dqlobj,DQLObj
@@ -85,6 +84,7 @@ cls_pylonmodule,PylonModule
 cls_pylonmodule,PylonModule
 cls_query,Query
 cls_relation,Relation
+cls_restresult,RestResult
 cls_scopeaction,ScopeAction
 cls_scopeautotrans,ScopeAutoTrans
 cls_scopeecholog,ScopeEchoLog
@@ -95,7 +95,6 @@ cls_sessionsvc,SessionSvc
 cls_simpledaofactory,SimpleDaoFactory
 cls_simplemapping,SimpleMapping
 cls_simplequeryfactory,SimpleQueryFactory
-cls_smartyrenderer,SmartyRenderer
 cls_sqlcollector,SqlCollector
 cls_sqldelstatement,SQLDelStatement
 cls_sqlinsertstatment,SQLInsertStatment
@@ -134,6 +133,7 @@ cls_xdao,XDao
 cls_xdatapage,XDataPage
 cls_xdbcexception,XDBCException
 cls_xdbexception,XDBException
+cls_xechologger,XEchoLogger
 cls_xentenv,XEntEnv
 cls_xentitybase,XEntityBase
 cls_xentity,XEntity
@@ -141,8 +141,9 @@ cls_xerrcode,XErrCode
 cls_xexceptionutls,XExceptionUtls
 cls_xfunctioncontrol,XFunctionControl
 cls_xhtmlresp,XHtmlResp
-cls_xhttpcall,XHttpCall
-cls_xhttpresult,XHttpResult
+cls_xhttpcaller,XHttpCaller
+cls_xhttpconf,XHttpConf
+cls_xhttpresponse,XHttpResponse
 cls_xiautoupdate,XIAutoUpdate
 cls_xidgenerator,XIDGenerator
 cls_xid,XID

@@ -1,5 +1,4 @@
 <?php
-// require_once("/home/q/php/gsdk_base/sdk_base.php");
 /**
  * user profile test case : not config REST_RULE
  *
@@ -17,14 +16,14 @@ class user_profile_Test extends PHPUnit_Framework_TestCase
     public function testGet()
     {
         $x = $this->curl->get("/user/profile/get?uid=5555");
-        $data = RestResult::ok($x) ;
+        $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);
         $this->assertEquals("user_profile get user: 5555",$data);
     }
     public function testGets()
     {
         $x = $this->curl->get("/user/profile/gets?uids=5555,6666,7777");
-        $data = RestResult::ok($x) ;
+        $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);
         $this->assertEquals("user_profile gets users: 5555,6666,7777",$data);
     }
@@ -32,14 +31,14 @@ class user_profile_Test extends PHPUnit_Framework_TestCase
     {
         $postParams = array("uid" => "5555", "name" => "yangwm", "type" => "g");
         $x = $this->curl->post("/user/profile/save", $postParams);
-        $data = RestResult::ok($x) ;
+        $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);
         $this->assertEquals("user_profile save user: 5555, yangwm, g",$data);
     }
     public function testSaveWithGetParams()
     {
         $x = $this->curl->post("/user/profile/save?uid=5555&name=yangwm&type=g",array());
-        $data = RestResult::ok($x) ;
+        $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);
         $this->assertEquals("user_profile save user: 5555, yangwm, g",$data);
     }
@@ -61,12 +60,12 @@ class game_test2_Test extends PHPUnit_Framework_TestCase
     public function testSuc()
     {
         $x  = $this->curl->get("/gexample/test2/sxd/score?uid=5555");
-        $data = RestResult::ok($x) ;
+        $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);
         $this->assertEquals("sxd 1000, uid 5555",$data);
 
         $x  = $this->curl->post("/gexample/test2/sxd/start",array() );
-        $data = RestResult::ok($x) ;
+        $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);
         $this->assertEquals("sxd OK",$data);
 

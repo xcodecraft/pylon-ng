@@ -84,7 +84,6 @@ cls_pylonmodule,PylonModule
 cls_pylonmodule,PylonModule
 cls_query,Query
 cls_relation,Relation
-cls_restresult,RestResult
 cls_scopeaction,ScopeAction
 cls_scopeautotrans,ScopeAutoTrans
 cls_scopeecholog,ScopeEchoLog
@@ -133,7 +132,6 @@ cls_xdao,XDao
 cls_xdatapage,XDataPage
 cls_xdbcexception,XDBCException
 cls_xdbexception,XDBException
-cls_xechologger,XEchoLogger
 cls_xentenv,XEntEnv
 cls_xentitybase,XEntityBase
 cls_xentity,XEntity
@@ -164,6 +162,7 @@ cls_xqueryobj,XQueryObj
 cls_xquery,XQuery
 cls_xresponse,XResponse
 cls_xrestresp,XRestResp
+cls_xrestresult,XRestResult
 cls_xrouter,XRouter
 cls_xruleservice,XRuleService
 cls_xruntimeexception,XRuntimeException

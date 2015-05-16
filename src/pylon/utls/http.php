@@ -61,21 +61,65 @@ class XHttpConf
     }
 }
 
+class XRestResult
+{
+    static public function ok($response)
+    {
+        if($response->statusCode == 201 || $response->statusCode == 200 )
+        {
+
+            $data = json_decode($response->body(),true) ;
+            if(! isset($data['errno']))
+            {
+                return $data ;
+
+            }
+        }
+        return  null ;
+    }
+    static public function fail($response)
+    {
+        DBC::requireNotNull($response);
+
+        $data = json_decode($response->body(),true) ;
+        if(isset($data['errno']))
+        {
+            return $data ;
+
+        }
+        return  null ;
+    }
+    static public function matchFail($response, $statusCode,$errno=null)
+    {
+        if ($response->statusCode == $statusCode )
+        {
+            $err = self::fail($response) ;
+            if ($errno == null | $err['errno'] == $errno) {
+                return  true ;
+
+            }
+
+        }
+        return  false;
+    }
+
+}
+
 /**
  * @brief  接口调用的返回对象
  */
 class XHttpResponse
 {
-    public $status_code;
-    public $raw_body;
+    public $statusCode;
+    public $rawBody;
     public function __construct($code,$body)
     {
-        $this->status_code = $code;
-        $this->raw_body    = $body;
+        $this->statusCode = $code;
+        $this->rawBody    = $body;
     }
     public function body()
     {
-        return $this->raw_body ;
+        return $this->rawBody ;
     }
 }
 
@@ -83,30 +127,10 @@ function lineBody($body)
 {
     return  str_replace(array("\r\n","\n","\r"),"|",$body);
 }
+
 /**
  * @brief
- * @code
-$conf = XHttpConf::localSvc($_SERVER['DOMAIN'],80,"test");
-$c    = new XHttpCaller($conf);
-$r    = $c->get("/suc");
-$this->assertEquals($r->status_code, 200);
-$r    = $c->get("/404");
-$this->assertEquals($r->status_code, 404);
-$r    = $c->get("/nofound");
-$this->assertEquals($r->status_code, 404);
-$r    = $c->get("/500");
-$this->assertEquals($r->status_code, 500);
-$r    = $c->post("/post",array("x" => 1 ));
-$this->assertEquals($r->status_code, 200);
-$r    = $c->put("/post",array("x" => 1 ));
-$this->assertEquals($r->status_code, 500);
-$r    = $c->put("/put",array("x" => 1 ));
-$this->assertEquals($r->status_code, 200);
-$r    = $c->delete("/del");
-$this->assertEquals($r->status_code, 200);
-* @endcode
-*/
-
+ */
 class XHttpCaller
 {
     private $ch;
@@ -272,28 +296,28 @@ class XHttpCaller
         $stime       = microtime(true);
         $r           = curl_exec($this->ch);
         $errono      = curl_errno($this->ch);
-        $status_code = curl_getinfo($this->ch,CURLINFO_HTTP_CODE);
-        $response    = new XHttpResponse($status_code,$r);
+        $statusCode = curl_getinfo($this->ch,CURLINFO_HTTP_CODE);
+        $response    = new XHttpResponse($statusCode,$r);
         $etime       = microtime(true);
         $usetime     = sprintf("%.3f", $etime-$stime);
 
-        if ($errono !=0  || $status_code > 300)
+        if ($errono !=0  || $statusCode > 300)
         {
             $errMsg = curl_error($this->ch);
             $body   = lineBody($response->body()) ;
             $this->log('error',"$url curlerr: ".$errMsg,$event);
             $this->log("error","[reqest,$port:$method,timeout:$timeout_info] url: $url",$event);
             $this->log("error","curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" ",$event);
-            $this->log("error","[respons: {$response->status_code} ($usetime s)] body: $body",$event);
+            $this->log("error","[respons: {$response->statusCode} ($usetime s)] body: $body",$event);
         }
         else {
             $body   = lineBody($response->body()) ;
-            $this->log("info","[respons: {$response->status_code} ($usetime s)] body: $body",$event);
+            $this->log("info","[respons: {$response->statusCode} ($usetime s)] body: $body",$event);
         }
 
         if ($usetime > 0.5)
         {
-            $slowmsg = "[slow] usetime: $usetime(s), code: $status_code, timeout: $timeout_info, port: $port, method: $method, url: $url ";
+            $slowmsg = "[slow] usetime: $usetime(s), code: $statusCode, timeout: $timeout_info, port: $port, method: $method, url: $url ";
             $this->log('warn', $slowmsg, $event);
         }
 

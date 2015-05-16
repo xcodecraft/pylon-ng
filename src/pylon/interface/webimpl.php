@@ -3,9 +3,9 @@
 class XHtmlResp   implements XResponse
 {
 
-    public $status_code = 500 ;
-    protected $root        = "" ;
-    protected $jumpURL     = null ;
+    public $statusCode = 500 ;
+    protected $root     = "" ;
+    protected $jumpURL  = null ;
     public function setRoot($root)
     {
         $this->root = $root ;
@@ -16,12 +16,12 @@ class XHtmlResp   implements XResponse
     }
     public function tpl($_xc,$file)
     {
-        $this->status_code = 500 ;
+        $this->statusCode = 500 ;
         $file = $this->root . "/" . $file ;
         if(file_exists($file))
         {
             include($file);
-            $this->status_code = 200 ;
+            $this->statusCode = 200 ;
         }
         else
         {
@@ -40,21 +40,21 @@ class XHtmlResp   implements XResponse
 
             }
             else{
-                PYL_HttpHeader::out_header($this->status_code);
+                PYL_HttpHeader::out_header($this->statusCode);
             }
         }
     }
-    public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$status_code = 500)
+    public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$statusCode = 500)
     {
-        $this->status_code = $status_code ;
+        $this->statusCode = $statusCode ;
     }
 }
 class XRestResp implements XResponse
 {
     public $status_code = 500 ;
-    public $errno     = 1 ;
-    public $errmsg    = "unknown";
-    private $data      = array() ;
+    public $errno       = 1 ;
+    public $errmsg      = "unknown";
+    private $data       = array() ;
     public function __construct()
     {
     }

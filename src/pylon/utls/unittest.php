@@ -1,32 +1,4 @@
 <?php
-class RestResult
-{
-    static public function ok($response)
-    {
-        if($response->status_code == 201 || $response->status_code == 200 )
-        {
-
-            $data = json_decode($response->body(),true) ;
-            if(! isset($data['errno']))
-            {
-                return $data ;
-
-            }
-        }
-        return  null ;
-    }
-    static public function fail($response)
-    {
-        $data = json_decode($response->body(),true) ;
-        if(isset($data['errno']))
-        {
-            return $data ;
-
-        }
-        return  null ;
-    }
-
-}
 
 /**
  * @ingroup utls

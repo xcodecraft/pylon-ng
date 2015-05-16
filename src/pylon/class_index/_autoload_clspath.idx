@@ -84,7 +84,6 @@ PylonModule,/impl/autoload/class_loads.php
 PylonModule,/pylon.php
 Query,/impl/orm/query.php
 Relation,/impl/orm/entity.php
-RestResult,/utls/unittest.php
 ScopeAction,/utls/utility.php
 ScopeAutoTrans,/impl/orm/unitwork.php
 ScopeEchoLog,/impl/utls/logutls.php
@@ -133,7 +132,6 @@ XDao,/impl/orm/entity.php
 XDataPage,/utls/datapage.php
 XDBCException,/interface/exception.php
 XDBException,/interface/exception.php
-XEchoLogger,/utls/http.php
 XEntEnv,/interface/ent.php
 XEntityBase,/impl/orm/entity.php
 XEntity,/interface/ent.php
@@ -164,6 +162,7 @@ XQuery,/interface/ent.php
 XQueryObj,/interface/ent.php
 XResponse,/interface/web.php
 XRestResp,/interface/webimpl.php
+XRestResult,/utls/http.php
 XRouter,/impl/web/router.php
 XRuleService,/interface/webimpl.php
 XRuntimeException,/interface/exception.php

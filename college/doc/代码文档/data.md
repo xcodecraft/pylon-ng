@@ -5,7 +5,7 @@ class User extends XEntity
 {
     static public function createByBiz($name,$passwd)
     {
-        $obj = XEntity::create(__CLASS__);
+        $obj = XEntity::createIns(__CLASS__);
         $obj->logname = $name;
         $obj->name    = $name;
         $obj->passwd  = $passwd;

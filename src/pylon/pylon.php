@@ -163,6 +163,19 @@ class PylonModule
 {
     static $modleFiles=array();
 }
+
+function pylon_load_cls_index()
+{
+
+    $lib_root  = dirname(__FILE__);
+    pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
+    pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
+
+    $runpath = XSetting::$runPath ;
+    array_push(PylonModule::$modleFiles,"$runpath/_autoload_clspath.idx");
+    pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
+    pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
+}
 /**
  * \public
  * @brief  定义的autoload 函数
@@ -173,11 +186,6 @@ class PylonModule
  */
 function pylonlib__autoload($classname)
 {
-
-    $lib_root  = dirname(__FILE__);
-    pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
-    pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
-
     $key       = "PYLON2_CLASS:".$classname ;
     $glogger   = new logger("_pylon");
     $path      = pylon_dict_find($key);
@@ -191,11 +199,6 @@ function pylonlib__autoload($classname)
 
 function appsys__autoload($classname)
 {
-
-    $runpath = XSetting::$runPath ;
-    array_push(PylonModule::$modleFiles,"$runpath/_autoload_clspath.idx");
-    pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
-    pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
 
     $key        =  "CLASS:".$classname ;
     $glogger    =  new logger("_pylon");
@@ -223,6 +226,7 @@ function pylon__unload($classname)
 
 
 
+pylon_load_cls_index() ;
 
 //注册 PYLON框架自已的autoload方法
 spl_autoload_register(pylonlib__autoload);

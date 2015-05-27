@@ -120,7 +120,7 @@ class XLogicException extends LogicException
     public function __construct($msg,$code=XErrCode::LOGIC_BUG,$status_code=500)
     {
         $this->status_code = $status_code;
-        parent::__construct($msg,$code);
+        parent::__construct($msg,$code );
     }
 }
 

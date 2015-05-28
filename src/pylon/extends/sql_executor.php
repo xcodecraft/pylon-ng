@@ -1,15 +1,15 @@
 <?php
 
-/** 
+/**
  * @brief 基于PDO对Mysql 的SQL 执行器
  */
 class FastSQLExecutor
 {
-    /** 
+    /**
      * @brief 长连接
      */
     const LONG_CONN=true;
-    /** 
+    /**
      * @brief 短连接
      */
     const SHORT_CONN=false;
@@ -20,17 +20,17 @@ class FastSQLExecutor
 
     private $_connectInfo=null;
 
-    /** 
+    /**
      * @brief  构造函数
-     * 
-     * @param $host 
-     * @param $userName 
-     * @param $password 
-     * @param $dbName 
-     * @param $connType  连接类型 
-     * @param $charset 
-     * @param $port 
-     * 
+     *
+     * @param $host
+     * @param $userName
+     * @param $password
+     * @param $dbName
+     * @param $connType  连接类型
+     * @param $charset
+     * @param $port
+     *
      * @return  void
      */
     public function __construct($host, $userName, $password, $dbName,$connType=FastSQLExecutor::SHORT_CONN,$charset='GBK',$port=3306)
@@ -75,16 +75,6 @@ class FastSQLExecutor
     public function unRegCollector()
     {
         $this->_sqlCollector = null;
-    }
-    public function regLogger($sqlLogger,$wirteSqlLogger) 
-    {
-        $log = new logger("_pylon");
-        $log->warn(" FastSQLExecutor::regLogger have deprecated! ");
-    }
-    public function regLogger4test($sqlLogger,$wirteSqlLogger) 
-    {
-        $this->_sqlLogger = $sqlLogger;
-        $this->_wsqlLogger = $wirteSqlLogger;
     }
     public function query($sql, $values=array())
     {
@@ -147,28 +137,6 @@ class FastSQLExecutor
         }
         return $lists;
     }
-    public function logWritedSql($dc,$sql, $values=array())
-    {
-        if(!is_null( $this->_wsqlLogger) ) 
-        {
-            if(!empty($values))
-            {
-                // proc sql such as " like xxx%c"
-                $logsql = str_replace('%','#',$sql); 
-                $logsql = str_replace('?','%s',$logsql);
-                $logsql= vsprintf($logsql,self::stdSqlValues($values));
-                $logsql = str_replace('#','%s',$logsql);
-                $this->_wsqlLogger->log($logsql);
-                $dc->log("sql:$logsql");
-            }
-            else
-            {
-                $this->_wsqlLogger->log($sql);
-                $dc->log("sql:$sql");
-            }
-
-        }
-    }
 
     public function logAllSql($dc,$sql, $values=array(),$e="")
     {
@@ -180,30 +148,19 @@ class FastSQLExecutor
             $logsql= vsprintf($logsql,self::stdSqlValues($values));
             $logsql = str_replace('#','%',$logsql);
             $dc->log("sql:$logsql");
-            if(!is_null($this->_sqlLogger) )  {
-                $this->_sqlLogger->log($logsql);
-            }
-            else {
-                $slog->info($logsql,$e);
-            }
+            $slog->info($logsql,$e);
 
         }
         else
         {
             $dc->log("sql:$sql");
-            if(!is_null($this->_sqlLogger) )  {
-                $this->_sqlLogger->log($sql);
-            }
-            else {
-                $slog->info($sql,$e);
-            }
+            $slog->info($sql,$e);
         }
 
     }
     public function exeNoQuery($sql, $values=array())
     {
         $dc = DiagnoseContext::create(__METHOD__);
-        $this->logWritedSql($dc,$sql,$values);
         $this->logAllSql($dc,$sql,$values,"w");
         $sth = $this->_dbh->prepare($sql);
         $i = 0;
@@ -211,7 +168,7 @@ class FastSQLExecutor
         {
             $sth->bindValue(++$i, $value);
         }
-        if (! $sth->execute() ) 
+        if (! $sth->execute() )
         {
             throw new DBException( $sql);
         }
@@ -228,7 +185,7 @@ class FastSQLExecutor
         {
             $sth->bindValue(++$i, $value);
         }
-        if (! $sth->execute() ) 
+        if (! $sth->execute() )
         {
             throw new DBException( $sql);
         }
@@ -253,7 +210,6 @@ class FastSQLExecutor
     public function execute($sql, $values=array())
     {
         $dc = DiagnoseContext::create(__METHOD__);
-        $this->logWritedSql($dc,$sql,$values);
         $this->logAllSql($dc,$sql,$values,"w");
         $sth = $this->_dbh->prepare($sql);
         $i = 0;
@@ -309,9 +265,9 @@ class Pair
         $this->second   = $second;
     }
 }
-/** 
+/**
  * @brief 基于 Layzer Load 的 SQL 执行器，用于在需要访问数据库是，才建立连接
- * @example 
+ * @example
  *          $executer = new LZLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name,
  *                        FastSQLExecutor::SHORT_CONN,'utf8',"FastSQLExecutor");
  *
@@ -329,19 +285,19 @@ class LZLExecutor
     public $ins = null;
     public $recordCalls= null;
     public $needRecord= true;
-    /** 
+    /**
      * @brief  同 FastSQLExecutor 的构造函数,除$cls参数外
-     * 
-     * @param $host 
-     * @param $userName 
-     * @param $password 
-     * @param $dbName 
-     * @param $connType 
-     * @param $charset 
-     * @param $cls 
-     * @param $port 
-     * 
-     * @return 
+     *
+     * @param $host
+     * @param $userName
+     * @param $password
+     * @param $dbName
+     * @param $connType
+     * @param $charset
+     * @param $cls
+     * @param $port
+     *
+     * @return
      */
     public function __construct($host, $userName, $password, $dbName,$connType=FastSQLExecutor::SHORT_CONN,$charset='GBK', $cls = "FastSQLExecutor" , $port="3306")
     {

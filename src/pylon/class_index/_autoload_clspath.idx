@@ -135,6 +135,7 @@ XDBException,/interface/exception.php
 XEntEnv,/interface/ent.php
 XEntityBase,/impl/orm/entity.php
 XEntity,/interface/ent.php
+XEnv,/utls/env.php
 XErrCode,/interface/exception.php
 XExceptionUtls,/utls/exception.php
 XFunctionControl,/impl/orm/control.php

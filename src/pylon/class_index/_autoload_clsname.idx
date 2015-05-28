@@ -135,6 +135,7 @@ cls_xdbexception,XDBException
 cls_xentenv,XEntEnv
 cls_xentitybase,XEntityBase
 cls_xentity,XEntity
+cls_xenv,XEnv
 cls_xerrcode,XErrCode
 cls_xexceptionutls,XExceptionUtls
 cls_xfunctioncontrol,XFunctionControl

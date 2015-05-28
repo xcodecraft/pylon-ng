@@ -30,7 +30,7 @@ class  DBExecuterTC extends PHPUnit_Framework_TestCase
         $cmds[] = "create table {$this->_tableName}
                 (
                    id                             integer(11),
-                   obj                            varchar(30), 
+                   obj                            varchar(30),
                    step							  integer(11),
                    mydesc                           varchar(255)
                 ) DEFAULT CHARSET=gbk
@@ -76,18 +76,6 @@ class  DBExecuterTC extends PHPUnit_Framework_TestCase
 		}
         $this->assertTrue(count($rs) == 10);
 	}
-    public function testRegLogger()
-    {
-        $logger = new TestLogger();
-        $this->_executer->regLogger4test($logger,new NullLogger());
-        $cmds[] = "select * from {$this->_tableName} where id = 1";
-        $cmds[] = "select * from {$this->_tableName} where id = 2";
-        foreach($cmds as $cmd)
-            $this->_executer->query($cmd);
-        $this->assertEquals($logger->_msgs,$cmds);
-
-        $this->_executer->regLogger(new NullLogger(),new NullLogger());
-    }
 }
 
 ?>

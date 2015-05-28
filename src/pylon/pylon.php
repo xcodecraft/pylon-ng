@@ -167,6 +167,8 @@ class PylonModule
 function pylon_load_cls_index()
 {
 
+    static $index_load = false ;
+    if ($index_load ) return ;
     $lib_root  = dirname(__FILE__);
     pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
     pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
@@ -175,6 +177,8 @@ function pylon_load_cls_index()
     array_push(PylonModule::$modleFiles,"$runpath/_autoload_clspath.idx");
     pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
     pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
+
+    $index_load = true ;
 }
 /**
  * \public
@@ -226,7 +230,8 @@ function pylon__unload($classname)
 
 
 
-pylon_load_cls_index() ;
+
+spl_autoload_register(pylon_load_cls_index);
 
 //注册 PYLON框架自已的autoload方法
 spl_autoload_register(pylonlib__autoload);

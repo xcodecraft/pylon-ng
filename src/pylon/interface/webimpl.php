@@ -92,6 +92,7 @@ class XRestResp implements XResponse
         $this->errmsg       = "" ;
         $this->status_code    = $status_code ;
         $this->data         = $data ;
+
     }
     public function is_success()
     {
@@ -101,7 +102,11 @@ class XRestResp implements XResponse
     {
 
         if($set_header === true)
+        {
             PYL_HttpHeader::out_header($this->status_code);
+            header('Content-type: application/json');
+        }
+        $datas = array();
         if($this->errno != 0 )
         {
             $datas['errno']     = $this->errno ;

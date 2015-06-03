@@ -86,12 +86,17 @@ class XRouter
         $itc   = new XInterceptorRuner(XAop::using($itarget)) ;
         try
         {
-            $itc->_before($xcontext,$request,$response) ;
             $cls     = $conf['cls'];
+            $xcontext->__service_run = true ;
+            $xcontext->__service_cls = $cls ;
+            $itc->_before($xcontext,$request,$response) ;
             $obj     = new $cls;
-            call_user_func(array($obj , "_before" ), $xcontext,$request,$response);
-            call_user_func(array($obj , "_$method"), $xcontext,$request,$response);
-            call_user_func(array($obj , "_after"  ), $xcontext,$request,$response);
+            if ( $xcontext->__service_run === true )
+            {
+                call_user_func(array($obj , "_before" ), $xcontext,$request,$response);
+                call_user_func(array($obj , "_$method"), $xcontext,$request,$response);
+                call_user_func(array($obj , "_after"  ), $xcontext,$request,$response);
+            }
         }
         catch(Exception $e)
         {

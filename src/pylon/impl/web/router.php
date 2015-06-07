@@ -2,20 +2,21 @@
 class XInterceptorRuner extends XInterceptor
 {
     private $beforedItcs = null ;
-    private $allItcs  = null ;
-    private $plog     = null ;
+    private $allItcs     = null ;
+    private $plog        = null ;
     public function __construct($itcs)
     {
         $this->allItcs     = $itcs ;
         $this->beforedItcs = array() ;
-        $this->plog     = new Logger("_pylon");
+        $this->plog        = new Logger("_pylon");
     }
     public function _before($xcontext,$request,$response)
     {
-        foreach($this->allItcs as $i)
+        foreach($this->allItcs as $itc)
         {
-            array_unshift($this->beforedItcs,$i) ;
-            $i->_before($xcontext,$request,$response);
+            array_unshift($this->beforedItcs,$itc) ;
+            $itc->_before($xcontext,$request,$response);
+            $this->plog->debug( get_class($itc) . "._before  " ) ;
         }
 
     }
@@ -43,6 +44,7 @@ class XInterceptorRuner extends XInterceptor
             try
             {
                 $itc->_after($xcontext,$request,$response) ;
+                $this->plog->debug( get_class($itc) . "._after" ) ;
                 array_shift($unAfterItcs) ;
             }
             catch(Exception $e)
@@ -86,16 +88,21 @@ class XRouter
         $itc   = new XInterceptorRuner(XAop::using($itarget)) ;
         try
         {
-            $cls     = $conf['cls'];
+            $cls                     = $conf['cls'];
+            $plog->debug(" service cls : $cls " );
             $xcontext->__service_run = true ;
             $xcontext->__service_cls = $cls ;
             $itc->_before($xcontext,$request,$response) ;
-            $obj     = new $cls;
             if ( $xcontext->__service_run === true )
             {
+                $obj     = new $cls;
                 call_user_func(array($obj , "_before" ), $xcontext,$request,$response);
                 call_user_func(array($obj , "_$method"), $xcontext,$request,$response);
                 call_user_func(array($obj , "_after"  ), $xcontext,$request,$response);
+            }
+            else
+            {
+                $plog->debug(" $xcontext->__service_run[false]  service passed!" );
             }
         }
         catch(Exception $e)

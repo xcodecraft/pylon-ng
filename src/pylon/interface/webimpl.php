@@ -54,9 +54,16 @@ class XRestResp implements XResponse
     public $status_code = 500 ;
     public $errno       = 1 ;
     public $errmsg      = "unknown";
+    public $jsonpEnable = false ;
+    public $jsonpCall   = "";
     private $data       = array() ;
     public function __construct()
     {
+    }
+    public function jsonp($fun)
+    {
+        $this->jsonpEnable     =  true ;
+        $this->jsonpCall =  $fun ;
     }
     public function getData()
     {
@@ -129,8 +136,16 @@ class XRestResp implements XResponse
             $logger->error("status code: " . $this->status_code , "response" );
             $logger->error($json_data , "response");
         }
-        echo $json_data;
+        if ($this->jsonpEnable == true )
+        {
+            echo  $this->jsonpCall . "($json_data)" ;
+        }
+        else
+        {
+            echo $json_data;
+        }
     }
+
 }
 /**
  * @ingroup rest

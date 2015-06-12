@@ -20,3 +20,5 @@ smasher/used/
 smasher/ext/*
 smasher/conf/used
 smasher/bin
+test/pylon/config/used/*.*
+*.tmp

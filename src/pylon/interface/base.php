@@ -59,6 +59,10 @@ class XProperty
 	{
 		return $this->have($name)?$this->attr[$name]:$default;
 	}
+    public function set($name,$vale)
+    {
+        $this->attr[$name] = $value ;
+    }
 
     static public function fromArray($arr=array())
     {

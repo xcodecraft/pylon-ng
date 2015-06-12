@@ -106,67 +106,52 @@ class XQueryObj
         }
         return $dao;
     }
-    private function listCall($op,$cls,$catch4add,$name,$paramNames,$params)
+    private function listCall($op,$cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         if(count($extraParams) == 0 )
         {
-            if($catch4add)
-            {
-                return  $this->getDao($cls)->catch4add_listByProp($prop);
-            }
-            else
-            {
                 return  $this->getDao($cls)->listByProp($prop);
-            }
         }
         else
         {
             $page      = isset($extraParams[0])? $extraParams[0] : null;
             $orderkey  = isset($extraParams[1])? $extraParams[1] : null;
             $ordertype = isset($extraParams[2])? $extraParams[2] : 'DESC';
-            if($catch4add)
-            {
-                return  $this->getDao($cls)->catch4add_listByProp($prop,$page,$orderkey,$ordertype);
-            }
-            else
-            {
-
-                return  $this->getDao($cls)->listByProp($prop,$page,$orderkey,$ordertype);
-            }
+            return  $this->getDao($cls)->listByProp($prop,$page,$orderkey,$ordertype);
         }
     }
-    private function getCall($op,$cls,$catch4add,$name,$paramNames,$params)
+
+    public function listByProp($cls,$prop,$page=null,$orderkey=null,$ordertype='DESC')
+    {
+        return  $this->getDao($cls)->listByProp($prop,$page,$orderkey,$ordertype);
+    }
+    public function getByProp($cls,$prop)
+    {
+        return  $this->getDao($cls)->getByProp($prop);
+    }
+    private function getCall($op,$cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
-
-        if($catch4add)
-            return  $this->getDao($cls)->catch4add_getByProp($prop);
-        else
-            return  $this->getDao($cls)->getByProp($prop);
-        break;
+        return  $this->getDao($cls)->getByProp($prop);
     }
 
-    private function cntCall($op,$cls,$catch4add,$name,$paramNames,$params)
+    private function cntCall($op,$cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
-
-        if($catch4add)
-            DBC::unImplement('cntCall of catch enable on catch4add');
-        else
-            return  $this->getDao($cls)->getCount($prop);
+        return  $this->getDao($cls)->getCount($prop);
     }
-    private function delCall($op,$cls,$catch4add,$name,$paramNames,$params)
+    private function delCall($op,$cls,$name,$paramNames,$params)
     {
 
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         return  $this->getDao($cls)->delByProp($prop);
     }
-    public function callImpl($op,$cls,$catch4add,$name,$paramNames,$params)
+    public function callImpl($op,$cls,$name,$paramNames,$params)
     {
 
         $dc = DiagnoseContext::create("XQueryObj::callImpl");
@@ -175,15 +160,15 @@ class XQueryObj
         switch($op)
         {
         case 'list':
-            $ret = $this->listCall($op,$cls,$catch4add,$name,$paramNames,$params);
+            $ret = $this->listCall($op,$cls,$name,$paramNames,$params);
             break;
         case 'get':
-            $ret = $this->getCall($op,$cls,$catch4add,$name,$paramNames,$params);
+            $ret = $this->getCall($op,$cls,$name,$paramNames,$params);
             break;
         case 'cnt':
-            $ret = $this->cntCall($op,$cls,$catch4add,$name,$paramNames,$params);
+            $ret = $this->cntCall($op,$cls,$name,$paramNames,$params);
         case 'del':
-            $ret = $this->delCall($op,$cls,$catch4add,$name,$paramNames,$params);
+            $ret = $this->delCall($op,$cls,$name,$paramNames,$params);
             break;
         default:
             DBC::unExpect($op,"unsupport op type");
@@ -204,8 +189,7 @@ class XQueryObj
     public function __call($name,$params)
     {
         extract( DynCallParser::condObjParse($name));
-        $catch4add=false;
-        return $this->callImpl($op,$cls,$catch4add,$name,$condnames,$params);
+        return $this->callImpl($op,$cls,$name,$condnames,$params);
     }
 }
 

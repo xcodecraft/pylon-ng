@@ -49,7 +49,12 @@ class XHtmlResp   implements XResponse
     }
     public function exception($ex)
     {
-        $this->statusCode = $ex->status_code ;
+        $code = $ex->status_code ;
+        if(empty($code) )
+        {
+            $code = $this->status_code ;
+        }
+        $this->statusCode = $code ;
     }
 }
 class XRestResp implements XResponse
@@ -91,12 +96,17 @@ class XRestResp implements XResponse
     }
     public function exception($ex)
     {
-        $err['code']       = $ex->status_code ;
+        $code = $ex->status_code ;
+        if(empty($code) )
+        {
+            $code = $this->status_code ;
+        }
+        $err['code']       = $code ;
         $err['sub_code']   = $ex->getCode();
         $err['message']    = $ex->getMessage();
         $err['type']       = get_class($ex) ;
         $this->error       = $err ;
-        $this->status_code = $ex->status_code ;
+        $this->status_code = $code ;
     }
     /**
      * @brief 设置成功
@@ -120,6 +130,7 @@ class XRestResp implements XResponse
     {
         if($set_header === true)
         {
+            DBC::requireNotNull($this->status_code);
             PYL_HttpHeader::out_header($this->status_code);
             header('Content-type: application/json');
         }

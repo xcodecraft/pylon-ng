@@ -84,6 +84,7 @@ cls_pylonmodule,PylonModule
 cls_pylonmodule,PylonModule
 cls_query,Query
 cls_relation,Relation
+cls_respfail,RespFail
 cls_scopeaction,ScopeAction
 cls_scopeautotrans,ScopeAutoTrans
 cls_scopeecholog,ScopeEchoLog

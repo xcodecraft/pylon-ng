@@ -57,6 +57,41 @@ class XHtmlResp   implements XResponse
         $this->statusCode = $code ;
     }
 }
+class RespFail
+{
+    public $code     = 500 ;
+    public $message  = "unset response data" ;
+    public $type     = "" ;
+    public $sub_code = 100;
+
+    public function setException($ex)
+    {
+        $code = $ex->status_code ;
+        if(empty($code) )
+        {
+            $code = $this->code ;
+        }
+        $this->code     = $code ;
+        $this->sub_code = $ex->getCode();
+        $this->message  = $ex->getMessage();
+        $this->type     = get_class($ex) ;
+
+    }
+    public function setError($code,$sub_code,$message)
+    {
+        $this->code     = $code ;
+        $this->sub_code = $sub_code ;
+        $this->message  = $message ;
+    }
+    public function noFail()
+    {
+        $this->code     = 0 ;
+    }
+    public function isFail()
+    {
+        return $this->code != 0 ;
+    }
+}
 class XRestResp implements XResponse
 {
     public $status_code = 500 ;
@@ -66,6 +101,7 @@ class XRestResp implements XResponse
     private $data       = array() ;
     public function __construct()
     {
+        $this->error = new RespFail();
     }
     public function jsonp($fun)
     {
@@ -88,25 +124,13 @@ class XRestResp implements XResponse
      */
     public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$status_code = 500)
     {
-        $err['code']       = $status_code ;
-        $err['message']    = $errmsg ;
-        $err['sub_code']   = $errno ;
-        $this->error       = $err ;
+        $this->error->setError($status_code,$errno,$errmsg) ;
         $this->status_code = $status_code ;
     }
     public function exception($ex)
     {
-        $code = $ex->status_code ;
-        if(empty($code) )
-        {
-            $code = $this->status_code ;
-        }
-        $err['code']       = $code ;
-        $err['sub_code']   = $ex->getCode();
-        $err['message']    = $ex->getMessage();
-        $err['type']       = get_class($ex) ;
-        $this->error       = $err ;
-        $this->status_code = $code ;
+        $this->error->setException($ex) ;
+        $this->status_code =  $this->error->code ;
     }
     /**
      * @brief 设置成功
@@ -120,11 +144,12 @@ class XRestResp implements XResponse
     {
         $this->status_code = $status_code ;
         $this->data        = $data ;
+        $this->error->noFail();
 
     }
     public function is_success()
     {
-        return  $this->error == null ;
+        return  !$this->error->isFail();
     }
     public function send($logger,$set_header=true)
     {
@@ -136,18 +161,18 @@ class XRestResp implements XResponse
         }
 
         $outdata = "";
-        if($this->error == null )
+        if($this->error->isFail())
+        {
+            $data['error'] = get_object_vars($this->error) ;
+            $outdata = json_encode($data);
+            $logger->error("status code: " . $this->status_code , "response" );
+            $logger->error($outdata, "response");
+        }
+        else
         {
             $logger->info("status code: " . $this->status_code , "response" );
             $logger->info($outdata, "response");
             $outdata = json_encode($this->data);
-        }
-        else
-        {
-            $data['error'] = $this->error ;
-            $outdata = json_encode($data);
-            $logger->error("status code: " . $this->status_code , "response" );
-            $logger->error($outdata, "response");
         }
         if ($this->jsonpEnable == true )
         {

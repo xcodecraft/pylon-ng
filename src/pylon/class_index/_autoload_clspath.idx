@@ -84,6 +84,7 @@ PylonModule,/impl/autoload/class_loads.php
 PylonModule,/pylon.php
 Query,/impl/orm/query.php
 Relation,/impl/orm/entity.php
+RespFail,/interface/response.php
 ScopeAction,/utls/utility.php
 ScopeAutoTrans,/impl/orm/unitwork.php
 ScopeEchoLog,/impl/utls/logutls.php

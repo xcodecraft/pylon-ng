@@ -82,9 +82,9 @@ class XRestResult
         DBC::requireNotNull($response);
 
         $data = json_decode($response->body(),true) ;
-        if(isset($data['errno']))
+        if(isset($data['error']))
         {
-            return $data ;
+            return $data['error'] ;
 
         }
         return  null ;
@@ -94,9 +94,11 @@ class XRestResult
         if ($response->statusCode == $statusCode )
         {
             $err = self::fail($response) ;
-            if ($errno == null | $err['errno'] == $errno) {
+            if ($errno == null | $err['sub_code'] == $errno) {
                 return  true ;
-
+            }
+            else
+            {
             }
 
         }

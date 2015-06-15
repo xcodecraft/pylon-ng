@@ -60,14 +60,7 @@ class XInterceptorRuner extends XInterceptor
     {
         $plog->error(get_class($e) ." : " .$e->getMessage());
         $plog->error(XExceptionUtls::simple_trace($e));
-        if (is_a($e,XLogicException)  || is_a($e,XRuntimeException))
-        {
-            $response->error($e->getMessage(),$e->getCode(),$e->status_code);
-        }
-        else
-        {
-            $response->error($e->getMessage(),XErrCode::SYS_UNKNOW,500);
-        }
+        $response->exception($e);
     }
 }
 class XRouter

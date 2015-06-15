@@ -139,7 +139,7 @@ XEnv,/utls/env.php
 XErrCode,/interface/exception.php
 XExceptionUtls,/utls/exception.php
 XFunctionControl,/impl/orm/control.php
-XHtmlResp,/interface/webimpl.php
+XHtmlResp,/interface/response.php
 XHttpCaller,/utls/http.php
 XHttpConf,/utls/http.php
 XHttpResponse,/utls/http.php
@@ -162,7 +162,7 @@ XQueryArr,/interface/ent.php
 XQuery,/interface/ent.php
 XQueryObj,/interface/ent.php
 XResponse,/interface/web.php
-XRestResp,/interface/webimpl.php
+XRestResp,/interface/response.php
 XRestResult,/utls/http.php
 XRouter,/impl/web/router.php
 XRuleService,/interface/webimpl.php

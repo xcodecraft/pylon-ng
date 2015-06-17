@@ -1,0 +1,105 @@
+_env:
+    - !R.env
+        _name    : "_local_deploy"
+        _res :
+            - !R.project
+                root        : "${HOME}/devspace/%{PRJ_NAME}"
+                name        : "ayi_svcs"
+            - !R.vars
+                PHP_ERROR   : "E_ALL & ~E_NOTICE"
+                FPM_USER    : "${USER}"
+    - !R.env
+        _name    : "_safe_deploy"
+        _res :
+            - !R.project
+                root        : "/data/x/projects/%{PRJ_NAME}"
+                name        : "ayi_svcs"
+            - !R.vars
+                PHP_ERROR   : "E_ALL & ~E_NOTICE"
+                FPM_USER    : "ayb"
+    - !R.env
+        _name    : "_dev"
+        _res :
+            - !R.vars
+                BASE_DOMAIN : "api.${USER}.%{MAIN_DOMAIN}"
+
+    - !R.env
+        _name    : "_demo"
+        _res :
+            - !R.vars
+                BASE_DOMAIN : "api.demo.%{MAIN_DOMAIN}"
+
+    - !R.env
+        _name : "base"
+        _res :
+            - !R.vars
+                PYLON   : "/data/x/framework/pylon-ng/"
+                RIGGER  : "/data/x/tools/rigger-ng/"
+                BASE_INCLUDE : "${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation"
+            - !R.path
+                dst  : "${PRJ_ROOT}/conf/used "
+
+
+    - !R.env
+        _name    : "dev"
+        _mix     : "_local_deploy,_dev,base"
+
+    - !R.env
+        _name    : "demo"
+        _mix     : "_safe_deploy,_demo,base"
+
+    - !R.env
+        _name    : "test"
+        _mix     : "_safe_deploy,_test,base"
+
+_sys:
+    -  !R.system
+        _name : "init"
+        _res  :
+            - !R.vars
+                OPERA_DOMAIN    : "opera.${BASE_DOMAIN}"
+                HERO_DOMAIN     : "hero.${BASE_DOMAIN}"
+            - !R.mysql
+                host:     "${DB_HOST}"
+                name:     "${DB_NAME}"
+                user:     "${DB_USER}"
+                password: "${DB_PWD}"
+                sql:      "${PRJ_ROOT}/src/init/create_db.sql"
+            - !R.using
+                path  : "${RIGGER}/extends/moduls/pylon.yaml"
+                modul : "pylon_php"
+                args  : !R.vars
+                    MOD_TAG     : "init"
+                    MOD_INCLUDE : "${PRJ_ROOT}/src/init:${BASE_INCLUDE}"
+            - !R.php
+                ini :    "${PRJ_ROOT}/conf/used/init_php.ini"
+                bin:     "/usr/local/php-5.6/bin/php"
+                script : "${PRJ_ROOT}/src/init/sys_init.php"
+
+    -  !R.system
+        _name : "api"
+        _res  :
+            - !R.vars
+                DOMAIN      : "api.${BASE_DOMAIN}"
+                SOCK_FILE   : "${RUN_PATH}/api_fpm.sock"
+            - !R.using
+                path  : "${RIGGER}/extends/moduls/pylon.yaml"
+                modul : "pylon_web"
+                args  : !R.vars
+                    MOD_TAG     : "api_opera"
+                    MOD_ENTRY   : "${PRJ_ROOT}/src/${SYS_NAME}"
+                    MOD_INCLUDE : "${PRJ_ROOT}/src/${SYS_NAME}:${BASE_INCLUDE}"
+
+    -  !R.system
+        _name : "test"
+        _res  :
+            - !R.using
+                path  : "${RIGGER}/extends/moduls/pylon.yaml"
+                modul : "pylon_php"
+                args  : !R.vars
+                    MOD_TAG     : "test"
+                    MOD_INCLUDE : "${PRJ_ROOT}/test:${PRJ_ROOT}/src"
+            - !R.shell
+                script : "${PRJ_ROOT}/test/test.sh"
+
+

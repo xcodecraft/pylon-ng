@@ -1,0 +1,15 @@
+.svn
+*.swp
+*.pyc
+_rg/*.data
+cscope.out
+*.log
+tags
+rigger.data
+run
+conf/used/
+.*
+build/*
+run.log
+*.swp
+*.tmp

@@ -4,7 +4,7 @@ _env:
         _res :
             - !R.project
                 root        : "${HOME}/devspace/%{PRJ_NAME}"
-                name        : "ayi_svcs"
+                name        : "%{PRJ_NAME}"
             - !R.vars
                 PHP_ERROR   : "E_ALL & ~E_NOTICE"
                 FPM_USER    : "${USER}"

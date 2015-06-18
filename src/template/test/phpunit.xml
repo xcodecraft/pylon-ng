@@ -1,0 +1,14 @@
+<phpunit
+	bootstrap="bootstrap.php"
+	colors="true"
+>
+    <testsuites>
+        <testsuite name="framework">
+            <directory suffix="tc.php">framework</directory>
+    </testsuites>
+	<logging>
+	  <log type="coverage-html" target="./report" charset="UTF-8"
+	       highlight="true"/>
+	</logging>
+
+</phpunit>

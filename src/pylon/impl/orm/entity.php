@@ -75,7 +75,7 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         $this->xid=$xid;
         if($prop != null)
             $this->merge($prop);
-        DBC::requireNotNull($this->xid,"not entity id" );
+        DBC::requireNotNull($this->xid,"entity id is null" );
     }
 
     /**
@@ -225,7 +225,7 @@ class ObjUpdater
         }
         else
         {
-            DBC::unExpect($objType,"objType");
+            DBC::unExpect($objType,"ObjUpdater not support this type ");
         }
         foreach($items as $item)
         {
@@ -664,9 +664,10 @@ class DaoFinderUtls
             return $obj;
         }
 
+
         $names = Prompt::recommend($cls,array_keys(XBox::space_keys($key)));
         $str   = JoinUtls::jarray(',',$names);
-        DBC::unExpect($cls,"obj not find!, it maybe one of list [$str]");
+        DBC::unExpect("$cls $key unfoud","maybe data env not init!");
     }
 
     static public function query($clsName)

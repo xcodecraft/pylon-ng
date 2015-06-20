@@ -1,2 +1,9 @@
 PRJ_NAME: !T.input
     prompt : "please input project name"
+
+FPM_USER : !T.input
+    prompt : " fpm run user !"
+
+
+MAIN_DOMAIN : !T.input
+    prompt : " domain? eg: rigger.so"

@@ -20,7 +20,7 @@ _env:
         _res :
             - !R.project
                 root        : "/data/x/projects/%{PRJ_NAME}"
-                name        : "ayi_svcs"
+                name        : "%{PRJ_NAME}"
             - !R.vars
                 PHP_ERROR   : "E_ALL & ~E_NOTICE"
                 FPM_USER    : "%{FPM_USER}"
@@ -92,9 +92,9 @@ _sys:
                 path  : "${RIGGER}/extends/moduls/pylon.yaml"
                 modul : "pylon_web"
                 args  : !R.vars
-                    MOD_TAG     : "api_opera"
-                    MOD_ENTRY   : "${PRJ_ROOT}/src/${SYS_NAME}"
-                    MOD_INCLUDE : "${PRJ_ROOT}/src/${SYS_NAME}:${BASE_INCLUDE}"
+                    MOD_TAG     : "api"
+                    MOD_ENTRY   : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
+                    MOD_INCLUDE : "${PRJ_ROOT}/src/sys_${SYS_NAME}:${BASE_INCLUDE}"
 
     -  !R.system
         _name : "test"

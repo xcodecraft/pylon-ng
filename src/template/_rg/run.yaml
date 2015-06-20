@@ -28,13 +28,13 @@ _env:
         _name    : "_dev"
         _res :
             - !R.vars
-                BASE_DOMAIN : "api.${USER}.%{MAIN_DOMAIN}"
+                BASE_DOMAIN : "${USER}.%{MAIN_DOMAIN}"
 
     - !R.env
         _name    : "_demo"
         _res :
             - !R.vars
-                BASE_DOMAIN : "api.demo.%{MAIN_DOMAIN}"
+                BASE_DOMAIN : "demo.%{MAIN_DOMAIN}"
 
     - !R.env
         _name : "base"
@@ -106,6 +106,6 @@ _sys:
                     MOD_TAG     : "test"
                     MOD_INCLUDE : "${PRJ_ROOT}/test:${PRJ_ROOT}/src"
             - !R.shell
-                script : "${PRJ_ROOT}/test/test.sh"
+                script : "${PRJ_ROOT}/test/phpunit.sh"
 
 

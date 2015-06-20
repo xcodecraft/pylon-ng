@@ -43,7 +43,7 @@ class XAop
     }
 	static public function using($conf)
 	{
-		return self::$rules->using($conf);
+		return self::rule()->using($conf);
 	}
 
 	static public function using_all($pos)

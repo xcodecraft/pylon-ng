@@ -1,14 +1,11 @@
-<phpunit
-	bootstrap="bootstrap.php"
-	colors="true"
->
+<phpunit bootstrap="bootstrap.php" colors="true" >
     <testsuites>
-        <testsuite name="framework">
-            <directory suffix="tc.php">framework</directory>
+        <testsuite name = "cases">
+            <directory suffix = "test.php">cases</directory>
+        </testsuite>
     </testsuites>
 	<logging>
-	  <log type="coverage-html" target="./report" charset="UTF-8"
-	       highlight="true"/>
+	  <log type="coverage-html" target="./report" charset="UTF-8" highlight="true"/>
 	</logging>
 
 </phpunit>

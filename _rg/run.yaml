@@ -116,6 +116,15 @@ _sys:
                     tpl:  "${PRJ_ROOT}/conf/options/tpl_demo_ngx.conf"
                     src:  "${PRJ_ROOT}/conf/used/demo_ngx.conf"
                     sudo: True
+    - !R.system
+        _name: "code"
+        _res :
+                - !R.vars
+                    DOMAIN        : "code.pylon360.com"
+                - !R.nginx_conf
+                    tpl:  "${PRJ_ROOT}/conf/options/doc_code_ngx.conf"
+                    src:  "${PRJ_ROOT}/conf/used/doc_code_ngx.conf"
+                    sudo: True
 
     - !R.system
         _name : "test"

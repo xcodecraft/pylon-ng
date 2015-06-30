@@ -1,5 +1,5 @@
 cd $PRJ_ROOT/smasher
 echo $EXT_VER
-bjam
+bjam release
 # $HOME/devspace/sun/bin/bjam $*
 #../../sun/bin/bjam  $*

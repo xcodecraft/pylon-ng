@@ -97,3 +97,10 @@ class XProperty
 
 }
 
+class XContext
+{
+    public function toArr()
+    {
+        return get_object_vars($this);
+    }
+}

@@ -121,7 +121,8 @@ class XRouter
         $restLog      = XLogKit::logger("_rest");
         $uri          = $_SERVER['REQUEST_URI'];
         $autoSpeed    = new XLogSpeed("rest[$uri]");
-        $xcontext     = new XProperty();
+        // $xcontext     = new XProperty();
+        $xcontext     = new XContext ;
         $request      = new XProperty($_REQUEST) ;
         $response     = new XSetting::$respClass ;
         self::log_request($restLog,'info');

@@ -129,6 +129,7 @@ XBizResult,/utls/biz.php
 XBox,/interface/ioc.php
 XBR,/utls/biz.php
 XConfigException,/interface/exception.php
+XContext,/interface/base.php
 XDao,/impl/orm/entity.php
 XDataPage,/utls/datapage.php
 XDBCException,/interface/exception.php

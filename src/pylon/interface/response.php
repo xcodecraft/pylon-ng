@@ -13,8 +13,12 @@ class XHtmlResp   implements XResponse
     {
         $this->jumpURL = $url ;
     }
-    public function tpl($_xc,$file)
+    public function tpl($_xc,$file,$extract=false)
     {
+        if ($extract)
+        {
+            extract($_xc->toArr());
+        }
         $this->statusCode = 500 ;
         $file = $this->root . "/" . $file ;
         if(file_exists($file))
@@ -26,6 +30,12 @@ class XHtmlResp   implements XResponse
         {
             throw new XNotFound($file) ;
         }
+    }
+    public function out($msg,$code=200)
+    {
+        $this->statusCode = $code ;
+        echo $msg ;
+
     }
     public function send($logger,$set_header=true)
     {
@@ -170,9 +180,9 @@ class XRestResp implements XResponse
         }
         else
         {
+            $outdata = json_encode($this->data);
             $logger->info("status code: " . $this->status_code , "response" );
             $logger->info($outdata, "response");
-            $outdata = json_encode($this->data);
         }
         if ($this->jsonpEnable == true )
         {

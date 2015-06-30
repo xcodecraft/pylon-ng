@@ -1,4 +1,9 @@
 <?php
+/**
+ * @brief  实体父类，实体需要继承
+ *
+ *  class Aplle extends XEntity
+ */
 class XEntity extends XEntityBase
 {
     public function upgrade()
@@ -78,6 +83,9 @@ class XEntity extends XEntityBase
     }
 }
 
+/**
+ * @brief
+ */
 class XQueryObj
 {
     const OP_LIST   = 1;

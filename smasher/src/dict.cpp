@@ -63,26 +63,26 @@ struct dict::impl
             if( found  != _file_flags.end()  )
             {
                 struct stat fileinfo;
-                if (  stat(data_file.c_str(),&fileinfo) < 0 ) { 
-                    return false ; 
+                if (  stat(data_file.c_str(),&fileinfo) < 0 ) {
+                    return false ;
                 }
                 time_t last = found->second ;
                 //文件没有更新
-                if ( force == false && (last >=  fileinfo.st_mtime)  )  { 
-                    return false ; 
+                if ( force == false && (last >=  fileinfo.st_mtime)  )  {
+                    return false ;
                 }
             }
             return true ;
         }
         int using_data(    const std::string& data_file,
-                const std::string& key_prefix, 
+                const std::string& key_prefix,
                 const std::string& data_prefix,bool force )
         {/*{{{*/
 
             if ( ! data_need_update( data_file, force)  ) return 0 ;
 
 
-            ifstream data(data_file.c_str()); 
+            ifstream data(data_file.c_str());
             if(!data.good()) return  0 ;
 
             str_arr_sptr file_keys = get_file_keys(data_file);
@@ -111,10 +111,10 @@ struct dict::impl
             struct stat fileinfo;
             if (  stat(data_file.c_str(),&fileinfo) < 0 ) { return 0  ; }
             _file_flags[data_file] = fileinfo.st_mtime;
-            LOG_INFO_S(PLOG)    
-                << "dict load data file : " << data_file   
-                <<  " key_prefix: '"        << key_prefix 
-                << "' data_prefix: '"       << data_prefix 
+            LOG_INFO_S(PLOG)
+                << "dict load data file : " << data_file
+                <<  " key_prefix: '"        << key_prefix
+                << "' data_prefix: '"       << data_prefix
                 << "' update cnt : "        << update_cnt;
             return update_cnt ;
         }/*}}}*/
@@ -123,9 +123,9 @@ struct dict::impl
         bool find(const std::string& cls,char * buf , int buf_len)
         {/*{{{*/
             map_t::iterator found = _dict.find(cls) ;
-            if( found == _dict.end()) 
+            if( found == _dict.end())
             {
-                LOG_INFO_S(PLOG) << "not found key: " << cls ;
+                LOG_DEBUG_S(PLOG) << "not found key: " << cls ;
                 return  false;
             }
             memset(buf,0,buf_len);
@@ -184,7 +184,7 @@ struct dict::impl
                 if( rescnt  <= 7 )
                     return rescnt ;
                 cutlen -- ;
-            } 
+            }
             return 0 ;
 
         }/*}}}*/

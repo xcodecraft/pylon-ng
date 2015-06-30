@@ -20,7 +20,7 @@ class log_kit
 
         static void event(const char * event);
 
-        static void out(const char * name , outer_t extra_out); 
+        static void out(const char * name , outer_t extra_out);
 
         static void clear();
 
@@ -36,12 +36,12 @@ class logger
         bool need_log(int level);
         void level(log_kit::level_t l,uint ratio=1);
         void tag(   const char* tag );
-        void out(  log_kit::outer_t extra_out); 
+        void out(  log_kit::outer_t extra_out);
         std::ostream*  stream(log_kit::level_t lev);
         void log_stream(const char* event=NULL);
 
         void debug(const char * msg,const char* event=NULL );
-        
+
         void info(const char * msg ,const char* event=NULL);
 
         void warn(const char * msg ,const char* event=NULL);
@@ -79,29 +79,29 @@ class logger_proxy
         logger*  _l;
 };
 
-#define LOG_WHERE  __PRETTY_FUNCTION__ << ":" << __LINE__  
+#define LOG_WHERE  __PRETTY_FUNCTION__ << ":" << __LINE__
 #define LOG_DEBUG(x) if (x->need_log(log_kit::debug)) for(int i = 1; i > 0 ; i = 0 , x->log_stream() ) \
-                                                                  *( x->stream(log_kit::debug) ) <<  LOG_WHERE  
+                                                                  *( x->stream(log_kit::debug) ) << "[debug]" <<  LOG_WHERE
 #define ELOG_DEBUG(x,y) if (x->need_log(log_kit::debug)) for(int i = 1; i > 0 ; i = 0 , x->log_stream(y) ) \
-                                                                  *( x->stream(log_kit::debug) ) <<  LOG_WHERE  
+                                                                  *( x->stream(log_kit::debug) ) << "[debug]" << LOG_WHERE
 #define LOG_DEBUG_S(x) if (x->need_log(log_kit::debug)) for(int i = 1; i > 0 ; i = 0 , x->log_stream() ) \
-                                                                  *( x->stream(log_kit::debug) ) 
+                                                                  *( x->stream(log_kit::debug) ) << "[debug]"
 
 #define LOG_INFO(x)   if (x->need_log(log_kit::info)) for(int i = 1; i > 0 ; i = 0 , x->log_stream() ) \
-                                                                *( x->stream(log_kit::info) ) <<  LOG_WHERE  
+                                                                *( x->stream(log_kit::info) ) << "[info]" << LOG_WHERE
 #define LOG_INFO_S(x) if (x->need_log(log_kit::info)) for(int i = 1; i > 0 ; i = 0 , x->log_stream() ) \
-                                                                 *( x->stream(log_kit::info) ) 
+                                                                 *( x->stream(log_kit::info) ) << "[info]"
 #define LOG_WARN(x) if (x->need_log(log_kit::warn)) for(int i = 1; i > 0 ; i = 0 , x->log_stream() ) \
-                                                                  *( x->stream(log_kit::warn) ) <<  LOG_WHERE  
+                                                                  *( x->stream(log_kit::warn) ) << "[warn]" <<  LOG_WHERE
 
 #define LOG_WARN_S(x) if (x->need_log(log_kit::warn)) for(int i = 1; i > 0 ; i = 0 , x->log_stream() ) \
-                                                                    *( x->stream(log_kit::warn) ) 
+                                                                    *( x->stream(log_kit::warn) ) << "[warn]"
 
 #define LOG_ERROR(x) if (x->need_log(log_kit::error)) for(int i = 1; i > 0 ; i = 0 , x->log_stream() ) \
-                                                                  *( x->stream(log_kit::error) ) <<  LOG_WHERE  
+                                                                  *( x->stream(log_kit::error) ) <<  "[error]" << LOG_WHERE
 
 #define LOG_ERROR_S(x) if (x->need_log(log_kit::error)) for(int i = 1; i > 0 ; i = 0 , x->log_stream() ) \
-                                                                    *( x->stream(log_kit::error) ) 
+                                                                    *( x->stream(log_kit::error) ) << "[error]"
 
 
 #define INS_LOG(x,logname)    logger* x=log_kit::log_ins(logname);

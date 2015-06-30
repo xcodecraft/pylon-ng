@@ -1,11 +1,11 @@
 _env:
     - !R.env
-        _name : "dev"
+        _name : "_dev"
         _res  :
             - !R.vars
                 DOMAIN      : "api.pylon360.com"
     - !R.env
-        _name : "online"
+        _name : "_online"
         _res  :
             - !R.vars
                 DOMAIN      :  "api.pylon360.com"
@@ -57,8 +57,8 @@ _env:
                 dst: "${PRJ_ROOT}/conf/used/"
 
     - !R.env
-        _name : "zwj"
-        _mix: "dev,php56,centos66,base"
+        _name : "dev"
+        _mix: "_dev,php56,centos66,base"
 
 _sys:
     - !R.system

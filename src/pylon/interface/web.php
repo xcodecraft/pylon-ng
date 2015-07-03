@@ -17,7 +17,7 @@ interface XService
     public function _post($xcontext,$request,$response);
     public function _put($xcontext,$request,$response);
     public function _delete($xcontext,$request,$response);
-    public function _help($xcontext,$request,$response);
+    public function _options($xcontext,$request,$response);
 }
 
 interface XResponse

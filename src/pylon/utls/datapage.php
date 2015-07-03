@@ -76,5 +76,61 @@ class XDataPage extends XProperty
         $this->getRowRange($begin,$count);
         return " limit $begin, $count ";
     }
+
+    public static function limit($start,$limit)
+    {
+        return new XDataLimit($start,$limit);
+    }
+
 }
+
+
+/**
+ * @ingroup utls
+ * @brief  数据页，根据 limit start,limit分页
+ */
+class XDataLimit extends XProperty
+{
+    private $maxLimit = 1000; //最大调取条数
+
+    private $default = 20;
+
+    private $limit = 0;
+
+    private $start = 0;
+
+    private $isInit = false;
+
+    public function __construct($start,$limit)
+    {
+        if(!$start) $start = 0;
+        if(!$limit) $limit = $this->default;
+        $this->limit = $limit>$this->maxLimit?$this->maxLimit:$limit;
+        $this->start = $start;
+        $this->totalRows = 0;
+        $this->datas = array();
+        $this->isInit = false;
+    }
+    public function initTotalRows($totalRows)
+    {
+        $this->totalRows= $totalRows;
+        $this->isInit = true;
+        $this->start = $this->start>$totalRows?$totalRows:$this->start;
+        $this->limit = $this->limit>$totalRows?$totalRows:$this->limit;
+        $this->limit = $this->limit>$this->maxLimit?$this->maxLimit:$this->limit;
+    }
+
+    public function toLimitStr()
+    {
+        $begin=$this->start;
+        $count=$this->limit;
+        return " limit $begin, $count ";
+    }
+
+    public function setData($datas)
+    {
+        $this->datas = $datas;
+    }
+}
+
 

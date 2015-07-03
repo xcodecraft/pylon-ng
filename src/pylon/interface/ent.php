@@ -341,8 +341,12 @@ class XQuery
     {
         return  XQueryArr::ins() ;
     }
-    //TODO
+
     // 添加 sql() 函数
+    static public function sql()
+    {
+        return  XBox::get(XBOx::SQLE);
+    }
 
 }
 /**

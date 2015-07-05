@@ -127,6 +127,7 @@ class XRouter
         $response     = new XSetting::$respClass ;
         self::log_request($restLog,'info');
         $request->uri = $uri ;
+        $request->params = $_REQUEST;
 
         //优先配置
         $rest_conf      = self::find_conf($uri);

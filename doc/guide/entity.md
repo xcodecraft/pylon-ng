@@ -13,9 +13,15 @@ class User extends XEntity
     }
 }
 ```
+
+##实体映射规则
+- 数据库的表名与实体属性名一致;
+- 不区分大小写(表全为小写) 
+- 实体中对象与对象1对1的关系:在表中使用classname__id的方式表示关联的对象
+
 ## 数据读取
 
-###  A
+###  XQuery
 
 ``` php
 XQuery::obj()->get_Author_by_id("1000");

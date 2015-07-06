@@ -76,12 +76,6 @@ class XDataPage extends XProperty
         $this->getRowRange($begin,$count);
         return " limit $begin, $count ";
     }
-
-    public static function limit($start,$limit)
-    {
-        return new XDataLimit($start,$limit);
-    }
-
 }
 
 

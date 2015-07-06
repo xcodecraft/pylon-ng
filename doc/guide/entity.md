@@ -1,4 +1,4 @@
-#PYLON 3.0  数据访问
+
 ## 实体 XEntity
 ``` php
 class User extends XEntity

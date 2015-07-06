@@ -132,6 +132,7 @@ XConfigException,/interface/exception.php
 XContext,/interface/base.php
 XDao,/impl/orm/entity.php
 XDataPage,/utls/datapage.php
+XDataLimit,/utls/datapage.php
 XDBCException,/interface/exception.php
 XDBException,/interface/exception.php
 XEntEnv,/interface/ent.php

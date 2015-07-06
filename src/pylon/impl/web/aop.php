@@ -90,7 +90,6 @@ class XAopRule
             $matchAll   = false ;
             $data       = $itarget->get($pos);
             $regex      = "" ;
-//            if($data != null  && $pos !=null  )
             if( $pos !=null  )
             {
                 $regex     =       str_replace('/','\/',$this->regex[$posIdx]);
@@ -109,7 +108,7 @@ class XAopRule
         }
         else
         {
-            $this->logger->error("XAopRule 没有匹配的数据 : " .  $this->pos);
+            $this->logger->debug("XAopRule 没有匹配的数据 : " .  implode(",", $this->pos));
             return null;
         }
     }

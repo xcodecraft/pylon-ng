@@ -99,21 +99,21 @@ class FastSQLExecutor
         return null;
     }
 
-    public function querysLimit($sql,$values=array(),$pageObj){
-        if(!is_null($pageObj))
-        {
-            $sql = strtolower($sql);
-            $countSql = preg_replace("/^select +(.*) +from/","select count(1) as count from",$sql);
-            $countRet = $this->query($countSql,$values);
-            if(!$pageObj->isInit){
-                $pageObj->initTotalRows($countRet['count']);
-            }
-            $sql = $sql.$pageObj->toLimitStr();
-        }
-        $datas = $this->querys($sql,$values);
-        $pageObj->setData($datas);
-        return true;
-    }
+    // public function querysLimit($sql,$values=array(),$pageObj){
+    //     if(!is_null($pageObj))
+    //     {
+    //         $sql = strtolower($sql);
+    //         $countSql = preg_replace("/^select +(.*) +from/","select count(1) as count from",$sql);
+    //         $countRet = $this->query($countSql,$values);
+    //         if(!$pageObj->isInit){
+    //             $pageObj->initTotalRows($countRet['count']);
+    //         }
+    //         $sql = $sql.$pageObj->toLimitStr();
+    //     }
+    //     $datas = $this->querys($sql,$values);
+    //     $pageObj->setData($datas);
+    //     return true;
+    // }
 
     public function querys($sql, $values=array())
     {

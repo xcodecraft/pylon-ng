@@ -120,26 +120,11 @@ class Query
 
     }
 
-    public function getCount($prop,$hashKey=null)
-    {
-        DBC::requireNotNull($prop);
-        $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
-        $valsArr=array();
-        if(!$prop->isEmpty())
-        {
 
-            $condsArr = $prop->getPropArray();
-            $valsArr  = SqlProcUtls::filterCondVal(array_values($prop->getPropArray()));
-            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
-            $statement->where($where);
-        }
-        return $this->getCountImpl($statement,$valsArr);
-    }
-
-    private function getCountImpl($statement,$valsArr=array())
+    private function statementCount($statement,$valsArr=array())
     {
         $statement->columns('count(1) as cnt');
-        $row = $this->_exer->query($statement->generateSql(),$valsArr);
+        $row = $this->exer->query($statement->generateSql(),$valsArr);
         return $row['cnt'];
     }
 
@@ -173,12 +158,6 @@ class Query
         $row = $this->exer->query($cntcmd,$valsArr);
         return $row['cnt'];
     }
-    private function getObjsCountImpl($statement,$valsArr=array())
-    {
-        $statement->columns('count(1) as cnt');
-        $row = $this->exer->query($statement->generateSql(),$valsArr);
-        return $row['cnt'];
-    }
     static public function prop2cmd($prop,&$valsArr)
     {
         if($prop !=null && (!$prop->isEmpty()))
@@ -190,6 +169,7 @@ class Query
             return $propCmd;
         }
         return "";
+
     }
     public function listByProp($view,$viewCond,$columns,$prop=null,$page=null,$orderkey=null,$ordertype='DESC',$addiWhereCmd="")
     {
@@ -201,11 +181,29 @@ class Query
         $rows = $this->listByPropExt($view, $viewCond, $columns, $prop, $page, $order, $addiWhereCmd);
         return $rows;
     }
+
+    public function getCount($prop,$hashKey=null)
+    {
+        return $this->cntByProp($this->getStoreTable($hashKey),null,$prop);
+    }
+
+    public function cntByProp($view,$viewCond,$prop)
+    {
+        $statement = new SQLSelectStatement($view,$viewCond);
+        $valsArr   = array();
+        $propWhere = "";
+        if($prop !=null && (!$prop->isEmpty()))
+        {
+            $propWhere = self::prop2cmd($prop,$valsArr);
+        }
+        $statement->where($propWhere.$addiWhereCmd);
+        return $this->statementCount($statement,$valsArr);
+    }
     public function listByPropExt($view,$viewCond,$columns,$prop=null,$page=null,$order=null,$addiWhereCmd="")
     {
         $statement = new SQLSelectStatement($view,$viewCond);
-        $valsArr = array();
-        $propWhere="";
+        $valsArr   = array();
+        $propWhere = "";
         if($prop !=null && (!$prop->isEmpty()))
         {
             $propWhere = self::prop2cmd($prop,$valsArr);
@@ -214,12 +212,30 @@ class Query
         if($page !=null)
         {
             if(!$page->isInit)
-                $page->initTotalRows($this->getObjsCountImpl($statement,$valsArr));
+                $page->initTotalRows($this->statementCount($statement,$valsArr));
             $begin=0;
             $count=0;
             $page->getRowRange($begin,$count);
             $statement->limit($begin,$count);
         }
+
+        $statement->multiOrderBy($order);
+        $statement->columns($columns);
+        $rows=$this->listByCmd($statement->generateSql(),$valsArr);
+        return $rows;
+    }
+    public function listByPropLimit($view,$viewCond,$columns,$prop,$begin,$count,$order=null,$addiWhereCmd="")
+    {
+        $statement = new SQLSelectStatement($view,$viewCond);
+        $valsArr   = array();
+        $propWhere = "";
+        if($prop !=null && (!$prop->isEmpty()))
+        {
+            $propWhere = self::prop2cmd($prop,$valsArr);
+        }
+        $statement->where($propWhere.$addiWhereCmd);
+        $statement->limit($begin,$count);
+
         $statement->multiOrderBy($order);
         $statement->columns($columns);
         $rows=$this->listByCmd($statement->generateSql(),$valsArr);

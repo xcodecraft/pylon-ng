@@ -127,21 +127,6 @@ class DaoBase
         return $rows;
     }
 
-    public function getCount($prop,$hashKey=null)
-    {
-        DBC::requireNotNull($prop);
-        $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
-        $valsArr=array();
-        if(!$prop->isEmpty())
-        {
-
-            $condsArr = $prop->getPropArray();
-            $valsArr  = SqlProcUtls::filterCondVal(array_values($prop->getPropArray()));
-            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
-            $statement->where($where);
-        }
-        return $this->getObjsCountImpl($statement,$valsArr);
-    }
 
     public function listByCmd($cmd,$argvals=array())
     {
@@ -158,6 +143,26 @@ class DaoBase
         }
         return $objs;
     }
+    public function cntByProp($prop,$hashKey =null)
+    {
+        $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
+        $valsArr = array();
+        if($prop !=null && (!$prop->isEmpty()))
+        {
+            $condsArr = $prop->getPropArray();
+            $valsArr = SqlProcUtls::filterCondVal(array_values($condsArr));
+
+            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $statement->where($where);
+        }
+        return $this->statementCount($statement,$valsArr);
+
+    }
+
+    public function getCount($prop,$hashKey=null)
+    {
+        return  $this->cntByProp($prop,$hashKey);
+    }
     public function listByProp($prop=null,$page=null,$orderkey=null,$ordertype='DESC',$hashKey=null)
     {
         $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
@@ -173,7 +178,7 @@ class DaoBase
         if($page !=null)
         {
             if(!$page->isInit)
-                $page->initTotalRows($this->getObjsCountImpl($statement,$valsArr));
+                $page->initTotalRows($this->statementCount($statement,$valsArr));
             $begin=0;
             $count=0;
             $page->getRowRange($begin,$count);
@@ -183,6 +188,25 @@ class DaoBase
         {
             $statement->orderBy($orderkey,$ordertype);
         }
+        $statement->columns('*');
+        $objs=$this->listByCmd($statement->generateSql(),$valsArr);
+        return $objs;
+    }
+
+    public function listByPropLimit($prop,$begin,$count,$order=null,$hashKey=null)
+    {
+        $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
+        $valsArr = array();
+        if($prop !=null && (!$prop->isEmpty()))
+        {
+            $condsArr = $prop->getPropArray();
+            $valsArr  = SqlProcUtls::filterCondVal(array_values($condsArr));
+
+            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $statement->where($where);
+        }
+        $statement->limit($begin,$count);
+        $statement->multiOrderBy($order);
         $statement->columns('*');
         $objs=$this->listByCmd($statement->generateSql(),$valsArr);
         return $objs;
@@ -253,7 +277,7 @@ class DaoBase
     {
         return $this->updateByArray($updateProp->getPropArray(),$condProp->getPropArray(),$hashKey);
     }
-    private function getObjsCountImpl($statement,$valsArr=array())
+    private function statementCount($statement,$valsArr=array())
     {
         $statement->columns('count(1) as cnt');
         $row = $this->_executer->query($statement->generateSql(),$valsArr);

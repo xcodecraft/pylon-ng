@@ -135,6 +135,11 @@ class XQueryObj
     {
         return  $this->getDao($cls)->listByProp($prop,$page,$orderkey,$ordertype);
     }
+    public function cntByProp($cls,$prop)
+    {
+        return  $this->getDao($cls)->cntByProp($prop);
+    }
+
     public function listByArr($cls,$Arr,$page=null,$orderkey=null,$ordertype='DESC')
     {
         $porp = XProperty::fromArray($arr);
@@ -144,6 +149,8 @@ class XQueryObj
     {
         return  $this->getDao($cls)->getByProp($prop);
     }
+
+
     private function getCall($op,$cls,$name,$paramNames,$params)
     {
         $extraParams=null;
@@ -289,6 +296,10 @@ class XQueryArr
     public function listByProp($cls,$prop,$page=null,$orderkey=null,$ordertype='DESC')
     {
         return DaoFinderUtls::query("{$cls}Query")->listByPropExt($cls,null,"*",$prop,$page,$order);
+    }
+    public function cntByProp($cls,$prop)
+    {
+        return DaoFinderUtls::query("{$cls}Query")->cntByProp($cls,null,$prop);
     }
     public function listByArr($cls,$arr,$page=null,$orderkey=null,$ordertype='DESC')
     {

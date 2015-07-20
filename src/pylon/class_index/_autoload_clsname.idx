@@ -140,6 +140,7 @@ cls_xentity,XEntity
 cls_xenv,XEnv
 cls_xerrcode,XErrCode
 cls_xexceptionutls,XExceptionUtls
+cls_xforbidden,XForbidden
 cls_xfunctioncontrol,XFunctionControl
 cls_xhtmlresp,XHtmlResp
 cls_xhttpcaller,XHttpCaller

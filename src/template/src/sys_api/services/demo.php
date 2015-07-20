@@ -5,7 +5,7 @@ class DemoREST extends XSimpleService implements XService //@REST_RULE: /demo/$u
     {
         XLogKit::logger("rest")->debug(__FUNCTION__,"his");
         XLogKit::logger("rest")->debug(__FUNCTION__);
-        $response->error("post error",XErrCode::SYS_UNKNOW,404);
+        $response->error("post error",XErrCode::UNKNOW,404);
     }
 
     public function _get($xcontext,$request,$response)
@@ -19,7 +19,7 @@ class DemoRuleREST extends XRuleService implements XService //@REST_RULE: /demo/
     public function help($xcontext,$request,$response)
     {
         XLogKit::logger("rest")->debug(__FUNCTION__,"his");
-        $response->error("post error",XErrCode::SYS_UNKNOW,404);
+        $response->error("post error",XErrCode::UNKNOW,404);
     }
 
     public function lists($xcontext,$request,$response)

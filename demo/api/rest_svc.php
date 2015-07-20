@@ -5,7 +5,7 @@ class MyGameSvc extends XSimpleService implements XService //@REST_RULE: /mygame
     {
         XLogKit::logger("rest")->debug(__FUNCTION__,"his");
         XLogKit::logger("rest")->debug(__FUNCTION__);
-        $response->error("post error",XErrCode::SYS_UNKNOW,404);
+        $response->error("post error",XErrCode::UNKNOW,404);
     }
 
     public function _put($xcontext,$request,$response)

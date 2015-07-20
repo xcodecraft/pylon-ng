@@ -23,7 +23,7 @@ interface XService
 interface XResponse
 {
     public function send($logger,$set_header=true) ;
-    public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$status_code = 500);
+    public function error($errmsg,$errno = XErrCode::UNKNOW,$status_code = 510);
     public function exception($ex);
 }
 

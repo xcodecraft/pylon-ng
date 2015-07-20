@@ -19,7 +19,7 @@ class RestDemoTest extends PHPUnit_Framework_TestCase
     public function testIntercepterThrowException()
     {
         $resp  = $this->curl->post("/mygame/exception",array());
-        $this->assertTrue(XRestResult::matchFail($resp,500,1100)) ;
+        $this->assertTrue(XRestResult::matchFail($resp,510,510)) ;
     }
     public function testIntercepterNoException()
     {
@@ -32,12 +32,12 @@ class RestDemoTest extends PHPUnit_Framework_TestCase
     public function testFail()
     {
         $resp  = $this->curl->get("/game/abc");
-        $this->assertTrue(XRestResult::matchFail($resp,500)) ;
+        $this->assertTrue(XRestResult::matchFail($resp,510)) ;
     }
     public function testTearDownFail()
     {
         $resp  = $this->curl->post("/game/abc",array());
-        $this->assertTrue(XRestResult::matchFail($resp,500)) ;
+        $this->assertTrue(XRestResult::matchFail($resp,510)) ;
     }
     public function testPost()
     {
@@ -48,6 +48,6 @@ class RestDemoTest extends PHPUnit_Framework_TestCase
     {
 
         $resp  = $this->curl->post("/mygame/123",array());
-        $this->assertTrue(XRestResult::matchFail($resp,404,1001)) ;
+        $this->assertTrue(XRestResult::matchFail($resp,404,2)) ;
     }
 }

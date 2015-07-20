@@ -132,7 +132,6 @@ XConfigException,/interface/exception.php
 XContext,/interface/base.php
 XDao,/impl/orm/entity.php
 XDataPage,/utls/datapage.php
-XDataLimit,/utls/datapage.php
 XDBCException,/interface/exception.php
 XDBException,/interface/exception.php
 XEntEnv,/interface/ent.php
@@ -141,6 +140,7 @@ XEntity,/interface/ent.php
 XEnv,/utls/env.php
 XErrCode,/interface/exception.php
 XExceptionUtls,/utls/exception.php
+XForbidden,/interface/exception.php
 XFunctionControl,/impl/orm/control.php
 XHtmlResp,/interface/response.php
 XHttpCaller,/utls/http.php

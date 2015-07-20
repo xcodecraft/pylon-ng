@@ -53,7 +53,7 @@ class XHtmlResp   implements XResponse
             }
         }
     }
-    public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$statusCode = 500)
+    public function error($errmsg,$errno = XErrCode::UNKNOW,$statusCode = 510)
     {
         $this->statusCode = $statusCode ;
     }

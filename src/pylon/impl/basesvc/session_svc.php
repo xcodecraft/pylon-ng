@@ -8,20 +8,20 @@ class NullSessionDriver implements ISessionDriver
     public function init()
     { }
 }
-/** 
-    * @brief  Session 服务 
+/**
+    * @brief  Session 服务
  */
-class SessionSvc
+class XSessionSvc
 {
     static $_isStart = false;
     private $driver;
-    /** 
+    /**
         * @brief  构造函数
-        * 
-        * @param $sessName 
+        *
+        * @param $sessName
         * @param $driver  实现 ISessionDriver 接口的具体Dirver
-        * 
-        * @return 
+        *
+        * @return
      */
     public function __construct($sessName,$driver)
     {
@@ -47,46 +47,46 @@ class SessionSvc
     }
     public function getSessionID()
     {
-        self::ensureStarOnce(); 
+        self::ensureStarOnce();
         return session_id();
     }
-    /** 
+    /**
         * @brief 与 get()成对
-        * 
-        * @param $key 
-        * @param $var 
-        * 
-        * @return 
+        *
+        * @param $key
+        * @param $var
+        *
+        * @return
      */
     public function save($key, $var='')
     {
-        self::ensureStarOnce(); 
+        self::ensureStarOnce();
         $_SESSION[$key] = $var;
         return true;
     }
 
-    /** 
-        * @brief 
-        * 
-        * @param $key 
-        * 
-        * @return 
+    /**
+        * @brief
+        *
+        * @param $key
+        *
+        * @return
      */
     public function get($key)
-    {	
-        self::ensureStarOnce(); 
+    {
+        self::ensureStarOnce();
         if (isset($_SESSION[$key]))
             return $_SESSION[$key];
         else
             return NULL;
     }
 
-    /** 
+    /**
         * @brief 同 destory() 方法
-        * 
-        * @param $key 
-        * 
-        * @return 
+        *
+        * @param $key
+        *
+        * @return
      */
     public function del($key)
     {
@@ -94,27 +94,25 @@ class SessionSvc
     }
     public function destroy($key)
     {
-        self::ensureStarOnce(); 
+        self::ensureStarOnce();
         unset($_SESSION[$key]);
         return true;
     }
 
     public function destroyAll()
     {
-        self::ensureStarOnce(); 
+        self::ensureStarOnce();
         $_SESSION = array();
         return true;
     }
 
     public function getAll()
     {
-        self::ensureStarOnce(); 
+        self::ensureStarOnce();
         return $_SESSION;
     }
 
-/** 
+/**
  *  @}
  */
 }
-
-?>

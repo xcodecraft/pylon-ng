@@ -42,7 +42,7 @@ class RestDemoTest extends PHPUnit_Framework_TestCase
     public function testPost()
     {
         $resp    = $this->curl->get("/allgame");
-        $this->assertTrue(XRestResult::matchFail($resp,500,101)) ;
+        $this->assertTrue(XRestResult::matchFail($resp,510,101)) ;
     }
     public function testPostFail()
     {

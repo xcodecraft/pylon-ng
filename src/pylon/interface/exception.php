@@ -7,22 +7,12 @@
 class XErrCode
 {
     const SUCCESS      = 0 ;
-    // const NOT_FOUND    = 404 ;
     const UNDEFINE     = 1 ;
     const UNKNOW       = 2 ;
 
     const CONF_ERROR   = 2001 ;
     const BUG          = 2002 ;
-    // const SYS_UNKNOW   = 1001 ;
-    // const LOGIC_BUG    = 1002 ;
-    // const CONF_BUG    = 1003 ;
-    // const DB_ERR       = 1003 ;
-    // const BIZ_UNKNOW   = 1100 ;
 
-    static public function bizcode($code)
-    {
-        return $code + self::BIZ_UNKNOW ;
-    }
 }
 
 /**
@@ -69,7 +59,7 @@ class XNotFound extends XRuntimeException
 
 /**
  * @ingroup  exception
- * @brief 没有权限 401
+ * @brief 没有身份验证  401
  */
 class XUnAuthorized extends XRuntimeException
 {

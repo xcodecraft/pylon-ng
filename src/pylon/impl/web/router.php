@@ -71,7 +71,6 @@ class XRouter
         $method  = $_SERVER['REQUEST_METHOD'];
         $plog    = new Logger("_pylon");
         $conf    = json_decode($conf,true);
-        $result  = &$xcontext->_result ;
         $itarget = new XIntercepterTarget($request);
         if(isset($conf['uri']))
             $request->mergeArray($conf['uri']);
@@ -121,13 +120,11 @@ class XRouter
         $restLog      = XLogKit::logger("_rest");
         $uri          = $_SERVER['REQUEST_URI'];
         $autoSpeed    = new XLogSpeed("rest[$uri]");
-        // $xcontext     = new XProperty();
         $xcontext     = new XContext ;
         $request      = new XProperty($_REQUEST) ;
         $response     = new XSetting::$respClass ;
         self::log_request($restLog,'info');
         $request->uri = $uri ;
-        // $request->params = $_REQUEST;
 
         //优先配置
         $rest_conf      = self::find_conf($uri);

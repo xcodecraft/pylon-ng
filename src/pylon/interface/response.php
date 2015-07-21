@@ -69,10 +69,12 @@ class XHtmlResp   implements XResponse
 }
 class RespFail
 {
-    public $code     = 500 ;
-    public $message  = "unset response data" ;
-    public $type     = "" ;
-    public $sub_code = 100;
+    public $code        = 500 ;
+    public $message     = "unset response data" ;
+    public $type        = "" ;
+    public $sub_code    = 100;
+    public $prompt_info = "" ;
+    public $prompt_type = "" ;
 
     public function setException($ex)
     {
@@ -132,15 +134,20 @@ class XRestResp implements XResponse
      *
      * @return
      */
-    public function error($errmsg,$errno = XErrCode::BIZ_UNKNOW,$status_code = 500)
+    public function error($errmsg,$errno = XErrCode::UNKNOW,$status_code = 510)
     {
         $this->error->setError($status_code,$errno,$errmsg) ;
         $this->status_code = $status_code ;
     }
+    public function errorPrompt($info,$type="")
+    {
+        $this->error->prompt_info = $prompt_info ;
+        $this->error->prompt_type = $prompt_type ;
+    }
     public function exception($ex)
     {
         $this->error->setException($ex) ;
-        $this->status_code =  $this->error->code ;
+        $this->status_code        = $this->error->code ;
     }
     /**
      * @brief 设置成功
@@ -157,6 +164,7 @@ class XRestResp implements XResponse
         $this->error->noFail();
 
     }
+
     public function is_success()
     {
         return  !$this->error->isFail();

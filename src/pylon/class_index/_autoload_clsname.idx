@@ -91,7 +91,6 @@ cls_scopeecholog,ScopeEchoLog
 cls_scopeexecode,ScopeExeCode
 cls_scopeexec,ScopeExec
 cls_scopesqllog,ScopeSqlLog
-cls_sessionsvc,SessionSvc
 cls_simpledaofactory,SimpleDaoFactory
 cls_simplemapping,SimpleMapping
 cls_simplequeryfactory,SimpleQueryFactory
@@ -173,6 +172,7 @@ cls_xruntimeexception,XRuntimeException
 cls_xscopelogevent,XScopeLogEvent
 cls_xscopelogtag,XScopeLogTag
 cls_xservice,XService
+cls_xsessionsvc,XSessionSvc
 cls_xsetting,XSetting
 cls_xsimpleservice,XSimpleService
 cls_xsqlexecuter,XSQLExecuter

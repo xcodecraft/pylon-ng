@@ -91,7 +91,6 @@ ScopeEchoLog,/impl/utls/logutls.php
 ScopeExec,/impl/utls/logutls.php
 ScopeExeCode,/utls/utility.php
 ScopeSqlLog,/impl/utls/logutls.php
-SessionSvc,/impl/basesvc/session_svc.php
 SimpleDaoFactory,/impl/orm/daobase.php
 SimpleMapping,/impl/orm/entity.php
 SimpleQueryFactory,/impl/orm/query.php
@@ -173,6 +172,7 @@ XRuntimeException,/interface/exception.php
 XScopeLogEvent,/utls/log.php
 XScopeLogTag,/utls/log.php
 XService,/interface/web.php
+XSessionSvc,/impl/basesvc/session_svc.php
 XSetting,/pylon.php
 XSimpleService,/interface/webimpl.php
 XSQLExecuter,/interface/plugin.php

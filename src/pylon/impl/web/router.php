@@ -135,7 +135,7 @@ class XRouter
         }
         if ($rest_conf == null)
         {
-            $response->error("UnFound Service for $uri ",XErrCode::NOT_FOUND,404);
+            $response->error("UnFound Service for $uri ",XErrCode::UNKNOW,404);
         }
         else
         {

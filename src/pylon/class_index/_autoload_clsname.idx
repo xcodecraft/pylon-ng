@@ -84,11 +84,8 @@ cls_pylonmodule,PylonModule
 cls_pylonmodule,PylonModule
 cls_query,Query
 cls_relation,Relation
-cls_respfail,RespFail
-cls_scopeaction,ScopeAction
 cls_scopeautotrans,ScopeAutoTrans
 cls_scopeecholog,ScopeEchoLog
-cls_scopeexecode,ScopeExeCode
 cls_scopeexec,ScopeExec
 cls_scopesqllog,ScopeSqlLog
 cls_simpledaofactory,SimpleDaoFactory
@@ -105,8 +102,6 @@ cls_sqlupdatestatment,SQLUpdateStatment
 cls_statcontrol,StatControl
 cls_statmdb,StatMDB
 cls_statqueue,StatQueue
-cls_statusdirect,StatusDirect
-cls_statusmachine,StatusMachine
 cls_statwatcher,StatWatcher
 cls_stdmapping,StdMapping
 cls_stgutls,StgUtls
@@ -163,12 +158,14 @@ cls_xpylon,XPylon
 cls_xqueryarr,XQueryArr
 cls_xqueryobj,XQueryObj
 cls_xquery,XQuery
+cls_xrespfail,XRespFail
 cls_xresponse,XResponse
 cls_xrestresp,XRestResp
 cls_xrestresult,XRestResult
 cls_xrouter,XRouter
 cls_xruleservice,XRuleService
 cls_xruntimeexception,XRuntimeException
+cls_xscopecode,XScopeCode
 cls_xscopelogevent,XScopeLogEvent
 cls_xscopelogtag,XScopeLogTag
 cls_xservice,XService
@@ -176,6 +173,8 @@ cls_xsessionsvc,XSessionSvc
 cls_xsetting,XSetting
 cls_xsimpleservice,XSimpleService
 cls_xsqlexecuter,XSQLExecuter
+cls_xstatusdirect,XStatusDirect
+cls_xstatusmachine,XStatusMachine
 cls_xunauthorized,XUnAuthorized
 cls_xunittestintecept,XUnitTestIntecept
 cls_xunitviewintecept,XUnitViewIntecept

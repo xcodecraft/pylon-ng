@@ -16,7 +16,7 @@ class StatusMachineTest  extends PHPUnit_Framework_TestCase
     public function setUp() 
     {
 
-        $this->stats = new StatusMachine();
+        $this->stats = new XStatusMachine();
         $this->stats->add(TestStatus.LIVED,TestStatus.DEATH);
         $this->stats->addSon(TestStatus.LIVED, TestStatus.SON,
             TestStatus.FATHER,TestStatus.GRANDFATHER);

@@ -3,7 +3,7 @@
  * @ingroup utls
  * @brief 
  */
-class StatusDirect
+class XStatusDirect
 {
     public $from;
     public $to;
@@ -16,7 +16,7 @@ class StatusDirect
 /** 
  * @brief  状态机
  */
-class StatusMachine
+class XStatusMachine
 {
 
     private $moveableDirects ;
@@ -101,7 +101,7 @@ class StatusMachine
         DBC::requireTrue($len >= 2 );
         for($i =1 ; $i<$len ; ++$i )
         {
-            $left2right = new StatusDirect($statusList[$i-1],$statusList[$i]); 
+            $left2right = new XStatusDirect($statusList[$i-1],$statusList[$i]); 
             array_push($this->moveableDirects,$left2right);
         }
     }

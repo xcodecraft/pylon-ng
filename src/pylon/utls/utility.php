@@ -39,34 +39,10 @@ function assign($array, $index, $default = '')
 {
     return isset($array[$index]) ? $array[$index] : $default;
 }
-/** 
- * @brief 在作用域内，自动执行结束操作，即使作用域内有异常抛出。
+/**
+ * @brief  在Scope内执行代码
  */
-class ScopeAction
-{
-    private $_endFun;
-    /** 
-     * @brief 
-     * 
-     * @param $begFun  开始函数
-     * @param $endFun  结束函数
-     * 
-     * @return 
-     */
-    public function __construct($begFun,$endFun)
-    {   
-        $this->_endFun = $endFun;
-        call_user_func($begFun); 
-    }
-    public function __destruct()
-    {   
-        call_user_func($this->_endFun);
-    }
-}
-/** 
- * @brief 同 ScopeAction 不过放置的是代码，而不是函数
- */
-class ScopeExeCode
+class XScopeCode
 {
 
     private $_endCode;
@@ -85,4 +61,3 @@ class ScopeExeCode
 /** 
  *  @}
  */
-?>

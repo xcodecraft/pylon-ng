@@ -67,7 +67,7 @@ class XHtmlResp   implements XResponse
         $this->statusCode = $code ;
     }
 }
-class RespFail
+class XRespFail
 {
     public $code        = 500 ;
     public $message     = "unset response data" ;
@@ -113,7 +113,7 @@ class XRestResp implements XResponse
     private $data       = array() ;
     public function __construct()
     {
-        $this->error = new RespFail();
+        $this->error = new XRespFail();
     }
     public function jsonp($fun)
     {
@@ -182,7 +182,7 @@ class XRestResp implements XResponse
         if($this->error->isFail())
         {
             $data['error'] = get_object_vars($this->error) ;
-            $outdata = json_encode($data);
+            $outdata       = json_encode($data);
             $logger->error("status code: " . $this->status_code , "response" );
             $logger->error($outdata, "response");
         }

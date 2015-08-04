@@ -125,7 +125,7 @@ class XLogicException extends LogicException
  * @ingroup exception
  * @brief  数据库异常
  */
-class XDBException extends XLogicException
+class XDBException extends XRuntimeException
 {
     public function __construct($msg,$subcode=XErrCode::UNDEFINE)
     {

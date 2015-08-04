@@ -7,7 +7,7 @@ class XEnv
         if ( isset($_SERVER[$key] )  ) {
             return $_SERVER[ $key ] ;
         }
-        throw new XLogicException( "_SERVER[$key] not exists ",500) ;
+        throw new XDBCException( "_SERVER[$key] not exists ") ;
     }
     static public function priority_get($pval,$key)
     {
@@ -16,6 +16,6 @@ class XEnv
         if ( isset($_SERVER[$key] )  ) {
             return $_SERVER[ $key ] ;
         }
-        throw new XLogicException( "_SERVER[$key] not exists ",500) ;
+        throw new XDBCException( "_SERVER[$key] not exists ") ;
     }
 }

@@ -109,7 +109,7 @@ class XEntityBase extends XProperty implements XIAutoUpdate
     {
         $unitwork = XBox::get("unitwork");
         if( $unitwork === null )
-            throw new XLogicException("没有调用 XAppSession::begin()");
+            throw new XDBCException("没有调用 XAppSession::begin()");
         return $unitwork ;
     }
     public function __wakeup()

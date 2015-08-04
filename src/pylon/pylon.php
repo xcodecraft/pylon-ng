@@ -153,7 +153,6 @@ class XLogKit
     public static function logger($name)
     {
         // if (! self::$is_setting)
-        //     throw new XDBException("您还没有设置项目名称，日志将不能准确记录！");
         return new XLogger($name);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-class TransTc extends PHPUnit_Framework_TestCase
+class TransTc //extends PHPUnit_Framework_TestCase
 //class TransTc 
 {
     private $_insertCmd = "insert trans_test (id,name) values(1,\"normal\"); ";

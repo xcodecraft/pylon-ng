@@ -54,13 +54,13 @@ class Translation
 
         $this->_executer = $executer;
         $this->_isReged = false;
-        if(!$this->_executer->haveCollector())
-        {
-
-            $this->_collector = new SqlCollector();
-            $this->_executer->regCollector($this->_collector);
-            $this->_isReged = true;
-        }
+        // if(!$this->_executer->haveCollector())
+        // {
+        //
+        //     $this->_collector = new SqlCollector();
+        //     $this->_executer->regCollector($this->_collector);
+        //     $this->_isReged = true;
+        // }
     }
 
     /** 

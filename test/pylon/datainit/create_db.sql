@@ -38,7 +38,8 @@ create table second_id_genter
     step                           integer(11)
 )
 comment = "mysql table";
-insert into id_genter(id, obj, step) values(1, 'other', 10);
+insert into id_genter(id, obj, step) values(100, 'other', 10);
+insert into id_genter(id, obj, step) values(100, 'book', 1);
 insert into second_id_genter(id, obj, step) values(2, 'other', 10);
 
 create table book

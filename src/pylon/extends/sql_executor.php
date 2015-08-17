@@ -64,18 +64,6 @@ class FastSQLExecutor
         $dblog->info("connect mysql: " . $this->_connectInfo['dsn'] . " user: " . $this->_connectInfo['userName'] );
     }
 
-    public function regCollector($collector)
-    {
-        $this->_sqlCollector = $collector;
-    }
-    public function haveCollector()
-    {
-        return $this->_sqlCollector !=null;
-    }
-    public function unRegCollector()
-    {
-        $this->_sqlCollector = null;
-    }
     public function query($sql, $values=array())
     {
         $dc = DiagnoseContext::create(__METHOD__);

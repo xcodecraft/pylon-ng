@@ -8,7 +8,7 @@ class TestX
         $this->name =$name;
     }
 }
-class IDGenterSvcTC extends PHPUnit_Framework_TestCase
+class IDGenterSvcTC //extends PHPUnit_Framework_TestCase
 {
     private $_executer;
     private $_tableName;
@@ -153,6 +153,8 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
 
     public function testCreateSecond()
     {
+        // return  ;
+
         IDGenterSvcImp::ENABLE_DOUBLE_MASTER();
         $this->Create('second_id_genter', $second=true);
         IDGenterSvcImp::$ENABLE_DOUBLE_MASTER = false;

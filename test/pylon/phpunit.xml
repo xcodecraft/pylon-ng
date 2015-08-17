@@ -11,9 +11,9 @@
         <testsuite name="dba">
             <directory suffix="test.php">dba</directory>
         </testsuite>
-        <!-- <testsuite name="orm"> -->
-        <!--     <directory suffix="test.php">orm</directory> -->
-        <!-- </testsuite> -->
+        <testsuite name="orm">
+            <directory suffix="test.php">orm</directory>
+        </testsuite>
         <testsuite name="utls">
             <directory suffix="test.php">utls</directory>
         </testsuite>

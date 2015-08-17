@@ -77,7 +77,7 @@ class XEntity extends XEntityBase
 
     static public function createIns($cls)
     {
-        $obj = new $cls(XID::create()) ;
+        $obj = new $cls(XID::create($cls)) ;
         self::regist($obj) ;
         return $obj;
     }

@@ -217,6 +217,10 @@ class XHttpCaller
         $this->call_data  = $data ;
         return $this->callRemote('POST',$url,$timeout);
     }
+    public function setHeader($value) 
+    {
+        curl_setopt($this->ch,CURLOPT_HTTPHEADER,array($value));
+    }
 
     /**
      * @brief del 调用

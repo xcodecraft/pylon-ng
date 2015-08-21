@@ -141,8 +141,10 @@ class XHttpCaller
     public function  __construct($conf)
     {
         assert($conf != null);
-        $this->conf    = $conf;
-        $this->ch      = curl_init();
+        $this->conf        = $conf;
+        $this->ch          = curl_init();
+        $this->headers     = array();
+        $this->keepHeaders = array();
     }
     public function __destruct()
     {
@@ -189,9 +191,9 @@ class XHttpCaller
         if(is_array($data)){
             $data = http_build_query($data);
         }
+        array_push($this->headers,'Content-Length: '.strlen($data)) ;
         $url = $this->makeURL($url);
         curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"PUT");
-        curl_setopt($this->ch,CURLOPT_HTTPHEADER,array('Content-Length: '.strlen($data)));
         curl_setopt($this->ch,CURLOPT_POSTFIELDS,$data);
         $this->call_data = $data;
         return $this->callRemote('PUT',$url,$timeout);
@@ -210,16 +212,24 @@ class XHttpCaller
         if(is_array($data)){
             $data = http_build_query($data);
         }
+        array_push($this->headers,'Content-Length: '.strlen($data)) ;
         $url = $this->makeURL($url);
         curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"POST");
-        curl_setopt($this->ch,CURLOPT_HTTPHEADER,array('Content-Length: '.strlen($data)));
         curl_setopt($this->ch,CURLOPT_POSTFIELDS,$data);
         $this->call_data  = $data ;
         return $this->callRemote('POST',$url,$timeout);
     }
-    public function setHeader($value) 
+    public function setHeader($value,$mutiRequ=true) 
     {
-        curl_setopt($this->ch,CURLOPT_HTTPHEADER,array($value));
+        if( $mutiRequ)
+        {
+            array_push($this->keepHeaders,$value) ;
+        }
+        else
+        {
+            array_push($this->headers,$value) ;
+        }
+        // curl_setopt($this->ch,CURLOPT_HTTPHEADER,array($value));
     }
 
     /**
@@ -258,13 +268,18 @@ class XHttpCaller
     private function callRemote($method,$url,$timeout=0)
     {/*{{{*/
         $url    = $this->bindCaller($url);
-        $header_arr = array("Host:" . $this->conf->domain);
+        array_push($this->headers,"Host:" . $this->conf->domain );
+        // $header_arr[] = "Accept-Language: CH";
         //TID
         if(class_exists('XTid', false)){
-            $header_arr[] = 'PYLON-TID: ' . XTid::get();
+            array_push($this->headers,'PYLON-TID: ' . XTid::get()) ;
+        }
+        if(!empty($this->keepHeaders))
+        {
+            $this->headers = array_merge($this->headers, $this->keepHeaders );
         }
 
-        curl_setopt($this->ch, CURLOPT_HTTPHEADER, $header_arr);
+        curl_setopt($this->ch, CURLOPT_HTTPHEADER, $this->headers);
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($this->ch, CURLOPT_URL,             $url);
         curl_setopt($this->ch, CURLOPT_PORT,            $this->conf->port);
@@ -326,6 +341,7 @@ class XHttpCaller
             $slowmsg = "[slow] usetime: $usetime(s), code: $statusCode, timeout: $timeout_info, port: $port, method: $method, url: $url ";
             $this->log('warn', $slowmsg, $event);
         }
+        $this->headers = array();
 
         $this->call_data  = null ;;
         return $response ;

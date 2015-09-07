@@ -48,6 +48,7 @@ _env:
                 DB_PWD    : "pylon123"
                 DB_NAME   : "pylon_${USER}"
                 PHP_ERROR : "E_ALL & ~E_NOTICE"
+                DEBUG     : "FALSE"
 
                 EXT_VER   : "30"
                 EXT_NAME  : "pylon"
@@ -56,6 +57,11 @@ _env:
             - !R.path
                 dst: "${PRJ_ROOT}/conf/used/"
 
+    - !R.env 
+        _name : "debug"
+        _res  :
+            - !R.vars
+                DEBUG     : "TRUE"
     - !R.env
         _name : "dev"
         _mix: "_dev,php56,centos66,base"

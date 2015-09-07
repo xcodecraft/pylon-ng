@@ -137,6 +137,11 @@ class XHttpCaller
 {
     private $ch;
     private $conf;
+    private static  $debug_echo = false ;
+
+    public static function failDebug($on) {
+        self::$debug_echo  = $on ;
+    }
 
     public function  __construct($conf)
     {
@@ -326,6 +331,17 @@ class XHttpCaller
         {
             $errMsg = curl_error($this->ch);
             $body   = lineBody($response->body()) ;
+            if (self::$debug_echo)
+            {
+                echo "$curl  failed! $errmsg,$event" ;
+                echo "\n" ;
+                echo "[reqest,$port:$method,timeout:$timeout_info] url: $url" ;
+                echo "\n" ;
+                echo "curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" " ;
+                echo "\n" ;
+                echo "[respons: {$response->statusCode} ($usetime s)] body: $body" ;
+                echo "\n" ;
+            }
             $this->log('error',"$url curlerr: ".$errMsg,$event);
             $this->log("error","[reqest,$port:$method,timeout:$timeout_info] url: $url",$event);
             $this->log("error","curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" ",$event);
@@ -345,7 +361,7 @@ class XHttpCaller
 
         $this->call_data  = null ;;
         return $response ;
-    }/*}}}*/
+    }
 
 
 }

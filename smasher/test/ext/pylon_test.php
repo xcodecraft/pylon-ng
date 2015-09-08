@@ -43,15 +43,15 @@ $l3->debug("xxxxdebug","r");
 $l3->info("xxxxinfo","w");
 
 
-pylon_sdict_remove("php_test");
-pylon_sdict_create("php_test",1);
-pylon_sdict_create("php_test",1,1);
-pylon_sdict_create("php_test",1,1,1);
-$root=$_SERVER['HOME'] . "/devspace/pylon-ng/smasher/data/" ;
-echo $root;
-pylon_sdict_data("$root/data_1.txt","=","****");
-var_dump(pylon_sdict_find("=cls_xaop"));
-var_dump(pylon_sdict_count());
+// pylon_sdict_remove("php_test");
+// pylon_sdict_create("php_test",1);
+// pylon_sdict_create("php_test",1,1);
+// pylon_sdict_create("php_test",1,1,1);
+// $root=$_SERVER['HOME'] . "/devspace/pylon-ng/smasher/data/" ;
+// echo $root;
+// pylon_sdict_data("$root/data_1.txt","=","****");
+// var_dump(pylon_sdict_find("=cls_xaop"));
+// var_dump(pylon_sdict_count());
 
 
 pylon_dict_data("$root/data_2.txt","=","****");

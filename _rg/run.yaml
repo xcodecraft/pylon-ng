@@ -85,7 +85,6 @@ _sys:
                     bin    : "/usr/local/php-${PHP_VER}/bin/php"
                     ini    : "${PRJ_ROOT}/smasher/conf/used/php.ini"
                     script : "${PRJ_ROOT}/smasher/test/ext/pylon_test.php"
-
                 - !R.copy
                     src    : "${PRJ_ROOT}/smasher/bin/${FULL_EXT}"
                     dst    : "${PRJ_ROOT}/src/modules/${OS_VER}/${PHP_VER}/${FULL_EXT}"

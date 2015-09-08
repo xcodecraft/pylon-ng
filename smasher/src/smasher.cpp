@@ -15,43 +15,43 @@ using namespace std;
 using namespace boost;
 
 
-void shared_dict_using(const char*  proc_space )
-{
-    shared_dict::using_space(proc_space);
-}
+// void shared_dict_using(const char*  proc_space )
+// {
+//     shared_dict::using_space(proc_space);
+// }
+//
+// void shared_dict_create(const char*  proc_space, int msize)
+// {
+//     shared_dict::create_space(proc_space,msize);
+// }
+//
+// void shared_dict_remove(const char*  space)
+// {
+//     shared_dict::remove_space(space);
+//
+// }
+//
+// int shared_dict_data(const char * data_file,const char* key_prefix , const char* data_prefix, bool force)
+// {
+//     return shared_dict::ins()->using_data(data_file,key_prefix,data_prefix,force);
+// }
+//
+// int shared_dict_find(const char* cls,char * buf , int buf_len)
+// {
+//     return shared_dict::read_ins()->find(cls,buf,buf_len) ? 1: 0;
+// }
+//
 
-void shared_dict_create(const char*  proc_space, int msize)
-{
-    shared_dict::create_space(proc_space,msize);
-}
-
-void shared_dict_remove(const char*  space)
-{
-    shared_dict::remove_space(space);
-
-}
-
-int shared_dict_data(const char * data_file,const char* key_prefix , const char* data_prefix, bool force)
-{
-    return shared_dict::ins()->using_data(data_file,key_prefix,data_prefix,force);
-}
-
-int shared_dict_find(const char* cls,char * buf , int buf_len)
-{
-    return shared_dict::read_ins()->find(cls,buf,buf_len) ? 1: 0;
-}
-
-
-int shared_dict_count()
-{
+// int shared_dict_count()
+// {
 //    try{
 //        return shared_dict::read_ins()->data_count();
 //    }
 //    catch(boost::interprocess::interprocess_exception& e){
 //        std::cout<< "error: " <<  e.what();
 //    }
-    return 0;
-}
+//     return 0;
+// }
 
 int dict_data(const char * data_file,const char* key_prefix , const char* data_prefix,bool force )
 {

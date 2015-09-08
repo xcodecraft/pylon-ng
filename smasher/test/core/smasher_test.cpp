@@ -108,30 +108,30 @@ BOOST_AUTO_TEST_CASE( test_dict )
 }
 
 
-BOOST_AUTO_TEST_CASE( test_sdict )
-{
-    log_kit::init("pylon","",log_kit::debug);
-    char buffer[1024] ;
-    memset(buffer,0,1024 ) ;
-    shared_dict_create("sdict_ut", 10) ;
-
-    int cnt = 0 ;
-    cnt = shared_dict_data("../data/_autoload_clspath.idx","","", false);
-    cout << "shared load data cnt : " << cnt  << endl ;
-    BOOST_CHECK( cnt >  0 ) ;
-
-    cnt = shared_dict_data("../data/not_found.idx","","",true);
-    BOOST_CHECK( cnt == 0 ) ;
-
-    cnt = shared_dict_data("../data/_autoload_clspath.idx","","", false);
-    BOOST_CHECK( cnt == 0 ) ;
-
-    cnt = shared_dict_data("../data/_autoload_clspath.idx","","", true);
-    BOOST_CHECK( cnt >  0 ) ;
-
-    int val =  shared_dict_find("XPylon",buffer,1024 );
-    BOOST_CHECK(val);
-    cout << "shared find: " << buffer <<  " return : " << val << endl;
-    shared_dict_remove ("sdict_ut" ) ;
-}
-
+// BOOST_AUTO_TEST_CASE( test_sdict )
+// {
+//     log_kit::init("pylon","",log_kit::debug);
+//     char buffer[1024] ;
+//     memset(buffer,0,1024 ) ;
+//     shared_dict_create("sdict_ut", 10) ;
+//
+//     int cnt = 0 ;
+//     cnt = shared_dict_data("../data/_autoload_clspath.idx","","", false);
+//     cout << "shared load data cnt : " << cnt  << endl ;
+//     BOOST_CHECK( cnt >  0 ) ;
+//
+//     cnt = shared_dict_data("../data/not_found.idx","","",true);
+//     BOOST_CHECK( cnt == 0 ) ;
+//
+//     cnt = shared_dict_data("../data/_autoload_clspath.idx","","", false);
+//     BOOST_CHECK( cnt == 0 ) ;
+//
+//     cnt = shared_dict_data("../data/_autoload_clspath.idx","","", true);
+//     BOOST_CHECK( cnt >  0 ) ;
+//
+//     int val =  shared_dict_find("XPylon",buffer,1024 );
+//     BOOST_CHECK(val);
+//     cout << "shared find: " << buffer <<  " return : " << val << endl;
+//     shared_dict_remove ("sdict_ut" ) ;
+// }
+//

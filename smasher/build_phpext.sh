@@ -28,12 +28,5 @@ function build_ext()
 
 }
 
-case $1 in
-    _config)
-        exit ;
-        ;;
-    _start)
-        build_ext
-        exit ;
-        ;;
-esac
+
+build_ext

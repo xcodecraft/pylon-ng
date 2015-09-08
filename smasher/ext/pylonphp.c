@@ -45,12 +45,12 @@ static int le_pylonphp;
  * Every user visible function must have an entry in pylonphp_functions[].
  */
 zend_function_entry pylonphp_functions[] = {
-    PHP_FE(pylon_sdict_using,NULL)
-    PHP_FE(pylon_sdict_create,NULL)
-    PHP_FE(pylon_sdict_remove,NULL)
-    PHP_FE(pylon_sdict_data,NULL)
-    PHP_FE(pylon_sdict_find,NULL)
-    PHP_FE(pylon_sdict_count,NULL)
+    /* PHP_FE(pylon_sdict_using,NULL) */
+    /* PHP_FE(pylon_sdict_create,NULL) */
+    /* PHP_FE(pylon_sdict_remove,NULL) */
+    /* PHP_FE(pylon_sdict_data,NULL) */
+    /* PHP_FE(pylon_sdict_find,NULL) */
+    /* PHP_FE(pylon_sdict_count,NULL) */
 
     PHP_FE(pylon_dict_data,NULL)
     PHP_FE(pylon_dict_find,NULL)
@@ -174,58 +174,58 @@ PHP_FUNCTION(confirm_pylonphp_compiled)
  * vim600: noet sw=4 ts=4 fdm=marker
  * vim<600: noet sw=4 ts=4
  */
-PHP_FUNCTION(pylon_sdict_create)
-{
+/* PHP_FUNCTION(pylon_sdict_create) */
+/* { */
+/*  */
+/*    char *space =NULL ; */
+/*    int space_len=0; */
+/*    long size=1; */
+/*    long dynload=1; */
+/*    long loadpgs=1; */
+/*    int  argc = ZEND_NUM_ARGS(); */
+/*    if (argc == 1 ) */
+/*        if (zend_parse_parameters(argc TSRMLS_CC, "s", &space,&space_len) == FAILURE)  return ; */
+/*  */
+/*    if (argc == 2 ) */
+/*        if (zend_parse_parameters(argc TSRMLS_CC, "sl", &space,&space_len,&size) == FAILURE)  return ; */
+/*    if (argc == 3 ) */
+/*        if (zend_parse_parameters(argc TSRMLS_CC, "sll", &space,&space_len,&size,&dynload) == FAILURE)  return ; */
+/*    if (argc == 4 ) */
+/*        if (zend_parse_parameters(argc TSRMLS_CC, "slll", &space,&space_len,&size,&dynload,&loadpgs) == FAILURE)  return ; */
+/*    shared_dict_create(space,size); */
+/* } */
 
-   char *space =NULL ;
-   int space_len=0;
-   long size=1;
-   long dynload=1;
-   long loadpgs=1;
-   int  argc = ZEND_NUM_ARGS();
-   if (argc == 1 )
-       if (zend_parse_parameters(argc TSRMLS_CC, "s", &space,&space_len) == FAILURE)  return ;
-
-   if (argc == 2 )
-       if (zend_parse_parameters(argc TSRMLS_CC, "sl", &space,&space_len,&size) == FAILURE)  return ;
-   if (argc == 3 )
-       if (zend_parse_parameters(argc TSRMLS_CC, "sll", &space,&space_len,&size,&dynload) == FAILURE)  return ;
-   if (argc == 4 )
-       if (zend_parse_parameters(argc TSRMLS_CC, "slll", &space,&space_len,&size,&dynload,&loadpgs) == FAILURE)  return ;
-   shared_dict_create(space,size);
-}
-
-PHP_FUNCTION(pylon_sdict_using)
-{
-
-   char *space =NULL ;
-   int space_len=0;
-   int  argc = ZEND_NUM_ARGS();
-   if (argc !=1 ) WRONG_PARAM_COUNT;
-   if (argc == 1 )
-       if (zend_parse_parameters(argc TSRMLS_CC, "s", &space,&space_len) == FAILURE)  return ;
-
-   shared_dict_using(space);
-}
+/* PHP_FUNCTION(pylon_sdict_using) */
+/* { */
+/*  */
+/*    char *space =NULL ; */
+/*    int space_len=0; */
+/*    int  argc = ZEND_NUM_ARGS(); */
+/*    if (argc !=1 ) WRONG_PARAM_COUNT; */
+/*    if (argc == 1 ) */
+/*        if (zend_parse_parameters(argc TSRMLS_CC, "s", &space,&space_len) == FAILURE)  return ; */
+/*  */
+/*    shared_dict_using(space); */
+/* } */
 
 
-PHP_FUNCTION(pylon_sdict_data)
-{
-
-    char* key_prefix  = NULL ;
-    char* data_prefix = NULL ;
-    char* file;
-    int data_plen,key_plen,file_len ;
-
-    int  argc = ZEND_NUM_ARGS();
-    if (argc !=3 ) WRONG_PARAM_COUNT;
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "sss", &file ,&file_len,
-                &key_prefix,&key_plen,&data_prefix,&data_plen) == FAILURE) return ;
-
-/*    *(prefix + prefix_len) = 0 ;*/
-/*    *(file   + file_len )  = 0 ;*/
-    shared_dict_data(file,key_prefix,data_prefix,false);
-}
+/* PHP_FUNCTION(pylon_sdict_data) */
+/* { */
+/*  */
+/*     char* key_prefix  = NULL ; */
+/*     char* data_prefix = NULL ; */
+/*     char* file; */
+/*     int data_plen,key_plen,file_len ; */
+/*  */
+/*     int  argc = ZEND_NUM_ARGS(); */
+/*     if (argc !=3 ) WRONG_PARAM_COUNT; */
+/*     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "sss", &file ,&file_len, */
+/*                 &key_prefix,&key_plen,&data_prefix,&data_plen) == FAILURE) return ; */
+/*  */
+/* #<{(|    *(prefix + prefix_len) = 0 ;|)}># */
+/* #<{(|    *(file   + file_len )  = 0 ;|)}># */
+/*     shared_dict_data(file,key_prefix,data_prefix,false); */
+/* } */
 PHP_FUNCTION(pylon_dict_data)
 {
 
@@ -256,28 +256,28 @@ PHP_FUNCTION(pylon_rest_data)
     rest_data(file);
 }
 
-PHP_FUNCTION(pylon_sdict_find)
-{
-
-
-    char *key=NULL ;
-    int len=0;
-    int  argc = ZEND_NUM_ARGS();
-    if (argc !=1 ) WRONG_PARAM_COUNT;
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &key,&len ) == FAILURE) return ;
-
-/*    *(key+ len) = 0 ;*/
-    static char buf[BUF_SIZE];
-    memset(buf,0,BUF_SIZE);
-    if(shared_dict_find(key,buf,BUF_SIZE))
-    {
-        RETURN_STRING(buf, 1);
-    }
-    else
-    {
-        RETURN_NULL();
-    }
-}
+/* PHP_FUNCTION(pylon_sdict_find) */
+/* { */
+/*  */
+/*  */
+/*     char *key=NULL ; */
+/*     int len=0; */
+/*     int  argc = ZEND_NUM_ARGS(); */
+/*     if (argc !=1 ) WRONG_PARAM_COUNT; */
+/*     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &key,&len ) == FAILURE) return ; */
+/*  */
+/* #<{(|    *(key+ len) = 0 ;|)}># */
+/*     static char buf[BUF_SIZE]; */
+/*     memset(buf,0,BUF_SIZE); */
+/*     if(shared_dict_find(key,buf,BUF_SIZE)) */
+/*     { */
+/*         RETURN_STRING(buf, 1); */
+/*     } */
+/*     else */
+/*     { */
+/*         RETURN_NULL(); */
+/*     } */
+/* } */
 PHP_FUNCTION(pylon_dict_find)
 {
 
@@ -364,12 +364,12 @@ PHP_FUNCTION(pylon_dict_prompt)
     }
 }
 
-PHP_FUNCTION(pylon_sdict_count)
-{
-
-    int count = shared_dict_count();
-    RETURN_LONG(count);
-}
+/* PHP_FUNCTION(pylon_sdict_count) */
+/* { */
+/*  */
+/*     int count = shared_dict_count(); */
+/*     RETURN_LONG(count); */
+/* } */
 
 PHP_FUNCTION(pylon_dict_count)
 {
@@ -378,16 +378,16 @@ PHP_FUNCTION(pylon_dict_count)
     RETURN_LONG(count);
 }
 
-PHP_FUNCTION(pylon_sdict_remove)
-{
-    char* space= NULL ;
-    int   space_len;
-
-    int  argc = ZEND_NUM_ARGS();
-    if (argc !=1 ) WRONG_PARAM_COUNT;
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &space,&space_len) == FAILURE) return ;
-    shared_dict_remove(space);
-}
+/* PHP_FUNCTION(pylon_sdict_remove) */
+/* { */
+/*     char* space= NULL ; */
+/*     int   space_len; */
+/*  */
+/*     int  argc = ZEND_NUM_ARGS(); */
+/*     if (argc !=1 ) WRONG_PARAM_COUNT; */
+/*     if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &space,&space_len) == FAILURE) return ; */
+/*     shared_dict_remove(space); */
+/* } */
 
 
 

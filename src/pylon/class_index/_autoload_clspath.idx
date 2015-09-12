@@ -116,6 +116,7 @@ ValueColumnStg,/impl/dba/express.php
 XAop,/interface/ioc.php
 XAopRule,/impl/web/aop.php
 XAopRuleSet,/impl/web/aop.php
+XAPICallException,/interface/exception.php
 XAppSession,/interface/ent.php
 XAssembly,/interface/ioc.php
 XBizException,/interface/exception.php

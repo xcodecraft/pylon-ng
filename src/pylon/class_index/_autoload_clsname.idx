@@ -116,6 +116,7 @@ cls_valuecolumnstg,ValueColumnStg
 cls_xaopruleset,XAopRuleSet
 cls_xaoprule,XAopRule
 cls_xaop,XAop
+cls_xapicallexception,XAPICallException
 cls_xappsession,XAppSession
 cls_xassembly,XAssembly
 cls_xbizexception,XBizException

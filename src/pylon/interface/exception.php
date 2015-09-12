@@ -33,7 +33,15 @@ class XRuntimeException extends RuntimeException
 /**
     * @brief 用户输入异常
  */
-class XUserInputException extends RuntimeException
+class XUserInputException extends XRuntimeException
+{
+    public function __construct($message,$subcode=XErrCode::UNDEFINE)
+    {
+        parent::__construct(400,$message,$subcode );
+    }
+}
+
+class XAPICallException extends XRuntimeException
 {
     public function __construct($message,$subcode=XErrCode::UNDEFINE)
     {

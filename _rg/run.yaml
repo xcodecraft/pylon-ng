@@ -48,7 +48,7 @@ _env:
                 DB_PWD    : "pylon123"
                 DB_NAME   : "pylon_${USER}"
                 PHP_ERROR : "E_ALL & ~E_NOTICE"
-                DEBUG     : "FALSE"
+                DEBUG     : "FALSE1"
 
                 EXT_VER   : "30"
                 EXT_NAME  : "pylon"

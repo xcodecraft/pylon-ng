@@ -49,7 +49,7 @@ class XHtmlResp   implements XResponse
 
             }
             else{
-                PYL_HttpHeader::out_header($this->statusCode);
+                PYL_HttpHeader::out_header((int)$this->statusCode);
             }
         }
     }
@@ -171,10 +171,11 @@ class XRestResp implements XResponse
     }
     public function send($logger,$set_header=true)
     {
+
         if($set_header === true)
         {
             DBC::requireNotNull($this->status_code);
-            PYL_HttpHeader::out_header($this->status_code);
+            PYL_HttpHeader::out_header((int)$this->status_code);
             header('Content-type: application/json');
         }
 

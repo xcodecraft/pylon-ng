@@ -15,7 +15,7 @@ class XHttpConf
     public  $port       = 8360;
     public  $server     = null;
     public  $caller     = "none";
-    public  $exception  = false;
+    public  $exception  = null ;
     public function __construct()
     {
     }
@@ -319,13 +319,13 @@ class XHttpCaller
         $port      = $this->conf->port;
         $this->log("info",$reqestMsg,$event);
         $this->log("debug","curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" -d {$this->call_data} ",$event);
-        $stime       = microtime(true);
-        $r           = curl_exec($this->ch);
-        $errono      = curl_errno($this->ch);
+        $stime      = microtime(true);
+        $r          = curl_exec($this->ch);
+        $errono     = curl_errno($this->ch);
         $statusCode = curl_getinfo($this->ch,CURLINFO_HTTP_CODE);
-        $response    = new XHttpResponse($statusCode,$r);
-        $etime       = microtime(true);
-        $usetime     = sprintf("%.3f", $etime-$stime);
+        $response   = new XHttpResponse($statusCode,$r);
+        $etime      = microtime(true);
+        $usetime    = sprintf("%.3f", $etime-$stime);
 
         if ($errono !=0  || $statusCode > 300)
         {
@@ -346,6 +346,11 @@ class XHttpCaller
             $this->log("error","[reqest,$port:$method,timeout:$timeout_info] url: $url",$event);
             $this->log("error","curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" ",$event);
             $this->log("error","[respons: {$response->statusCode} ($usetime s)] body: $body",$event);
+            if(!empty($this->conf->exception))
+            {
+                $cls = $this->conf->exception ;
+                throw new $cls("curl $rul failed!");
+            }
         }
         else {
             $body   = lineBody($response->body()) ;

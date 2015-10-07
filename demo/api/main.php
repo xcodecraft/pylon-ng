@@ -7,5 +7,4 @@ XSetting::$prjName   = "pylon-ng" ;
 XSetting::$logTag    = XSetting::ensureEnv("USER") ;
 XSetting::$runPath   = XSetting::ensureEnv("RUN_PATH") ;
 XSetting::$bootstrap = "api/bootstrap.php" ;
-
 XPylon::serving();

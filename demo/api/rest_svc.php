@@ -1,5 +1,6 @@
 <?php
-class MyGameSvc extends XSimpleService implements XService //@REST_RULE: /mygame/$uid/,/mygame/$uid
+//@REST_RULE: /mygame/$uid/,/mygame/$uid
+class MyGameSvc extends XSimpleService implements XService 
 {
     public function _post($xcontext,$request,$response)
     {
@@ -17,7 +18,8 @@ class MyGameSvc extends XSimpleService implements XService //@REST_RULE: /mygame
         $response->success("hellow world user: " . $request->uid );
     }
 }
-class GameSvc extends XSimpleService implements XService   //@REST_RULE: /game/$gkey
+//@REST_RULE: /game/$gkey
+class GameSvc extends XSimpleService implements XService   
 {
     public function _get($xcontext,$request,$response)
     {
@@ -57,7 +59,8 @@ class AllgameSvc extends XSimpleService implements XService   //@REST_RULE: /all
  * eg:  curl -X DELETE '${DOMAIN}:8360/books/123'
  */
 
-class BooksSvc extends XSimpleService implements XService   //@REST_RULE: /books/$uid,/books/,/books
+//@REST_RULE: /books/$uid,/books/,/books
+class BooksSvc extends XSimpleService implements XService   
 {
     public function _post($xcontext,$request,$response)
     {

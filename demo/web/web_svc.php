@@ -1,5 +1,6 @@
 <?php
-class Htmlsvc extends XSimpleService implements XService   //@REST_RULE: /web/html/$sub
+//@REST_RULE: /web/html/$sub
+class Htmlsvc extends XSimpleService implements XService   
 {
 
     public function _get($xcontext,$request,$response)
@@ -10,7 +11,8 @@ class Htmlsvc extends XSimpleService implements XService   //@REST_RULE: /web/ht
 
 }
 
-class HtmlSvc2 extends XRuleService  implements XService  //@REST_RULE: /web/call/$method
+//@REST_RULE: /web/call/$method
+class HtmlSvc2 extends XRuleService  implements XService  
 {
 
     public function info($xcontext,$request,$response)

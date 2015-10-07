@@ -13,6 +13,7 @@ interface XService
 
     public function _before($xcontext,$request,$response);
     public function _after($xcontext,$request,$response);
+    public function _head($xcontext,$request,$response);
     public function _get($xcontext,$request,$response);
     public function _post($xcontext,$request,$response);
     public function _put($xcontext,$request,$response);

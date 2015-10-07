@@ -14,6 +14,11 @@ class XSimpleService implements XService
     {
         throw new XNotImplemented("Unimplemnt " . get_class($this) ."::" .  __FUNCTION__);
     }
+
+    public function _head($xcontext,$request,$response)
+    {
+        throw new XNotImplemented("Unimplemnt " . get_class($this) ."::" .  __FUNCTION__);
+    }
     public function _post($xcontext,$request,$response)
     {
         throw new XNotImplemented("Unimplemnt " . get_class($this) ."::" .  __FUNCTION__);
@@ -62,6 +67,11 @@ class XRuleService implements XService
         throw new XNotImplemented("Unimplemnt " . get_class($this) ."::" .  $method );
     }
     public function _get($xcontext,$request,$response)
+    {
+        $this->callMethod($xcontext,$request,$response) ;
+    }
+
+    public function _head($xcontext,$request,$response)
     {
         $this->callMethod($xcontext,$request,$response) ;
     }

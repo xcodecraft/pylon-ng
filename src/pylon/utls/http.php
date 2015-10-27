@@ -16,6 +16,8 @@ class XHttpConf
     public  $server     = null;
     public  $caller     = "none";
     public  $exception  = null ;
+    public  $bHttps     = null;
+
     public function __construct()
     {
     }
@@ -29,13 +31,14 @@ class XHttpConf
      *
      * @return
      */
-    static public function localSvc($domain,$port=8360,$caller="unknow")
+    static public function localSvc($domain,$port=8360,$caller="unknow",$bHttps=null)
     {
         $conf           = new XHttpConf ;;
         $conf->domain   = $domain ;
         $conf->server   = "127.0.0.1";
         $conf->logger   = XLogkit::logger("net") ;
         $conf->port     = $port ;
+        $conf->bHttps   = $bHttps;
         return $conf;
     }
     /**
@@ -48,7 +51,7 @@ class XHttpConf
      *
      * @return
      */
-    public function conf($domain,$port,$caller="unknow",$proxy=null,$logger=null)
+    public function conf($domain,$port,$caller="unknow",$proxy=null,$logger=null,$bHttps=null)
     {
         $this->domain  = $domain;
         if($logger == null)
@@ -58,6 +61,7 @@ class XHttpConf
         $this->proxy   = $proxy;
         $this->logger  = $logger;
         $this->caller  = $caller;
+        $this->bHttps  = $bHttps;
     }
 }
 
@@ -160,9 +164,13 @@ class XHttpCaller
     {
         $server = $this->conf->domain ;
         if(! empty($this->conf->server) )$server = $this->conf->server ;
-        if($this->conf->port && $this->conf->port != 80){
+        if(!is_null($this->conf->bHttps))
+            return $url = "https://" . $server. $url;
+        if($this->conf->port && $this->conf->port != 80)
+        {
             $url = "http://$server:{$this->conf->port}{$url}";
-        }else{
+        }
+        else{
             $url = "http://" . $server. $url;
         }
         return $url ;
@@ -224,7 +232,7 @@ class XHttpCaller
         $this->call_data  = $data ;
         return $this->callRemote('POST',$url,$timeout);
     }
-    public function setHeader($value,$mutiRequ=true) 
+    public function setHeader($value,$mutiRequ=true)
     {
         if( $mutiRequ)
         {
@@ -314,6 +322,12 @@ class XHttpCaller
         {
             curl_setopt($this->ch, CURLOPT_PROXY, $this->conf->proxy);
             $this->log("debug","[proxy] ".$this->conf->proxy,$event);
+        }
+        if(!empty($this->conf->bHttps))
+        {
+            curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false);
+            $this->log("debug","[https] ",$event);
         }
 
         $port      = $this->conf->port;

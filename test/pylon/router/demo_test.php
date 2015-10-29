@@ -50,4 +50,9 @@ class RestDemoTest extends PHPUnit_Framework_TestCase
         $resp  = $this->curl->post("/mygame/123",array());
         $this->assertTrue(XRestResult::matchFail($resp,404,2)) ;
     }
+    public function testUnAuth()
+    {
+        $resp  = $this->curl->get("/err/unauth",array());
+        $this->assertTrue(XRestResult::matchFail($resp,401)) ;
+    }
 }

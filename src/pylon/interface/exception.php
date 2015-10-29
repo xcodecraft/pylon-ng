@@ -24,6 +24,7 @@ class XRuntimeException extends RuntimeException
     public function __construct($status_code,$msg,$subcode)
     {
         $this->status_code = $status_code;
+        $this->headers     = array() ;
         $this->sub_code    = $subcode ;
         $code              = "$status_code:$subcode" ;
         parent::__construct($msg,$code);
@@ -74,6 +75,8 @@ class XUnAuthorized extends XRuntimeException
     public function __construct($msg="",$subcode=XErrCode::UNDEFINE)
     {
         parent::__construct(401,$msg,$subcode);
+        $headmsg = empty($msg) ? "unknow usename" : $msg ;
+        $this->headers["WWW-Authenticate"] = $headmsg  ;
     }
 }
 

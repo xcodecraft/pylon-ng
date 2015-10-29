@@ -3,6 +3,7 @@ class XHtmlResp   implements XResponse
 {
 
     public $statusCode = 500 ;
+    public $headers     = array() ;
     protected $root     = "" ;
     protected $jumpURL  = null ;
     public function setRoot($root)
@@ -42,6 +43,11 @@ class XHtmlResp   implements XResponse
 
         if($set_header === true)
         {
+            foreach($this->headers as $name => $value)
+            {
+                header("$name: " . $value);
+            }
+
             if ($this->jumpURL != null)
             {
 
@@ -63,6 +69,10 @@ class XHtmlResp   implements XResponse
         if(empty($code) )
         {
             $code = $this->status_code ;
+        }
+        if(!empty($ex->headers))
+        {
+            $this->headers = $ex->headers ;
         }
         $this->statusCode = $code ;
     }
@@ -107,6 +117,7 @@ class XRespFail
 class XRestResp implements XResponse
 {
     public $status_code = 500 ;
+    public $headers     = array() ;
     public $error       = null ;
     public $jsonpEnable = false ;
     public $jsonpCall   = "";
@@ -147,6 +158,11 @@ class XRestResp implements XResponse
     public function exception($ex)
     {
         $this->error->setException($ex) ;
+        if(!empty($ex->headers))
+        {
+            $this->headers = $ex->headers ;
+        }
+
         $this->status_code        = $this->error->code ;
     }
     /**
@@ -175,6 +191,10 @@ class XRestResp implements XResponse
         if($set_header === true)
         {
             DBC::requireNotNull($this->status_code);
+            foreach($this->headers as $name => $value)
+            {
+                header("$name: " . $value);
+            }
             PYL_HttpHeader::out_header((int)$this->status_code);
             header('Content-type: application/json');
         }

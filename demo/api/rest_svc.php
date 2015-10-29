@@ -65,10 +65,6 @@ class BooksSvc extends XSimpleService implements XService
     public function _post($xcontext,$request,$response)
     {
         // $uid         = XssFilter::filter($request->uid);          //防止XSS攻击,不用做SQL注入处理，框架会帮我们完成
-        // $book_name   = XssFilter::filter($request->book_name);    //防止XSS攻击
-        // $author_name = XssFilter::filter($request->author_name);  //防止XSS攻击
-
-        XLogKit::logger("rest")->info(__CLASS__.'::'.__FUNCTION__.' ['.__LINE__.'] '."uid=$uid&book_name=$book_name&author_name=$author_name");//记日志
         $response->error("post error ",XErrCode::SYS_UNKNOW,404);//error(错误描述，错误号，http状态码),错误返回:json格式
     }
 
@@ -79,19 +75,12 @@ class BooksSvc extends XSimpleService implements XService
 
     public function _get($xcontext,$request,$response)
     {
-        // $uid = XssFilter::filter($request->uid);  //防止XSS攻击
         $response->success("get ok: " . $request->uid );
     }
 
     public function _delete($xcontext,$request,$response)
     {
-        // $book_id = XssFilter::filter($request->book_id);  //防止XSS攻击
-
-        // XLogKit::logger("rest")->info(__CLASS__.'::'.__FUNCTION__.' ['.__LINE__.'] '."uid=$uid");//记日志
-
         $response->success("delete ok : " . $request->uid );
     }
 }
-
-
 

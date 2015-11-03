@@ -72,10 +72,10 @@ class XNotFound extends XRuntimeException
  */
 class XUnAuthorized extends XRuntimeException
 {
-    public function __construct($msg="",$subcode=XErrCode::UNDEFINE)
+    public function __construct($realm="pylon",$subcode=XErrCode::UNDEFINE)
     {
         parent::__construct(401,$msg,$subcode);
-        $headmsg = empty($msg) ? "unknow usename" : $msg ;
+        $headmsg = "Basic realm=\"$msg\"" ;
         $this->headers["WWW-Authenticate"] = $headmsg  ;
     }
 }

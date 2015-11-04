@@ -20,7 +20,7 @@ class  DBExecuterTC extends PHPUnit_Framework_TestCase
 	{
         $this->_tableName = "db_executer_test";
         $dbConf =  Conf::getDBConf();
-        $this->_executer = new FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $this->_executer = new \Pylon\FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
         $this->_cnStr='GBKÖÐÎÄ';
 	}
 
@@ -77,5 +77,3 @@ class  DBExecuterTC extends PHPUnit_Framework_TestCase
         $this->assertTrue(count($rs) == 10);
 	}
 }
-
-?>

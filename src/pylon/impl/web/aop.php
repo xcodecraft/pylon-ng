@@ -1,4 +1,5 @@
 <?php
+namespace Pylon ;
 
 /**
  * @brief 拦截对象;

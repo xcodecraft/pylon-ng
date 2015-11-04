@@ -1,4 +1,5 @@
 <?php
+namespace Pylon ;
 
 /**\addtogroup DBA
  * @{
@@ -465,7 +466,7 @@ class ColumnStg extends GenerateStg
 class UserFunStg extends GenerateStg
 {
     var $_fun;
-    function UserFunStg($fun)
+    public function __construct($fun)
     {
         $this->_fun = $fun;
     }
@@ -492,23 +493,20 @@ function pyl_stg_not_null($col,$val)
 class StgUtls
 {
 
-    /**
-     * @brief ÎªÂËÎª¿ÕµÄÖµ
-     *
-     * @return
-     */
     static public function filterEmpty()
     {
-        return new UserFunStg(pyl_stg_not_empty);
+        $fun =  function ($col,$val) {
+            return !empty($val);
+        };
+        return new UserFunStg($fun);
     }
-    /**
-     * @brief ¹ýÂËÎªNULLµÄÖµ.
-     *
-     * @return
-     */
     static public function filterNull()
     {
-        return new UserFunStg(pyl_stg_not_null);
+
+        $fun =  function ($col,$val) {
+            return !is_null($val);
+        };
+        return new UserFunStg($fun);
     }
 }
 

@@ -1,4 +1,5 @@
 <?php
+namespace Pylon ;
 
 class ObjectSet  extends ObjUpdater
 {

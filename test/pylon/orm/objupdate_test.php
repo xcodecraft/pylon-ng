@@ -1,6 +1,6 @@
 <?php
 
-class ObjUpdateTest extends ObjUpdater
+class ObjUpdateTest extends \Pylon\ObjUpdater
 {
     public $commitObjs=array();
     public function __construct()

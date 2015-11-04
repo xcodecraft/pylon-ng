@@ -1,10 +1,12 @@
 <?php
+use  \Pylon\DaoFinderUtls as DaoFinderUtls ;
+
 /**
  * @brief  实体父类，实体需要继承
  *
  *  class Aplle extends XEntity
  */
-class XEntity extends XEntityBase
+class XEntity extends \Pylon\XEntityBase
 {
     public function upgrade()
     {

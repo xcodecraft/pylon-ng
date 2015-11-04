@@ -1,4 +1,6 @@
 <?php
+namespace Pylon ;
+use \DBC as DBC ;
 
 /**\addtogroup DBA
  * @{
@@ -12,7 +14,7 @@ abstract class SQLStatement
     protected $_tableName;
 //    public $_tableName;
 
-    function SQLStatement($tableName )
+    function __construct($tableName )
     {
         assert($tableName != "");
         $this->_tableName = $tableName;

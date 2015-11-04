@@ -1,4 +1,7 @@
 <?php
+namespace Pylon ;
+use \XProperty as XProperty ;
+use \XBox      as XBox ;
 
 /**\addtogroup Ent
  * @{

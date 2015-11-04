@@ -8,9 +8,9 @@ class UTAssemply
         $executer = new FastSQLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
 
         XEntEnv::simpleSetup($executer);
-        XEntEnv::useNamespace("Pylon") ;
-        XEntEnv::configDao('Pylon\Book2','book2',"std");
-        XEntEnv::configDao('Pylon\BuyItem','car_item');
+        XEntEnv::useNamespace("XCode") ;
+        XEntEnv::configDao('XCode\Book2','book2',"std");
+        XEntEnv::configDao('XCode\BuyItem','car_item');
 
     }
 }
@@ -54,16 +54,16 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
     {
         $executer =  XBox::must_get(XBox::SQLE);
         XSetting::$entLazyload = false ;
-            $author    = Pylon\Author::createByBiz('zwj','1975-10-18','chinese');
+            $author    = \XCode\Author::createByBiz('zwj','1975-10-18','chinese');
             $authorDao = DaoImp::simpleDao(get_class($author),$executer);
             XEntEnv::registDao($authorDao,'Author');
             $this->daoTestTplImp( $authorDao,$author,'name','qq');
             $authorDao->add($author);
 
 
-            $book      = Pylon\Book::createByBiz('c++',$author,'10.2','c++ std lib');
-            $book2     = Pylon\Book::createByBiz('c++',$author,'10.1',null);
-            $book3     = Pylon\Book::createByBiz('c++',$author,'10.3',"xxx'xxx");
+            $book      = \XCode\Book::createByBiz('c++',$author,'10.2','c++ std lib');
+            $book2     = \XCode\Book::createByBiz('c++',$author,'10.1',null);
+            $book3     = \XCode\Book::createByBiz('c++',$author,'10.3',"xxx'xxx");
             $bookDao   = DaoImp::simpleDao(get_class($book),$executer);
             XEntEnv::registDao($bookDao,'Book');
             $this->daoTestTplImp( $bookDao,$book,'name','java');
@@ -103,9 +103,9 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             XWriter::update_Book(array("name"=>"c++","price"=>10.1),   array("id"=>$book->id()));
             XWriter::update_Book(array("name"=>"python","price"=>10.2),array("id"=>$book2->id()));
             XWriter::update_Book(array("name"=>"c++","price"=>10.3),   array("id"=>$book3->id()));
-            $book  = Pylon\Book::createByBiz('todel',$author,'10','to del');
-            $book1 = Pylon\Book::createByBiz('c',$author,'10.2','c language');
-            $book2 = Pylon\Book::createByBiz('go',$author,'11','go language');
+            $book  = \XCode\Book::createByBiz('todel',$author,'10','to del');
+            $book1 = \XCode\Book::createByBiz('c',$author,'10.2','c language');
+            $book2 = \XCode\Book::createByBiz('go',$author,'11','go language');
             $bookDao->add($book);
             $bookDao->add($book1);
             $bookDao->add($book2);
@@ -133,13 +133,13 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         try
         {
             $executer =  XBox::must_get(XBox::SQLE);
-            $authorDao = DaoImp::simpleDao('Pylon\Author',$executer);
+            $authorDao = DaoImp::simpleDao('\XCode\Author',$executer);
 //            $authorDao->updateLoadStg(Entity::IMMED_LOADER);
-            $bookDao = DaoImp::simpleDao('Pylon\Book',$executer);
+            $bookDao = DaoImp::simpleDao('\XCode\Book',$executer);
 //            $bookDao->updateLoadStg(Entity::IMMED_LOADER);
-            $carDao = DaoImp::simpleDao('Pylon\BuyCar',$executer);
+            $carDao = DaoImp::simpleDao('\XCode\BuyCar',$executer);
 //            $carDao->updateLoadStg(Entity::IMMED_LOADER);
-            $buyItemDao = new DaoImp('Pylon\BuyItem',$executer,'car_item',SimpleMapping::ins());
+            $buyItemDao = new DaoImp('\XCode\BuyItem',$executer,'car_item',SimpleMapping::ins());
 //            $buyItemDao->updateLoadStg(Entity::IMMED_LOADER);
             XEntEnv::registerDaos($authorDao,$bookDao,$carDao,$buyItemDao);
 
@@ -193,9 +193,9 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
 //        $log =  new  ScopeEchoLog($executer);
         try{
 
-            $user1= Pylon\User::createByBiz('sgtuser1','sgt');
-            $user2= Pylon\User::createByBiz('sgtuser2','sgt');
-            $user3= Pylon\User::createByBiz('sgtuser3','sgt');
+            $user1= \XCode\User::createByBiz('sgtuser1','sgt');
+            $user2= \XCode\User::createByBiz('sgtuser2','sgt');
+            $user3= \XCode\User::createByBiz('sgtuser3','sgt');
             $userDao = new DaoImp(get_class($user1),$executer,null,SimpleMapping::ins(),array('StoreStg','userStore'));
             XEntEnv::registDao($userDao,'User');
             $userDao->setHashStoreKey($user1->hashStoreKey());
@@ -352,10 +352,10 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         }
         $cacheDriver = new MemCacheSvc(MemCacheSvc::localhostConf());
         CacheAdmin::setup($cacheDriver,new CacheStg(600));
-        PylonCtrl::switchDaoCache(PylonCtrl::ON);
+        \XCodeCtrl::switchDaoCache(\XCodeCtrl::ON);
 
         $executer =  XBox::must_get('SQLExecuter');
-        PylonCtrl::switchLazyLoad(PylonCtrl::OFF);
+        \XCodeCtrl::switchLazyLoad(\XCodeCtrl::OFF);
 //        $log =  new  ScopeEchoLog($executer);
         $app    = AppSession::begin();
         $author = Author::createByBiz('zwj_test','1975-10-18','chinese');

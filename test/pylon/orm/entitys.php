@@ -1,5 +1,5 @@
 <?php
-namespace Pylon  ;
+namespace  XCode ;
 use \XEntity    as XEntity ;
 use \Relation   as Relation ;
 use \ObjectSet  as ObjectSet ;
@@ -141,7 +141,7 @@ class BuyCar extends XEntity
 
         $obj             = XEntity::createIns(__CLASS__) ;
         $obj->owner      = $owner;
-        $obj->buyItemSet = ObjectSet::createByBiz('Pylon\BuyItem');
+        $obj->buyItemSet = ObjectSet::createByBiz('XCode\BuyItem');
         $obj->status     = BuyCar::ST_INIT;
         return  $obj ;
         return XEntity::regist($obj);
@@ -150,7 +150,7 @@ class BuyCar extends XEntity
     {
         $prop= new XProperty();
         $data= XQuery::obj()->list_BuyItem_by_owner($array['id']);
-        $prop->buyItemSet = ObjectSet::load('Pylon\BuyItem', $data);
+        $prop->buyItemSet = ObjectSet::load('XCode\BuyItem', $data);
         return XEntity::loadEntity2(__CLASS__,$array,$prop,$mappingStg);
     }
 

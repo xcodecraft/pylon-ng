@@ -205,9 +205,9 @@ class ObjUpdater
     protected $delitems         = array();
     protected $loaditems        = array();
     protected $loaditemSummerys = array();
-    const OBJ_LOAD=1;
-    const OBJ_ADD=2;
-    const OBJ_DEL=3;
+    const OBJ_LOAD = 1;
+    const OBJ_ADD  = 2;
+    const OBJ_DEL  = 3;
     protected function __construct(&$items,$objType)
     {
         $array =null;
@@ -445,7 +445,9 @@ class SimpleMapping implements IMappingStg
                 if(isset($array[$col]) && $array[$col]!=null)
                 {
                     $prop->id= $array[$col];
-                    $prop->cls=$key;
+                    //
+                    
+                    $prop->cls=XEntEnv::fullClassName($key) ;
                     if(XSetting::$entLazyload)
                     {
                         $obj  =new LDProxy(array("EntityUtls","loadObjByID"),$prop);
@@ -485,11 +487,13 @@ class StdMapping implements IMappingStg
         {
             if(is_object($val) && $val instanceof  NullEntity)
             {
-                $dtovars[$key."__".strtolower($val->getClass())]=  null;
+                $cls = XEntEnv::shortClassName($val->getClass()) ;
+                $dtovars[$key."__".strtolower($cls)]=  null;
             }
             elseif(is_object($val) && $val instanceof  XEntity)
             {
-                $dtovars[$key."__".strtolower(get_class($val))]= $val->id();
+                $cls = XEntEnv::shortClassName(get_class($val)) ;
+                $dtovars[$key."__".strtolower($cls)]= $val->id();
             }
             elseif(is_object($val) && $val instanceof  XID)
             {
@@ -497,7 +501,8 @@ class StdMapping implements IMappingStg
             }
             elseif (is_object($val) && $val instanceof LDProxy)
             {
-                $dtovars[$key."__".strtolower(get_class($val->getObj()))]= $val->id();
+                $cls = XEntEnv::shortClassName(get_class($val->getObj())) ;
+                $dtovars[$key."__".strtolower($cls)]= $val->id();
             }
             elseif (is_object($val) && $val instanceof ObjectSet)
             {

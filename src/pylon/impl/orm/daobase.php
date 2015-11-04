@@ -322,7 +322,8 @@ class DaoImp extends DaoBase implements XDao
 
     public static function simpleDao($cls,$execer)
     {
-        return new DaoImp($cls,$execer,strtolower($cls),SimpleMapping::ins(),null);
+        $table = XEntEnv::shortClassName($cls) ;
+        return new DaoImp($cls,$execer,strtolower($table),SimpleMapping::ins(),null);
     }
 
     public static function simpleTableDao($cls,$table,$execer)
@@ -376,6 +377,7 @@ class SimpleDaoFactory
     }
     public function create($cls)
     {
+        // var_dump($cls) ;
         $ncls    = $this->getClassName($cls);
         $selfCls = "{$ncls}DaoImpl";
         if(XPylon::haveClass($selfCls))

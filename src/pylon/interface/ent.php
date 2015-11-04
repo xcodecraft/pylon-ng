@@ -209,6 +209,7 @@ class XQueryObj
     public function __call($name,$params)
     {
         extract( DynCallParser::condObjParse($name));
+        $cls = XEntEnv::fullClassName($cls) ;
         return $this->callImpl($op,$cls,$name,$condnames,$params);
     }
 }
@@ -240,7 +241,9 @@ class XQueryArr
     public function __call($name,$params)
     {
         extract( DynCallParser::condObjParse($name));
-        return $this->callImpl($op,strtolower($cls),$name,$condnames,$params);
+        $cls   = XEntEnv::fullClassName($cls) ;
+        $table = XEntEnv::shortClassName($cls) ;
+        return $this->callImpl($op,strtolower($table),$name,$condnames,$params);
     }
 
     public function callImpl($op,$table,$name,$paramNames,$params)
@@ -386,6 +389,7 @@ class XWriter
     protected function delCall($name,$params)
     {
         extract(DynCallParser::condObjParse($name));
+        $cls   = XEntEnv::fullClassName($cls) ;
         $style = $this->getStyle($params);
         if($style == ApiStyle::RUBY) {
             $prop = DynCallParser::buildCondProp($condnames,$params,$extraParams);
@@ -397,6 +401,7 @@ class XWriter
     protected function updateCall($name,$params)
     {
         extract(DynCallParser::condUpdateObjParse($name));
+        $cls   = XEntEnv::fullClassName($cls) ;
         $style = $this->getStyle($params);
         if($style == ApiStyle::RUBY) {
             extract(DynCallParser::buildUpdateArray($updatenames,$condnames,$params));
@@ -436,6 +441,26 @@ class XWriter
  */
 class XEntEnv
 {
+
+    static public $namespace ;
+    static public function useNamespace($space)
+    {
+        self::$namespace =$space ;
+    }
+    static public function fullClassName($cls)
+    {
+        if (!empty(self::$namespace))
+        {
+            $cls = self::$namespace . "\\" . $cls ;
+        }
+        return $cls ;
+    }
+    static public function shortClassName($cls)
+    {
+        $table = explode("\\",$cls) ;
+        $table = array_pop($table) ;
+        return $table ;
+    }
 
     /**
      * @brief  在一般情况下，不需要编写Dao和Query的特别实现,可由Facotry来产生

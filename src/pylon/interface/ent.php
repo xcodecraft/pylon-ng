@@ -470,21 +470,16 @@ class XEntEnv
      *
      * @return
      */
-    static public function registerFactory($daoFactory,$queryFactory)
+    static public function registFactory($daoFactory,$queryFactory)
     {
         DaoFinderUtls::registerFactory($daoFactory,$queryFactory);
     }
 
-
-    // static public function register($dao)
-    // {
-    //     DaoFinderUtls::register($dao);
-    // }
-    static public function registerDao($dao)
+    static public function registDao($dao)
     {
         DaoFinderUtls::register($dao);
     }
-    static public function registerDaos()
+    static public function registDaos()
     {
         $daos = func_get_args();
         foreach($daos as $dao)
@@ -493,7 +488,7 @@ class XEntEnv
         }
     }
 
-    static public function registerQuerys()
+    static public function registQuerys()
     {
         $querys = func_get_args();
         foreach($querys as $query)
@@ -501,7 +496,7 @@ class XEntEnv
             DaoFinderUtls::registerQuery($query);
         }
     }
-    static public function registerQuery($query)
+    static public function registQuery($query)
     {
         DaoFinderUtls::registerQuery($query);
     }
@@ -515,35 +510,39 @@ class XEntEnv
     /**
      * @brief  simple setup for signle mysql ;
      *
-     * @param $sql_exec  数据库执行器 ;
+     * @param $sqlExec  数据库执行器 ;
      * @param $idgenter  ID生成器 ;
      *
      * @return
      */
-    static public function simpleSetup($sql_exec = null,$idgenter=null)
+    static public function simpleSetup($sqlExec = null,$idgenter=null)
     {
-        if ($sql_exec !== null)
+        if ($sqlExec !== null)
         {
-            XBox::regist(XBox::SQLE,$sql_exec,__METHOD__);
+            XBox::regist(XBox::SQLE,$sqlExec,__METHOD__);
             if(empty($idgenter))
-                XBox::regist(XBox::IDG, new MySqlIDGenerator($sql_exec),__METHOD__);
+                XBox::regist(XBox::IDG, new MySqlIDGenerator($sqlExec),__METHOD__);
             else
                 XBox::regist(XBox::IDG, $idgenter,__METHOD__);
         }
 
         $executer = XBox::must_get(XBox::SQLE);
-        self::registerFactory( SimpleDaoFactory::funIns($executer), SimpleQueryFactory::funIns($executer));
+        self::registFactory( SimpleDaoFactory::funIns($executer), SimpleQueryFactory::funIns($executer));
+    }
+    static public function beginSession() 
+    {
+        return  XAppSession::begin();
     }
     /**
-        * @brief  配置Dao
-        *
-        * @param $cls  类名
-        * @param $table  表名
-        * @param $mapping  映射方式: simple,std
-        * @param $hashfun  分表方式
-        *
-        * @return
-     */
+    * @brief  配置Dao
+    *
+    * @param $cls  类名
+    * @param $table  表名
+    * @param $mapping  映射方式: simple,std
+    * @param $hashfun  分表方式
+    *
+    * @return
+    */
     static public function configDao($cls,$table,$mapping="simple",$hashfun=null)
     {
         $executer = XBox::get(SQLE,"/$cls");
@@ -551,7 +550,7 @@ class XEntEnv
         if ($mapping === "std")
             $map_ins =  StdMapping::ins();
         $dao   = new DaoImp($cls,$executer,$table,$map_ins,$hashfun);
-        self::registerDao($dao);
+        self::registDao($dao);
     }
 
     static public function query($clsName)

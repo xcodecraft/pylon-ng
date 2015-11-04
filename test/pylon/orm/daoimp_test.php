@@ -4,18 +4,13 @@ class UTAssemply
 {
     static public function setup()
     {
-        // echo "---------------------------------0------------------------------" ;
-        $dbConf =  Conf::getDBConf();
+        $dbConf   = Conf::getDBConf();
         $executer = new FastSQLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
-        XBox::regist(XBox::SQLE,$executer,__METHOD__);
-        XBox::regist(XBox::IDG, new MySqlIDGenerator($executer),__METHOD__);
-        // echo "---------------------------------1------------------------------" ;
 
-        XEntEnv::simpleSetup();
+        XEntEnv::simpleSetup($executer);
         XEntEnv::useNamespace("Pylon") ;
         XEntEnv::configDao('Pylon\Book2','book2',"std");
         XEntEnv::configDao('Pylon\BuyItem','car_item');
-        // echo "---------------------------------2------------------------------" ;
 
     }
 }
@@ -61,7 +56,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         XSetting::$entLazyload = false ;
             $author    = Pylon\Author::createByBiz('zwj','1975-10-18','chinese');
             $authorDao = DaoImp::simpleDao(get_class($author),$executer);
-            XEntEnv::registerDao($authorDao,'Author');
+            XEntEnv::registDao($authorDao,'Author');
             $this->daoTestTplImp( $authorDao,$author,'name','qq');
             $authorDao->add($author);
 
@@ -70,7 +65,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             $book2     = Pylon\Book::createByBiz('c++',$author,'10.1',null);
             $book3     = Pylon\Book::createByBiz('c++',$author,'10.3',"xxx'xxx");
             $bookDao   = DaoImp::simpleDao(get_class($book),$executer);
-            XEntEnv::registerDao($bookDao,'Book');
+            XEntEnv::registDao($bookDao,'Book');
             $this->daoTestTplImp( $bookDao,$book,'name','java');
             $this->daoTestTplImp( $bookDao,$book2,'name','java');
             $this->daoTestTplImp( $bookDao,$book3,'name','java');
@@ -202,7 +197,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             $user2= Pylon\User::createByBiz('sgtuser2','sgt');
             $user3= Pylon\User::createByBiz('sgtuser3','sgt');
             $userDao = new DaoImp(get_class($user1),$executer,null,SimpleMapping::ins(),array('StoreStg','userStore'));
-            XEntEnv::registerDao($userDao,'User');
+            XEntEnv::registDao($userDao,'User');
             $userDao->setHashStoreKey($user1->hashStoreKey());
             $this->daoTestTplImp( $userDao,$user1,'name','qq');
             $userDao->setHashStoreKey($user2->hashStoreKey());
@@ -215,12 +210,12 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             echo $e->getMessage()."\n";
             echo $e->getTraceAsString();
             $this->assertTrue(false);
-           exit;
         }
     }
     public function daoTestTplImp($objDao, $obj,$chkey=null,$chval=null)
     {
-        try{
+        try
+        {
             $objDao->add($obj);
             $getedObj = $objDao->getByID($obj->id());
             $this->assertEquals($obj,$getedObj);
@@ -231,7 +226,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             $getedObj2 = $objDao->getByID($obj->id());
             $this->assertEquals($getedObj,$getedObj2);
             $objDao->del($obj);
-            $found= $objDao->getByID($obj->id());
+            $found     = $objDao->getByID($obj->id());
             $this->assertTrue($found == null);
         }
         catch ( Exception $e)
@@ -245,10 +240,10 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
     public function testDynQuery()
     {
         // $dda = new XQobj;
-        $cls='';
-        $oparam=null;
+        $cls    = '';
+        $oparam = null;
         extract(DynCallParser::condObjParse("get_user_by_name_age_obj__id"));
-        $prop = DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
+        $prop   = DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"get");
         $this->assertEquals($prop->name,"a");
@@ -257,13 +252,11 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($cls,"user");
         $this->assertEquals(count($oparam),0);
 
-
         extract(DynCallParser::condObjParse("list_user_by_name"));
         $prop = DynCallParser::buildCondProp($condnames,array("a"),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"list");
         $this->assertEquals($prop->name,"a");
-
 
         extract(DynCallParser::condObjParse("list_user"));
         $prop = DynCallParser::buildCondProp($condnames,array(),$oparam);
@@ -276,8 +269,6 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"list");
         $this->assertEquals($prop->age,new DQLObj("? > 18 or ? < 20 "));
-
-
 
         extract(DynCallParser::condObjParse("get_user_by2_name__age__obj_id"));
         $prop = DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
@@ -345,7 +336,6 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($updatenames[1],"age__x_y");
         $this->assertEquals($condnames[0],"age");
 
-
         extract(DynCallParser::condUpdateObjParse("update_user_set_name_age"));
         $this->assertEquals($cls,"user");
         $this->assertEquals($by,"");
@@ -367,11 +357,11 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $executer =  XBox::must_get('SQLExecuter');
         PylonCtrl::switchLazyLoad(PylonCtrl::OFF);
 //        $log =  new  ScopeEchoLog($executer);
-        $app = AppSession::begin();
-        $author= Author::createByBiz('zwj_test','1975-10-18','chinese');
+        $app    = AppSession::begin();
+        $author = Author::createByBiz('zwj_test','1975-10-18','chinese');
         $app->commit();
 
-        $app = AppSession::begin();
+        $app   = AppSession::begin();
         $found = DDA::ins()->get_Author_by_id($author->id());
         $found->lang="yyy";
         $app->commit();

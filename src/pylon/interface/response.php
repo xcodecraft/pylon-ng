@@ -1,7 +1,58 @@
 <?php
+class XEchoResp   implements XResponse
+{
+    public $statusCode = 500 ;
+    public $headers     = array() ;
+    protected $jumpURL  = null ;
+    public function location($url)
+    {
+        $this->jumpURL = $url ;
+    }
+    public function out($msg,$code=200)
+    {
+        $this->statusCode = $code ;
+        echo $msg ;
+    }
+    public function send($logger,$set_header=true)
+    {
+
+        if($set_header === true)
+        {
+            foreach($this->headers as $name => $value)
+            {
+                header("$name: " . $value);
+            }
+
+            if ($this->jumpURL != null)
+            {
+                header("location:  " . $this->jumpURL );
+            }
+            else{
+                PYL_HttpHeader::out_header((int)$this->statusCode);
+            }
+        }
+    }
+    public function error($errmsg,$errno = XErrCode::UNKNOW,$statusCode = 510)
+    {
+        $this->statusCode = $statusCode ;
+    }
+    public function exception($ex)
+    {
+        $code = $ex->status_code ;
+        if(empty($code) )
+        {
+            $code = $this->status_code ;
+        }
+        if(!empty($ex->headers))
+        {
+            $this->headers = $ex->headers ;
+        }
+        $this->statusCode = $code ;
+    }
+
+}
 class XHtmlResp   implements XResponse
 {
-
     public $statusCode = 500 ;
     public $headers     = array() ;
     protected $root     = "" ;

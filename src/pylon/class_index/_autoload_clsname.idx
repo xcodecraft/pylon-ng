@@ -129,6 +129,7 @@ cls_xdao,XDao
 cls_xdatapage,XDataPage
 cls_xdbcexception,XDBCException
 cls_xdbexception,XDBException
+cls_xechoresp,XEchoResp
 cls_xentenv,XEntEnv
 cls_xentitybase,XEntityBase
 cls_xentity,XEntity

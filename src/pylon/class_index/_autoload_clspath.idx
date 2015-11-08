@@ -129,6 +129,7 @@ XDao,/impl/orm/entity.php
 XDataPage,/utls/datapage.php
 XDBCException,/interface/exception.php
 XDBException,/interface/exception.php
+XEchoResp,/interface/response.php
 XEntEnv,/interface/ent.php
 XEntityBase,/impl/orm/entity.php
 XEntity,/interface/ent.php

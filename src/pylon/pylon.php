@@ -68,6 +68,7 @@ class XSetting
 
 
     static public  $respClass   = 'XRestResp' ;
+    static public  $respInsFun  = null ;
 
     static public  $extendData  = array() ;
 

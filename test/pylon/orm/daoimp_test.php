@@ -1,11 +1,12 @@
 <?php
+use \Pylon\EmptyUnitWork as EmptyUnitWork ;
 
 class UTAssemply
 {
     static public function setup()
     {
         $dbConf   = Conf::getDBConf();
-        $executer = new FastSQLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $executer = new \Pylon\FastSQLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
 
         XEntEnv::simpleSetup($executer);
         XEntEnv::useNamespace("XCode") ;
@@ -42,7 +43,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         UTAssemply::setup();
-        $this->app = XAppSession::begin(new EmptyUnitWork());
+        $this->app = XAppSession::begin(new \Pylon\EmptyUnitWork());
     }
     public function tearDown()
     {
@@ -55,8 +56,8 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $executer =  XBox::must_get(XBox::SQLE);
         XSetting::$entLazyload = false ;
             $author    = \XCode\Author::createByBiz('zwj','1975-10-18','chinese');
-            $authorDao = DaoImp::simpleDao(get_class($author),$executer);
-            XEntEnv::registDao($authorDao,'Author');
+            $authorDao = \Pylon\DaoImp::simpleDao(get_class($author),$executer);
+            XEntEnv::registDao($authorDao,'\XCode\Author');
             $this->daoTestTplImp( $authorDao,$author,'name','qq');
             $authorDao->add($author);
 
@@ -64,7 +65,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             $book      = \XCode\Book::createByBiz('c++',$author,'10.2','c++ std lib');
             $book2     = \XCode\Book::createByBiz('c++',$author,'10.1',null);
             $book3     = \XCode\Book::createByBiz('c++',$author,'10.3',"xxx'xxx");
-            $bookDao   = DaoImp::simpleDao(get_class($book),$executer);
+            $bookDao   = \Pylon\DaoImp::simpleDao(get_class($book),$executer);
             XEntEnv::registDao($bookDao,'Book');
             $this->daoTestTplImp( $bookDao,$book,'name','java');
             $this->daoTestTplImp( $bookDao,$book2,'name','java');
@@ -77,26 +78,26 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             unset($this->app) ;
             $this->app = XAppSession::begin(new EmptyUnitWork()) ;
 
-            $books = XQuery::obj()->list_Book_by_price(QL('# > 10 and # < 10.5 ','#'));
+            $books = XQuery::obj()->list_Book_by_price(XEntEnv::QL('# > 10 and # < 10.5 ','#'));
             $this->assertTrue(count($books)>=3);
-            $books2 = XQuery::obj()->list_Book_by_name(QL('? like "c%"'));
+            $books2 = XQuery::obj()->list_Book_by_name(XEntEnv::QL('? like "c%"'));
             $this->assertTrue(count($books2)>=3);
 
-            $books3 = XQuery::obj()->list_Book_by_name_price(QL('? like "c%"'),"10.3");
+            $books3 = XQuery::obj()->list_Book_by_name_price(XEntEnv::QL('? like "c%"'),"10.3");
 
 
-            $books = XQuery::obj()->list_Book_by_price(QL('? > 10 and ? < 10.5 '));
+            $books = XQuery::obj()->list_Book_by_price(XEntEnv::QL('? > 10 and ? < 10.5 '));
             $this->assertTrue(count($books)>=3);
 
-            $books = XQuery::obj()->list_Book_by_price(QL('? > 10 and ? < 10.5 '));
+            $books = XQuery::obj()->list_Book_by_price(XEntEnv::QL('? > 10 and ? < 10.5 '));
             $this->assertTrue(count($books)>=3);
 
-            $books = XQuery::obj()->list_Book_by_price(QL('? > 10 and ? < 10.5 '));
+            $books = XQuery::obj()->list_Book_by_price(XEntEnv::QL('? > 10 and ? < 10.5 '));
             $this->assertTrue(count($books)>=3);
-            DaoFinderUtls::clearBinder();
+            \Pylon\DaoFinderUtls::clearBinder();
 
-            XWriter::ins()->update_Book_set_price_by_name("15",QL(' ? like "c%"'));
-            $books4 = XQuery::arr()->list_Book_by_price(QL('? > "12" '));
+            XWriter::ins()->update_Book_set_price_by_name("15",XEntEnv::QL(' ? like "c%"'));
+            $books4 = XQuery::arr()->list_Book_by_price(XEntEnv::QL('? > "12" '));
             $this->assertTrue(count($books4)>0);
 
             // mongo style test
@@ -196,7 +197,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             $user1= \XCode\User::createByBiz('sgtuser1','sgt');
             $user2= \XCode\User::createByBiz('sgtuser2','sgt');
             $user3= \XCode\User::createByBiz('sgtuser3','sgt');
-            $userDao = new DaoImp(get_class($user1),$executer,null,SimpleMapping::ins(),array('StoreStg','userStore'));
+            $userDao = new \Pylon\DaoImp(get_class($user1),$executer,null,\Pylon\SimpleMapping::ins(),array('StoreStg','userStore'));
             XEntEnv::registDao($userDao,'User');
             $userDao->setHashStoreKey($user1->hashStoreKey());
             $this->daoTestTplImp( $userDao,$user1,'name','qq');
@@ -242,8 +243,8 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         // $dda = new XQobj;
         $cls    = '';
         $oparam = null;
-        extract(DynCallParser::condObjParse("get_user_by_name_age_obj__id"));
-        $prop   = DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
+        extract(\Pylon\DynCallParser::condObjParse("get_user_by_name_age_obj__id"));
+        $prop   = \Pylon\DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"get");
         $this->assertEquals($prop->name,"a");
@@ -252,26 +253,26 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($cls,"user");
         $this->assertEquals(count($oparam),0);
 
-        extract(DynCallParser::condObjParse("list_user_by_name"));
-        $prop = DynCallParser::buildCondProp($condnames,array("a"),$oparam);
+        extract(\Pylon\DynCallParser::condObjParse("list_user_by_name"));
+        $prop = \Pylon\DynCallParser::buildCondProp($condnames,array("a"),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"list");
         $this->assertEquals($prop->name,"a");
 
-        extract(DynCallParser::condObjParse("list_user"));
-        $prop = DynCallParser::buildCondProp($condnames,array(),$oparam);
+        extract(\Pylon\DynCallParser::condObjParse("list_user"));
+        $prop = \Pylon\DynCallParser::buildCondProp($condnames,array(),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"list");
 
 //        $dda->list_user_by_age('? >18 or ? <20 ');
-        extract(DynCallParser::condObjParse("list_user_by_age"));
-        $prop = DynCallParser::buildCondProp($condnames,array(QL("? > 18 or ? < 20 ")),$oparam);
+        extract(\Pylon\DynCallParser::condObjParse("list_user_by_age"));
+        $prop = \Pylon\DynCallParser::buildCondProp($condnames,array(\Pylon\QL("? > 18 or ? < 20 ")),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"list");
-        $this->assertEquals($prop->age,new DQLObj("? > 18 or ? < 20 "));
+        $this->assertEquals($prop->age,new \Pylon\DQLObj("? > 18 or ? < 20 "));
 
-        extract(DynCallParser::condObjParse("get_user_by2_name__age__obj_id"));
-        $prop = DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
+        extract(\Pylon\DynCallParser::condObjParse("get_user_by2_name__age__obj_id"));
+        $prop = \Pylon\DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
 
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"get");
@@ -282,8 +283,8 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(count($oparam),0);
 
 
-        extract(DynCallParser::condObjParse("get_user_by3_name___ag_e___obj__id"));
-        $prop = DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
+        extract(\Pylon\DynCallParser::condObjParse("get_user_by3_name___ag_e___obj__id"));
+        $prop = \Pylon\DynCallParser::buildCondProp($condnames,array("a","b","c"),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"get");
         $this->assertEquals($prop->name,"a");
@@ -293,50 +294,50 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(count($oparam),0);
 
         $page = new XDataPage(10);
-        extract(DynCallParser::condObjParse("get_user_by_name_age"));
-        $prop = DynCallParser::buildCondProp($condnames,array("a","b",$page),$oparam);
+        extract(\Pylon\DynCallParser::condObjParse("get_user_by_name_age"));
+        $prop = \Pylon\DynCallParser::buildCondProp($condnames,array("a","b",$page),$oparam);
         $this->assertEquals(count($oparam),1);
 
-        extract(DynCallParser::condUpdateObjParse("update_user_set_name_by_age"));
+        extract(\Pylon\DynCallParser::condUpdateObjParse("update_user_set_name_by_age"));
         $this->assertEquals($cls,"user");
         $this->assertEquals($by,"by");
         $this->assertEquals($updatenames[0],"name");
         $this->assertEquals($condnames[0],"age");
 
-        extract(DynCallParser::condUpdateObjParse("update_user_set2_name_by_age"));
+        extract(\Pylon\DynCallParser::condUpdateObjParse("update_user_set2_name_by_age"));
         $this->assertEquals($cls,"user");
         $this->assertEquals($by,"by");
         $this->assertEquals($updatenames[0],"name");
         $this->assertEquals($condnames[0],"age");
 
-        extract(DynCallParser::condUpdateObjParse("update_user_set3_name_by_age"));
+        extract(\Pylon\DynCallParser::condUpdateObjParse("update_user_set3_name_by_age"));
         $this->assertEquals($cls,"user");
         $this->assertEquals($by,"by");
         $this->assertEquals($updatenames[0],"name");
         $this->assertEquals($condnames[0],"age");
 
-        extract(DynCallParser::condUpdateObjParse("update_user_set_name_age_by2_age"));
+        extract(\Pylon\DynCallParser::condUpdateObjParse("update_user_set_name_age_by2_age"));
         $this->assertEquals($cls,"user");
         $this->assertEquals($by,"by2");
         $this->assertEquals($updatenames[0],"name");
         $this->assertEquals($updatenames[1],"age");
         $this->assertEquals($condnames[0],"age");
 
-        extract(DynCallParser::condUpdateObjParse("update_user_set2_name_x__age_by2_age"));
+        extract(\Pylon\DynCallParser::condUpdateObjParse("update_user_set2_name_x__age_by2_age"));
         $this->assertEquals($cls,"user");
         $this->assertEquals($by,"by2");
         $this->assertEquals($updatenames[0],"name_x");
         $this->assertEquals($updatenames[1],"age");
         $this->assertEquals($condnames[0],"age");
 
-        extract(DynCallParser::condUpdateObjParse("update_user_set3_name__x_y___age__x_y_by2_age"));
+        extract(\Pylon\DynCallParser::condUpdateObjParse("update_user_set3_name__x_y___age__x_y_by2_age"));
         $this->assertEquals($cls,"user");
         $this->assertEquals($by,"by2");
         $this->assertEquals($updatenames[0],"name__x_y");
         $this->assertEquals($updatenames[1],"age__x_y");
         $this->assertEquals($condnames[0],"age");
 
-        extract(DynCallParser::condUpdateObjParse("update_user_set_name_age"));
+        extract(\Pylon\DynCallParser::condUpdateObjParse("update_user_set_name_age"));
         $this->assertEquals($cls,"user");
         $this->assertEquals($by,"");
         $this->assertEquals($updatenames[0],"name");
@@ -350,8 +351,8 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             echo "\nno memcached  ".__CLASS__."::".__FUNCTION__." is ignore\n";
             return ;
         }
-        $cacheDriver = new MemCacheSvc(MemCacheSvc::localhostConf());
-        CacheAdmin::setup($cacheDriver,new CacheStg(600));
+        $cacheDriver = new \Pylon\MemCacheSvc(MemCacheSvc::localhostConf());
+        \Pylon\CacheAdmin::setup($cacheDriver,new CacheStg(600));
         \XCodeCtrl::switchDaoCache(\XCodeCtrl::ON);
 
         $executer =  XBox::must_get('SQLExecuter');

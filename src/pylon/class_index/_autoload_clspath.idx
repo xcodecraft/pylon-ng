@@ -83,7 +83,6 @@ Pylon\Ors,/impl/dba/express.php
 Pylon\Pair,/extends/sql_executor.php
 Pylon\PYL_HttpHeader,/impl/utls/http.php
 Pylon\Query,/impl/orm/query.php
-Pylon\Relation,/impl/orm/entity.php
 Pylon\ScopeAutoTrans,/impl/orm/unitwork.php
 Pylon\ScopeEchoLog,/impl/utls/logutls.php
 Pylon\ScopeExec,/impl/utls/logutls.php
@@ -161,6 +160,7 @@ XPylon,/pylon.php
 XQueryArr,/interface/ent.php
 XQuery,/interface/ent.php
 XQueryObj,/interface/ent.php
+XRelation,/interface/ent.php
 XRespFail,/interface/response.php
 XResponse,/interface/web.php
 XRestResp,/interface/response.php

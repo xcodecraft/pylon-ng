@@ -2,6 +2,10 @@
 namespace Pylon ;
 use \XProperty as XProperty ;
 use \XBox      as XBox ;
+use \DBC       as DBC ;
+use \XEntity   as XEntity ;
+use \XEntEnv   as XEntEnv ;
+use \XSetting  as XSetting ;
 
 /**\addtogroup Ent
  * @{
@@ -156,49 +160,6 @@ class XEntityBase extends XProperty implements XIAutoUpdate
 }
 
 
-
-abstract class Relation extends XProperty   implements XIAutoUpdate
-{
-
-    public function __construct($prop=null)
-    {
-        parent::__construct();
-        if($prop != null)
-            $this->merge($prop);
-    }
-    public function id()
-    {
-        return $this->id;
-    }
-    public function getDTO($mappingStg)
-    {
-        $vars = $this->getPropArray();
-        return  $mappingStg->convertDTO($vars);
-    }
-    public function getRelationSets()
-    {
-        return array();
-    }
-    public function buildSummery()
-    {
-        return md5(serialize($this->getDTO(StdMapping::ins())));
-    }
-
-    /**
-     * @brief  hash store need,override  this fun in subclass;
-     *
-     * @return  string key; default is null;
-     */
-    public function hashStoreKey()
-    {
-        return null;
-    }
-    static public function  loadRelation($cls,$array,$mappingStg)
-    {
-        $prop=$mappingStg->buildEntityProp($array);
-        return new $cls($prop);
-    }
-}
 
 
 class ObjUpdater

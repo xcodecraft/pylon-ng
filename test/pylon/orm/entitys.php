@@ -1,11 +1,11 @@
 <?php
 namespace  XCode ;
 use \XEntity    as XEntity ;
-use \Relation   as Relation ;
-use \ObjectSet  as ObjectSet ;
-use \EntityUtls as EntityUtls ;
+use \XRelation  as XRelation ;
+// use \EntityUtls as EntityUtls ;
 use \XProperty  as XProperty ;
 use \XQuery     as XQuery;
+use \Pylon\ObjectSet       as ObjectSet ;
 
 class User extends XEntity
 {
@@ -78,7 +78,7 @@ class Author extends XEntity
         $this->lang     = $lang;
     }
 }
-class BuyItem  extends Relation
+class BuyItem  extends XRelation
 {
     public function index()
     {
@@ -86,8 +86,8 @@ class BuyItem  extends Relation
     }
     static public function createByBiz($owner,$book,$count)
     {
-        $obj = new BuyItem();
-        $obj->id=EntityUtls::createPureID();
+        $obj        = new BuyItem();
+        $obj->id    = XRelation::createID();
         $obj->owner = $owner;
         $obj->book  = $book;
         $obj->count = $count;

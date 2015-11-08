@@ -83,7 +83,6 @@ cls_pylon\ors,Pylon\Ors
 cls_pylon\pair,Pylon\Pair
 cls_pylon\pyl_httpheader,Pylon\PYL_HttpHeader
 cls_pylon\query,Pylon\Query
-cls_pylon\relation,Pylon\Relation
 cls_pylon\scopeautotrans,Pylon\ScopeAutoTrans
 cls_pylon\scopeecholog,Pylon\ScopeEchoLog
 cls_pylon\scopeexec,Pylon\ScopeExec
@@ -161,6 +160,7 @@ cls_xpylon,XPylon
 cls_xqueryarr,XQueryArr
 cls_xqueryobj,XQueryObj
 cls_xquery,XQuery
+cls_xrelation,XRelation
 cls_xrespfail,XRespFail
 cls_xresponse,XResponse
 cls_xrestresp,XRestResp

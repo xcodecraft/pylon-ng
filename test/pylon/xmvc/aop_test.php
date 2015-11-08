@@ -1,4 +1,6 @@
 <?php
+use \Pylon\XAopRuleSet  as XAopRuleSet ;
+
 class StubIntercepter
 {
 }
@@ -14,7 +16,7 @@ class AopTest extends PHPUnit_Framework_TestCase
         $request->uri    = "a.html";
         $request->method = "get";
 
-        $itarget = new  XIntercepterTarget($request);
+        $itarget = new  \Pylon\XIntercepterTarget($request);
         $this->assertEquals($itarget->get("uri"),"a.html");
         $this->assertEquals($itarget->get("method"),"get");
         $iobj2= $rset->using($itarget);

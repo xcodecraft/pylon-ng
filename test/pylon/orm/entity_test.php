@@ -48,7 +48,7 @@ class EntityTest extends PHPUnit_Framework_TestCase
         // echo "\nauthor: " . $author->id() ;
         // echo "\nbook  : " . $book->id() ;
         $book3 = \XCode\Book2::createByBiz('java','10.2','java std lib',$author,$author2);
-        $book4 = \XCode\Book2::createByBiz('java','10.2','java std lib',$author, new NullEntity('Author'));
+        $book4 = \XCode\Book2::createByBiz('java','10.2','java std lib',$author, new \Pylon\NullEntity('Author'));
 
 
         $car = \XCode\BuyCar::createByBiz('zwj');
@@ -56,7 +56,7 @@ class EntityTest extends PHPUnit_Framework_TestCase
         $car->addBook($book2,3);
         $app->commit();
 
-        $mycar = DaoFinderUtls::find($car)->getByID($car->id());
+        $mycar = \Pylon\DaoFinderUtls::find($car)->getByID($car->id());
         $book3 = \XCode\Book::createByBiz('php',$author,'10.2','java std lib');
         $mycar->addBook($book3,3);
         $mycar->removeBook($book,1);

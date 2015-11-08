@@ -1,5 +1,19 @@
 <?php
 use  \Pylon\DaoFinderUtls as DaoFinderUtls ;
+use  \Pylon\MySqlIDGenerator as MySqlIDGenerator ;
+use  \Pylon\SimpleDaoFactory as SimpleDaoFactory ;
+use  \Pylon\SimpleQueryFactory as SimpleQueryFactory ;
+use  \Pylon\SimpleMapping as SimpleMapping ;
+use  \Pylon\StdMapping as StdMapping ;
+use  \Pylon\DaoImp     as DaoImp ;
+use  \Pylon\XID        as XID ;
+use  \Pylon\XIAutoUpdate as XIAutoUpdate ;
+use  \Pylon\UnitWorkImpl as UnitWorkImpl ;
+use  \Pylon\DynCallParser as DynCallParser ;
+use  \Pylon\DiagnoseContext as DiagnoseContext ;
+use  \Pylon\EntityUtls as EntityUtls ;
+use  \Pylon\DQLObj     as DQLObj ;
+use  \Pylon\FilterProp as FilterProp ;
 
 /**
  * @brief  实体父类，实体需要继承
@@ -84,6 +98,54 @@ class XEntity extends \Pylon\XEntityBase
         return $obj;
     }
 }
+
+abstract class XRelation extends XProperty   implements XIAutoUpdate
+{
+
+    public function __construct($prop=null)
+    {
+        parent::__construct();
+        if($prop != null)
+            $this->merge($prop);
+    }
+    public function id()
+    {
+        return $this->id;
+    }
+    public function createID()
+    {
+        return EntityUtls::createPureID();
+    }
+    public function getDTO($mappingStg)
+    {
+        $vars = $this->getPropArray();
+        return  $mappingStg->convertDTO($vars);
+    }
+    public function getRelationSets()
+    {
+        return array();
+    }
+    public function buildSummery()
+    {
+        return md5(serialize($this->getDTO(StdMapping::ins())));
+    }
+
+    /**
+     * @brief  hash store need,override  this fun in subclass;
+     *
+     * @return  string key; default is null;
+     */
+    public function hashStoreKey()
+    {
+        return null;
+    }
+    static public function  loadRelation($cls,$array,$mappingStg)
+    {
+        $prop=$mappingStg->buildEntityProp($array);
+        return new $cls($prop);
+    }
+}
+
 
 /**
  * @brief
@@ -270,9 +332,9 @@ class XQueryArr
 
     private function getStyle($params)
     {
-        $style = ApiStyle::RUBY;
+        $style = \Pylon\ApiStyle::RUBY;
         if(isset($params[0]) && is_array($params[0])) {
-            $style = ApiStyle::MONGO;
+            $style = \Pylon\ApiStyle::MONGO;
         }
         return $style;
     }
@@ -281,7 +343,7 @@ class XQueryArr
     {
         //        $table = DaoFinder::find($table)->getStoreTable();
         $style = $this->getStyle($params);
-        if($style == ApiStyle::MONGO) {
+        if($style == \Pylon\ApiStyle::MONGO) {
             $where = isset($params[0])? $params[0] : null;
             $order = isset($params[1])? $params[1] : null;
             $page  = isset($params[2])? $params[2] : null;
@@ -314,7 +376,7 @@ class XQueryArr
     private function getCall($table,$paramNames,$params)
     {
         $style = $this->getStyle($params);
-        if($style == ApiStyle::RUBY) {
+        if($style == \Pylon\ApiStyle::RUBY) {
             $prop = DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         } else {
             $where = isset($params[0])? $params[0] : null;
@@ -381,9 +443,9 @@ class XWriter
     }
     private function getStyle($params)
     {
-        $style = ApiStyle::RUBY;
+        $style = \Pylon\ApiStyle::RUBY;
         if(isset($params[0]) && is_array($params[0])) {
-            $style = ApiStyle::MONGO;
+            $style = \Pylon\ApiStyle::MONGO;
         }
         return $style;
     }
@@ -393,7 +455,7 @@ class XWriter
         extract(DynCallParser::condObjParse($name));
         $cls   = XEntEnv::fullClassName($cls) ;
         $style = $this->getStyle($params);
-        if($style == ApiStyle::RUBY) {
+        if($style == \Pylon\ApiStyle::RUBY) {
             $prop = DynCallParser::buildCondProp($condnames,$params,$extraParams);
         } else {
             $prop = FilterProp::create($params[0]);
@@ -405,7 +467,7 @@ class XWriter
         extract(DynCallParser::condUpdateObjParse($name));
         $cls   = XEntEnv::fullClassName($cls) ;
         $style = $this->getStyle($params);
-        if($style == ApiStyle::RUBY) {
+        if($style == \Pylon\ApiStyle::RUBY) {
             extract(DynCallParser::buildUpdateArray($updatenames,$condnames,$params));
         } else {
             $updateArray = $params[0];
@@ -564,6 +626,11 @@ class XEntEnv
         return DaoFinderUtls::find($cls);
     }
 
+
+    static public function QL($express,$symbol='?')
+    {
+        return new DQLObj($express,$symbol);
+    }
 
 }
 

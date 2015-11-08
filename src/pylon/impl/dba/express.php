@@ -1,5 +1,6 @@
 <?php
 namespace Pylon ;
+use \DBC as DBC ;
 
 /**\addtogroup DBA
  * @{
@@ -87,8 +88,13 @@ class Express
     }
     function needGe($stgs,$column,$value)
     {
+        DBC::requireTrue(is_object($stgs)) ;
         if($this->_selfStg !=null)
+        {
+            DBC::requireTrue(is_object($this->_selfStg)) ;
             return $this->_selfStg->needGenerate($column,$value);
+        }
+        
         return $stgs->needGenerate($column,$value);
     }
 

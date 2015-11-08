@@ -1,5 +1,6 @@
 <?php
 namespace Pylon ;
+use \DBC as DBC  ;
 
 class ObjectSet  extends ObjUpdater
 {

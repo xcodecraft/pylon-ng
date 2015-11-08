@@ -132,7 +132,16 @@ class XRouter
         $autoSpeed    = new XLogSpeed("rest[$uri]");
         $xcontext     = new XContext ;
         $request      = new XProperty($_REQUEST) ;
-        $response     = new XSetting::$respClass ;
+        $response     = null;
+        if (is_callable(XSetting::$respInsFun))
+        {
+            $response = call_user_func(XSetting::$respInsFun,$uri) ;
+            DBC::requireNotNull($response,"XSetting::\$respInsFun return null ") ;
+        }
+        else
+        {
+            $response     = new XSetting::$respClass ;
+        }
         self::log_request($restLog,'info');
         $request->uri = $uri ;
 

@@ -1,5 +1,6 @@
 <?php
 namespace Pylon ;
+use \XIRouter as XIRouter ;
 /**
  * @ingroup extends
 * @brief

@@ -79,7 +79,7 @@ class DaoBase
     public function delByProp($prop,$hashKey=null)
     {
         $statement = new SQLDelStatement($this->getStoreTable($hashKey));
-        $where     = JoinUtls::jassoArrayEx(' and ',$prop->getPropArray(),array('SqlProcUtls','bindCond'));
+        $where     = JoinUtls::jassoArrayEx(' and ',$prop->getPropArray(),array('\Pylon\SqlProcUtls','bindCond'));
         $statement->where($where);
 
         $valsArr   = SqlProcUtls::filterCondVal(array_values($prop->getPropArray()));
@@ -160,7 +160,7 @@ class DaoBase
             $condsArr = $prop->getPropArray();
             $valsArr = SqlProcUtls::filterCondVal(array_values($condsArr));
 
-            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('\Pylon\SqlProcUtls','bindCond'));
             $statement->where($where);
         }
         return $this->statementCount($statement,$valsArr);
@@ -210,7 +210,7 @@ class DaoBase
             $condsArr = $prop->getPropArray();
             $valsArr  = SqlProcUtls::filterCondVal(array_values($condsArr));
 
-            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('\Pylon\SqlProcUtls','bindCond'));
             $statement->where($where);
         }
         $statement->limit($begin,$count);

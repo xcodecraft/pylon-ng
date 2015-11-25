@@ -110,6 +110,7 @@ cls_pylon\xaoprule,Pylon\XAopRule
 cls_pylon\xaopruleset,Pylon\XAopRuleSet
 cls_pylon\xdao,Pylon\XDao
 cls_pylon\xentitybase,Pylon\XEntityBase
+cls_pylon\xexceptionutls,Pylon\XExceptionUtls
 cls_pylon\xfunctioncontrol,Pylon\XFunctionControl
 cls_pylon\xiautoupdate,Pylon\XIAutoUpdate
 cls_pylon\xid,Pylon\XID
@@ -141,7 +142,6 @@ cls_xentenv,XEntEnv
 cls_xentity,XEntity
 cls_xenv,XEnv
 cls_xerrcode,XErrCode
-cls_xexceptionutls,XExceptionUtls
 cls_xforbidden,XForbidden
 cls_xhtmlresp,XHtmlResp
 cls_xhttpcaller,XHttpCaller

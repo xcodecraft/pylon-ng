@@ -1,4 +1,5 @@
 <?php
+use \Pylon\PYL_HttpHeader  as  PYL_HttpHeader ;
 class XEchoResp   implements XResponse
 {
     public $statusCode = 500 ;

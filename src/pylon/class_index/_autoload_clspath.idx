@@ -110,6 +110,7 @@ Pylon\XAopRule,/impl/web/aop.php
 Pylon\XAopRuleSet,/impl/web/aop.php
 Pylon\XDao,/impl/orm/entity.php
 Pylon\XEntityBase,/impl/orm/entity.php
+Pylon\XExceptionUtls,/impl/web/router.php
 Pylon\XFunctionControl,/impl/orm/control.php
 Pylon\XIAutoUpdate,/impl/orm/entity.php
 Pylon\XID,/impl/orm/entity.php
@@ -141,7 +142,6 @@ XEntEnv,/interface/ent.php
 XEntity,/interface/ent.php
 XEnv,/utls/env.php
 XErrCode,/interface/exception.php
-XExceptionUtls,/utls/exception.php
 XForbidden,/interface/exception.php
 XHtmlResp,/interface/response.php
 XHttpCaller,/utls/http.php

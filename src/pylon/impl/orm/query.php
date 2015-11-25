@@ -1,6 +1,7 @@
 <?php
 namespace Pylon ;
 use \XPylon as XPylon ;
+use \DBC    as DBC ;
 
 /**\addtogroup Ent
  * @{

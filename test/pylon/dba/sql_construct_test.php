@@ -65,9 +65,9 @@
         private function mutiCondQuery($args)
         {
             $where = \Pylon\Express::ands(
-                \Pylon\Express::eq('name',$args['name']),
-                \Pylon\Express::ge('age',$args['age']),
-                \Pylon\Express::eq('address',$args['address']));
+                    \Pylon\Express::eq('name',$args['name']),
+                    \Pylon\Express::ge('age',$args['age'],null),
+                    \Pylon\Express::eq('address',$args['address']));
 
             $statment = new \Pylon\SQLSelectStatement("user");
             $statment->where($where->generateSql(\Pylon\StgUtls::filterEmpty()));
@@ -75,9 +75,9 @@
         }
         public function testMutiCondQuery()
         {
-            $args['name'] = "google";
-            $args['age']=18;
-            $args['address']="beijing";
+            $args['name']    = "google";
+            $args['age']     = 18;
+            $args['address'] = "beijing";
             $sql = $this->mutiCondQuery($args);
             $this->assertEquals($sql,'select  *  from user where ( (name = "google") and (age >= "18") and (address = "beijing") );');
 

@@ -113,8 +113,8 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             XWriter::del_Book(array("name"=>"todel"));
             $this->app->commit();
             $where = array(
-                "name"  => QL("? != 'c'"),
-                "price" => QL("? < 11"),
+                "name"  => XEntEnv::QL("? != 'c'"),
+                "price" => XEntEnv::QL("? < 11"),
             );
             $order = array(
                 "name"  => "",
@@ -266,7 +266,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
 
 //        $dda->list_user_by_age('? >18 or ? <20 ');
         extract(\Pylon\DynCallParser::condObjParse("list_user_by_age"));
-        $prop = \Pylon\DynCallParser::buildCondProp($condnames,array(\Pylon\QL("? > 18 or ? < 20 ")),$oparam);
+        $prop = \Pylon\DynCallParser::buildCondProp($condnames,array(XEntEnv::QL("? > 18 or ? < 20 ")),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"list");
         $this->assertEquals($prop->age,new \Pylon\DQLObj("? > 18 or ? < 20 "));

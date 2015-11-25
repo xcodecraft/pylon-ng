@@ -17,6 +17,8 @@ class Express
     public function __construct($stg=null)
     {
         $this->_sql = "";
+
+        DBC::requireTrue($stg==null || is_object($stg), __method__ .": \$stg is not object") ;
         $this->_selfStg = $stg;
     }
     public function generateSql($stg )

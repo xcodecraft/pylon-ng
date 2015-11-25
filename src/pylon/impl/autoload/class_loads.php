@@ -12,7 +12,7 @@
  * @return 
  */
 function pylon_autoload($classname)
-{/*{{{*/
+{
 
     if (function_exists("pylon_dict_count") && pylon_dict_count() > 0)
     {
@@ -22,7 +22,7 @@ function pylon_autoload($classname)
     {
         throw new LogicException("unfound pylon extension !");
     }
-}/*}}}*/
+}
 
 spl_autoload_register('pylon_autoload');
 

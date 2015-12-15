@@ -1,7 +1,0 @@
-/web/html/$sub : Htmlsvc
-/web/call/$method : HtmlSvc2
-/mygame/$uid/,/mygame/$uid : MyGameSvc
-/game/$gkey : GameSvc
-/allgame : AllgameSvc
-/books/$uid,/books/,/books : BooksSvc
-/gexample/test2/$gkey/$method : gexample_test2

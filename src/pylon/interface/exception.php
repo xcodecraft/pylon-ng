@@ -26,7 +26,7 @@ class XRuntimeException extends RuntimeException
         $this->status_code = $status_code;
         $this->headers     = array() ;
         $this->sub_code    = $subcode ;
-        $code              = "$status_code:$subcode" ;
+        $code              = $subcode ;
         parent::__construct($msg,$code);
     }
 }

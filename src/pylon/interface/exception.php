@@ -170,4 +170,3 @@ class XDBCException extends XLogicException
         parent::__construct(500,$msg,$subcode);
     }
 }
-

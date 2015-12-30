@@ -1,12 +1,12 @@
 <?php
 
-class ObjUpdateTest extends ObjUpdater
+class ObjUpdateTest extends \Pylon\ObjUpdater
 {
     public $commitObjs=array();
     public function __construct()
     {
         $array=array();
-        parent::__construct($array,ObjUpdater::OBJ_LOAD);
+        parent::__construct($array,\Pylon\ObjUpdater::OBJ_LOAD);
     }
     public function addObj($obj)
     {

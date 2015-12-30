@@ -1,4 +1,6 @@
 <?php
+namespace Pylon ;
+use \XProperty as XProperty ;
 
 /**\addtogroup Ent
  * @{

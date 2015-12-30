@@ -16,7 +16,7 @@ class IDGenterSvcTC //extends PHPUnit_Framework_TestCase
     public function __construct()
     {
         $dbConf =  Conf::getDBConf();
-        $this->_executer = new FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $this->_executer = new \Pylon\FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
         $this->_tableName = "id_genter";
 
     }
@@ -80,7 +80,7 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
     public function __construct()
     {
         $dbConf =  Conf::getDBConf();
-        $this->_executer = new FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $this->_executer = new \Pylon\FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
     }
 
     public function setTableName($tableName)
@@ -116,7 +116,7 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
     {
         $this->setTableName($tableName);
         $this->_setUp();
-        $gener = new IDGenterSvcImp($this->_executer, $clone=true, $second);
+        $gener = new \Pylon\IDGenterSvcImp($this->_executer, $clone=true, $second);
         $otherid=array();
         $testid=array();
         for($i = 0; $i < 20; $i++)
@@ -147,7 +147,7 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
 
     public function testCreateFirst()
     {
-        IDGenterSvcImp::ENABLE_DOUBLE_MASTER();
+        \Pylon\IDGenterSvcImp::ENABLE_DOUBLE_MASTER();
         $this->Create('id_genter');
     }
 
@@ -155,8 +155,8 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
     {
         // return  ;
 
-        IDGenterSvcImp::ENABLE_DOUBLE_MASTER();
+        \Pylon\IDGenterSvcImp::ENABLE_DOUBLE_MASTER();
         $this->Create('second_id_genter', $second=true);
-        IDGenterSvcImp::$ENABLE_DOUBLE_MASTER = false;
+        \Pylon\IDGenterSvcImp::$ENABLE_DOUBLE_MASTER = false;
     }
 }

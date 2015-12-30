@@ -79,7 +79,7 @@ class RestTest extends PHPUnit_Framework_TestCase
         //XBox::replace 可以重复注册
         XBox::replace(XBox::ROUTER,new RouterStub(),__METHOD__);
 
-        $result             = XRouter::serving(false);
+        $result             = \Pylon\XRouter::serving(false);
         $this->assertEquals($result->getData(), "pylon is great");
         $this->assertEquals(MyIntcpt::$beforeCall,1);
         $this->assertEquals(MyIntcpt::$afterCall,1);
@@ -95,7 +95,7 @@ class RestTest extends PHPUnit_Framework_TestCase
         XAop::append_by_match_uri("/mygoods/.*", new AfterErr());
         //XBox::replace 可以重复注册
         XBox::replace(XBox::ROUTER,new RouterStub(),__METHOD__);
-        $result             = XRouter::serving(false);
+        $result             = \Pylon\XRouter::serving(false);
         $this->assertEquals($result->status_code, 510);
         // $this->assertEquals($result->errno, 1101);
 

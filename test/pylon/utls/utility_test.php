@@ -1,4 +1,5 @@
 <?php
+use \Pylon\JoinUtls as JoinUtls ;
 class UtilityTest extends PHPUnit_Framework_TestCase
 {
     public function testPromot()

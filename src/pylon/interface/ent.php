@@ -1,10 +1,26 @@
 <?php
+use  \Pylon\DaoFinderUtls as DaoFinderUtls ;
+use  \Pylon\MySqlIDGenerator as MySqlIDGenerator ;
+use  \Pylon\SimpleDaoFactory as SimpleDaoFactory ;
+use  \Pylon\SimpleQueryFactory as SimpleQueryFactory ;
+use  \Pylon\SimpleMapping as SimpleMapping ;
+use  \Pylon\StdMapping as StdMapping ;
+use  \Pylon\DaoImp     as DaoImp ;
+use  \Pylon\XID        as XID ;
+use  \Pylon\XIAutoUpdate as XIAutoUpdate ;
+use  \Pylon\UnitWorkImpl as UnitWorkImpl ;
+use  \Pylon\DynCallParser as DynCallParser ;
+use  \Pylon\DiagnoseContext as DiagnoseContext ;
+use  \Pylon\EntityUtls as EntityUtls ;
+use  \Pylon\DQLObj     as DQLObj ;
+use  \Pylon\FilterProp as FilterProp ;
+
 /**
  * @brief  实体父类，实体需要继承
  *
  *  class Aplle extends XEntity
  */
-class XEntity extends XEntityBase
+class XEntity extends \Pylon\XEntityBase
 {
     public function upgrade()
     {
@@ -82,6 +98,54 @@ class XEntity extends XEntityBase
         return $obj;
     }
 }
+
+abstract class XRelation extends XProperty   implements XIAutoUpdate
+{
+
+    public function __construct($prop=null)
+    {
+        parent::__construct();
+        if($prop != null)
+            $this->merge($prop);
+    }
+    public function id()
+    {
+        return $this->id;
+    }
+    public function createID()
+    {
+        return EntityUtls::createPureID();
+    }
+    public function getDTO($mappingStg)
+    {
+        $vars = $this->getPropArray();
+        return  $mappingStg->convertDTO($vars);
+    }
+    public function getRelationSets()
+    {
+        return array();
+    }
+    public function buildSummery()
+    {
+        return md5(serialize($this->getDTO(StdMapping::ins())));
+    }
+
+    /**
+     * @brief  hash store need,override  this fun in subclass;
+     *
+     * @return  string key; default is null;
+     */
+    public function hashStoreKey()
+    {
+        return null;
+    }
+    static public function  loadRelation($cls,$array,$mappingStg)
+    {
+        $prop=$mappingStg->buildEntityProp($array);
+        return new $cls($prop);
+    }
+}
+
 
 /**
  * @brief
@@ -209,6 +273,7 @@ class XQueryObj
     public function __call($name,$params)
     {
         extract( DynCallParser::condObjParse($name));
+        $cls = XEntEnv::fullClassName($cls) ;
         return $this->callImpl($op,$cls,$name,$condnames,$params);
     }
 }
@@ -240,7 +305,9 @@ class XQueryArr
     public function __call($name,$params)
     {
         extract( DynCallParser::condObjParse($name));
-        return $this->callImpl($op,strtolower($cls),$name,$condnames,$params);
+        $cls   = XEntEnv::fullClassName($cls) ;
+        $table = XEntEnv::shortClassName($cls) ;
+        return $this->callImpl($op,strtolower($table),$name,$condnames,$params);
     }
 
     public function callImpl($op,$table,$name,$paramNames,$params)
@@ -265,9 +332,9 @@ class XQueryArr
 
     private function getStyle($params)
     {
-        $style = ApiStyle::RUBY;
+        $style = \Pylon\ApiStyle::RUBY;
         if(isset($params[0]) && is_array($params[0])) {
-            $style = ApiStyle::MONGO;
+            $style = \Pylon\ApiStyle::MONGO;
         }
         return $style;
     }
@@ -276,7 +343,7 @@ class XQueryArr
     {
         //        $table = DaoFinder::find($table)->getStoreTable();
         $style = $this->getStyle($params);
-        if($style == ApiStyle::MONGO) {
+        if($style == \Pylon\ApiStyle::MONGO) {
             $where = isset($params[0])? $params[0] : null;
             $order = isset($params[1])? $params[1] : null;
             $page  = isset($params[2])? $params[2] : null;
@@ -309,7 +376,7 @@ class XQueryArr
     private function getCall($table,$paramNames,$params)
     {
         $style = $this->getStyle($params);
-        if($style == ApiStyle::RUBY) {
+        if($style == \Pylon\ApiStyle::RUBY) {
             $prop = DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         } else {
             $where = isset($params[0])? $params[0] : null;
@@ -376,9 +443,9 @@ class XWriter
     }
     private function getStyle($params)
     {
-        $style = ApiStyle::RUBY;
+        $style = \Pylon\ApiStyle::RUBY;
         if(isset($params[0]) && is_array($params[0])) {
-            $style = ApiStyle::MONGO;
+            $style = \Pylon\ApiStyle::MONGO;
         }
         return $style;
     }
@@ -386,8 +453,9 @@ class XWriter
     protected function delCall($name,$params)
     {
         extract(DynCallParser::condObjParse($name));
+        $cls   = XEntEnv::fullClassName($cls) ;
         $style = $this->getStyle($params);
-        if($style == ApiStyle::RUBY) {
+        if($style == \Pylon\ApiStyle::RUBY) {
             $prop = DynCallParser::buildCondProp($condnames,$params,$extraParams);
         } else {
             $prop = FilterProp::create($params[0]);
@@ -397,8 +465,9 @@ class XWriter
     protected function updateCall($name,$params)
     {
         extract(DynCallParser::condUpdateObjParse($name));
+        $cls   = XEntEnv::fullClassName($cls) ;
         $style = $this->getStyle($params);
-        if($style == ApiStyle::RUBY) {
+        if($style == \Pylon\ApiStyle::RUBY) {
             extract(DynCallParser::buildUpdateArray($updatenames,$condnames,$params));
         } else {
             $updateArray = $params[0];
@@ -437,6 +506,26 @@ class XWriter
 class XEntEnv
 {
 
+    static public $namespace ;
+    static public function useNamespace($space)
+    {
+        self::$namespace =$space ;
+    }
+    static public function fullClassName($cls)
+    {
+        if (!empty(self::$namespace))
+        {
+            $cls = self::$namespace . "\\" . $cls ;
+        }
+        return $cls ;
+    }
+    static public function shortClassName($cls)
+    {
+        $table = explode("\\",$cls) ;
+        $table = array_pop($table) ;
+        return $table ;
+    }
+
     /**
      * @brief  在一般情况下，不需要编写Dao和Query的特别实现,可由Facotry来产生
      *
@@ -445,21 +534,16 @@ class XEntEnv
      *
      * @return
      */
-    static public function registerFactory($daoFactory,$queryFactory)
+    static public function registFactory($daoFactory,$queryFactory)
     {
         DaoFinderUtls::registerFactory($daoFactory,$queryFactory);
     }
 
-
-    // static public function register($dao)
-    // {
-    //     DaoFinderUtls::register($dao);
-    // }
-    static public function registerDao($dao)
+    static public function registDao($dao)
     {
         DaoFinderUtls::register($dao);
     }
-    static public function registerDaos()
+    static public function registDaos()
     {
         $daos = func_get_args();
         foreach($daos as $dao)
@@ -468,7 +552,7 @@ class XEntEnv
         }
     }
 
-    static public function registerQuerys()
+    static public function registQuerys()
     {
         $querys = func_get_args();
         foreach($querys as $query)
@@ -476,7 +560,7 @@ class XEntEnv
             DaoFinderUtls::registerQuery($query);
         }
     }
-    static public function registerQuery($query)
+    static public function registQuery($query)
     {
         DaoFinderUtls::registerQuery($query);
     }
@@ -490,35 +574,39 @@ class XEntEnv
     /**
      * @brief  simple setup for signle mysql ;
      *
-     * @param $sql_exec  数据库执行器 ;
+     * @param $sqlExec  数据库执行器 ;
      * @param $idgenter  ID生成器 ;
      *
      * @return
      */
-    static public function simpleSetup($sql_exec = null,$idgenter=null)
+    static public function simpleSetup($sqlExec = null,$idgenter=null)
     {
-        if ($sql_exec !== null)
+        if ($sqlExec !== null)
         {
-            XBox::regist(XBox::SQLE,$sql_exec,__METHOD__);
+            XBox::regist(XBox::SQLE,$sqlExec,__METHOD__);
             if(empty($idgenter))
-                XBox::regist(XBox::IDG, new MySqlIDGenerator($sql_exec),__METHOD__);
+                XBox::regist(XBox::IDG, new MySqlIDGenerator($sqlExec),__METHOD__);
             else
                 XBox::regist(XBox::IDG, $idgenter,__METHOD__);
         }
 
         $executer = XBox::must_get(XBox::SQLE);
-        self::registerFactory( SimpleDaoFactory::funIns($executer), SimpleQueryFactory::funIns($executer));
+        self::registFactory( SimpleDaoFactory::funIns($executer), SimpleQueryFactory::funIns($executer));
+    }
+    static public function beginSession() 
+    {
+        return  XAppSession::begin();
     }
     /**
-        * @brief  配置Dao
-        *
-        * @param $cls  类名
-        * @param $table  表名
-        * @param $mapping  映射方式: simple,std
-        * @param $hashfun  分表方式
-        *
-        * @return
-     */
+    * @brief  配置Dao
+    *
+    * @param $cls  类名
+    * @param $table  表名
+    * @param $mapping  映射方式: simple,std
+    * @param $hashfun  分表方式
+    *
+    * @return
+    */
     static public function configDao($cls,$table,$mapping="simple",$hashfun=null)
     {
         $executer = XBox::get(SQLE,"/$cls");
@@ -526,7 +614,7 @@ class XEntEnv
         if ($mapping === "std")
             $map_ins =  StdMapping::ins();
         $dao   = new DaoImp($cls,$executer,$table,$map_ins,$hashfun);
-        self::registerDao($dao);
+        self::registDao($dao);
     }
 
     static public function query($clsName)
@@ -538,6 +626,11 @@ class XEntEnv
         return DaoFinderUtls::find($cls);
     }
 
+
+    static public function QL($express,$symbol='?')
+    {
+        return new DQLObj($express,$symbol);
+    }
 
 }
 

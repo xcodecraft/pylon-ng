@@ -1,4 +1,6 @@
 <?php
+namespace Pylon ;
+use \DBC as DBC ;
 
 /**
  * @brief 拦截对象;
@@ -76,7 +78,7 @@ class XAopRule
         $this->regex    = $regex;
         $this->args     = $args;
         $this->isMatch  = $isMatch;
-        $this->logger   =  new logger("_pylon");
+        $this->logger   =  new \logger("_pylon");
     }
     public function using($itarget)
     {

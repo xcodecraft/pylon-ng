@@ -1,4 +1,5 @@
 <?php
+use \Pylon\XAopRuleSet as XAopRuleSet ;
 
 /**
  * @ingroup aop

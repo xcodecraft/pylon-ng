@@ -1,4 +1,6 @@
 <?php
+namespace Pylon ;
+use \XIDGenerator as XIDGenerator  ;
 /** 
  * @ingroup extends
  * @brief  基于Mysql实现的IDGenterService

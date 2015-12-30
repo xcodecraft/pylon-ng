@@ -1,13 +1,12 @@
 <?php
+namespace Pylon ;
+use \XPylon as XPylon ;
+use \DBC    as DBC ;
 
 /**\addtogroup Ent
  * @{
  */
 
-function sqlprocutls_ins_not_dqlobj($item)
-{
-    return ! $item  instanceof DQLObj ;
-}
 class SqlProcUtls
 {
     static public function bindCond($key,$val)
@@ -21,7 +20,10 @@ class SqlProcUtls
     }
     static public function filterCondVal($arr)
     {
-        $v= array_filter($arr,sqlprocutls_ins_not_dqlobj);
+        $fun = function ($item) {
+            return ! $item  instanceof DQLObj ;
+        };
+        $v= array_filter($arr,$fun);
         return $v;
     }
     static public function  bindUpdate($key,$val)
@@ -165,7 +167,7 @@ class Query
             $condsArr     = $prop->getPropArray();
             $valsArr      = SqlProcUtls::filterCondVal(array_values($condsArr));
             $placeholders = array_fill(0,count($condsArr),'?');
-            $propCmd= JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $propCmd= JoinUtls::jassoArrayEx(' and ',$condsArr,array('\Pylon\SqlProcUtls','bindCond'));
             return $propCmd;
         }
         return "";

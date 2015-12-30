@@ -1,4 +1,6 @@
 <?php
+namespace Pylon ;
+use \PDO as PDO ;
 
 /**
  * @brief 基于PDO对Mysql 的SQL 执行器
@@ -55,7 +57,7 @@ class FastSQLExecutor
 
     public function connect()
     {
-        $dblog = new logger("_res");
+        $dblog = new \logger("_res");
 
         $this->_dbh = new PDO($this->_connectInfo['dsn'], $this->_connectInfo['userName'],$this->_connectInfo['password']
             , array(PDO::ATTR_PERSISTENT => $this->_connectInfo['connType']));
@@ -144,7 +146,7 @@ class FastSQLExecutor
 
     public function logAllSql($dc,$sql, $values=array(),$e="")
     {
-        $slog = new logger("_sql");
+        $slog = new \logger("_sql");
         if(!empty($values))
         {
             $logsql = str_replace('%','#',$sql); // process like : linke %xxx%

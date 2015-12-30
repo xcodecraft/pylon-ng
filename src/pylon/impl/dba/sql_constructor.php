@@ -1,4 +1,6 @@
 <?php
+namespace Pylon ;
+use \DBC as DBC ;
 
 /**\addtogroup DBA
  * @{
@@ -12,7 +14,7 @@ abstract class SQLStatement
     protected $_tableName;
 //    public $_tableName;
 
-    function SQLStatement($tableName )
+    function __construct($tableName )
     {
         assert($tableName != "");
         $this->_tableName = $tableName;
@@ -106,9 +108,10 @@ class SQLSelectStatement extends SQLStatement
     var $_pageCond = "";
     var $_limit = "";
 
-    function SQLSelectStatement($view , $viewCond=null)
+    public function __construct($view , $viewCond=null)
     {
-        $this->_view = $view;
+        DBC::requireNotNull($view) ;
+        $this->_view     = $view;
         $this->_viewCond = $viewCond;
     }
     function columns($columns)

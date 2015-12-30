@@ -1,4 +1,6 @@
 <?php
+namespace Pylon ;
+use \XEntity as XEntity ;
 
 class NullEntity extends XEntity
 {

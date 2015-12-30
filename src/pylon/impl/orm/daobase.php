@@ -1,4 +1,10 @@
 <?php
+namespace Pylon ;
+use \DBC as DBC ;
+use \XBox as XBox ;
+use \XEntEnv as XEntEnv ;
+use \XPylon  as XPylon ;
+use \XEntity as XEntity ;
 /**\addtogroup Ent
  * @{
  */
@@ -73,7 +79,7 @@ class DaoBase
     public function delByProp($prop,$hashKey=null)
     {
         $statement = new SQLDelStatement($this->getStoreTable($hashKey));
-        $where     = JoinUtls::jassoArrayEx(' and ',$prop->getPropArray(),array('SqlProcUtls','bindCond'));
+        $where     = JoinUtls::jassoArrayEx(' and ',$prop->getPropArray(),array('\Pylon\SqlProcUtls','bindCond'));
         $statement->where($where);
 
         $valsArr   = SqlProcUtls::filterCondVal(array_values($prop->getPropArray()));
@@ -95,16 +101,18 @@ class DaoBase
 
     public function getByProp($prop,$hashKey=null)
     {
-        $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
-        $valsArr=array();
+        $view      = $this->getStoreTable($hashKey) ;
+        $statement = new SQLSelectStatement($view );
+        $valsArr   = array();
         if(!$prop->isEmpty())
         {
             $condsArr = $prop->getPropArray();
             $valsArr  = SqlProcUtls::filterCondVal(array_values($prop->getPropArray()));
-            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array("\\Pylon\\SqlProcUtls",'bindCond'));
             $statement->where($where);
         }
-        return $this->getByCmd($statement->generateSql(),$valsArr);
+        $sql = $statement->generateSql() ;
+        return $this->getByCmd($sql,$valsArr);
     }
 
 
@@ -152,7 +160,7 @@ class DaoBase
             $condsArr = $prop->getPropArray();
             $valsArr = SqlProcUtls::filterCondVal(array_values($condsArr));
 
-            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('\Pylon\SqlProcUtls','bindCond'));
             $statement->where($where);
         }
         return $this->statementCount($statement,$valsArr);
@@ -172,7 +180,7 @@ class DaoBase
             $condsArr = $prop->getPropArray();
             $valsArr = SqlProcUtls::filterCondVal(array_values($condsArr));
 
-            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('\Pylon\SqlProcUtls','bindCond'));
             $statement->where($where);
         }
         if($page !=null)
@@ -202,7 +210,7 @@ class DaoBase
             $condsArr = $prop->getPropArray();
             $valsArr  = SqlProcUtls::filterCondVal(array_values($condsArr));
 
-            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('\Pylon\SqlProcUtls','bindCond'));
             $statement->where($where);
         }
         $statement->limit($begin,$count);
@@ -231,7 +239,8 @@ class DaoBase
         DBC::requireTrue($pairsCnt > 0, "count of pairs is $pairsCnt,it mush > 0 " );
         $placeholders = array_fill(0,$pairsCnt,'?');
         $statement->dataArray($placeholders);
-        return $this->_executer->exeNoQuery($statement->generateSql(),array_values($pairs));
+        $sql = $statement->generateSql() ;
+        return $this->_executer->exeNoQuery($sql,array_values($pairs));
     }
     protected function convertObj($row)
     {
@@ -265,9 +274,9 @@ class DaoBase
     {
 
         $statement  = new SQLUpdateStatment($this->getStoreTable($hashKey));
-        $updateSql  = JoinUtls::jassoArrayEx(',',$updateArr,array('SqlProcUtls','bindUpdate'));
+        $updateSql  = JoinUtls::jassoArrayEx(',',$updateArr,array('\Pylon\SqlProcUtls','bindUpdate'));
         $statement->updateColumns($updateSql);
-        $statement->where(JoinUtls::jassoArrayEx(' and ',$condArr,array('SqlProcUtls','bindCond')));
+        $statement->where(JoinUtls::jassoArrayEx(' and ',$condArr,array('\Pylon\SqlProcUtls','bindCond')));
         $condvalArr = SqlProcUtls::filterCondVal(array_values($condArr));
         $bindArr    = array_merge(array_values($updateArr), $condvalArr);
         $sql        = $statement->generateSql();
@@ -322,7 +331,8 @@ class DaoImp extends DaoBase implements XDao
 
     public static function simpleDao($cls,$execer)
     {
-        return new DaoImp($cls,$execer,strtolower($cls),SimpleMapping::ins(),null);
+        $table = XEntEnv::shortClassName($cls) ;
+        return new DaoImp($cls,$execer,strtolower($table),SimpleMapping::ins(),null);
     }
 
     public static function simpleTableDao($cls,$table,$execer)

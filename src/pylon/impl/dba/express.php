@@ -1,4 +1,6 @@
 <?php
+namespace Pylon ;
+use \DBC as DBC ;
 
 /**\addtogroup DBA
  * @{
@@ -15,6 +17,8 @@ class Express
     public function __construct($stg=null)
     {
         $this->_sql = "";
+
+        DBC::requireTrue($stg==null || is_object($stg), __method__ .": \$stg is not object") ;
         $this->_selfStg = $stg;
     }
     public function generateSql($stg )
@@ -86,8 +90,13 @@ class Express
     }
     function needGe($stgs,$column,$value)
     {
+        DBC::requireTrue(is_object($stgs)) ;
         if($this->_selfStg !=null)
+        {
+            DBC::requireTrue(is_object($this->_selfStg)) ;
             return $this->_selfStg->needGenerate($column,$value);
+        }
+        
         return $stgs->needGenerate($column,$value);
     }
 
@@ -465,7 +474,7 @@ class ColumnStg extends GenerateStg
 class UserFunStg extends GenerateStg
 {
     var $_fun;
-    function UserFunStg($fun)
+    public function __construct($fun)
     {
         $this->_fun = $fun;
     }
@@ -492,23 +501,20 @@ function pyl_stg_not_null($col,$val)
 class StgUtls
 {
 
-    /**
-     * @brief ÎªÂËÎª¿ÕµÄÖµ
-     *
-     * @return
-     */
     static public function filterEmpty()
     {
-        return new UserFunStg(pyl_stg_not_empty);
+        $fun =  function ($col,$val) {
+            return !empty($val);
+        };
+        return new UserFunStg($fun);
     }
-    /**
-     * @brief ¹ýÂËÎªNULLµÄÖµ.
-     *
-     * @return
-     */
     static public function filterNull()
     {
-        return new UserFunStg(pyl_stg_not_null);
+
+        $fun =  function ($col,$val) {
+            return !is_null($val);
+        };
+        return new UserFunStg($fun);
     }
 }
 

@@ -1,5 +1,8 @@
 <?php
 
+use \Pylon\FastRouter as FastRouter ;
+use \Pylon\XRouter    as XRouter ;
+
 /** @defgroup assembly 装配器
  *
  *  使用者关注
@@ -37,37 +40,40 @@
 class XSetting
 {
 
-    const LOG_DEBUG_LEVEL    = 0 ;
-    const LOG_INFO_LEVEL     = 1 ;
-    const LOG_WARN_LEVEL     = 2 ;
-    const LOG_ERROR_LEVEL    = 3 ;
+    // const LOG_INDEBUG_LEVEL    = 1 ;
+    const LOG_DEBUG_LEVEL     = 0 ;
+    const LOG_INFO_LEVEL      = 1 ;
+    const LOG_WARN_LEVEL      = 2 ;
+    const LOG_ERROR_LEVEL     = 3 ;
 
-    const LOG_DEBUG_MODE     = 'DEBUG';
+    const LOG_INDEBUG_MODE    = 'IN_DEBUG';
+    const LOG_DEBUG_MODE      = 'DEBUG';
     /**
      * @brief 线上运行
      */
-    const LOG_ONLINE_MODE    = 'ONLINE' ;
+    const LOG_ONLINE_MODE     = 'ONLINE' ;
     /**
      * @brief  快速模式,提高性能
      */
-    const LOG_FAST_MODE      = 'FAST' ;
+    const LOG_FAST_MODE       = 'FAST' ;
     /**
      * @brief 性能测试模式
      */
-    const LOG_BENCHMARK_MODE = 'BENCHMARK'  ;
+    const LOG_BENCHMARK_MODE  = 'BENCHMARK'  ;
 
-    static public  $logMode      = "DEBUG";
-    static public  $logAll       = True ;
-    static public  $logTag       = "" ;
-    static public  $runPath      = "" ;
-    static public  $assembly     = "" ;
-    static public  $prjName      = "" ;
-    static public  $bootstrap    = "bootstrap.php" ;
+    static public  $logMode   = "DEBUG";
+    static public  $logAll    = True ;
+    static public  $logTag    = "" ;
+    static public  $runPath   = "" ;
+    static public  $assembly  = "" ;
+    static public  $prjName   = "" ;
+    static public  $bootstrap = "bootstrap.php" ;
 
     static public  $entLazyload  = true ;
 
 
     static public  $respClass   = 'XRestResp' ;
+    static public  $respInsFun  = null ;
 
     static public  $extendData  = array() ;
 
@@ -176,6 +182,8 @@ function pylon_load_cls_index()
     array_push(PylonModule::$modleFiles,"$runpath/_autoload_clspath.idx");
     pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
     pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
+
+    // var_dump( pylon_dict_find("XUnAuthorized"));
 
     $index_load = true ;
 }
@@ -300,6 +308,10 @@ class XPylon
         case XSetting::LOG_DEBUG_MODE :
             self::log4debug();
             break;
+        case XSetting::LOG_INDEBUG_MODE :
+            self::log4innerDebug();
+            break;
+
         case XSetting::LOG_BENCHMARK_MODE:
             self::log4benchmark();
             break;
@@ -333,6 +345,17 @@ class XPylon
     {
         log_kit::init(XSetting::$prjName,XSetting::$logTag,XSetting::LOG_DEBUG_LEVEL);
         log_kit::level("_pylon" , XSetting::LOG_INFO_LEVEL);
+        log_kit::level("_res"   , XSetting::LOG_INFO_LEVEL);
+        log_kit::level("_sql"   , XSetting::LOG_INFO_LEVEL);
+        log_kit::level("_speed" , XSetting::LOG_INFO_LEVEL);
+        log_kit::level("_rest"  , XSetting::LOG_INFO_LEVEL);
+        XLogKit::logger("_pylon")->info("Log Mode: log4debug");
+    }
+
+    private static function log4innerDebug()
+    {
+        log_kit::init(XSetting::$prjName,XSetting::$logTag,XSetting::LOG_DEBUG_LEVEL);
+        log_kit::level("_pylon" , XSetting::LOG_DEBUG_LEVEL);
         log_kit::level("_res"   , XSetting::LOG_INFO_LEVEL);
         log_kit::level("_sql"   , XSetting::LOG_INFO_LEVEL);
         log_kit::level("_speed" , XSetting::LOG_INFO_LEVEL);

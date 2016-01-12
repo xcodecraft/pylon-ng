@@ -49,8 +49,8 @@ class XInterceptorRuner extends XInterceptor
             }
             catch(Exception $e)
             {
-                self::defaultException($this->plog,$e,$response) ;
                 self::doException($unAfterItcs,$e,$xcontext,$request,$response) ;
+                self::defaultException($this->plog,$e,$response) ;
             }
         }
 

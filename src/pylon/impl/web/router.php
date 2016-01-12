@@ -22,8 +22,8 @@ class XInterceptorRuner extends XInterceptor
     }
     public function _exception($e,$xcontext,$request,$response)
     {
-            self::defaultException($this->plog,$e,$response) ;
             self::doException($this->beforedItcs,$e,$xcontext,$request,$response) ;
+            self::defaultException($this->plog,$e,$response) ;
     }
 
     static private function doException($intcs,$e,$xcontext,$request,$response)

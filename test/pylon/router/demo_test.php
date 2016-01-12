@@ -19,7 +19,7 @@ class RestDemoTest extends PHPUnit_Framework_TestCase
     public function testIntercepterThrowException()
     {
         $resp  = $this->curl->post("/mygame/exception",array());
-        $this->assertTrue(XRestResult::matchFail($resp,510,510)) ;
+        $this->assertTrue(XRestResult::matchFail($resp,510,1)) ;
     }
     public function testIntercepterNoException()
     {

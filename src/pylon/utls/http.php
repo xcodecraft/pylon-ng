@@ -175,6 +175,12 @@ class XHttpCaller
         }
         return $url ;
     }
+
+    public function useagent($data)
+    {
+        curl_setopt($this->ch, CURLOPT_USERAGENT, $data);
+
+    }
     /**
      * @brief GET 调用
      *

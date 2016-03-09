@@ -181,6 +181,12 @@ class XHttpCaller
         curl_setopt($this->ch, CURLOPT_USERAGENT, $data);
 
     }
+
+    public function setFollowLocation($bFollow)
+    {
+        curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, $bFollow);
+    }
+
     /**
      * @brief GET 调用
      *

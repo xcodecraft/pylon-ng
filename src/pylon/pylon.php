@@ -63,6 +63,7 @@ class XSetting
     static public  $assembly     = "" ;
     static public  $prjName      = "" ;
     static public  $bootstrap    = "bootstrap.php" ;
+    static public  $logger       = null ;
 
     static public  $entLazyload  = true ;
 
@@ -125,14 +126,74 @@ class XSetting
 
 
 }
+interface XIlogger
+{
+    function debug($msg,$event = null ) ;
+    function info($msg,$event = null ) ;
+    function warn($msg,$event = null ) ;
+    function error($msg,$event = null ) ;
+
+}
+
+class XNullLogger implements XIlogger 
+{
+    public function debug($msg,$event = null )
+    {
+    }
+
+    public function info($msg,$event = null )
+    {
+
+    }
+
+    public function warn($msg,$event = null )
+    {
+
+    }
+
+    public function error($msg,$event = null )
+    {
+    }
+}
 
 
-/**
- * @ingroup utls
- * @brief
- */
-class XLogger extends Logger
-{}
+class XLogger  implements XIlogger 
+{
+
+    public function __construct($name) 
+    {
+        $this->log = new Logger($name) ;
+        $this->externLog =  is_null(XSetting::$logger) ?  new XNullLogger() : XSetting::$logger ;
+        
+    }
+    public function debug($msg,$event = null )
+    {
+        $this->log->debug($msg,$event) ;
+        $this->externLog->debug($msg,$event) ;
+
+    }
+
+    public function info($msg,$event = null )
+    {
+        $this->log->info($msg,$event) ;
+        $this->externLog->info($msg,$event) ;
+
+    }
+
+    public function warn($msg,$event = null )
+    {
+        $this->log->warn($msg,$event) ;
+        $this->externLog->warn($msg,$event) ;
+
+    }
+
+    public function error($msg,$event = null )
+    {
+        $this->log->error($msg,$event) ;
+        $this->externLog->error($msg,$event) ;
+    }
+
+}
 /**
  * @ingroup utls
  * @brief  日志配置

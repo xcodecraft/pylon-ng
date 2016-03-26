@@ -7,7 +7,7 @@
 class MySqlIDGenerator implements XIDGenerator
 {
     private $_executer;
-    private $enable_second = false;
+    private $_enable_second = false;
     public static $ENABLE_DOUBLE_MASTER = false;
     private $_idsets = array() ;
 
@@ -29,7 +29,7 @@ class MySqlIDGenerator implements XIDGenerator
             $this->_executer = clone $executer; 
         }
 
-        if( self::$ENABLE_DOUBLE_MASTER && $second) {
+        if( static::$ENABLE_DOUBLE_MASTER && $second) {
             $this->_enable_second = true;
         }
 
@@ -42,7 +42,7 @@ class MySqlIDGenerator implements XIDGenerator
      */
     public static function ENABLE_DOUBLE_MASTER()
     {
-        self::$ENABLE_DOUBLE_MASTER = true;
+        static::$ENABLE_DOUBLE_MASTER = true;
     }
 
     private function readIDSets()
@@ -81,17 +81,20 @@ class MySqlIDGenerator implements XIDGenerator
     {
         if($this->_idsets[$objName]['curID'] == $this->_idsets[$objName]['maxID'] )
         {
-            if(!$this->getBatchID($objName)) return false;
+            if(!$this->getBatchID($objName)) 
+            {
+                return false;
+            }
         }
 
-        $this->_idsets[$objName]['curID'] += self::$ENABLE_DOUBLE_MASTER ? 2 : 1;
+        $this->_idsets[$objName]['curID'] += static::$ENABLE_DOUBLE_MASTER ? 2 : 1;
         $createdID = $this->getID($this->_idsets[$objName]['curID']);
         return $createdID;
     }
 
     private function getID($id)
     {
-        if ( self::$ENABLE_DOUBLE_MASTER )
+        if ( static::$ENABLE_DOUBLE_MASTER )
         {
             if ( $this->_enable_second ) {
                 return ($id & 1) ? ($id - 1) : $id;
@@ -107,7 +110,7 @@ class MySqlIDGenerator implements XIDGenerator
 
     public function getBatchID($objName)
     {
-        if ( self::$ENABLE_DOUBLE_MASTER ) {
+        if ( static::$ENABLE_DOUBLE_MASTER ) {
             $step = $this->_idsets[$objName]['step'] * 2;
         }
         else {

@@ -8,7 +8,7 @@ class XInterceptorRuner extends XInterceptor
     {
         $this->allItcs     = $itcs ;
         $this->beforedItcs = array() ;
-        $this->plog        = new Logger("_pylon");
+        $this->plog        = XLogKit::logger("_pylon") ;
     }
     public function _before($xcontext,$request,$response)
     {
@@ -69,7 +69,7 @@ class XRouter
     {
 
         $method  = $_SERVER['REQUEST_METHOD'];
-        $plog    = new Logger("_pylon");
+        $plog    = XLogKit::logger("_pylon") ;
         $conf    = json_decode($conf,true);
         $itarget = new XIntercepterTarget($request);
         if(isset($conf['uri']))

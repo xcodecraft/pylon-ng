@@ -11,7 +11,7 @@
  * 
  * @return 
  */
-const C_PYLON_DICT_COUNT="pylon_dict_count"
+const C_PYLON_DICT_COUNT="pylon_dict_count" ;
 function pylon_autoload($classname)
 {
 

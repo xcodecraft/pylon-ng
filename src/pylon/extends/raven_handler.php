@@ -6,7 +6,7 @@ class RavenSetting
     static public function setup($addr)
     {
         static::$server   = $addr ;
-        XSetting::$logger = new RavenLogger() ;
+        XSetting::$logCls = RavenLogger ;
         XAop::append_by_match_uri(".*" , new RavenErrorHandler());
     }
 }
@@ -23,6 +23,8 @@ class RavenErrorHandler extends XInterceptor
 }
 class RavenLogger implements XIlogger 
 {
+    public function __construct($name)
+    {}
 
     public function debug($msg,$event = null )
     {

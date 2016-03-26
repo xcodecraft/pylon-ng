@@ -63,7 +63,7 @@ class XSetting
     static public  $assembly     = "" ;
     static public  $prjName      = "" ;
     static public  $bootstrap    = "bootstrap.php" ;
-    static public  $logger       = null ;
+    static public  $logCls       = null ;
 
     static public  $entLazyload  = true ;
 
@@ -163,7 +163,8 @@ class XLogger  implements XIlogger
     public function __construct($name) 
     {
         $this->log = new Logger($name) ;
-        $this->externLog =  is_null(XSetting::$logger) ?  new XNullLogger() : XSetting::$logger ;
+        $logCls    = XSetting::$logCls ;
+        $this->externLog =  is_null($logCls) ?  new XNullLogger() : new $logCls($name);
         
     }
     public function debug($msg,$event = null )

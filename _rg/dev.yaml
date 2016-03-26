@@ -9,5 +9,5 @@ _dev:
     - !C.sonar
         runner   : "/data/x/tools/sonar/bin/sonar-runner"
         qube     : "http://sonar.ayibang.cn"
-        src      : "src"
+        src      : "src/pylon"
         language : "php"

@@ -231,7 +231,7 @@ function pylon_load_cls_index()
 
     static $index_load = false ;
     if ($index_load ) return ;
-    $lib_root  = dirname(__FILE__);
+    $lib_root  = dirname(dirname(__FILE__));
     pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
     pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
 

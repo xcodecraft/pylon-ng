@@ -125,8 +125,7 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         $xid    = XID::load($array);
         $prop   = $mappingStg->buildEntityProp($array);
         $entity = new $cls($xid,$prop);
-        $obj    = static::unitWork()->regLoad($entity);
-        return $obj;
+        return  static::unitWork()->regLoad($entity);
     }
     static public function loadEntity2($cls,$array,$oprop,$mappingStg,$clsName=array())
     {
@@ -258,11 +257,7 @@ class ObjUpdater
     }
     public function haveChange()
     {
-        if(count($this->additems)>0)  
-        {
-            return true;
-        }
-        if(count($this->delitems)>0) 
+        if(count($this->additems)>0  ||  count($this->delitems)>0) 
         {
             return true;
         }
@@ -576,8 +571,7 @@ class StdMapping implements IMappingStg
             }
 
         }
-        $prop = XProperty::fromArray($array);
-        return $prop;
+        return  XProperty::fromArray($array);
     }
 }
 class EntityUtls
@@ -649,7 +643,7 @@ class EntityUtls
 
 class DaoFinderUtls
 {
-    const factory='##factory';
+    const FACTORY='##factory';
 
     private static $binder=null;
 
@@ -674,8 +668,8 @@ class DaoFinderUtls
 
     static public function registerFactory($daoFactory,$queryFactory)
     {
-        XBox::regist(static::factory,$daoFactory, __METHOD__,"/".XBox::DAO);
-        XBox::regist(static::factory,$queryFactory, __METHOD__,"/".XBox::QUERY);
+        XBox::regist(static::FACTORY,$daoFactory, __METHOD__,"/".XBox::DAO);
+        XBox::regist(static::FACTORY,$queryFactory, __METHOD__,"/".XBox::QUERY);
     }
 
     static public function get_impl($key,$cls)
@@ -687,7 +681,7 @@ class DaoFinderUtls
             return $obj ;
         }
 
-        $factory = XBox::get(static::factory,"/$key");
+        $factory = XBox::get(static::FACTORY,"/$key");
         if($factory !== null)
         {
             $obj = call_user_func($factory,$cls);
@@ -777,7 +771,7 @@ class DaoFinderUtls
     {
         XBox::clean(XBox::DAO);
         XBox::clean(XBox::QUERY);
-        XBox::clean(static::factory);
+        XBox::clean(static::FACTORY);
     }
 
 }

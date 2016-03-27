@@ -109,26 +109,25 @@ class DaoBase
     public function getByCmd($cmd,$argvals=array())
     {
         $row = $this->_executer->query($cmd,$argvals);
-        if($row == false) 
+        if($row ) 
         {
-            return null;
+            return $this->convertObj($row);
         }
-        return $this->convertObj($row);
+        return null;
     }
 
     public function rowByCmd($cmd,$argvals=array())
     {
         $row = $this->_executer->query($cmd,$argvals);
-        if($row == false) 
+        if($row ) 
         {
-            return null;
+            return $row;
         }
-        return $row;
+        return null;
     }
     public function rowsByCmd($cmd,$argvals=array())
     {
-        $rows = $this->_executer->querys($cmd,$argvals);
-        return $rows;
+        return  $this->_executer->querys($cmd,$argvals);
     }
 
 
@@ -356,16 +355,24 @@ class DaoImp extends DaoBase implements XDao
         {
 
             if(method_exists($cls,'load'))
+            {
                 $obj = call_user_func(array($cls,'load'),$row,$this->mappingStg);
+            }
             else
+            {
                 $obj = XEntity::loadEntity($cls,$row,$this->mappingStg);
+            }
         }
         else if(DaoBase::cls_is_a('Relation',$cls))
         {
             if(method_exists($cls,'load'))
+            {
                 $obj = call_user_func(array($cls,'load'),$row,$this->mappingStg);
+            }
             else
+            {
                 $obj = Relation::loadRelation($cls,$row,$this->mappingStg);
+            }
         }
         else
         {
@@ -378,7 +385,6 @@ class DaoImp extends DaoBase implements XDao
 class SimpleDaoFactory
 {
     private $execr = null;
-    private $isSelfDefFun=null;
     public function __construct($execr)
     {
         $this->execr = $execr;

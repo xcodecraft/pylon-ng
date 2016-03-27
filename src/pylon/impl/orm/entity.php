@@ -74,7 +74,9 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         parent::__construct();
         $this->xid=$xid;
         if($prop != null)
+        {
             $this->merge($prop);
+        }
         DBC::requireNotNull($this->xid,"entity id is null" );
     }
 
@@ -109,19 +111,21 @@ class XEntityBase extends XProperty implements XIAutoUpdate
     {
         $unitwork = XBox::get("unitwork");
         if( $unitwork === null )
+        {
             throw new XDBCException("没有调用 XAppSession::begin()");
+        }
         return $unitwork ;
     }
     public function __wakeup()
     {
-        self::unitWork()->regLoad($this);
+        static::unitWork()->regLoad($this);
     }
     static public function loadEntity($cls,$array,$mappingStg,$clsmap=array())
     {
         $xid    = XID::load($array);
         $prop   = $mappingStg->buildEntityProp($array);
         $entity = new $cls($xid,$prop);
-        $obj    = self::unitWork()->regLoad($entity);
+        $obj    = static::unitWork()->regLoad($entity);
         return $obj;
     }
     static public function loadEntity2($cls,$array,$oprop,$mappingStg,$clsName=array())
@@ -130,20 +134,20 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         $prop   = $mappingStg->buildEntityProp($array);
         $prop->merge($oprop);
         $entity = new $cls($xid,$prop);
-        $obj    = self::unitWork()->regLoad($entity);
+        $obj    = static::unitWork()->regLoad($entity);
         return $obj;
     }
     public function signAdd()
     {
-        self::unitWork()->regAdd($this);
+        static::unitWork()->regAdd($this);
     }
     public function signLoad()
     {
-        self::unitWork()->regLoad($this);
+        static::unitWork()->regLoad($this);
     }
     public function del()
     {
-        self::unitWork()->regDel($this);
+        static::unitWork()->regDel($this);
     }
 
     public function index()
@@ -161,7 +165,9 @@ abstract class Relation extends XProperty   implements XIAutoUpdate
     {
         parent::__construct();
         if($prop != null)
+        {
             $this->merge($prop);
+        }
     }
     public function id()
     {
@@ -232,7 +238,9 @@ class ObjUpdater
             $array[$item->index()] = $item;
             $this->items[$item->index()]=$item;
             if(ObjUpdater::OBJ_LOAD===$objType)
+            {
                 $this->loaditemSummerys[$item->index()]=$item->buildSummery();
+            }
         }
 
     }
@@ -240,7 +248,9 @@ class ObjUpdater
     {
         $cnt = count($items);
         for($i=0 ; $i<$cnt; $i++)
+        {
             $items[$i] = null;
+        }
     }
     public function __destruct()
     {
@@ -254,7 +264,9 @@ class ObjUpdater
         foreach($this->loaditems as $key=>$item)
         {
             if($item->buildSummery() != $this->loaditemSummerys[$key])
+            {
                 return true;
+            }
         }
         return false;
     }
@@ -385,9 +397,11 @@ class SimpleMapping implements IMappingStg
     static private $ins=null;
     static public function ins()
     {
-        if(self::$ins == null)
-            self::$ins = new SimpleMapping();
-        return self::$ins;
+        if(static::$ins == null)
+        {
+            static::$ins = new SimpleMapping();
+        }
+        return static::$ins;
     }
     public function convertDTO($vars)
     {
@@ -473,9 +487,11 @@ class StdMapping implements IMappingStg
     static private $ins=null;
     static public function ins()
     {
-        if(self::$ins == null)
-            self::$ins = new StdMapping();
-        return self::$ins;
+        if(static::$ins == null)
+        {
+            static::$ins = new StdMapping();
+        }
+        return static::$ins;
     }
     public function convertDTO($vars)
     {
@@ -568,15 +584,17 @@ class EntityUtls
     {
 
         $reflectionObj = new ReflectionClass($cls);
-        $constructFun = $reflectionObj->getConstructor();
-        $args = $constructFun->getParameters();
-        $constrctArgs=array();
+        $constructFun  = $reflectionObj->getConstructor();
+        $args          = $constructFun->getParameters();
+        $constrctArgs  = array();
         foreach ( $args as $arg)
         {
             $key=strtolower($arg->getName());
             $col=$key;
             if(isset($argsmap[$key]))
+            {
                 $col=$argsmap[$key];
+            }
             if(isset($array[$col]))
             {
                 $constrctArgs[$key]=$array[$col] ;
@@ -589,9 +607,13 @@ class EntityUtls
                 $prop->cls = $clsmap[$col];
                 $obj = new LDProxy(array("EntityUtls","loadObjByID"),$prop);
                 if($loadstg == XEntity::LAZY_LOADER)
+                {
                     $constrctArgs[$key]=$obj;
+                }
                 else
+                {
                     $constrctArgs[$key]=$obj->getObj();
+                }
             }
             else
             {
@@ -613,7 +635,7 @@ class EntityUtls
     static public function createPureID($idname='other')
     {
         $idSvc = XBox::must_get('IDGenterService');
-        $id= $idSvc->createID($idname);
+        $id    = $idSvc->createID($idname);
         return $id;
     }
 }
@@ -627,16 +649,16 @@ class DaoFinderUtls
 
     static public function regBinder($binder)
     {
-        self::$binder = $binder;
+        static::$binder = $binder;
     }
     static public function clearBinder()
     {
-        self::regBinder(null);
+        static::regBinder(null);
     }
 
     static protected function findByCls($clsName)
     {
-        return self::get_impl(XBox::DAO,$clsName);
+        return static::get_impl(XBox::DAO,$clsName);
     }
 
     static public function getExecuterList()
@@ -646,8 +668,8 @@ class DaoFinderUtls
 
     static public function registerFactory($daoFactory,$queryFactory)
     {
-        XBox::regist(self::factory,$daoFactory, __METHOD__,"/".XBox::DAO);
-        XBox::regist(self::factory,$queryFactory, __METHOD__,"/".XBox::QUERY);
+        XBox::regist(static::factory,$daoFactory, __METHOD__,"/".XBox::DAO);
+        XBox::regist(static::factory,$queryFactory, __METHOD__,"/".XBox::QUERY);
     }
 
     static public function get_impl($key,$cls)
@@ -656,11 +678,11 @@ class DaoFinderUtls
         $obj  = XBox::get($key,"/$cls");
         if($obj !== null) return $obj ;
 
-        $factory = XBox::get(self::factory,"/$key");
+        $factory = XBox::get(static::factory,"/$key");
         if($factory !== null)
         {
             $obj = call_user_func($factory,$cls);
-            self::regist_impl($key,$cls,$obj);
+            static::regist_impl($key,$cls,$obj);
             return $obj;
         }
 
@@ -672,10 +694,10 @@ class DaoFinderUtls
 
     static public function query($clsName)
     {
-        $query = self::get_impl(XBox::QUERY,$clsName);
-        if(self::$binder!= null)
+        $query = static::get_impl(XBox::QUERY,$clsName);
+        if(static::$binder!= null)
         {
-            return self::$binder->proxy($clsName,$query);
+            return static::$binder->proxy($clsName,$query);
         }
         return $query;
     }
@@ -684,18 +706,20 @@ class DaoFinderUtls
     {
         $dao=null;
         if(is_object($obj))
+        {
             $obj = get_class($obj);
-        $dao = self::findByCls($obj);
+        }
+        $dao = static::findByCls($obj);
 
         return $dao;
     }
 
     static public function find($obj)
     {
-        $dao = self::find_($obj);
-        if(self::$binder!= null)
+        $dao = static::find_($obj);
+        if(static::$binder!= null)
         {
-            return self::$binder->proxy(
+            return static::$binder->proxy(
                 is_string($obj)? $obj: get_class($obj),
                 $dao);
         }
@@ -713,32 +737,36 @@ class DaoFinderUtls
     {
 
         $clsName = strtolower($dao->cls);
-        self::regist_impl(XBox::DAO,$clsName,$dao);
+        static::regist_impl(XBox::DAO,$clsName,$dao);
     }
 
     static public function regist_impl($key,$cls,$obj)
     {
-        self::registerExer($cls,$obj->getExecuter());
+        static::registerExer($cls,$obj->getExecuter());
         XBox::regist($key,$obj,__METHOD__,"/$cls");
     }
     static public function registerQuery($query)
     {
         $clsName = strtolower($query->getRegName());
-        self::regist_impl(XBox::QUERY,$clsName,$query);
+        static::regist_impl(XBox::QUERY,$clsName,$query);
     }
 
     static public function registerAll($dao,$query)
     {
         if($dao !=null)
-            self::register($dao);
+        {
+            static::register($dao);
+        }
         if($query !=null)
-            self::registerQuery($query);
+        {
+            static::registerQuery($query);
+        }
     }
     static public function clean()
     {
         XBox::clean(XBox::DAO);
         XBox::clean(XBox::QUERY);
-        XBox::clean(self::factory);
+        XBox::clean(static::factory);
     }
 
 }

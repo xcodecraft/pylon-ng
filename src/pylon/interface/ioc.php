@@ -24,31 +24,33 @@ class XAop
 	static public function rule()
 	{
 
-		if(self::$rules == null )
+		if(static::$rules == null )
         {
-			self::$rules = new XAopRuleSet();
+			static::$rules = new XAopRuleSet();
         }
-        return  self::$rules ;
+        return  static::$rules ;
 	}
     static function __callStatic($name,$arguments)
     {
-        call_user_func_array( array(self::rule(),$name),$arguments );
+        call_user_func_array( array(static::rule(),$name),$arguments );
     }
     static private function logger()
     {
         static $log_ins =null;
         if ($log_ins === null)
-            return new logger("_pylon");
+        {
+            return XLogKit::logger("_pylon") ;
+        }
         return $log_ins;
     }
 	static public function using($conf)
 	{
-		return self::rule()->using($conf);
+		return static::rule()->using($conf);
 	}
 
 	static public function using_all($pos)
 	{
-		return self::$rules->using_all();
+		return static::$rules->using_all();
 	}
 
 }
@@ -91,12 +93,12 @@ class XBox
     static public function replace($key,$obj,$where,$space='/')
     {
         DBC::requireNotNull($obj,'$obj');
-        self::registImpl($key,$obj,$space,$force=true,$were);
+        static::registImpl($key,$obj,$space,$force=true,$were);
     }
     static public function regist($key,$obj,$where,$space='/')
     {
         DBC::requireNotNull($obj,'$obj');
-        self::registImpl($key,$obj,$space,$force=false,$where);
+        static::registImpl($key,$obj,$space,$force=false,$where);
     }
     /**
      * @brief  注册
@@ -112,12 +114,16 @@ class XBox
     static private function registImpl($key,$obj,$space='/',$force=false,$where='')
     {
         DBC::requireNotNull($key,'$key');
-        if (! isset(self::$_objs[$key]))
-            self::$_objs[$key] = array();
-        $space_obj = &self::$_objs[$key];
-        if (! isset(self::$_wheres[$key]))
-            self::$_wheres[$key] = array();
-        $space_where = &self::$_wheres[$key];
+        if (! isset(static::$_objs[$key]))
+        {
+            static::$_objs[$key] = array();
+        }
+        $space_obj = &static::$_objs[$key];
+        if (! isset(static::$_wheres[$key]))
+        {
+            static::$_wheres[$key] = array();
+        }
+        $space_where = &static::$_wheres[$key];
         if($force === false)
         {
             if( isset($space_obj[$space]))
@@ -131,7 +137,7 @@ class XBox
     }
     static public function registByCLS($obj,$space='/',$force=false)
     {
-        self::regist(get_class($obj),$obj,$space,$force);
+        static::regist(get_class($obj),$obj,$space,$force);
     }
 
     static public function get($key,$space='/')
@@ -140,9 +146,9 @@ class XBox
 
         while( true )
         {
-            if (! isset(self::$_objs[$key]))
-                self::$_objs[$key] = array();
-            $space_obj = &self::$_objs[$key];
+            if (! isset(static::$_objs[$key]))
+                static::$_objs[$key] = array();
+            $space_obj = &static::$_objs[$key];
             if(isset($space_obj[$space]))
             {
                 return $space_obj[$space];
@@ -159,30 +165,36 @@ class XBox
     }
     static public function space_objs($key)
     {
-        if (! isset(self::$_objs[$key]))
-            self::$_objs[$key] = array();
-        $space_obj = &self::$_objs[$key];
+        if (! isset(static::$_objs[$key]))
+            static::$_objs[$key] = array();
+        $space_obj = &static::$_objs[$key];
         return $space_obj ;
     }
     static public function space_keys($key)
     {
-        return array_keys(self::space_objs($key));
+        return array_keys(static::space_objs($key));
     }
 
     static public function must_get($key,$space='/')
     {
-        $found = self::get($key,$space);
+        $found = static::get($key,$space);
         if ($found === null)
+        {
             throw new LogicException("unfound $key obj in $space");
+        }
         return $found ;
 
     }
     static public function clean($key=null)
     {
         if ( $key == null)
-            self::$_objs = array();
-        else if ( isset(self::$_objs[$key]))
-            self::$_objs[$key] = array();
+        {
+            static::$_objs = array();
+        }
+        else if ( isset(static::$_objs[$key]))
+        {
+            static::$_objs[$key] = array();
+        }
     }
 }
 

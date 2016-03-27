@@ -67,7 +67,7 @@ class DaoBase
         $pairs     = $this->obj2row($obj);
         $hashKey   = $obj->hashStoreKey();
         $statement = new SQLDelStatement($this->getStoreTable($hashKey));
-        $statement->where(JoinUtls::jassoArray(' and ','=',self::genKeyVal($keys,$pairs)));
+        $statement->where(JoinUtls::jassoArray(' and ','=',static::genKeyVal($keys,$pairs)));
         return $this->_executer->exeNoQuery($statement->generateSql());
     }
     public function delByProp($prop,$hashKey=null)
@@ -111,7 +111,10 @@ class DaoBase
     public function getByCmd($cmd,$argvals=array())
     {
         $row = $this->_executer->query($cmd,$argvals);
-        if($row == false) return null;
+        if($row == false) 
+        {
+            return null;
+        }
         return $this->convertObj($row);
     }
 
@@ -178,7 +181,9 @@ class DaoBase
         if($page !=null)
         {
             if(!$page->isInit)
+            {
                 $page->initTotalRows($this->statementCount($statement,$valsArr));
+            }
             $begin=0;
             $count=0;
             $page->getRowRange($begin,$count);
@@ -215,9 +220,15 @@ class DaoBase
     static function cls_is_a($parentcls,$cls)
     {
         $pcls = get_parent_class($cls);
-        if(empty($pcls)) return false;
-        if($pcls  == $parentcls) return true;
-        return self::cls_is_a($parentcls,$pcls);
+        if(empty($pcls)) 
+        {
+            return false;
+        }
+        if($pcls  == $parentcls) 
+        {
+            return true;
+        }
+        return static::cls_is_a($parentcls,$pcls);
     }
 
    //  impl function
@@ -257,7 +268,7 @@ class DaoBase
 
 
         $statement->updateColumns(JoinUtls::jassoArray(',','=',$bindParms));
-        $statement->where(JoinUtls::jassoArray(' and ','=',self::genKeyVal($keys,$pairs)));
+        $statement->where(JoinUtls::jassoArray(' and ','=',static::genKeyVal($keys,$pairs)));
         return $this->_executer->exeNoQuery($statement->generateSql(),array_values($pairs));
     }
 
@@ -379,16 +390,22 @@ class SimpleDaoFactory
         $ncls    = $this->getClassName($cls);
         $selfCls = "{$ncls}DaoImpl";
         if(XPylon::haveClass($selfCls))
+        {
             return new $selfCls($ncls,$this->execr);
+        }
         return DaoImp::simpleDao($ncls,$this->execr);
     }
     public function getClassName($cls)
     {
         if(XPylon::haveClass($cls))
+        {
             return $cls;
+        }
         $ncls =   XPylon::className($cls);
         if(!empty($ncls))
+        {
             return $ncls;
+        }
         DBC::requireNotNull($ncls,"not found the $cls class!");
         return $ncls;
     }

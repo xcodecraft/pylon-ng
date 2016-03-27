@@ -134,8 +134,7 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         $prop   = $mappingStg->buildEntityProp($array);
         $prop->merge($oprop);
         $entity = new $cls($xid,$prop);
-        $obj    = static::unitWork()->regLoad($entity);
-        return $obj;
+        return  static::unitWork()->regLoad($entity);
     }
     public function signAdd()
     {
@@ -259,8 +258,14 @@ class ObjUpdater
     }
     public function haveChange()
     {
-        if(count($this->additems)>0)  return true;
-        if(count($this->delitems)>0)  return true;
+        if(count($this->additems)>0)  
+        {
+            return true;
+        }
+        if(count($this->delitems)>0) 
+        {
+            return true;
+        }
         foreach($this->loaditems as $key=>$item)
         {
             if($item->buildSummery() != $this->loaditemSummerys[$key])
@@ -363,7 +368,10 @@ class ObjUpdater
     }
     public function  objcomp($a,$b)
     {
-        if($a==$b) return 0;
+        if($a==$b) 
+        {
+            return 0;
+        }
         return $a->id() > $b->id() ? 1 :-1;
     }
     public function equal($other)
@@ -478,8 +486,7 @@ class SimpleMapping implements IMappingStg
             }
 
         }
-        $prop = XProperty::fromArray($array);
-        return $prop;
+        return  XProperty::fromArray($array);
     }
 }
 class StdMapping implements IMappingStg
@@ -635,8 +642,7 @@ class EntityUtls
     static public function createPureID($idname='other')
     {
         $idSvc = XBox::must_get('IDGenterService');
-        $id    = $idSvc->createID($idname);
-        return $id;
+        return  $idSvc->createID($idname);
     }
 }
 
@@ -676,7 +682,10 @@ class DaoFinderUtls
     {
         $cls  =  strtolower($cls);
         $obj  = XBox::get($key,"/$cls");
-        if($obj !== null) return $obj ;
+        if($obj !== null) 
+        {
+            return $obj ;
+        }
 
         $factory = XBox::get(static::factory,"/$key");
         if($factory !== null)
@@ -689,7 +698,7 @@ class DaoFinderUtls
 
         $names = Prompt::recommend($cls,array_keys(XBox::space_keys($key)));
         $str   = JoinUtls::jarray(',',$names);
-        DBC::unExpect("$cls $key unfoud","maybe data env not init!");
+        DBC::unExpect("$cls $key unfoud","maybe in $str");
     }
 
     static public function query($clsName)
@@ -731,7 +740,9 @@ class DaoFinderUtls
     {
         $root_exec = XBox::get(XBox::SQLE);
         if ( $exec !== $root_exec)
+        {
             XBox::regist(XBox::SQLE,$exec,__METHOD__ . ":$cls");
+        }
     }
     static public function register($dao)
     {

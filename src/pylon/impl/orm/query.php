@@ -21,8 +21,7 @@ class SqlProcUtls
     }
     static public function filterCondVal($arr)
     {
-        $v= array_filter($arr,sqlprocutls_ins_not_dqlobj);
-        return $v;
+        return  array_filter($arr,sqlprocutls_ins_not_dqlobj);
     }
     static public function  bindUpdate($key,$val)
     {
@@ -88,9 +87,13 @@ class Query
     public function getRegName()
     {
         if($this->name == null)
+        {
             return get_class($this);
+        }
         else
+        {
             return $this->name;
+        }
     }
     public function getExecuter()
     {
@@ -108,15 +111,14 @@ class Query
         $statement = new SQLSelectStatement($view,$viewCond);
         $statement->columns($columns);
         $valsArr =  array();
-        $propWhere = self::prop2cmd($prop,$valsArr);
+        $propWhere = static::prop2cmd($prop,$valsArr);
         $statement->where($propWhere.$addiWhereCmd);
         $statement->multiOrderBy($order);
         return $this->getByCmd($statement->generateSql(),$valsArr);
     }
     public function listByCmd($cmd,$valsArr=array())
     {
-        $rows = $this->exer->querys($cmd,$valsArr);
-        return $rows;
+        return  $this->exer->querys($cmd,$valsArr);
 
     }
 
@@ -132,11 +134,13 @@ class Query
     {
         if($page !=null)
         {
-            if(!$page->isInit) $page->initTotalRows($this->countOfCmd($cmd,$valsArr));
+            if(!$page->isInit) 
+            {
+                $page->initTotalRows($this->countOfCmd($cmd,$valsArr));
+            }
             $cmd = $cmd . $page->toLimitStr();
         }
-        $rows = $this->exer->querys($cmd,$valsArr);
-        return $rows;
+        return  $this->exer->querys($cmd,$valsArr);
 
     }
 
@@ -194,7 +198,7 @@ class Query
         $propWhere = "";
         if($prop !=null && (!$prop->isEmpty()))
         {
-            $propWhere = self::prop2cmd($prop,$valsArr);
+            $propWhere = static::prop2cmd($prop,$valsArr);
         }
         $statement->where($propWhere.$addiWhereCmd);
         return $this->statementCount($statement,$valsArr);
@@ -206,13 +210,15 @@ class Query
         $propWhere = "";
         if($prop !=null && (!$prop->isEmpty()))
         {
-            $propWhere = self::prop2cmd($prop,$valsArr);
+            $propWhere = static::prop2cmd($prop,$valsArr);
         }
         $statement->where($propWhere.$addiWhereCmd);
         if($page !=null)
         {
             if(!$page->isInit)
+            {
                 $page->initTotalRows($this->statementCount($statement,$valsArr));
+            }
             $begin=0;
             $count=0;
             $page->getRowRange($begin,$count);
@@ -231,7 +237,7 @@ class Query
         $propWhere = "";
         if($prop !=null && (!$prop->isEmpty()))
         {
-            $propWhere = self::prop2cmd($prop,$valsArr);
+            $propWhere = static::prop2cmd($prop,$valsArr);
         }
         $statement->where($propWhere.$addiWhereCmd);
         $statement->limit($begin,$count);

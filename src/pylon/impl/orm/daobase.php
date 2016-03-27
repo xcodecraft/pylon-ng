@@ -40,8 +40,7 @@ class DaoBase
     public function getStoreTable($hashKey=null)
     {
         $key   = !is_null($hashKey)  ? $hashKey : $this->hashKey;
-        $table = call_user_func($this->tableFinder,$key);
-        return $table;
+        return  call_user_func($this->tableFinder,$key);
     }
     public function add($obj)
     {
@@ -88,8 +87,7 @@ class DaoBase
 
     public function getByID($id,$hashKey=null)
     {
-        $obj = $this->getByProp(CondProp::make('id',$id),$hashKey);
-        return $obj;
+        return $this->getByProp(CondProp::make('id',$id),$hashKey);
 
     }
 
@@ -121,7 +119,10 @@ class DaoBase
     public function rowByCmd($cmd,$argvals=array())
     {
         $row = $this->_executer->query($cmd,$argvals);
-        if($row == false) return null;
+        if($row == false) 
+        {
+            return null;
+        }
         return $row;
     }
     public function rowsByCmd($cmd,$argvals=array())
@@ -194,8 +195,7 @@ class DaoBase
             $statement->orderBy($orderkey,$ordertype);
         }
         $statement->columns('*');
-        $objs=$this->listByCmd($statement->generateSql(),$valsArr);
-        return $objs;
+        return $this->listByCmd($statement->generateSql(),$valsArr);
     }
 
     public function listByPropLimit($prop,$begin,$count,$order=null,$hashKey=null)
@@ -213,8 +213,7 @@ class DaoBase
         $statement->limit($begin,$count);
         $statement->multiOrderBy($order);
         $statement->columns('*');
-        $objs=$this->listByCmd($statement->generateSql(),$valsArr);
-        return $objs;
+        return $this->listByCmd($statement->generateSql(),$valsArr);
     }
 
     static function cls_is_a($parentcls,$cls)
@@ -246,8 +245,7 @@ class DaoBase
     }
     protected function convertObj($row)
     {
-        $obj = $this->row2obj($this->cls,$row);
-        return $obj;
+        return  $this->row2obj($this->cls,$row);
     }
     protected function genKeyVal($keys,$pairs)
     {

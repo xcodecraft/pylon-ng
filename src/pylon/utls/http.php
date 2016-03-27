@@ -39,6 +39,7 @@ class XHttpConf
         $conf->logger   = XLogkit::logger("net") ;
         $conf->port     = $port ;
         $conf->bHttps   = $bHttps;
+        $conf->caller   = $caller ;
         return $conf;
     }
     /**
@@ -97,7 +98,7 @@ class XRestResult
     {
         if ($response->statusCode == $statusCode )
         {
-            $err = self::fail($response) ;
+            $err = static::fail($response) ;
             if ($errno == null | $err['sub_code'] == $errno) {
                 return  true ;
             }
@@ -144,7 +145,7 @@ class XHttpCaller
     private static  $debug_echo = false ;
 
     public static function failDebug($on) {
-        self::$debug_echo  = $on ;
+        static::$debug_echo  = $on ;
     }
 
     public function  __construct($conf)
@@ -163,9 +164,14 @@ class XHttpCaller
     private function makeURL($url)
     {
         $server = $this->conf->domain ;
-        if(! empty($this->conf->server) )$server = $this->conf->server ;
+        if(! empty($this->conf->server) )
+        {
+            $server = $this->conf->server ;
+        }
         if(!is_null($this->conf->bHttps))
+        {
             return $url = "https://" . $server. $url;
+        }
         if($this->conf->port && $this->conf->port != 80)
         {
             $url = "http://$server:{$this->conf->port}{$url}";
@@ -254,7 +260,6 @@ class XHttpCaller
         {
             array_push($this->headers,$value) ;
         }
-        // curl_setopt($this->ch,CURLOPT_HTTPHEADER,array($value));
     }
 
     /**
@@ -287,14 +292,15 @@ class XHttpCaller
     private function log($level,$msg,$event)
     {
         if(empty($this->conf->logger))
+        {
             return ;
+        }
         $this->conf->logger->$level($msg,$event);
     }
     private function callRemote($method,$url,$timeout=0)
-    {/*{{{*/
+    {
         $url    = $this->bindCaller($url);
         array_push($this->headers,"Host:" . $this->conf->domain );
-        // $header_arr[] = "Accept-Language: CH";
         //TID
         if(class_exists('XTid', false)){
             array_push($this->headers,'PYLON-TID: ' . XTid::get()) ;
@@ -357,7 +363,7 @@ class XHttpCaller
         {
             $errMsg = curl_error($this->ch);
             $body   = lineBody($response->body()) ;
-            if (self::$debug_echo)
+            if (static::$debug_echo)
             {
                 echo "$curl  failed! $errmsg,$event" ;
                 echo "\n" ;

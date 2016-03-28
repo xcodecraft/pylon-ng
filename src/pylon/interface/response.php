@@ -1,18 +1,14 @@
 <?php
-class XEchoResp   implements XResponse
+
+abstract class XBaseResp  implements  XResponse 
 {
-    public $statusCode = 500 ;
-    public $headers     = array() ;
-    protected $jumpURL  = null ;
-    public function location($url)
-    {
-        $this->jumpURL = $url ;
-    }
+
     public function out($msg,$code=200)
     {
         $this->statusCode = $code ;
         echo $msg ;
     }
+
     public function send($logger,$set_header=true)
     {
 
@@ -25,7 +21,9 @@ class XEchoResp   implements XResponse
 
             if ($this->jumpURL != null)
             {
+
                 header("location:  " . $this->jumpURL );
+
             }
             else{
                 PYL_HttpHeader::out_header((int)$this->statusCode);
@@ -51,7 +49,17 @@ class XEchoResp   implements XResponse
     }
 
 }
-class XHtmlResp   implements XResponse
+class XEchoResp   extends XBaseResp
+{
+    public $statusCode = 500 ;
+    public $headers     = array() ;
+    protected $jumpURL  = null ;
+    public function location($url)
+    {
+        $this->jumpURL = $url ;
+    }
+}
+class XHtmlResp   extends XBaseResp
 {
     public $statusCode = 500 ;
     public $headers     = array() ;
@@ -82,50 +90,6 @@ class XHtmlResp   implements XResponse
         {
             throw new XNotFound($file) ;
         }
-    }
-    public function out($msg,$code=200)
-    {
-        $this->statusCode = $code ;
-        echo $msg ;
-
-    }
-    public function send($logger,$set_header=true)
-    {
-
-        if($set_header === true)
-        {
-            foreach($this->headers as $name => $value)
-            {
-                header("$name: " . $value);
-            }
-
-            if ($this->jumpURL != null)
-            {
-
-                header("location:  " . $this->jumpURL );
-
-            }
-            else{
-                PYL_HttpHeader::out_header((int)$this->statusCode);
-            }
-        }
-    }
-    public function error($errmsg,$errno = XErrCode::UNKNOW,$statusCode = 510)
-    {
-        $this->statusCode = $statusCode ;
-    }
-    public function exception($ex)
-    {
-        $code = $ex->status_code ;
-        if(empty($code) )
-        {
-            $code = $this->status_code ;
-        }
-        if(!empty($ex->headers))
-        {
-            $this->headers = $ex->headers ;
-        }
-        $this->statusCode = $code ;
     }
 }
 class XRespFail
@@ -165,8 +129,11 @@ class XRespFail
         return $this->code != 0 ;
     }
 }
+
 class XRestResp implements XResponse
 {
+
+    const  RESPONSE_TAG = "response" ;
     public $status_code = 500 ;
     public $headers     = array() ;
     public $error       = null ;
@@ -203,8 +170,8 @@ class XRestResp implements XResponse
     }
     public function errorPrompt($info,$type="")
     {
-        $this->error->prompt_info = $prompt_info ;
-        $this->error->prompt_type = $prompt_type ;
+        $this->error->prompt_info = $info ;
+        $this->error->prompt_type = $type ;
     }
     public function exception($ex)
     {
@@ -255,14 +222,14 @@ class XRestResp implements XResponse
         {
             $data['error'] = get_object_vars($this->error) ;
             $outdata       = json_encode($data);
-            $logger->error("status code: " . $this->status_code , "response" );
-            $logger->error($outdata, "response");
+            $logger->error("status code: " . $this->status_code , RESPONSE_TAG );
+            $logger->error($outdata, RESPONSE_TAG );
         }
         else
         {
             $outdata = json_encode($this->data);
-            $logger->info("status code: " . $this->status_code , "response" );
-            $logger->info($outdata, "response");
+            $logger->info("status code: " . $this->status_code , RESPONSE_TAG );
+            $logger->info($outdata, RESPONSE_TAG );
         }
         if ($this->jsonpEnable == true )
         {

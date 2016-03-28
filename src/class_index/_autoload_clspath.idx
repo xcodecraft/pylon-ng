@@ -97,6 +97,7 @@ XAopRuleSet,/pylon/impl/web/aop.php
 XAPICallException,/pylon/interface/exception.php
 XAppSession,/pylon/interface/ent.php
 XAssembly,/pylon/interface/ioc.php
+XBaseResp,/pylon/interface/response.php
 XBizException,/pylon/interface/exception.php
 XBizResult,/pylon/utls/biz.php
 XBox,/pylon/interface/ioc.php

@@ -97,6 +97,7 @@ cls_xaop,XAop
 cls_xapicallexception,XAPICallException
 cls_xappsession,XAppSession
 cls_xassembly,XAssembly
+cls_xbaseresp,XBaseResp
 cls_xbizexception,XBizException
 cls_xbizresult,XBizResult
 cls_xbox,XBox

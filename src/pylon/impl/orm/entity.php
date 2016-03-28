@@ -395,6 +395,18 @@ interface IMappingStg
     public function convertDTO($vars);
     public function buildEntityProp(&$array,$argsmap=array());
 }
+class MappingUtls 
+{
+    static public function assembleDTO($dtovars,$subdtos)
+    {
+        $maindto = XProperty::fromArray($dtovars);
+        foreach($subdtos as $sdto)
+        {
+            $maindto->merge($sdto) ;
+        }
+        return $maindto;
+    }
+}
 class SimpleMapping implements IMappingStg
 {
     static private $ins=null;
@@ -436,12 +448,7 @@ class SimpleMapping implements IMappingStg
                 $dtovars[$key]=$val;
             }
         }
-        $maindto = XProperty::fromArray($dtovars);
-        foreach($subdtos as $sdto)
-        {
-            $maindto->merge($sdto) ;
-        }
-        return $maindto;
+        return MappingUtls::assembleDTO($dtovars,$subdtos) ;
     }
 
     public function buildEntityProp(&$array,$argsmap=array())
@@ -524,13 +531,7 @@ class StdMapping implements IMappingStg
                 $dtovars[$key]=$val;
             }
         }
-        $maindto = XProperty::fromArray($dtovars);
-
-        foreach($subdtos as $sdto)
-        {
-            $maindto->merge($sdto) ;
-        }
-        return $maindto;
+        return MappingUtls::assembleDTO($dtovars,$subdtos) ;
     }
     public function buildEntityProp(&$array,$argsmap=array())
     {
@@ -555,7 +556,7 @@ class StdMapping implements IMappingStg
                     $ctrl = PylonCtrl::objLazyLoad();
                     if($ctrl->_need($key,null))
                     {
-                        $obj  =new LDProxy(array("EntityUtls","loadObjByID"),$prop);
+                        $obj  =new LDProxy(array(EntityUtls,"loadObjByID"),$prop);
                     }
                     else
                     {
@@ -606,7 +607,7 @@ class EntityUtls
 
                 $prop->id  = $array[$col."__id"];
                 $prop->cls = $clsmap[$col];
-                $obj = new LDProxy(array("EntityUtls","loadObjByID"),$prop);
+                $obj = new LDProxy(array(EntityUtls,"loadObjByID"),$prop);
                 if($loadstg == XEntity::LAZY_LOADER)
                 {
                     $constrctArgs[$key]=$obj;

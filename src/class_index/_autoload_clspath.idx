@@ -40,6 +40,7 @@ LDProxy,/pylon/impl/orm/proxy.php
 Lockable,/pylon/impl/basesvc/locks.php
 LockUtil,/pylon/impl/basesvc/locks.php
 LZLExecutor,/pylon/driver/sql_executor.php
+MappingUtls,/pylon/impl/orm/entity.php
 MemcacheSessDriver,/pylon/driver/session_memcache.php
 MemCacheSvc,/pylon/impl/autoload/cache_svc.php
 MemCollectLogger,/pylon/impl/utls/logutls.php

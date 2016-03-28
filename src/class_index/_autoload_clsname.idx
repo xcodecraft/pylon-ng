@@ -40,6 +40,7 @@ cls_ldproxy,LDProxy
 cls_lockable,Lockable
 cls_lockutil,LockUtil
 cls_lzlexecutor,LZLExecutor
+cls_mappingutls,MappingUtls
 cls_memcachesessdriver,MemcacheSessDriver
 cls_memcachesvc,MemCacheSvc
 cls_memcollectlogger,MemCollectLogger

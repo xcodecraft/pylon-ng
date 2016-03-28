@@ -149,15 +149,7 @@ class DaoBase
     public function cntByProp($prop,$hashKey =null)
     {
         $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
-        $valsArr = array();
-        if($prop !=null && (!$prop->isEmpty()))
-        {
-            $condsArr = $prop->getPropArray();
-            $valsArr = SqlProcUtls::filterCondVal(array_values($condsArr));
-
-            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
-            $statement->where($where);
-        }
+        $valsArr = $this->assembleWhere($statement,$prop) ;
         return $this->statementCount($statement,$valsArr);
 
     }
@@ -169,15 +161,7 @@ class DaoBase
     public function listByProp($prop=null,$page=null,$orderkey=null,$ordertype='DESC',$hashKey=null)
     {
         $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
-        $valsArr = array();
-        if($prop !=null && (!$prop->isEmpty()))
-        {
-            $condsArr = $prop->getPropArray();
-            $valsArr = SqlProcUtls::filterCondVal(array_values($condsArr));
-
-            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
-            $statement->where($where);
-        }
+        $valsArr = $this->assembleWhere($statement,$prop) ;
         if($page !=null)
         {
             if(!$page->isInit)
@@ -197,9 +181,8 @@ class DaoBase
         return $this->listByCmd($statement->generateSql(),$valsArr);
     }
 
-    public function listByPropLimit($prop,$begin,$count,$order=null,$hashKey=null)
+    private function assembleWhere(SQLSelectStatement $statement ,$prop) 
     {
-        $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
         $valsArr = array();
         if($prop !=null && (!$prop->isEmpty()))
         {
@@ -209,6 +192,13 @@ class DaoBase
             $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
             $statement->where($where);
         }
+        return $valsArr ;
+        
+    }
+    public function listByPropLimit($prop,$begin,$count,$order=null,$hashKey=null)
+    {
+        $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
+        $valsArr = $this->assembleWhere($statement,$prop) ;
         $statement->limit($begin,$count);
         $statement->multiOrderBy($order);
         $statement->columns('*');

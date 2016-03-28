@@ -220,15 +220,19 @@ class XHttpCaller
      */
     public function put($url,$data,$timeout=0)
     {
+        $this->bindData($data) ;
+        curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"PUT");
+        $url = $this->makeURL($url);
+        return $this->callRemote('PUT',$url,$timeout);
+    }
+    private function bindData($data)
+    {
         if(is_array($data)){
             $data = http_build_query($data);
         }
         array_push($this->headers,'Content-Length: '.strlen($data)) ;
-        $url = $this->makeURL($url);
-        curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"PUT");
         curl_setopt($this->ch,CURLOPT_POSTFIELDS,$data);
         $this->call_data = $data;
-        return $this->callRemote('PUT',$url,$timeout);
     }
     /**
      * @brief POST　调用　
@@ -241,14 +245,9 @@ class XHttpCaller
      */
     public function post($url,$data,$timeout=0)
     {
-        if(is_array($data)){
-            $data = http_build_query($data);
-        }
-        array_push($this->headers,'Content-Length: '.strlen($data)) ;
+        $this->bindData($data) ;
         $url = $this->makeURL($url);
         curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"POST");
-        curl_setopt($this->ch,CURLOPT_POSTFIELDS,$data);
-        $this->call_data  = $data ;
         return $this->callRemote('POST',$url,$timeout);
     }
     public function setHeader($value,$mutiRequ=true)

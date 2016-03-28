@@ -113,14 +113,13 @@ class XSetting
         throw new LogicException("不能获得环境变量 $key,或为空!");
 
     }
-    //TODO:
     static public function extend($key,$val)
     {
-        self::$extendData[$key] = $val ;
+        static::$extendData[$key] = $val ;
     }
     static public function value($key)
     {
-        return  self::$extendData[$key]  ;
+        return  static::$extendData[$key]  ;
     }
 
 
@@ -253,7 +252,8 @@ function pylon_load_cls_index()
 function pylonlib__autoload($classname)
 {
     $key       = "PYLON2_CLASS:".$classname ;
-    $glogger   = new logger("_pylon");
+
+    $glogger   = XLogKit::logger("_pylon");
     $path      = pylon_dict_find($key);
     if($path  != NULL)
     {
@@ -266,9 +266,9 @@ function pylonlib__autoload($classname)
 function appsys__autoload($classname)
 {
 
-    $key        =  "CLASS:".$classname ;
-    $glogger    =  new logger("_pylon");
-    $path       =  pylon_dict_find($key);
+    $key     = "CLASS:".$classname ;
+    $glogger = XLogKit::logger("_pylon");
+    $path    = pylon_dict_find($key);
     if($path !=NULL)
     {
         $glogger->debug("cls : $classname , file: $path");
@@ -279,8 +279,8 @@ function appsys__autoload($classname)
 
 function pylon__unload($classname)
 {
-    $glogger  = new logger("_pylon");
-    $glogger->error("cls : $classname , file: $path");
+    $glogger = XLogKit::logger("_pylon");
+    $glogger->error("cls : $classname" );
     $msg      = pylon_dict_prompt($classname);
     $info     = "";
     $info    .= "******* AUTOLOAD ERROR *********<br>\n";
@@ -327,7 +327,7 @@ class XPylon
      */
     static public function websvc()
     {
-        return new PylonMvcSvc(self::$runpath);
+        return new PylonMvcSvc(static::$runpath);
     }
     /**
      * @brief 启动rest 服务
@@ -337,7 +337,7 @@ class XPylon
     {
 
         ob_start();
-        self::useEnv();
+        static::useEnv();
         $data_file = XSetting::$runPath . "/router/_router.idx" ;
         XBox::regist(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
         XRouter::serving();
@@ -349,8 +349,8 @@ class XPylon
      */
     static public function useEnv()
     {
-        self::logConf();
-        self::load();
+        static::logConf();
+        static::load();
     }
 
     private static function logConf()
@@ -358,19 +358,19 @@ class XPylon
         switch(XSetting::$logMode)
         {
         case XSetting::LOG_ONLINE_MODE :
-            self::log4online();
+            static::log4online();
             break;
         case XSetting::LOG_DEBUG_MODE :
-            self::log4debug();
+            static::log4debug();
             break;
         case XSetting::LOG_BENCHMARK_MODE:
-            self::log4benchmark();
+            static::log4benchmark();
             break;
         case XSetting::LOG_FAST_MODE:
-            self::log4fast();
+            static::log4fast();
             break;
         default:
-            self::log4online();
+            static::log4online();
         }
     }
     private static function log4online()
@@ -446,8 +446,7 @@ class XPylon
         $cls=  "cls_" . strtolower($clsname);
         if (function_exists("pylon_dict_count") && pylon_dict_count() > 0)
         {
-            $clsname= pylon_dict_find($cls) ;
-            return $clsname;
+            return  pylon_dict_find($cls) ;
         }
         else
         {

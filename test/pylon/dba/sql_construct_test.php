@@ -53,49 +53,7 @@
             $statement->dataArray(array_values($arr));
 
         }
-        public function  testAnds()
-        {
-            $subWhere1 = new TxtExpress("id = '1' ");
-            $subWhere2 = new TxtExpress("adp_group.name like '%x%' ");
-            $where = Express::ands("status = 1 ",$subWhere1 ,$subWhere2);
-            $sql = $where->generateSql(new NULLStg());
-            $this->assertEquals($sql,"status = 1  and id = '1'  and adp_group.name like '%x%' ");
-        }
-        private function mutiCondQuery($args)
-        {
-            $where = Express::ands(
-                Express::eq('name',$args['name']),
-                Express::ge('age',$args['age']),
-                Express::eq('address',$args['address']));
-
-            $statment = new SQLSelectStatement("user");
-            $statment->where($where->generateSql(StgUtls::filterEmpty()));
-            return  $statment->generateSql();
-        }
-        public function testMutiCondQuery()
-        {
-            $args['name'] = "google";
-            $args['age']=18;
-            $args['address']="beijing";
-            $sql = $this->mutiCondQuery($args);
-            $this->assertEquals($sql,'select  *  from user where ( (name = "google") and (age >= "18") and (address = "beijing") );');
-
-            $args=null;
-            $args['name'] = "";
-            $args['age']=18;
-            $args['address']="beijing";
-            $sql = $this->mutiCondQuery($args);
-            $this->assertEquals($sql,'select  *  from user where ( (age >= "18") and (address = "beijing") );');
-
-            $args=null;
-            $args['name'] = "";
-            $args['age']=null;
-            $args['address']="beijing";
-            $sql = $this->mutiCondQuery($args);
-            $this->assertEquals($sql,'select  *  from user where ( (address = "beijing") );');
-        }
 
     }
 
 
-?>

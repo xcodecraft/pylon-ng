@@ -33,7 +33,7 @@ class XHttpConf
      */
     static public function localSvc($domain,$port=8360,$caller="unknow",$bHttps=null)
     {
-        $conf           = new XHttpConf ;;
+        $conf           = new XHttpConf ;
         $conf->domain   = $domain ;
         $conf->server   = "127.0.0.1";
         $conf->logger   = XLogkit::logger("net") ;
@@ -63,6 +63,7 @@ class XHttpConf
         $this->logger  = $logger;
         $this->caller  = $caller;
         $this->bHttps  = $bHttps;
+        $this->port    = $port ;
     }
 }
 
@@ -326,8 +327,6 @@ class XHttpCaller
 
         curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT_MS, $this->conf->timeout_ms);
         curl_setopt($this->ch, CURLOPT_TIMEOUT_MS, $this->conf->timeout_ms);
-        // curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        // curl_setopt($this->ch, CURLOPT_TIMEOUT, $timeout);
         $timeout_info = $timeout.'(ms)';
 
         if ($this->conf->gzip)

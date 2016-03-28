@@ -12,7 +12,7 @@ class ArgsChecker
     public static  $exceptionClass='UserInputException';
     static private function dofailAction($msg)
     {
-        throw new self::$exceptionClass($msg);
+        throw new static::$exceptionClass($msg);
     }
 
     static private function nullMsg($val,$type)
@@ -32,7 +32,9 @@ class ArgsChecker
     static public function requireEquals($first,$second,$msg= "first value != second value")
     {
         if($first != $second)
-            self::dofailAction($msg);
+        {
+            static::dofailAction($msg);
+        }
         return $first;
     }
     /** 
@@ -46,13 +48,17 @@ class ArgsChecker
     static public function requireIsA($first,$parentClass,$msg="value is not subclass of ")
     {
         if(!is_a($first,$parentClass))
-            self::dofailAction($msg);
+        {
+            static::dofailAction($msg);
+        }
         return $first;
     }
     static public function requireNotEquals($first,$second,$msg="first value == second value")
     {
         if($first == $second )
-            self::dofailAction($msg);
+        {
+            static::dofailAction($msg);
+        }
         return $first;
     }
     /** 
@@ -64,8 +70,11 @@ class ArgsChecker
      */
     static public function requireNull($obj,$msg="value is not null")
     {
-        if(is_null($obj)) return $obj;
-        self::dofailAction($msg);
+        if(is_null($obj)) 
+        {
+            return $obj;
+        }
+        static::dofailAction($msg);
 
     }
     /** 
@@ -78,8 +87,11 @@ class ArgsChecker
      */
     static public function requireNotNull($obj,$msg="value is  null ")
     {
-        if(!is_null($obj)) return $obj;
-        self::dofailAction($msg);
+        if(!is_null($obj)) 
+        {
+            return $obj;
+        }
+        static::dofailAction($msg);
     }
 
     /** 
@@ -92,8 +104,11 @@ class ArgsChecker
      */
     static public function requireObj($obj,$msg="value is not object")
     {
-        if(is_object($obj)) return $obj;
-        self::dofailAction($msg);
+        if(is_object($obj)) 
+        {
+            return $obj;
+        }
+        static::dofailAction($msg);
     }
     /** 
      * @brief 
@@ -105,13 +120,19 @@ class ArgsChecker
      */
     static public function requireTrue($obj,$msg="require true ,but is false")
     {
-        if($obj) return $obj;
-        self::dofailAction($msg);
+        if($obj) 
+        {
+            return $obj;
+        }
+        static::dofailAction($msg);
     } 
     static public function requireArray($arr,$msg="value is not  Array")
     {
-        if(is_array($arr)) return $arr;
-        self::dofailAction($msg);
+        if(is_array($arr)) 
+        {
+            return $arr;
+        }
+        static::dofailAction($msg);
     }
 
 

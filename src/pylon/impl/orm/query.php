@@ -150,7 +150,6 @@ class Query
         {
             //是group by ,先把选择项变成1 为 “select 1 from ….”;
             //然后在外边包一层 “select count(1) as cnt from (….)  temptablenames”;
-            //            DBC::unImplement(" not support   create count sql from  have 'group' sql");
             $ms = date("sihdmy");
             $cntcmd = preg_replace("/(select .+)(from .+)/i","select 1 \$2",$cmd);
             $cntcmd += "select count(1) as cnt from ({$cntcmd}) test_{$ms}";
@@ -168,7 +167,6 @@ class Query
         {
             $condsArr     = $prop->getPropArray();
             $valsArr      = SqlProcUtls::filterCondVal(array_values($condsArr));
-            $placeholders = array_fill(0,count($condsArr),'?');
             $propCmd= JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
             return $propCmd;
         }
@@ -182,8 +180,7 @@ class Query
         {
             $order = array($orderkey => $ordertype);
         }
-        $rows = $this->listByPropExt($view, $viewCond, $columns, $prop, $page, $order, $addiWhereCmd);
-        return $rows;
+        return  $this->listByPropExt($view, $viewCond, $columns, $prop, $page, $order, $addiWhereCmd);
     }
 
     public function getCount($prop,$hashKey=null)
@@ -255,7 +252,6 @@ class Query
 class SimpleQueryFactory
 {
     private $execr = null;
-    private $isSelfDefFun=null;
     public function __construct($execr)
     {
         $this->execr = $execr;
@@ -270,7 +266,7 @@ class SimpleQueryFactory
         return new Query($this->execr,$name);
     }
 
-    static public function funIns($executer,$isSelfDefFun=null)
+    static public function funIns($executer)
     {
         $facotry= new SimpleQueryFactory($executer,array("ComboLoader","classExists"));
         return array($facotry,"create");

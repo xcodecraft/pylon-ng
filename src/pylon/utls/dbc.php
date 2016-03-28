@@ -93,10 +93,6 @@ class DBC
         }
     }
 
-    static private function nullMsg($val,$type)
-    {
-        return  "type is $type, Object is null !";
-    }
 
     /**
      * @brief
@@ -160,7 +156,7 @@ class DBC
      */
     static public function unImplement($msg="have not implment")
     {
-        self::dofailAction($msg);
+        static::dofailAction($msg);
     }
     static public function requireNull($obj,$msg="value is not null")
     {

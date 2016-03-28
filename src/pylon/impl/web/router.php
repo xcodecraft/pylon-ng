@@ -22,8 +22,8 @@ class XInterceptorRuner extends XInterceptor
     }
     public function _exception($e,$xcontext,$request,$response)
     {
-            self::doException($this->beforedItcs,$e,$xcontext,$request,$response) ;
-            self::defaultException($this->plog,$e,$response) ;
+            static::doException($this->beforedItcs,$e,$xcontext,$request,$response) ;
+            static::defaultException($this->plog,$e,$response) ;
     }
 
     static private function doException($intcs,$e,$xcontext,$request,$response)
@@ -49,8 +49,8 @@ class XInterceptorRuner extends XInterceptor
             }
             catch(Exception $e)
             {
-                self::doException($unAfterItcs,$e,$xcontext,$request,$response) ;
-                self::defaultException($this->plog,$e,$response) ;
+                static::doException($unAfterItcs,$e,$xcontext,$request,$response) ;
+                static::defaultException($this->plog,$e,$response) ;
             }
         }
 
@@ -110,13 +110,18 @@ class XRouter
         $method         = $_SERVER['REQUEST_METHOD'];
         $logger->$level("ip: $ip , method: $method , uri : $uri","request");
         if(! empty($_POST))
+        {
             $logger->$level("data : " .  http_build_query($_POST),"request");
+        }
     }
     static public function serving($http_status=true)
     {
 
         ob_start();
-        if ($http_status) PYL_HttpHeader::out_header(500);
+        if ($http_status) 
+        {
+            PYL_HttpHeader::out_header(500);
+        }
         $restLog      = XLogKit::logger("_rest");
         $uri          = $_SERVER['REQUEST_URI'];
         $autoSpeed    = new XLogSpeed("rest[$uri]");
@@ -132,15 +137,15 @@ class XRouter
         {
             $response     = new XSetting::$respClass ;
         }
-        self::log_request($restLog,'info');
+        static::log_request($restLog,'info');
         $request->uri = $uri ;
 
         //优先配置
-        $rest_conf      = self::find_conf($uri);
+        $rest_conf      = static::find_conf($uri);
         //分析约定
         if ($rest_conf == null)
         {
-            $rest_conf  = self::parse_conf($uri);
+            $rest_conf  = static::parse_conf($uri);
         }
         if ($rest_conf == null)
         {
@@ -148,17 +153,20 @@ class XRouter
         }
         else
         {
-            self::callService($rest_conf,$xcontext,$request,$response);
+            static::callService($rest_conf,$xcontext,$request,$response);
         }
         $response ->send($restLog,$http_status);
         ob_flush();
+        unset($autoSpeed) ;
         return  $response ;
     }
     static private function find_conf($uri)
     {
         $finder = XBox::get(XBox::ROUTER);
         if($finder === null)
+        {
             throw new XLogicException("没有找到 router ,可能是你没有注册.");
+        }
         return $finder->_find($uri);
     }
 
@@ -175,7 +183,10 @@ class XRouter
 
         $conf = array();
         $cls_name = implode('_', array_slice($uri_arr, 0, $uri_arr_count - 1));
-        if (empty($cls_name)) return  null;
+        if (empty($cls_name)) 
+        {
+            return  null;
+        }
         $conf['cls'] = $cls_name;
         $method = $uri_arr[$uri_arr_count - 1];
         $conf['uri'] = array("method" => $method);

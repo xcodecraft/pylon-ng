@@ -143,7 +143,7 @@ class XHttpCaller
 {
     private $ch;
     private $conf;
-    private static  $debug_echo = false ;
+    protected static  $debug_echo = false ;
 
     public static function failDebug($on) {
         static::$debug_echo  = $on ;

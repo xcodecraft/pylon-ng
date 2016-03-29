@@ -21,7 +21,6 @@ DiagnoseContext,/pylon/impl/utls/diagnosis.php
 DiagnoseMonitor,/pylon/impl/utls/diagnosis.php
 DQLObj,/pylon/impl/orm/query.php
 DynCallParser,/pylon/impl/orm/dao_utls.php
-EADriver,/pylon/impl/autoload/cache_svc.php
 EchoLogger,/pylon/impl/utls/logutls.php
 EmptyControl,/pylon/impl/orm/control.php
 EmptyUnitWork,/pylon/impl/orm/unitwork.php

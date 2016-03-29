@@ -71,8 +71,7 @@ class XEntity extends XEntityBase
     static public function regist($entity)
     {
         DBC::requireNotNull($entity);
-        $obj = static::unitWork()->regAdd($entity);
-        return $obj;
+        return  static::unitWork()->regAdd($entity);
     }
 
     static public function createIns($cls)
@@ -116,7 +115,7 @@ class XQueryObj
         }
         return $dao;
     }
-    private function listCall($op,$cls,$name,$paramNames,$params)
+    private function listCall($cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
@@ -153,20 +152,20 @@ class XQueryObj
     }
 
 
-    private function getCall($op,$cls,$name,$paramNames,$params)
+    private function getCall($cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         return  $this->getDao($cls)->getByProp($prop);
     }
 
-    private function cntCall($op,$cls,$name,$paramNames,$params)
+    private function cntCall($cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         return  $this->getDao($cls)->getCount($prop);
     }
-    private function delCall($op,$cls,$name,$paramNames,$params)
+    private function delCall($cls,$name,$paramNames,$params)
     {
 
         $extraParams=null;
@@ -182,15 +181,15 @@ class XQueryObj
         switch($op)
         {
         case 'list':
-            $ret = $this->listCall($op,$cls,$name,$paramNames,$params);
+            $ret = $this->listCall($cls,$name,$paramNames,$params);
             break;
         case 'get':
-            $ret = $this->getCall($op,$cls,$name,$paramNames,$params);
+            $ret = $this->getCall($cls,$name,$paramNames,$params);
             break;
         case 'cnt':
-            $ret = $this->cntCall($op,$cls,$name,$paramNames,$params);
+            $ret = $this->cntCall($cls,$name,$paramNames,$params);
         case 'del':
-            $ret = $this->delCall($op,$cls,$name,$paramNames,$params);
+            $ret = $this->delCall($cls,$name,$paramNames,$params);
             break;
         default:
             DBC::unExpect($op,"unsupport op type");
@@ -225,7 +224,9 @@ class XQueryArr
     {
         static $inst=null;
         if($inst == null)
+        {
             $inst = new XQueryArr();
+        }
         return $inst;
     }
     /**
@@ -276,7 +277,6 @@ class XQueryArr
 
     private function listCall($table,$paramNames,$params)
     {
-        //        $table = DaoFinder::find($table)->getStoreTable();
         $style = $this->getStyle($params);
         if($style == ApiStyle::MONGO) {
             $where = isset($params[0])? $params[0] : null;
@@ -455,10 +455,6 @@ class XEntEnv
     }
 
 
-    // static public function register($dao)
-    // {
-    //     DaoFinderUtls::register($dao);
-    // }
     static public function registerDao($dao)
     {
         DaoFinderUtls::register($dao);

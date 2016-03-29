@@ -10,9 +10,8 @@
 abstract class SQLStatement
 {
     protected $_tableName;
-//    public $_tableName;
 
-    function SQLStatement($tableName )
+    public function __construct($tableName )
     {
         assert($tableName != "");
         $this->_tableName = $tableName;
@@ -31,10 +30,7 @@ class SQLInsertStatment extends  SQLStatement
 {
     var $_datas;
     var $_columns;
-    public function __construct($tableName)
-    {
-        parent::__construct($tableName); 
-    }
+
     public function datas($datas)
     {
         $this->_datas = $datas;
@@ -63,10 +59,6 @@ class SQLUpdateStatment extends SQLStatement
     {
         var $_condition;
         var $_updateColumns;
-        public function __construct($tableName)
-        {
-            parent::__construct($tableName); 
-        }
         public function updateColumns($str)
         {
             $this->_updateColumns =$str;
@@ -106,7 +98,7 @@ class SQLSelectStatement extends SQLStatement
     var $_pageCond = "";
     var $_limit = "";
 
-    function SQLSelectStatement($view , $viewCond=null)
+    public function __construct($view , $viewCond=null)
     {
         $this->_view = $view;
         $this->_viewCond = $viewCond;
@@ -143,8 +135,14 @@ class SQLSelectStatement extends SQLStatement
             $sql .= $table ;
         }
         $cond  = array();
-        if(! empty($this->_whereCond)) array_push($cond,$this->_whereCond);
-        if(! empty($this->_viewCond))  array_push($cond,$this->_viewCond);
+        if(! empty($this->_whereCond)) 
+        {
+            array_push($cond,$this->_whereCond);
+        }
+        if(! empty($this->_viewCond))  
+        {
+            array_push($cond,$this->_viewCond);
+        }
         $where = JoinUtls::jarray(" and ",$cond);
 
         $whereSql = ($where == "") ? "" : " where ( ".$where." )";
@@ -204,7 +202,9 @@ class SQLSelectStatement extends SQLStatement
     function orderBy($orderBy,$orderType='DESC')
     {
         if(!is_null($orderBy))
+        {
             $this->_orderBy = " order by `$orderBy` $orderType ";
+        }
     }
     /**
         * @brief
@@ -215,7 +215,10 @@ class SQLSelectStatement extends SQLStatement
      */
     function multiOrderBy($orderByArr)
     {
-        if(!is_array($orderByArr)) return;
+        if(!is_array($orderByArr)) 
+        {
+            return;
+        }
         $orderBy = "";
         $idx = 0;
         foreach($orderByArr as $col => $type)
@@ -248,10 +251,6 @@ class SQLSelectStatement extends SQLStatement
 class SQLDelStatement extends SQLStatement
 {
     var $_condition;
-    public function __construct($tableName)
-    {
-        parent::__construct($tableName); 
-    }
 
     public function where($condition)
     {

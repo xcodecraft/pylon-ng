@@ -31,20 +31,6 @@ class CacheSvcTest extends PHPUnit_Framework_TestCase
 //        $this->howtoUseCacheProxy($svcImpl);
 //        $svcImpl->flush();
     }
-    public function testEA()
-    {
-        //php ci mode EA not support ;
-        return ;
-        if(!EADriver::isEnable())
-        {
-            echo "no memcached  ".__CLASS__."::".__FUNCTION__." is ignore\n";
-            return ;
-        }
-        $svcImpl = new EADriver();
-        $this->howtoUseWarpper($svcImpl);
-        $this->howtoUseCacheProxy($svcImpl);
-        $svcImpl->flush();
-    }
     private function howtoUseWarpper($cacheSvc)
     {
         DBC::requireNotNull($cacheSvc,'$cacheSvc');

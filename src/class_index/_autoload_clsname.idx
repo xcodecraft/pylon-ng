@@ -21,7 +21,6 @@ cls_diagnosecontext,DiagnoseContext
 cls_diagnosemonitor,DiagnoseMonitor
 cls_dqlobj,DQLObj
 cls_dyncallparser,DynCallParser
-cls_eadriver,EADriver
 cls_echologger,EchoLogger
 cls_emptycontrol,EmptyControl
 cls_emptyunitwork,EmptyUnitWork

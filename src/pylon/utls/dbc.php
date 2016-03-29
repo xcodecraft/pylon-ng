@@ -26,47 +26,7 @@ class DBC
      * @brief 失败的行为
      */
     public static  $failAction = DBC::DO_EXCEPTION;
-    static private function notEqualsMsg($first,$second,$firstName)
-    {
-        if(is_null($first) ) 
-        {
-            $first = "null";
-        }
-        if(is_null($second) ) 
-        {
-            $second= "null";
-        }
-        if(is_bool($first) ) 
-        {
-            $first = $first? "bool:true":"bool:false";
-        }
-        if(is_bool($second) ) 
-        {
-            $second= $second? "bool:true":"bool:false";
-        }
-        return "$firstName  is [ $first ] , but expect is not [ $second ]  <br>\n" ;
-    }
 
-    static private function equalsMsg($first,$second,$firstName)
-    {
-        if(is_null($first) ) 
-        {
-            $first = "null";
-        }
-        if(is_null($second) ) 
-        {
-            $second= "null";
-        }
-        if(is_bool($first) ) 
-        {
-            $first = $first? "bool:true":"bool:false";
-        }
-        if(is_bool($second) ) 
-        {
-            $second= $second? "bool:true":"bool:false";
-        }
-        return "$firstName  is [ $first ] , but expect is  [ $second ] <br>\n" ;
-    }
     static private function objMsg($obj,$msg)
     {
         if(is_null($obj) ) 

@@ -18,8 +18,6 @@ class XIntercepterTarget
     {
         switch($key)
         {
-
-        case 'action':
         case 'name' :
             return strtolower($this->request->get('_action_name'));
         case 'uri' :
@@ -106,7 +104,7 @@ class XAopRule
                 }
             }
             $this->logger->debug ( "match aop rule [  pos: $pos ,  data  : $data , regex : $regex , match : $matchOnce ]" );
-            if ($matchOnce == false )
+            if ($matchOnce === false )
             {
                 break;
             }
@@ -146,7 +144,7 @@ class XAopRuleSet
     {
         if(!preg_match('/(\S+)_(by)_([a-zA-Z0-9]+)_(\S+)/',$name ,$matchs))
         {
-            DBC::unExpect("unknow $callName ,eg:  append_by_name_match('.*',xxxx)");
+            DBC::unExpect("unknow $name ,eg:  append_by_name_match('.*',xxxx)");
         }
         list($all,$op,$by,$rule, $pos )=$matchs;
 

@@ -508,24 +508,31 @@ class StdMapping implements IMappingStg
         $dtovars = array();
         foreach($vars as $key=>$val)
         {
-            if(is_object($val) && $val instanceof  NullEntity)
+            if( is_object($val))
             {
-                $dtovars[$key."__".strtolower($val->getClass())]=  null;
-            }
-            elseif(is_object($val) && $val instanceof  XEntity)
-            {
-                $dtovars[$key."__".strtolower(get_class($val))]= $val->id();
-            }
-            elseif(is_object($val) && $val instanceof  XID)
-            {
-                $subdtos[] = XProperty::fromArray($val->getPropArray());
-            }
-            elseif (is_object($val) && $val instanceof LDProxy)
-            {
-                $dtovars[$key."__".strtolower(get_class($val->getObj()))]= $val->id();
-            }
-            elseif (is_object($val) && $val instanceof ObjectSet)
-            {
+                if( $val instanceof  NullEntity)
+                {
+                    $dtovars[$key."__".strtolower($val->getClass())]=  null;
+                }
+                elseif( $val instanceof  XEntity)
+                {
+                    $dtovars[$key."__".strtolower(get_class($val))]= $val->id();
+                }
+                elseif( $val instanceof  XID)
+                {
+                    $subdtos[] = XProperty::fromArray($val->getPropArray());
+                }
+                elseif ( $val instanceof LDProxy)
+                {
+                    $dtovars[$key."__".strtolower(get_class($val->getObj()))]= $val->id();
+                }
+                elseif ( $val instanceof ObjectSet)
+                {
+                }
+                else {
+                    $cls = get_class($varl) ;
+                    DBC::unExpect("unsupport $cls obj to DTO") ;
+                }
             }
             else {
                 $dtovars[$key]=$val;
@@ -539,8 +546,8 @@ class StdMapping implements IMappingStg
         {
             if(isset($argsmap[$col]))
             {
-                $propName= $argsmap[$col];
-                $array[$propName]=$array[$col];
+                $propName         = $argsmap[$col];
+                $array[$propName] = $array[$col];
                 unset($array[$col]);
 
             }

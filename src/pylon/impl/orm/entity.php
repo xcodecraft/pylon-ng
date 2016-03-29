@@ -393,7 +393,7 @@ class ObjUpdater
 interface IMappingStg
 {
     public function convertDTO($vars);
-    public function buildEntityProp(&$array,$argsmap=array());
+    public function buildEntityProp(&$array);
 }
 class MappingUtls 
 {
@@ -451,18 +451,11 @@ class SimpleMapping implements IMappingStg
         return MappingUtls::assembleDTO($dtovars,$subdtos) ;
     }
 
-    public function buildEntityProp(&$array,$argsmap=array())
+    public function buildEntityProp(&$array)
     {
         foreach ( $array as $col=>$val)
         {
-            if(isset($argsmap[$col]))
-            {
-                $propName         = $argsmap[$col];
-                $array[$propName] = $array[$col];
-                unset($array[$col]);
-
-            }
-            elseif( strpos($col,'__id') != false)
+            if( strpos($col,'__id') != false)
             {
                 $prop = XProperty::fromArray();
                 $key= str_replace('__id','',$col);
@@ -540,18 +533,11 @@ class StdMapping implements IMappingStg
         }
         return MappingUtls::assembleDTO($dtovars,$subdtos) ;
     }
-    public function buildEntityProp(&$array,$argsmap=array())
+    public function buildEntityProp(&$array)
     {
         foreach ( $array as $col=>$val)
         {
-            if(isset($argsmap[$col]))
-            {
-                $propName         = $argsmap[$col];
-                $array[$propName] = $array[$col];
-                unset($array[$col]);
-
-            }
-            elseif( strpos($col,'__') != false)
+            if( strpos($col,'__') !== false)
             {
                 $prop = XProperty::fromArray();
                 list($key,$cls) = explode('__', $col);
@@ -631,8 +617,7 @@ class EntityUtls
                 DBC::unExpect("$key not unexpect!  col is $col,<br>\n key mabey is [ $msg ] <br>\n");
             }
         }
-        $obj= $reflectionObj->newInstanceArgs($constrctArgs);
-        return $obj;
+        return  $reflectionObj->newInstanceArgs($constrctArgs) ;
     }
 
     static public function assembly($unitwork)
@@ -720,9 +705,7 @@ class DaoFinderUtls
         {
             $obj = get_class($obj);
         }
-        $dao = static::findByCls($obj);
-
-        return $dao;
+        return static::findByCls($obj);
     }
 
     static public function find($obj)
@@ -730,9 +713,7 @@ class DaoFinderUtls
         $dao = static::find_($obj);
         if(static::$binder!= null)
         {
-            return static::$binder->proxy(
-                is_string($obj)? $obj: get_class($obj),
-                $dao);
+            return static::$binder->proxy( is_string($obj)? $obj: get_class($obj), $dao);
         }
         return $dao;
     }

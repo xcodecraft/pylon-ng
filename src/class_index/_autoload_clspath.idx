@@ -104,6 +104,7 @@ XBox,/pylon/interface/ioc.php
 XBR,/pylon/utls/biz.php
 XConfigException,/pylon/interface/exception.php
 XContext,/pylon/interface/base.php
+XDaoImplUtls,/pylon/impl/orm/daobase.php
 XDao,/pylon/impl/orm/entity.php
 XDataPage,/pylon/utls/datapage.php
 XDBCException,/pylon/interface/exception.php

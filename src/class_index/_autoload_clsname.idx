@@ -104,6 +104,7 @@ cls_xbox,XBox
 cls_xbr,XBR
 cls_xconfigexception,XConfigException
 cls_xcontext,XContext
+cls_xdaoimplutls,XDaoImplUtls
 cls_xdao,XDao
 cls_xdatapage,XDataPage
 cls_xdbcexception,XDBCException

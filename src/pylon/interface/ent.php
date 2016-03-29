@@ -167,7 +167,6 @@ class XQueryObj
     }
     private function delCall($cls,$name,$paramNames,$params)
     {
-
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         return  $this->getDao($cls)->delByProp($prop);

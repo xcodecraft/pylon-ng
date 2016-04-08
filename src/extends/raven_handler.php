@@ -34,17 +34,24 @@ class RavenLogger implements XIlogger
     {
 
     }
+    private static function getClient()
+    {
+        static $ins = null ;
+        if($ins === null)
+        {
+            $ins = new Raven_Client(RavenSetting::$server);
+        }
+        return $ins ;
+    }
 
     public function warn($msg,$event = null )
     {
-        $client   = new Raven_Client(RavenSetting::$server);
-        $event_id = $client->getIdent($client->captureMessage($msg));
+        static::getClient()->captureMessage($msg,array(),array("level" => 'warning'));
     }
 
     public function error($msg,$event = null )
     {
-        $client   = new Raven_Client(RavenSetting::$server);
-        $event_id = $client->getIdent($client->captureMessage($msg));
+        static::getClient()->captureMessage($msg,array(),array("level" => 'error'));
     }
 
 }

@@ -12,6 +12,5 @@ class  FastRouter implements XIRouter
     public function _find($uri)
     {
         return pylon_rest_find($uri);
-        //        return  null;
     }
 }

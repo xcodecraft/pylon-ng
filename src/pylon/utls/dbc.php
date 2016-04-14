@@ -26,26 +26,13 @@ class DBC
      * @brief 失败的行为
      */
     public static  $failAction = DBC::DO_EXCEPTION;
-    static private function notEqualsMsg($first,$second,$firstName)
-    {
-        if(is_null($first) ) $first = "null";
-        if(is_null($second) ) $second= "null";
-        if(is_bool($first) ) $first = $first? "bool:true":"bool:false";
-        if(is_bool($second) ) $second= $second? "bool:true":"bool:false";
-        return "$firstName  is [ $first ] , but expect is not [ $second ]  <br>\n" ;
-    }
 
-    static private function equalsMsg($first,$second,$firstName)
-    {
-        if(is_null($first) ) $first = "null";
-        if(is_null($second) ) $second= "null";
-        if(is_bool($first) ) $first = $first? "bool:true":"bool:false";
-        if(is_bool($second) ) $second= $second? "bool:true":"bool:false";
-        return "$firstName  is [ $first ] , but expect is  [ $second ] <br>\n" ;
-    }
     static private function objMsg($obj,$msg)
     {
-        if(is_null($obj) ) $obj = "null";
+        if(is_null($obj) ) 
+        {
+            $obj = "null";
+        }
         return  "object $msg: [$obj]";
     }
     static private function dofailAction($msg)
@@ -66,10 +53,6 @@ class DBC
         }
     }
 
-    static private function nullMsg($val,$type)
-    {
-        return  "type is $type, Object is null !";
-    }
 
     /**
      * @brief
@@ -83,7 +66,9 @@ class DBC
     static public function requireEquals($first,$second,$msg= "first value != second value")
     {
         if($first != $second)
+        {
             DBC::dofailAction($msg);
+        }
         return $first;
     }
     /**
@@ -97,13 +82,17 @@ class DBC
     static public function requireIsA($first,$parentClass,$msg="value is not subclass of ")
     {
         if(!is_a($first,$parentClass))
+        {
             DBC::dofailAction($msg);
+        }
         return $first;
     }
     static public function requireNotEquals($first,$second,$msg="first value == second value")
     {
         if($first == $second )
+        {
             DBC::dofailAction($msg);
+        }
         return $first;
     }
     /**
@@ -127,11 +116,14 @@ class DBC
      */
     static public function unImplement($msg="have not implment")
     {
-        self::dofailAction($msg);
+        static::dofailAction($msg);
     }
     static public function requireNull($obj,$msg="value is not null")
     {
-        if(is_null($obj)) return $obj;
+        if(is_null($obj)) 
+        {
+            return $obj;
+        }
         DBC::dofailAction($msg);
 
     }
@@ -145,7 +137,10 @@ class DBC
      */
     static public function requireNotNull($obj,$msg="value is  null ")
     {
-        if(!is_null($obj)) return $obj;
+        if(!is_null($obj)) 
+        {
+            return $obj;
+        }
         DBC::dofailAction($msg);
     }
 
@@ -165,7 +160,10 @@ class DBC
      */
     static public function requireObj($obj,$msg="value is not object")
     {
-        if(is_object($obj)) return $obj;
+        if(is_object($obj)) 
+        {
+            return $obj;
+        }
         DBC::dofailAction($msg);
     }
     /**
@@ -178,7 +176,10 @@ class DBC
      */
     static public function requireTrue($obj,$msg="require true ,but is false")
     {
-        if($obj) return $obj;
+        if($obj) 
+        {
+            return $obj;
+        }
         DBC::dofailAction($msg);
     }
     static public function requireArray($arr,$msg="value is not  Array")

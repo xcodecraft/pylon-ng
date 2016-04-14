@@ -74,7 +74,9 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         parent::__construct();
         $this->xid=$xid;
         if($prop != null)
+        {
             $this->merge($prop);
+        }
         DBC::requireNotNull($this->xid,"entity id is null" );
     }
 
@@ -109,20 +111,21 @@ class XEntityBase extends XProperty implements XIAutoUpdate
     {
         $unitwork = XBox::get("unitwork");
         if( $unitwork === null )
+        {
             throw new XDBCException("没有调用 XAppSession::begin()");
+        }
         return $unitwork ;
     }
     public function __wakeup()
     {
-        self::unitWork()->regLoad($this);
+        static::unitWork()->regLoad($this);
     }
     static public function loadEntity($cls,$array,$mappingStg,$clsmap=array())
     {
         $xid    = XID::load($array);
         $prop   = $mappingStg->buildEntityProp($array);
         $entity = new $cls($xid,$prop);
-        $obj    = self::unitWork()->regLoad($entity);
-        return $obj;
+        return  static::unitWork()->regLoad($entity);
     }
     static public function loadEntity2($cls,$array,$oprop,$mappingStg,$clsName=array())
     {
@@ -130,20 +133,19 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         $prop   = $mappingStg->buildEntityProp($array);
         $prop->merge($oprop);
         $entity = new $cls($xid,$prop);
-        $obj    = self::unitWork()->regLoad($entity);
-        return $obj;
+        return  static::unitWork()->regLoad($entity);
     }
     public function signAdd()
     {
-        self::unitWork()->regAdd($this);
+        static::unitWork()->regAdd($this);
     }
     public function signLoad()
     {
-        self::unitWork()->regLoad($this);
+        static::unitWork()->regLoad($this);
     }
     public function del()
     {
-        self::unitWork()->regDel($this);
+        static::unitWork()->regDel($this);
     }
 
     public function index()
@@ -161,7 +163,9 @@ abstract class Relation extends XProperty   implements XIAutoUpdate
     {
         parent::__construct();
         if($prop != null)
+        {
             $this->merge($prop);
+        }
     }
     public function id()
     {
@@ -232,7 +236,9 @@ class ObjUpdater
             $array[$item->index()] = $item;
             $this->items[$item->index()]=$item;
             if(ObjUpdater::OBJ_LOAD===$objType)
+            {
                 $this->loaditemSummerys[$item->index()]=$item->buildSummery();
+            }
         }
 
     }
@@ -240,7 +246,9 @@ class ObjUpdater
     {
         $cnt = count($items);
         for($i=0 ; $i<$cnt; $i++)
+        {
             $items[$i] = null;
+        }
     }
     public function __destruct()
     {
@@ -249,12 +257,16 @@ class ObjUpdater
     }
     public function haveChange()
     {
-        if(count($this->additems)>0)  return true;
-        if(count($this->delitems)>0)  return true;
+        if(count($this->additems)>0  ||  count($this->delitems)>0) 
+        {
+            return true;
+        }
         foreach($this->loaditems as $key=>$item)
         {
             if($item->buildSummery() != $this->loaditemSummerys[$key])
+            {
                 return true;
+            }
         }
         return false;
     }
@@ -351,7 +363,10 @@ class ObjUpdater
     }
     public function  objcomp($a,$b)
     {
-        if($a==$b) return 0;
+        if($a==$b) 
+        {
+            return 0;
+        }
         return $a->id() > $b->id() ? 1 :-1;
     }
     public function equal($other)
@@ -378,16 +393,30 @@ class ObjUpdater
 interface IMappingStg
 {
     public function convertDTO($vars);
-    public function buildEntityProp(&$array,$argsmap=array());
+    public function buildEntityProp(&$array);
+}
+class MappingUtls 
+{
+    static public function assembleDTO($dtovars,$subdtos)
+    {
+        $maindto = XProperty::fromArray($dtovars);
+        foreach($subdtos as $sdto)
+        {
+            $maindto->merge($sdto) ;
+        }
+        return $maindto;
+    }
 }
 class SimpleMapping implements IMappingStg
 {
     static private $ins=null;
     static public function ins()
     {
-        if(self::$ins == null)
-            self::$ins = new SimpleMapping();
-        return self::$ins;
+        if(static::$ins == null)
+        {
+            static::$ins = new SimpleMapping();
+        }
+        return static::$ins;
     }
     public function convertDTO($vars)
     {
@@ -419,26 +448,14 @@ class SimpleMapping implements IMappingStg
                 $dtovars[$key]=$val;
             }
         }
-        $maindto = XProperty::fromArray($dtovars);
-        foreach($subdtos as $sdto)
-        {
-            $maindto->merge($sdto) ;
-        }
-        return $maindto;
+        return MappingUtls::assembleDTO($dtovars,$subdtos) ;
     }
 
-    public function buildEntityProp(&$array,$argsmap=array())
+    public function buildEntityProp(&$array)
     {
         foreach ( $array as $col=>$val)
         {
-            if(isset($argsmap[$col]))
-            {
-                $propName         = $argsmap[$col];
-                $array[$propName] = $array[$col];
-                unset($array[$col]);
-
-            }
-            elseif( strpos($col,'__id') != false)
+            if( strpos($col,'__id') != false)
             {
                 $prop = XProperty::fromArray();
                 $key= str_replace('__id','',$col);
@@ -464,8 +481,7 @@ class SimpleMapping implements IMappingStg
             }
 
         }
-        $prop = XProperty::fromArray($array);
-        return $prop;
+        return  XProperty::fromArray($array);
     }
 }
 class StdMapping implements IMappingStg
@@ -473,9 +489,11 @@ class StdMapping implements IMappingStg
     static private $ins=null;
     static public function ins()
     {
-        if(self::$ins == null)
-            self::$ins = new StdMapping();
-        return self::$ins;
+        if(static::$ins == null)
+        {
+            static::$ins = new StdMapping();
+        }
+        return static::$ins;
     }
     public function convertDTO($vars)
     {
@@ -483,49 +501,43 @@ class StdMapping implements IMappingStg
         $dtovars = array();
         foreach($vars as $key=>$val)
         {
-            if(is_object($val) && $val instanceof  NullEntity)
+            if( is_object($val))
             {
-                $dtovars[$key."__".strtolower($val->getClass())]=  null;
-            }
-            elseif(is_object($val) && $val instanceof  XEntity)
-            {
-                $dtovars[$key."__".strtolower(get_class($val))]= $val->id();
-            }
-            elseif(is_object($val) && $val instanceof  XID)
-            {
-                $subdtos[] = XProperty::fromArray($val->getPropArray());
-            }
-            elseif (is_object($val) && $val instanceof LDProxy)
-            {
-                $dtovars[$key."__".strtolower(get_class($val->getObj()))]= $val->id();
-            }
-            elseif (is_object($val) && $val instanceof ObjectSet)
-            {
+                if( $val instanceof  NullEntity)
+                {
+                    $dtovars[$key."__".strtolower($val->getClass())]=  null;
+                }
+                elseif( $val instanceof  XEntity)
+                {
+                    $dtovars[$key."__".strtolower(get_class($val))]= $val->id();
+                }
+                elseif( $val instanceof  XID)
+                {
+                    $subdtos[] = XProperty::fromArray($val->getPropArray());
+                }
+                elseif ( $val instanceof LDProxy)
+                {
+                    $dtovars[$key."__".strtolower(get_class($val->getObj()))]= $val->id();
+                }
+                elseif ( $val instanceof ObjectSet)
+                {
+                }
+                else {
+                    $cls = get_class($varl) ;
+                    DBC::unExpect("unsupport $cls obj to DTO") ;
+                }
             }
             else {
                 $dtovars[$key]=$val;
             }
         }
-        $maindto = XProperty::fromArray($dtovars);
-
-        foreach($subdtos as $sdto)
-        {
-            $maindto->merge($sdto) ;
-        }
-        return $maindto;
+        return MappingUtls::assembleDTO($dtovars,$subdtos) ;
     }
-    public function buildEntityProp(&$array,$argsmap=array())
+    public function buildEntityProp(&$array)
     {
         foreach ( $array as $col=>$val)
         {
-            if(isset($argsmap[$col]))
-            {
-                $propName= $argsmap[$col];
-                $array[$propName]=$array[$col];
-                unset($array[$col]);
-
-            }
-            elseif( strpos($col,'__') != false)
+            if( strpos($col,'__') !== false)
             {
                 $prop = XProperty::fromArray();
                 list($key,$cls) = explode('__', $col);
@@ -537,7 +549,7 @@ class StdMapping implements IMappingStg
                     $ctrl = PylonCtrl::objLazyLoad();
                     if($ctrl->_need($key,null))
                     {
-                        $obj  =new LDProxy(array("EntityUtls","loadObjByID"),$prop);
+                        $obj  =new LDProxy(array(EntityUtls,"loadObjByID"),$prop);
                     }
                     else
                     {
@@ -553,8 +565,7 @@ class StdMapping implements IMappingStg
             }
 
         }
-        $prop = XProperty::fromArray($array);
-        return $prop;
+        return  XProperty::fromArray($array);
     }
 }
 class EntityUtls
@@ -568,15 +579,17 @@ class EntityUtls
     {
 
         $reflectionObj = new ReflectionClass($cls);
-        $constructFun = $reflectionObj->getConstructor();
-        $args = $constructFun->getParameters();
-        $constrctArgs=array();
+        $constructFun  = $reflectionObj->getConstructor();
+        $args          = $constructFun->getParameters();
+        $constrctArgs  = array();
         foreach ( $args as $arg)
         {
             $key=strtolower($arg->getName());
             $col=$key;
             if(isset($argsmap[$key]))
+            {
                 $col=$argsmap[$key];
+            }
             if(isset($array[$col]))
             {
                 $constrctArgs[$key]=$array[$col] ;
@@ -587,11 +600,15 @@ class EntityUtls
 
                 $prop->id  = $array[$col."__id"];
                 $prop->cls = $clsmap[$col];
-                $obj = new LDProxy(array("EntityUtls","loadObjByID"),$prop);
+                $obj = new LDProxy(array(EntityUtls,"loadObjByID"),$prop);
                 if($loadstg == XEntity::LAZY_LOADER)
+                {
                     $constrctArgs[$key]=$obj;
+                }
                 else
+                {
                     $constrctArgs[$key]=$obj->getObj();
+                }
             }
             else
             {
@@ -600,8 +617,7 @@ class EntityUtls
                 DBC::unExpect("$key not unexpect!  col is $col,<br>\n key mabey is [ $msg ] <br>\n");
             }
         }
-        $obj= $reflectionObj->newInstanceArgs($constrctArgs);
-        return $obj;
+        return  $reflectionObj->newInstanceArgs($constrctArgs) ;
     }
 
     static public function assembly($unitwork)
@@ -613,30 +629,29 @@ class EntityUtls
     static public function createPureID($idname='other')
     {
         $idSvc = XBox::must_get('IDGenterService');
-        $id= $idSvc->createID($idname);
-        return $id;
+        return  $idSvc->createID($idname);
     }
 }
 
 
 class DaoFinderUtls
 {
-    const factory='##factory';
+    const FACTORY='##factory';
 
     private static $binder=null;
 
     static public function regBinder($binder)
     {
-        self::$binder = $binder;
+        static::$binder = $binder;
     }
     static public function clearBinder()
     {
-        self::regBinder(null);
+        static::regBinder(null);
     }
 
     static protected function findByCls($clsName)
     {
-        return self::get_impl(XBox::DAO,$clsName);
+        return static::get_impl(XBox::DAO,$clsName);
     }
 
     static public function getExecuterList()
@@ -646,36 +661,39 @@ class DaoFinderUtls
 
     static public function registerFactory($daoFactory,$queryFactory)
     {
-        XBox::regist(self::factory,$daoFactory, __METHOD__,"/".XBox::DAO);
-        XBox::regist(self::factory,$queryFactory, __METHOD__,"/".XBox::QUERY);
+        XBox::regist(static::FACTORY,$daoFactory, __METHOD__,"/".XBox::DAO);
+        XBox::regist(static::FACTORY,$queryFactory, __METHOD__,"/".XBox::QUERY);
     }
 
     static public function get_impl($key,$cls)
     {
         $cls  =  strtolower($cls);
         $obj  = XBox::get($key,"/$cls");
-        if($obj !== null) return $obj ;
+        if($obj !== null) 
+        {
+            return $obj ;
+        }
 
-        $factory = XBox::get(self::factory,"/$key");
+        $factory = XBox::get(static::FACTORY,"/$key");
         if($factory !== null)
         {
             $obj = call_user_func($factory,$cls);
-            self::regist_impl($key,$cls,$obj);
+            static::regist_impl($key,$cls,$obj);
             return $obj;
         }
 
 
         $names = Prompt::recommend($cls,array_keys(XBox::space_keys($key)));
         $str   = JoinUtls::jarray(',',$names);
-        DBC::unExpect("$cls $key unfoud","maybe data env not init!");
+        DBC::unExpect("$cls $key unfoud","maybe in $str");
     }
 
     static public function query($clsName)
     {
-        $query = self::get_impl(XBox::QUERY,$clsName);
-        if(self::$binder!= null)
+        $query = static::get_impl(XBox::QUERY,$clsName);
+        if(static::$binder!= null)
         {
-            return self::$binder->proxy($clsName,$query);
+            return static::$binder->proxy($clsName,$query);
         }
         return $query;
     }
@@ -684,20 +702,18 @@ class DaoFinderUtls
     {
         $dao=null;
         if(is_object($obj))
+        {
             $obj = get_class($obj);
-        $dao = self::findByCls($obj);
-
-        return $dao;
+        }
+        return static::findByCls($obj);
     }
 
     static public function find($obj)
     {
-        $dao = self::find_($obj);
-        if(self::$binder!= null)
+        $dao = static::find_($obj);
+        if(static::$binder!= null)
         {
-            return self::$binder->proxy(
-                is_string($obj)? $obj: get_class($obj),
-                $dao);
+            return static::$binder->proxy( is_string($obj)? $obj: get_class($obj), $dao);
         }
         return $dao;
     }
@@ -707,38 +723,44 @@ class DaoFinderUtls
     {
         $root_exec = XBox::get(XBox::SQLE);
         if ( $exec !== $root_exec)
+        {
             XBox::regist(XBox::SQLE,$exec,__METHOD__ . ":$cls");
+        }
     }
     static public function register($dao)
     {
 
         $clsName = strtolower($dao->cls);
-        self::regist_impl(XBox::DAO,$clsName,$dao);
+        static::regist_impl(XBox::DAO,$clsName,$dao);
     }
 
     static public function regist_impl($key,$cls,$obj)
     {
-        self::registerExer($cls,$obj->getExecuter());
+        static::registerExer($cls,$obj->getExecuter());
         XBox::regist($key,$obj,__METHOD__,"/$cls");
     }
     static public function registerQuery($query)
     {
         $clsName = strtolower($query->getRegName());
-        self::regist_impl(XBox::QUERY,$clsName,$query);
+        static::regist_impl(XBox::QUERY,$clsName,$query);
     }
 
     static public function registerAll($dao,$query)
     {
         if($dao !=null)
-            self::register($dao);
+        {
+            static::register($dao);
+        }
         if($query !=null)
-            self::registerQuery($query);
+        {
+            static::registerQuery($query);
+        }
     }
     static public function clean()
     {
         XBox::clean(XBox::DAO);
         XBox::clean(XBox::QUERY);
-        XBox::clean(self::factory);
+        XBox::clean(static::FACTORY);
     }
 
 }

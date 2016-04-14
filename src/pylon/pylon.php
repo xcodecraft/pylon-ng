@@ -63,11 +63,13 @@ class XSetting
     static public  $assembly     = "" ;
     static public  $prjName      = "" ;
     static public  $bootstrap    = "bootstrap.php" ;
+    static public  $logCls       = null ;
 
     static public  $entLazyload  = true ;
 
 
     static public  $respClass   = 'XRestResp' ;
+    static public  $respInsFun  = null ;
 
     static public  $extendData  = array() ;
 
@@ -111,27 +113,87 @@ class XSetting
         throw new LogicException("不能获得环境变量 $key,或为空!");
 
     }
-    //TODO:
     static public function extend($key,$val)
     {
-        self::$extendData[$key] = $val ;
+        static::$extendData[$key] = $val ;
     }
     static public function value($key)
     {
-        return  self::$extendData[$key]  ;
+        return  static::$extendData[$key]  ;
     }
 
 
 
 }
+interface XIlogger
+{
+    function debug($msg,$event = null ) ;
+    function info($msg,$event = null ) ;
+    function warn($msg,$event = null ) ;
+    function error($msg,$event = null ) ;
+
+}
+
+class XNullLogger implements XIlogger 
+{
+    public function debug($msg,$event = null )
+    {
+    }
+
+    public function info($msg,$event = null )
+    {
+
+    }
+
+    public function warn($msg,$event = null )
+    {
+
+    }
+
+    public function error($msg,$event = null )
+    {
+    }
+}
 
 
-/**
- * @ingroup utls
- * @brief
- */
-class XLogger extends Logger
-{}
+class XLogger  implements XIlogger 
+{
+
+    public function __construct($name) 
+    {
+        $this->log = new Logger($name) ;
+        $logCls    = XSetting::$logCls ;
+        $this->externLog =  is_null($logCls) ?  new XNullLogger() : new $logCls($name);
+        
+    }
+    public function debug($msg,$event = null )
+    {
+        $this->log->debug($msg,$event) ;
+        $this->externLog->debug($msg,$event) ;
+
+    }
+
+    public function info($msg,$event = null )
+    {
+        $this->log->info($msg,$event) ;
+        $this->externLog->info($msg,$event) ;
+
+    }
+
+    public function warn($msg,$event = null )
+    {
+        $this->log->warn($msg,$event) ;
+        $this->externLog->warn($msg,$event) ;
+
+    }
+
+    public function error($msg,$event = null )
+    {
+        $this->log->error($msg,$event) ;
+        $this->externLog->error($msg,$event) ;
+    }
+
+}
 /**
  * @ingroup utls
  * @brief  日志配置
@@ -168,7 +230,7 @@ function pylon_load_cls_index()
 
     static $index_load = false ;
     if ($index_load ) return ;
-    $lib_root  = dirname(__FILE__);
+    $lib_root  = dirname(dirname(__FILE__));
     pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
     pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
 
@@ -190,7 +252,8 @@ function pylon_load_cls_index()
 function pylonlib__autoload($classname)
 {
     $key       = "PYLON2_CLASS:".$classname ;
-    $glogger   = new logger("_pylon");
+
+    $glogger   = XLogKit::logger("_pylon");
     $path      = pylon_dict_find($key);
     if($path  != NULL)
     {
@@ -203,9 +266,9 @@ function pylonlib__autoload($classname)
 function appsys__autoload($classname)
 {
 
-    $key        =  "CLASS:".$classname ;
-    $glogger    =  new logger("_pylon");
-    $path       =  pylon_dict_find($key);
+    $key     = "CLASS:".$classname ;
+    $glogger = XLogKit::logger("_pylon");
+    $path    = pylon_dict_find($key);
     if($path !=NULL)
     {
         $glogger->debug("cls : $classname , file: $path");
@@ -216,8 +279,8 @@ function appsys__autoload($classname)
 
 function pylon__unload($classname)
 {
-    $glogger  = new logger("_pylon");
-    $glogger->error("cls : $classname , file: $path");
+    $glogger = XLogKit::logger("_pylon");
+    $glogger->error("cls : $classname" );
     $msg      = pylon_dict_prompt($classname);
     $info     = "";
     $info    .= "******* AUTOLOAD ERROR *********<br>\n";
@@ -264,7 +327,7 @@ class XPylon
      */
     static public function websvc()
     {
-        return new PylonMvcSvc(self::$runpath);
+        return new PylonMvcSvc(static::$runpath);
     }
     /**
      * @brief 启动rest 服务
@@ -274,7 +337,7 @@ class XPylon
     {
 
         ob_start();
-        self::useEnv();
+        static::useEnv();
         $data_file = XSetting::$runPath . "/router/_router.idx" ;
         XBox::regist(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
         XRouter::serving();
@@ -286,8 +349,8 @@ class XPylon
      */
     static public function useEnv()
     {
-        self::logConf();
-        self::load();
+        static::logConf();
+        static::load();
     }
 
     private static function logConf()
@@ -295,19 +358,19 @@ class XPylon
         switch(XSetting::$logMode)
         {
         case XSetting::LOG_ONLINE_MODE :
-            self::log4online();
+            static::log4online();
             break;
         case XSetting::LOG_DEBUG_MODE :
-            self::log4debug();
+            static::log4debug();
             break;
         case XSetting::LOG_BENCHMARK_MODE:
-            self::log4benchmark();
+            static::log4benchmark();
             break;
         case XSetting::LOG_FAST_MODE:
-            self::log4fast();
+            static::log4fast();
             break;
         default:
-            self::log4online();
+            static::log4online();
         }
     }
     private static function log4online()
@@ -383,8 +446,7 @@ class XPylon
         $cls=  "cls_" . strtolower($clsname);
         if (function_exists("pylon_dict_count") && pylon_dict_count() > 0)
         {
-            $clsname= pylon_dict_find($cls) ;
-            return $clsname;
+            return  pylon_dict_find($cls) ;
         }
         else
         {

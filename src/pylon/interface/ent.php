@@ -71,14 +71,13 @@ class XEntity extends XEntityBase
     static public function regist($entity)
     {
         DBC::requireNotNull($entity);
-        $obj = self::unitWork()->regAdd($entity);
-        return $obj;
+        return  static::unitWork()->regAdd($entity);
     }
 
     static public function createIns($cls)
     {
         $obj = new $cls(XID::create(strtolower($cls))) ;
-        self::regist($obj) ;
+        static::regist($obj) ;
         return $obj;
     }
 }
@@ -98,7 +97,9 @@ class XQueryObj
     {
         static $inst=null;
         if($inst == null)
+        {
             $inst = new  XQueryObj() ;
+        }
         return $inst;
     }
     public function setLoadStg($stg)
@@ -114,7 +115,7 @@ class XQueryObj
         }
         return $dao;
     }
-    private function listCall($op,$cls,$name,$paramNames,$params)
+    private function listCall($cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
@@ -142,7 +143,7 @@ class XQueryObj
 
     public function listByArr($cls,$Arr,$page=null,$orderkey=null,$ordertype='DESC')
     {
-        $porp = XProperty::fromArray($arr);
+        $prop = XProperty::fromArray($arr);
         return  $this->getDao($cls)->listByProp($prop,$page,$orderkey,$ordertype);
     }
     public function getByProp($cls,$prop)
@@ -151,22 +152,21 @@ class XQueryObj
     }
 
 
-    private function getCall($op,$cls,$name,$paramNames,$params)
+    private function getCall($cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         return  $this->getDao($cls)->getByProp($prop);
     }
 
-    private function cntCall($op,$cls,$name,$paramNames,$params)
+    private function cntCall($cls,$name,$paramNames,$params)
     {
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         return  $this->getDao($cls)->getCount($prop);
     }
-    private function delCall($op,$cls,$name,$paramNames,$params)
+    private function delCall($cls,$name,$paramNames,$params)
     {
-
         $extraParams=null;
         $prop=DynCallParser::buildCondProp($paramNames,$params,$extraParams);
         return  $this->getDao($cls)->delByProp($prop);
@@ -180,15 +180,15 @@ class XQueryObj
         switch($op)
         {
         case 'list':
-            $ret = $this->listCall($op,$cls,$name,$paramNames,$params);
+            $ret = $this->listCall($cls,$name,$paramNames,$params);
             break;
         case 'get':
-            $ret = $this->getCall($op,$cls,$name,$paramNames,$params);
+            $ret = $this->getCall($cls,$name,$paramNames,$params);
             break;
         case 'cnt':
-            $ret = $this->cntCall($op,$cls,$name,$paramNames,$params);
+            $ret = $this->cntCall($cls,$name,$paramNames,$params);
         case 'del':
-            $ret = $this->delCall($op,$cls,$name,$paramNames,$params);
+            $ret = $this->delCall($cls,$name,$paramNames,$params);
             break;
         default:
             DBC::unExpect($op,"unsupport op type");
@@ -223,7 +223,9 @@ class XQueryArr
     {
         static $inst=null;
         if($inst == null)
+        {
             $inst = new XQueryArr();
+        }
         return $inst;
     }
     /**
@@ -274,7 +276,6 @@ class XQueryArr
 
     private function listCall($table,$paramNames,$params)
     {
-        //        $table = DaoFinder::find($table)->getStoreTable();
         $style = $this->getStyle($params);
         if($style == ApiStyle::MONGO) {
             $where = isset($params[0])? $params[0] : null;
@@ -321,7 +322,7 @@ class XQueryArr
 
     public static function __callStatic($name,$params)
     {
-        $ins = self::ins();
+        $ins = static::ins();
         return call_user_func_array(array($ins,$name), $params);
     }
 }
@@ -371,7 +372,9 @@ class XWriter
     {
         static $inst=null;
         if($inst == null)
+        {
             $inst = new XWriter();
+        }
         return $inst;
     }
     private function getStyle($params)
@@ -425,7 +428,7 @@ class XWriter
     }
     public static function __callStatic($name,$params)
     {
-        $ins = self::ins();
+        $ins = static::ins();
         return call_user_func_array(array($ins,$name), $params);
     }
 }
@@ -451,10 +454,6 @@ class XEntEnv
     }
 
 
-    // static public function register($dao)
-    // {
-    //     DaoFinderUtls::register($dao);
-    // }
     static public function registerDao($dao)
     {
         DaoFinderUtls::register($dao);
@@ -501,13 +500,17 @@ class XEntEnv
         {
             XBox::regist(XBox::SQLE,$sql_exec,__METHOD__);
             if(empty($idgenter))
+            {
                 XBox::regist(XBox::IDG, new MySqlIDGenerator($sql_exec),__METHOD__);
+            }
             else
+            {
                 XBox::regist(XBox::IDG, $idgenter,__METHOD__);
+            }
         }
 
         $executer = XBox::must_get(XBox::SQLE);
-        self::registerFactory( SimpleDaoFactory::funIns($executer), SimpleQueryFactory::funIns($executer));
+        static::registerFactory( SimpleDaoFactory::funIns($executer), SimpleQueryFactory::funIns($executer));
     }
     /**
         * @brief  配置Dao
@@ -524,9 +527,11 @@ class XEntEnv
         $executer = XBox::get(SQLE,"/$cls");
         $map_ins  = SimpleMapping::ins();
         if ($mapping === "std")
+        {
             $map_ins =  StdMapping::ins();
+        }
         $dao   = new DaoImp($cls,$executer,$table,$map_ins,$hashfun);
-        self::registerDao($dao);
+        static::registerDao($dao);
     }
 
     static public function query($clsName)
@@ -561,7 +566,9 @@ class XAppSession
     {
         $where_begin = XBox::regist_where(1);
         if($uwork === null)
+        {
             return  new XAppSession(new UnitWorkImpl(),$where_begin);
+        }
         return new XAppSession($uwork,$where_begin);
     }
 

@@ -26,7 +26,7 @@ class XRuntimeException extends RuntimeException
         $this->status_code = $status_code;
         $this->headers     = array() ;
         $this->sub_code    = $subcode ;
-        $code              = "$status_code:$subcode" ;
+        $code              = $subcode;
         parent::__construct($msg,$code);
     }
 }
@@ -72,7 +72,7 @@ class XNotFound extends XRuntimeException
  */
 class XUnAuthorized extends XRuntimeException
 {
-    public function __construct($realm="pylon",$subcode=XErrCode::UNDEFINE)
+    public function __construct($msg="pylon",$subcode=XErrCode::UNDEFINE)
     {
         parent::__construct(401,$msg,$subcode);
         $headmsg = "Basic realm=\"$msg\"" ;

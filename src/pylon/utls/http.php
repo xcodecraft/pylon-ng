@@ -33,12 +33,13 @@ class XHttpConf
      */
     static public function localSvc($domain,$port=8360,$caller="unknow",$bHttps=null)
     {
-        $conf           = new XHttpConf ;;
+        $conf           = new XHttpConf ;
         $conf->domain   = $domain ;
         $conf->server   = "127.0.0.1";
         $conf->logger   = XLogkit::logger("net") ;
         $conf->port     = $port ;
         $conf->bHttps   = $bHttps;
+        $conf->caller   = $caller ;
         return $conf;
     }
     /**
@@ -62,6 +63,7 @@ class XHttpConf
         $this->logger  = $logger;
         $this->caller  = $caller;
         $this->bHttps  = $bHttps;
+        $this->port    = $port ;
     }
 }
 
@@ -97,7 +99,7 @@ class XRestResult
     {
         if ($response->statusCode == $statusCode )
         {
-            $err = self::fail($response) ;
+            $err = static::fail($response) ;
             if ($errno == null | $err['sub_code'] == $errno) {
                 return  true ;
             }
@@ -141,10 +143,10 @@ class XHttpCaller
 {
     private $ch;
     private $conf;
-    private static  $debug_echo = false ;
+    protected static  $debug_echo = false ;
 
     public static function failDebug($on) {
-        self::$debug_echo  = $on ;
+        static::$debug_echo  = $on ;
     }
 
     public function  __construct($conf)
@@ -163,9 +165,14 @@ class XHttpCaller
     private function makeURL($url)
     {
         $server = $this->conf->domain ;
-        if(! empty($this->conf->server) )$server = $this->conf->server ;
+        if(! empty($this->conf->server) )
+        {
+            $server = $this->conf->server ;
+        }
         if(!is_null($this->conf->bHttps))
+        {
             return $url = "https://" . $server. $url;
+        }
         if($this->conf->port && $this->conf->port != 80)
         {
             $url = "http://$server:{$this->conf->port}{$url}";
@@ -175,6 +182,18 @@ class XHttpCaller
         }
         return $url ;
     }
+
+    public function useagent($data)
+    {
+        curl_setopt($this->ch, CURLOPT_USERAGENT, $data);
+
+    }
+
+    public function setFollowLocation($bFollow)
+    {
+        curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, $bFollow);
+    }
+
     /**
      * @brief GET 调用
      *
@@ -201,15 +220,19 @@ class XHttpCaller
      */
     public function put($url,$data,$timeout=0)
     {
+        $this->bindData($data) ;
+        curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"PUT");
+        $url = $this->makeURL($url);
+        return $this->callRemote('PUT',$url,$timeout);
+    }
+    private function bindData($data)
+    {
         if(is_array($data)){
             $data = http_build_query($data);
         }
         array_push($this->headers,'Content-Length: '.strlen($data)) ;
-        $url = $this->makeURL($url);
-        curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"PUT");
         curl_setopt($this->ch,CURLOPT_POSTFIELDS,$data);
         $this->call_data = $data;
-        return $this->callRemote('PUT',$url,$timeout);
     }
     /**
      * @brief POST　调用　
@@ -222,14 +245,9 @@ class XHttpCaller
      */
     public function post($url,$data,$timeout=0)
     {
-        if(is_array($data)){
-            $data = http_build_query($data);
-        }
-        array_push($this->headers,'Content-Length: '.strlen($data)) ;
+        $this->bindData($data) ;
         $url = $this->makeURL($url);
         curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"POST");
-        curl_setopt($this->ch,CURLOPT_POSTFIELDS,$data);
-        $this->call_data  = $data ;
         return $this->callRemote('POST',$url,$timeout);
     }
     public function setHeader($value,$mutiRequ=true)
@@ -242,7 +260,6 @@ class XHttpCaller
         {
             array_push($this->headers,$value) ;
         }
-        // curl_setopt($this->ch,CURLOPT_HTTPHEADER,array($value));
     }
 
     /**
@@ -275,14 +292,15 @@ class XHttpCaller
     private function log($level,$msg,$event)
     {
         if(empty($this->conf->logger))
+        {
             return ;
+        }
         $this->conf->logger->$level($msg,$event);
     }
     private function callRemote($method,$url,$timeout=0)
-    {/*{{{*/
+    {
         $url    = $this->bindCaller($url);
         array_push($this->headers,"Host:" . $this->conf->domain );
-        // $header_arr[] = "Accept-Language: CH";
         //TID
         if(class_exists('XTid', false)){
             array_push($this->headers,'PYLON-TID: ' . XTid::get()) ;
@@ -308,8 +326,6 @@ class XHttpCaller
 
         curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT_MS, $this->conf->timeout_ms);
         curl_setopt($this->ch, CURLOPT_TIMEOUT_MS, $this->conf->timeout_ms);
-        // curl_setopt($this->ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        // curl_setopt($this->ch, CURLOPT_TIMEOUT, $timeout);
         $timeout_info = $timeout.'(ms)';
 
         if ($this->conf->gzip)
@@ -345,7 +361,7 @@ class XHttpCaller
         {
             $errMsg = curl_error($this->ch);
             $body   = lineBody($response->body()) ;
-            if (self::$debug_echo)
+            if (static::$debug_echo)
             {
                 echo "$curl  failed! $errmsg,$event" ;
                 echo "\n" ;

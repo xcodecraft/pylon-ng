@@ -7,6 +7,38 @@
 /**
 * @brief  具体的Dao基类.
  */
+
+class XDaoImplUtls
+{
+
+    static public function whereByProp($statement,$prop)
+    {
+        $where     = JoinUtls::jassoArrayEx(' and ',$prop->getPropArray(),array(SqlProcUtls,'bindCond'));
+        $statement->where($where);
+    }
+
+    static public function assembleWhere(SQLSelectStatement $statement ,$prop) 
+    {
+        $valsArr = array();
+        if($prop !=null && (!$prop->isEmpty()))
+        {
+            $condsArr = $prop->getPropArray();
+            $valsArr  = SqlProcUtls::filterCondVal(array_values($condsArr));
+            XDaoImplUtls::whereByProp($statement,$prop) ;
+        }
+        return $valsArr ;
+        
+    }
+    static public function genKeyVal($keys,$pairs)
+    {
+        $arr = array();
+        foreach($keys as $key)
+        {
+            $arr[$key]=$pairs[$key];
+        }
+        return $arr;
+    }
+}
 class DaoBase
 {
     public $_executer   = null;
@@ -40,8 +72,7 @@ class DaoBase
     public function getStoreTable($hashKey=null)
     {
         $key   = !is_null($hashKey)  ? $hashKey : $this->hashKey;
-        $table = call_user_func($this->tableFinder,$key);
-        return $table;
+        return  call_user_func($this->tableFinder,$key);
     }
     public function add($obj)
     {
@@ -67,14 +98,13 @@ class DaoBase
         $pairs     = $this->obj2row($obj);
         $hashKey   = $obj->hashStoreKey();
         $statement = new SQLDelStatement($this->getStoreTable($hashKey));
-        $statement->where(JoinUtls::jassoArray(' and ','=',self::genKeyVal($keys,$pairs)));
+        $statement->where(JoinUtls::jassoArray(' and ','=',XDaoImplUtls::genKeyVal($keys,$pairs)));
         return $this->_executer->exeNoQuery($statement->generateSql());
     }
     public function delByProp($prop,$hashKey=null)
     {
         $statement = new SQLDelStatement($this->getStoreTable($hashKey));
-        $where     = JoinUtls::jassoArrayEx(' and ',$prop->getPropArray(),array('SqlProcUtls','bindCond'));
-        $statement->where($where);
+        XDaoImplUtls::whereByProp($statement,$prop) ;
 
         $valsArr   = SqlProcUtls::filterCondVal(array_values($prop->getPropArray()));
         return $this->_executer->exeNoQuery($statement->generateSql(),$valsArr);
@@ -88,8 +118,7 @@ class DaoBase
 
     public function getByID($id,$hashKey=null)
     {
-        $obj = $this->getByProp(CondProp::make('id',$id),$hashKey);
-        return $obj;
+        return $this->getByProp(CondProp::make('id',$id),$hashKey);
 
     }
 
@@ -99,10 +128,8 @@ class DaoBase
         $valsArr=array();
         if(!$prop->isEmpty())
         {
-            $condsArr = $prop->getPropArray();
             $valsArr  = SqlProcUtls::filterCondVal(array_values($prop->getPropArray()));
-            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
-            $statement->where($where);
+            XDaoImplUtls::whereByProp($statement,$prop) ;
         }
         return $this->getByCmd($statement->generateSql(),$valsArr);
     }
@@ -111,20 +138,25 @@ class DaoBase
     public function getByCmd($cmd,$argvals=array())
     {
         $row = $this->_executer->query($cmd,$argvals);
-        if($row == false) return null;
-        return $this->convertObj($row);
+        if($row ) 
+        {
+            return $this->convertObj($row);
+        }
+        return null;
     }
 
     public function rowByCmd($cmd,$argvals=array())
     {
         $row = $this->_executer->query($cmd,$argvals);
-        if($row == false) return null;
-        return $row;
+        if($row ) 
+        {
+            return $row;
+        }
+        return null;
     }
     public function rowsByCmd($cmd,$argvals=array())
     {
-        $rows = $this->_executer->querys($cmd,$argvals);
-        return $rows;
+        return  $this->_executer->querys($cmd,$argvals);
     }
 
 
@@ -146,15 +178,7 @@ class DaoBase
     public function cntByProp($prop,$hashKey =null)
     {
         $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
-        $valsArr = array();
-        if($prop !=null && (!$prop->isEmpty()))
-        {
-            $condsArr = $prop->getPropArray();
-            $valsArr = SqlProcUtls::filterCondVal(array_values($condsArr));
-
-            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
-            $statement->where($where);
-        }
+        $valsArr = XDaoImplUtls::assembleWhere($statement,$prop) ;
         return $this->statementCount($statement,$valsArr);
 
     }
@@ -166,19 +190,13 @@ class DaoBase
     public function listByProp($prop=null,$page=null,$orderkey=null,$ordertype='DESC',$hashKey=null)
     {
         $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
-        $valsArr = array();
-        if($prop !=null && (!$prop->isEmpty()))
-        {
-            $condsArr = $prop->getPropArray();
-            $valsArr = SqlProcUtls::filterCondVal(array_values($condsArr));
-
-            $where = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
-            $statement->where($where);
-        }
+        $valsArr = XDaoImplUtls::assembleWhere($statement,$prop) ;
         if($page !=null)
         {
             if(!$page->isInit)
+            {
                 $page->initTotalRows($this->statementCount($statement,$valsArr));
+            }
             $begin=0;
             $count=0;
             $page->getRowRange($begin,$count);
@@ -189,35 +207,31 @@ class DaoBase
             $statement->orderBy($orderkey,$ordertype);
         }
         $statement->columns('*');
-        $objs=$this->listByCmd($statement->generateSql(),$valsArr);
-        return $objs;
+        return $this->listByCmd($statement->generateSql(),$valsArr);
     }
 
     public function listByPropLimit($prop,$begin,$count,$order=null,$hashKey=null)
     {
         $statement = new SQLSelectStatement($this->getStoreTable($hashKey));
-        $valsArr = array();
-        if($prop !=null && (!$prop->isEmpty()))
-        {
-            $condsArr = $prop->getPropArray();
-            $valsArr  = SqlProcUtls::filterCondVal(array_values($condsArr));
-
-            $where    = JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
-            $statement->where($where);
-        }
+        $valsArr = XDaoImplUtls::assembleWhere($statement,$prop) ;
         $statement->limit($begin,$count);
         $statement->multiOrderBy($order);
         $statement->columns('*');
-        $objs=$this->listByCmd($statement->generateSql(),$valsArr);
-        return $objs;
+        return $this->listByCmd($statement->generateSql(),$valsArr);
     }
 
     static function cls_is_a($parentcls,$cls)
     {
         $pcls = get_parent_class($cls);
-        if(empty($pcls)) return false;
-        if($pcls  == $parentcls) return true;
-        return self::cls_is_a($parentcls,$pcls);
+        if(empty($pcls)) 
+        {
+            return false;
+        }
+        if($pcls  == $parentcls) 
+        {
+            return true;
+        }
+        return static::cls_is_a($parentcls,$pcls);
     }
 
    //  impl function
@@ -235,17 +249,7 @@ class DaoBase
     }
     protected function convertObj($row)
     {
-        $obj = $this->row2obj($this->cls,$row);
-        return $obj;
-    }
-    protected function genKeyVal($keys,$pairs)
-    {
-        $arr = array();
-        foreach($keys as $key)
-        {
-            $arr[$key]=$pairs[$key];
-        }
-        return $arr;
+        return  $this->row2obj($this->cls,$row);
     }
     protected function updateImpl($keys, $pairs,$hashKey)
     {
@@ -257,7 +261,7 @@ class DaoBase
 
 
         $statement->updateColumns(JoinUtls::jassoArray(',','=',$bindParms));
-        $statement->where(JoinUtls::jassoArray(' and ','=',self::genKeyVal($keys,$pairs)));
+        $statement->where(JoinUtls::jassoArray(' and ','=',XDaoImplUtls::genKeyVal($keys,$pairs)));
         return $this->_executer->exeNoQuery($statement->generateSql(),array_values($pairs));
     }
 
@@ -347,16 +351,24 @@ class DaoImp extends DaoBase implements XDao
         {
 
             if(method_exists($cls,'load'))
+            {
                 $obj = call_user_func(array($cls,'load'),$row,$this->mappingStg);
+            }
             else
+            {
                 $obj = XEntity::loadEntity($cls,$row,$this->mappingStg);
+            }
         }
         else if(DaoBase::cls_is_a('Relation',$cls))
         {
             if(method_exists($cls,'load'))
+            {
                 $obj = call_user_func(array($cls,'load'),$row,$this->mappingStg);
+            }
             else
+            {
                 $obj = Relation::loadRelation($cls,$row,$this->mappingStg);
+            }
         }
         else
         {
@@ -369,7 +381,6 @@ class DaoImp extends DaoBase implements XDao
 class SimpleDaoFactory
 {
     private $execr = null;
-    private $isSelfDefFun=null;
     public function __construct($execr)
     {
         $this->execr = $execr;
@@ -379,16 +390,22 @@ class SimpleDaoFactory
         $ncls    = $this->getClassName($cls);
         $selfCls = "{$ncls}DaoImpl";
         if(XPylon::haveClass($selfCls))
+        {
             return new $selfCls($ncls,$this->execr);
+        }
         return DaoImp::simpleDao($ncls,$this->execr);
     }
     public function getClassName($cls)
     {
         if(XPylon::haveClass($cls))
+        {
             return $cls;
+        }
         $ncls =   XPylon::className($cls);
         if(!empty($ncls))
+        {
             return $ncls;
+        }
         DBC::requireNotNull($ncls,"not found the $cls class!");
         return $ncls;
     }

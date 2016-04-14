@@ -107,42 +107,6 @@ class APCDriver implements Cachable
     }
 }
 
-/** 
- * @brief  CacheSvc  implement by  eaccelerator
- */
-class EADriver implements Cachable
-{
-    static public function isEnable()  
-    {
-        return function_exists('eaccelerator_get');
-    }
-    public function get($key)
-    {
-        $ret= eaccelerator_get($key);
-        if($ret) return unserialize($ret);
-        return null;
-    }
-
-    public function set($key, $value, $expire=0)
-    {
-        return eaccelerator_put("$key", serialize($value), $expire);
-    }
-
-    public function delete($key)
-    {
-        eaccelerator_rm($key);
-    }
-    public function flush()
-    {
-        return false;
-    }
-
-    public function statusInfo()
-    {
-        $info = eaccelerator_info();
-        return JoinUtls::jassoArray(",<br>\n","=",$info);
-    }
-}
 
 /** 
  * @brief  Cachable implements by Memcached
@@ -169,8 +133,7 @@ class MemCacheSvc implements Cachable
     static public function isEnable()  
     {
 
-        $res=function_exists('memcache_connect');
-        return $res;
+        return function_exists('memcache_connect');
     }
 
     public function echoMemCacheInfo()
@@ -319,9 +282,13 @@ class  PylCacheSvc
     {
         $key= "{$this->name}_{$this->ver}_$key ";
         if($key ==null) 
+        {
             $key = $this->stg->getkey($value);
+        }
         if($expire ==null)
+        {
             $expire= $this->stg->expireSet;
+        }
         $this->driver->set($key,$value,$expire);
     }
     public function get($key)
@@ -472,8 +439,8 @@ class CacheAdmin
     static public $caches = array();
     static public function setup($driver,$stg)
     {
-        self::$netCacheSpace   = new CacheSapce($driver,$stg);
-        self::$innerCacheSpace = new CacheSapce(new InnerCache(),$stg);
+        static::$netCacheSpace   = new CacheSapce($driver,$stg);
+        static::$innerCacheSpace = new CacheSapce(new InnerCache(),$stg);
     }
 
 }
@@ -482,3 +449,4 @@ class CacheAdmin
  *  @}
  */
 ?>
+

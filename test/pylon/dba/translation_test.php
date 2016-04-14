@@ -131,7 +131,6 @@ class TransTc //extends PHPUnit_Framework_TestCase
 
     public function testCommitFail()
     {
-        //$loger = new ScopeEchoLog($this->_executer);
         try
         {
             if(!$this->doFailCommit())	
@@ -150,7 +149,6 @@ class TransTc //extends PHPUnit_Framework_TestCase
     {
         try
         {
-            //$loger = new ScopeEchoLog($this->_executer);
             if($this->doRollback())
             {			
                 $this->assertTrue(!$this->_executer->haveCollector());

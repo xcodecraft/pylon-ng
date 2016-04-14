@@ -8,7 +8,9 @@ class FilterProp extends XProperty
     static public function create($arr=array())
     {
         if(empty($arr))
+        {
             return new FilterProp();
+        }
         $lowerArr = array_change_key_case($arr) ;
         return new FilterProp($lowerArr);
     }
@@ -48,7 +50,7 @@ class DynCallParser
         {
             preg_match('/(\S+)_(\S+)_(by\d?)_(\S+)/',$callName,$matchs);
             list($all,$op,$cls,$by, $condnames)=$matchs;
-            $condnames = preg_replace(self::separatorOfBy($by),'$1#$2',$condnames);
+            $condnames = preg_replace(static::separatorOfBy($by),'$1#$2',$condnames);
             $result['condnames']=explode('#',$condnames);
         }
         else
@@ -67,7 +69,9 @@ class DynCallParser
         $cnt = count($condnames);
         $extraParams = array_splice($params,$cnt);
         if($cnt == 0 )
+        {
             return FilterProp::create();
+        }
 
         $first = count($condnames);
         $second = count($params);
@@ -84,7 +88,9 @@ class DynCallParser
             unset($condArr['Prop']);
             $prop = FilterProp::create($condArr);
             if(!empty($userDefprop))
+            {
                 $prop->merge($userDefprop);
+            }
         }
         else
         {
@@ -95,9 +101,6 @@ class DynCallParser
 
     static public function buildUpdateArray($updatenames,$condnames,$params)
     {
-        //not support DQLOBJ;
-        //        array_walk($params,create_function('&$item',
-        //            ' if (is_string($item) && strstr($item,"?")) $item = new DQLObj($item,"?");' ));
         $ucnt                 = count($updatenames);
         $condParams           = array_splice($params,$ucnt);
         $props['updateArray'] = array_combine($updatenames,$params);
@@ -114,7 +117,7 @@ class DynCallParser
         }
         else
         {
-            $condArray = array();
+            $condArr = array();
         }
         $props['condArray']= $condArr;
         return $props;
@@ -130,14 +133,13 @@ class DynCallParser
 
     static public function condUpdateObjParse($callName)
     {
-        $resut=array();
         $matchs=array();
         $set="set";
         if(strpos($callName,'_by'))
         {
             preg_match('/update_(\S+)_(set[1-9]?)_(\S+)_(by\d?)_(\S+)/',$callName,$matchs);
             list($all,$cls,$set,$updates,$by, $condnames)=$matchs;
-            $condnames = preg_replace(self::separatorOfBy($by),'$1#$2',$condnames);
+            $condnames = preg_replace(static::separatorOfBy($by),'$1#$2',$condnames);
             $result['condnames']=explode('#',$condnames);
         }
         elseif(strpos($callName,'_set'))
@@ -154,7 +156,7 @@ class DynCallParser
             list($all,$cls) = $matchs;
         }
 
-        $updateKeys = explode(self::separatorOfSet($set),$updates);
+        $updateKeys = explode(static::separatorOfSet($set),$updates);
         $result['op']="set";
         $result['cls']=$cls;
         $result['by']=$by;

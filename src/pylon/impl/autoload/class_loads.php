@@ -11,10 +11,11 @@
  * 
  * @return 
  */
+const C_PYLON_DICT_COUNT="pylon_dict_count" ;
 function pylon_autoload($classname)
-{/*{{{*/
+{
 
-    if (function_exists("pylon_dict_count") && pylon_dict_count() > 0)
+    if (function_exists(C_PYLON_DICT_COUNT) && pylon_dict_count() > 0)
     {
         fast_class_load($classname);
     }
@@ -22,7 +23,7 @@ function pylon_autoload($classname)
     {
         throw new LogicException("unfound pylon extension !");
     }
-}/*}}}*/
+}
 
 spl_autoload_register('pylon_autoload');
 
@@ -68,7 +69,7 @@ class PylonGod
 
 }
 function fast_class_load($classname)
-{/*{{{*/
+{
     $key  =  "CLASS:".$classname ;
     $glogger = new logger("_pylon");
     $path =  pylon_dict_find($key);
@@ -92,7 +93,7 @@ function fast_class_load($classname)
         throw new LogicException("load class $classname define faiure!!\n, $info");
     }
 
-}/*}}}*/
+}
 
 
 /** 
@@ -104,8 +105,8 @@ function fast_class_load($classname)
  * @return  true|false
  */
 function class_have_exists($clsname)
-{/*{{{*/
-    if (function_exists("pylon_dict_count") && pylon_dict_count() > 0)
+{
+    if (function_exists(C_PYLON_DICT_COUNT) && pylon_dict_count() > 0)
     {
         return pylon_dict_has("CLASS:$clsname") ;
     }
@@ -113,7 +114,7 @@ function class_have_exists($clsname)
     {
         throw new LogicException("not support no pylon extendtion");
     }
-}/*}}}*/
+}
 
 /** 
  * @brief 获得区分大小写的 ClassName 
@@ -123,10 +124,10 @@ function class_have_exists($clsname)
  * @return 
  */
 function get_class_name($clsname)
-{/*{{{*/
+{
 
     $cls=  "cls_" . strtolower($clsname);
-    if (function_exists("pylon_dict_count") && pylon_dict_count() > 0)
+    if (function_exists(C_PYLON_DICT_COUNT) && pylon_dict_count() > 0)
     {
         $clsname= pylon_dict_find($cls) ;
         return $clsname;
@@ -135,7 +136,7 @@ function get_class_name($clsname)
     {
         throw new LogicException("not support no pylon extendtion");
     }
-}/*}}}*/
+}
 /** 
  * \public
  * @brief 加载模块(autoload 需要的索引文件) 

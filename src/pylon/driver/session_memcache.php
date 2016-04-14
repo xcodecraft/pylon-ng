@@ -20,21 +20,22 @@ class MemcacheSessDriver implements ISessionDriver
         {
             die( "<li>not exist memcache svc ! " );  
         }
-        self::$sess_life = $life;
-        self::$mem_svc   = $memCacheSvc;
+        static::$sess_life = $life;
+        static::$mem_svc   = $memCacheSvc;
 
     }
     public function init()
     {
         session_module_name('user');
         register_shutdown_function('session_write_close');
+        $cls = "MemcacheSessDriver" ;
         session_set_save_handler(  
-            array("MemcacheSessDriver","sess_open"),  
-            array("MemcacheSessDriver","sess_close"),  
-            array("MemcacheSessDriver","sess_read"),  
-            array("MemcacheSessDriver","sess_write"),  
-            array("MemcacheSessDriver","sess_destroy"),  
-            array("MemcacheSessDriver","sess_gc"));  
+            array($cls,"sess_open"),  
+            array($cls,"sess_close"),  
+            array($cls,"sess_read"),  
+            array($cls,"sess_write"),  
+            array($cls,"sess_destroy"),  
+            array($cls,"sess_gc"));  
     }
 
     public static  function sess_open($save_path="", $session_name="")
@@ -47,13 +48,13 @@ class MemcacheSessDriver implements ISessionDriver
     }
     public static  function sess_read($sessionID)
     {
-        $memSvc = self::$mem_svc;
+        $memSvc = static::$mem_svc;
         $val = $memSvc->get($sessionID);
         return $val;
     }
     public static  function sess_write($sessionID,$val)
     {  
-        $memSvc = self::$mem_svc;
+        $memSvc = static::$mem_svc;
         if(!empty($val))
         {
             $data = $memSvc->get($sessionID);
@@ -75,14 +76,12 @@ class MemcacheSessDriver implements ISessionDriver
     }  
     public static  function sess_destroy($sessionID)
     {
-        $memSvc = self::$mem_svc;
+        $memSvc = static::$mem_svc;
         return $memSvc->delete($sessionID);
     }
     public static  function sess_gc($maxlifetime)
     {
         return true;
-//        $memSvc = self::$mem_svc;
-//        return $memSvc->flush();
     }
 }
 
@@ -90,4 +89,3 @@ class MemcacheSessDriver implements ISessionDriver
 /** 
  *  @}
  */
-?>

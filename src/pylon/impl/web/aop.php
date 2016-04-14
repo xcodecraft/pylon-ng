@@ -18,17 +18,19 @@ class XIntercepterTarget
     {
         switch($key)
         {
-
-        case 'action':
         case 'name' :
             return strtolower($this->request->get('_action_name'));
         case 'uri' :
             if (empty($_SERVER['REQUEST_URI']) && $this->request->have($key))
+            {
                 return $this->request->get($key) ;
+            }
             return  strtolower($_SERVER['REQUEST_URI']);
         case 'method' :
             if (empty($_SERVER['REQUEST_METHOD']) && $this->request->have($key))
+            {
                 return $this->request->get($key) ;
+            }
             return  strtolower($_SERVER['REQUEST_METHOD']) ;
         }
         return null;
@@ -42,7 +44,6 @@ class AutoScopeIntc
 {
     private $xcontext=null;
     private $intcpt  =null;
-    private $args    =null;
     public function __construct($intcpt,$xcontext,$request,$response)
     {
         $this->intcpt   = $intcpt;
@@ -93,11 +94,20 @@ class XAopRule
             if( $pos !=null  )
             {
                 $regex     =       str_replace('/','\/',$this->regex[$posIdx]);
-                if( $this->isMatch  &&    preg_match('/'.$regex . '/' ,$data ) )   $matchOnce = true ;
-                if( !$this->isMatch &&   !preg_match('/'. $regex . '/' ,$data ) ) $matchOnce = true ;
+                if( $this->isMatch  &&    preg_match('/'.$regex . '/' ,$data ) )   
+                {
+                    $matchOnce = true ;
+                }
+                if( !$this->isMatch &&   !preg_match('/'. $regex . '/' ,$data ) ) 
+                {
+                    $matchOnce = true ;
+                }
             }
             $this->logger->debug ( "match aop rule [  pos: $pos ,  data  : $data , regex : $regex , match : $matchOnce ]" );
-            if ($matchOnce == false ) break;
+            if ($matchOnce === false )
+            {
+                break;
+            }
             $matchAll  = true ;
             $posIdx ++ ;
 
@@ -134,22 +144,30 @@ class XAopRuleSet
     {
         if(!preg_match('/(\S+)_(by)_([a-zA-Z0-9]+)_(\S+)/',$name ,$matchs))
         {
-            DBC::unExpect("unknow $callName ,eg:  append_by_name_match('.*',xxxx)");
+            DBC::unExpect("unknow $name ,eg:  append_by_name_match('.*',xxxx)");
         }
         list($all,$op,$by,$rule, $pos )=$matchs;
 
         $match      = null;
         if($rule === "match")
+        {
             $match = true;
+        }
         else if ($rule === "dismatch")
+        {
             $match = false;
+        }
         else
+        {
             DBC::unExpect("unknow $match, only support  match , dismatch");
+        }
 
         $mutiPos    = explode("_",$pos);
         $posCnt     = count($mutiPos);
         if ((count($params ) )  != $posCnt +1  )
+        {
             DBC::unExpect("[$name]  not match  params");
+        }
         $mutiVal    = array();
         for($i =0 ; $i < $posCnt ; $i++)
         {
@@ -183,7 +201,9 @@ class XAopRuleSet
         {
             $obj = $r->using($itarget);
             if($obj  != null)
+            {
                 $its[] = $obj;
+            }
         }
         return $its;
     }
@@ -194,7 +214,9 @@ class XAopRuleSet
         {
             $obj = $r->using_all();
             if($obj  != null)
+            {
                 $its[] = $obj;
+            }
         }
         return $its;
     }

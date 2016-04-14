@@ -147,7 +147,6 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
 //            $buyItemDao->updateLoadStg(Entity::IMMED_LOADER);
             XEntEnv::registerDaos($authorDao,$bookDao,$carDao,$buyItemDao);
 
-//            $log =  new  ScopeEchoLog($executer);
 
             $author= Author::createByBiz('zwj','1975-10-18','chinese');
             $authorDao->add($author);
@@ -194,7 +193,6 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
     public function testHashStoreDao()
     {
         $executer =  XBox::must_get('SQLExecuter');
-//        $log =  new  ScopeEchoLog($executer);
         try{
 
             $user1= User::createByBiz('sgtuser1','sgt');
@@ -365,7 +363,6 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
 
         $executer =  XBox::must_get('SQLExecuter');
         PylonCtrl::switchLazyLoad(PylonCtrl::OFF);
-//        $log =  new  ScopeEchoLog($executer);
         $app = AppSession::begin();
         $author= Author::createByBiz('zwj_test','1975-10-18','chinese');
         $app->commit();

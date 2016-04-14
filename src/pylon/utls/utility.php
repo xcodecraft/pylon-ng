@@ -42,20 +42,20 @@ function assign($array, $index, $default = '')
 /**
  * @brief  在Scope内执行代码
  */
-class XScopeCode
-{
-
-    private $_endCode;
-    public function __construct($begCode,$endCode)
-    {
-        $this->_endCode= $endCode;
-        eval($begCode);
-    }   
-    public function __destruct()
-    {
-        eval($this->_endCode);
-    }   
-}
+// class XScopeCode
+// {
+//
+//     private $_endCode;
+//     public function __construct($begCode,$endCode)
+//     {
+//         $this->_endCode= $endCode;
+//         eval($begCode);
+//     }   
+//     public function __destruct()
+//     {
+//         eval($this->_endCode);
+//     }   
+// }
 
 
 /** 

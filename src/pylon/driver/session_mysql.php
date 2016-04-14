@@ -7,9 +7,9 @@ class MySqlSessDriver
    public function __construct($dbhost,$dbname,$dbuser,$dbpasswd,$life=1440) 
    {
        global $sess_dbhost ;
-       global $sess_dbname ; 	// SESS_DBNAME_S;
-       global $sess_dbuser ; 	// ESS_DBUSER_S;
-       global $sess_dbpass ; 	// ESS_DBPASS_S;
+       global $sess_dbname ; 	
+       global $sess_dbuser ; 	
+       global $sess_dbpass ; 
        global $sess_life;
 
        $sess_dbhost = $dbhost;
@@ -33,9 +33,9 @@ class MySqlSessDriver
 function sess_init($dbhost,$dbname,$dbuser,$dbpasswd,$life=1440)
 {
 	global $sess_dbhost ;
-	global $sess_dbname ; 	// SESS_DBNAME_S;
-	global $sess_dbuser ; 	// ESS_DBUSER_S;
-	global $sess_dbpass ; 	// ESS_DBPASS_S;
+	global $sess_dbname ; 	
+	global $sess_dbuser ; 	
+	global $sess_dbpass ; 	
 	global $sess_life;
 
 	$sess_dbhost = $dbhost;
@@ -53,14 +53,13 @@ function sess_init($dbhost,$dbname,$dbuser,$dbpasswd,$life=1440)
 	"sess_gc");  
 }
 
-function sess_open($save_path="", $session_name="") 
+function sess_open() 
 {  
 	global $sess_dbhost ;
-	global $sess_dbname ; 	// SESS_DBNAME_S;
-	global $sess_dbuser ; 	// ESS_DBUSER_S;
-	global $sess_dbpass ; 	// ESS_DBPASS_S;
-	global $sess_dbh; 		// SESS_DBH_S;  
-	global $sess_life;
+	global $sess_dbname ; 	
+	global $sess_dbuser ; 	
+	global $sess_dbpass ; 	
+	global $sess_dbh; 		
 
 	if (! $sess_dbh = mysql_connect($sess_dbhost, $sess_dbuser, $sess_dbpass)) 
 	{  
@@ -85,7 +84,7 @@ function sess_close()
 
 function sess_read($key) 
 {  
-	global $sess_dbh, $sess_life;  
+	global $sess_dbh  ;
 
     $qry = "SELECT value FROM sessions WHERE sesskey = '$key' AND expiry > " . time();  
 	$qid = mysql_query($qry, $sess_dbh);  
@@ -102,7 +101,6 @@ function sess_write($key, $val)
 	global $sess_dbh, $sess_life; 
 
 	$expiry = time() + $sess_life;  
-	//$value = addslashes($val);  
 
 	$key   = mysql_escape_string($key);
 	$value = mysql_escape_string($val);
@@ -112,7 +110,6 @@ function sess_write($key, $val)
 
 	if (! $qid) 
 	{  
-		//$qry = "UPDATE sessions SET expiry = $expiry, value = '$value' WHERE sesskey = '$key' AND expiry > " . time();  
 		$qry = "UPDATE sessions SET expiry = $expiry, value = '$value' WHERE sesskey = '$key'";  
 		$qid = mysql_query($qry, $sess_dbh);  
 	}  
@@ -135,7 +132,7 @@ function sess_gc($maxlifetime)
 	global $sess_dbh;  
 
 	$qry = "DELETE FROM sessions WHERE expiry < " . time();  
-	$qid = mysql_query($qry, $sess_dbh);  
+	mysql_query($qry, $sess_dbh);  
 
 	return mysql_affected_rows($sess_dbh);  
 }  
@@ -143,4 +140,3 @@ function sess_gc($maxlifetime)
 /** 
  *  @}
  */
-?>

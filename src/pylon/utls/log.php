@@ -15,6 +15,9 @@ class XScopeLogEvent
     }
 }
 
+
+
+
 /**
  * @brief  在范围内为日志打tag
  */

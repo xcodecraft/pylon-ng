@@ -14,9 +14,6 @@ class FastSQLExecutor
      */
     const SHORT_CONN=false;
     private $_dbh = null;
-    private $_sqlCollector =null;
-    private $_sqlLogger  = null;
-    private $_wsqlLogger  = null;
 
     private $_connectInfo=null;
 
@@ -37,10 +34,10 @@ class FastSQLExecutor
     {
 
         $this->_connectInfo['dsn']="mysql:host=$host;dbname=$dbName;port=$port";
-        $this->_connectInfo['userName']=$userName;
-        $this->_connectInfo['password']=$password;
-        $this->_connectInfo['connType']=$connType;
-        $this->_connectInfo['charset']=$charset;
+        $this->_connectInfo['userName'] = $userName;
+        $this->_connectInfo['password'] = $password;
+        $this->_connectInfo['connType'] = $connType;
+        $this->_connectInfo['charset']  = $charset;
         $this->connect();
     }
 
@@ -72,7 +69,8 @@ class FastSQLExecutor
         $i = 0;
         foreach($values as $value)
         {
-            $sth->bindValue(++$i, $value);
+            ++ $i ;
+            $sth->bindValue($i, $value);
         }
         if($sth->execute())
         {
@@ -87,21 +85,6 @@ class FastSQLExecutor
         return null;
     }
 
-    // public function querysLimit($sql,$values=array(),$pageObj){
-    //     if(!is_null($pageObj))
-    //     {
-    //         $sql = strtolower($sql);
-    //         $countSql = preg_replace("/^select +(.*) +from/","select count(1) as count from",$sql);
-    //         $countRet = $this->query($countSql,$values);
-    //         if(!$pageObj->isInit){
-    //             $pageObj->initTotalRows($countRet['count']);
-    //         }
-    //         $sql = $sql.$pageObj->toLimitStr();
-    //     }
-    //     $datas = $this->querys($sql,$values);
-    //     $pageObj->setData($datas);
-    //     return true;
-    // }
 
     public function querys($sql, $values=array())
     {
@@ -113,7 +96,8 @@ class FastSQLExecutor
         $res = array();
         foreach($values as $value)
         {
-            $sth->bindValue(++$i, $value);
+            ++ $i ;
+            $sth->bindValue($i, $value);
         }
         if($sth->execute())
         {
@@ -147,9 +131,10 @@ class FastSQLExecutor
         $slog = new logger("_sql");
         if(!empty($values))
         {
-            $logsql = str_replace('%','#',$sql); // process like : linke %xxx%
+            // process like : linke %xxx%
+            $logsql = str_replace('%','#',$sql);
             $logsql = str_replace('?','%s',$logsql);
-            $logsql= vsprintf($logsql,self::stdSqlValues($values));
+            $logsql = vsprintf($logsql,static::stdSqlValues($values));
             $logsql = str_replace('#','%',$logsql);
             $dc->log("sql:$logsql");
             $slog->info($logsql,$e);
@@ -164,13 +149,14 @@ class FastSQLExecutor
     }
     public function exeNoQuery($sql, $values=array())
     {
-        $dc = DiagnoseContext::create(__METHOD__);
+        $dc  = DiagnoseContext::create(__METHOD__);
         $this->logAllSql($dc,$sql,$values,"w");
         $sth = $this->_dbh->prepare($sql);
-        $i = 0;
+        $i   = 0;
         foreach($values as $value)
         {
-            $sth->bindValue(++$i, $value);
+            ++ $i ;
+            $sth->bindValue($i, $value);
         }
         if (! $sth->execute() )
         {
@@ -182,12 +168,12 @@ class FastSQLExecutor
     }
     public function exeNoQueryDirect($sql, $values=array())
     {
-        //        $this->logAllSql($sql,$values);
         $sth = $this->_dbh->prepare($sql);
         $i = 0;
         foreach($values as $value)
         {
-            $sth->bindValue(++$i, $value);
+            ++ $i ;
+            $sth->bindValue($i, $value);
         }
         if (! $sth->execute() )
         {
@@ -219,7 +205,8 @@ class FastSQLExecutor
         $i = 0;
         foreach($values as $value)
         {
-            $sth->bindValue(++$i, $value);
+            ++ $i ;
+            $sth->bindValue($i, $value);
         }
         if (!$sth->execute() ) {
             throw new DBException( $sql);

@@ -31,7 +31,10 @@ class XInterceptorRuner extends XInterceptor
             foreach( $intcs  as $itc )
             {
                 $end = $itc->_exception($e,$xcontext,$request,$response) ;
-                if ($end === true) break ;
+                if ($end === true) 
+                {
+                    break ;
+                }
             }
     }
 
@@ -65,16 +68,12 @@ class XInterceptorRuner extends XInterceptor
             switch($e->status_code)
             {
             case 404:
-                $level = "warning" ;
-                break;
             case 403:
-                $level = "warning" ;
-                break;
             case 401:
-                $level = "warning" ;
-                break;
             case 400:
                 $level = "warning" ;
+                break;
+            default:
                 break;
             }
         }

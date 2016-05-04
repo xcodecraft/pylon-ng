@@ -24,17 +24,13 @@ class RavenErrorHandler extends XInterceptor
             switch($e->status_code)
             {
             case 404:
-                $level = "warning" ;
-                break;
             case 403:
-                $level = "warning" ;
-                break;
             case 401:
-                $level = "warning" ;
-                break;
             case 400:
                 $level = "warning" ;
                 break;
+            default:
+                break;    
             }
             $client->getIdent($client->captureException($e,array("level" => $level)));
             return ;

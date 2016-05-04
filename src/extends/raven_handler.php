@@ -18,7 +18,28 @@ class RavenErrorHandler extends XInterceptor
     public function _exception($e,$xcontext,$request,$response)
     {
         $client = new Raven_Client(RavenSetting::$server);
-        $client->getIdent($client->captureException($e,$xcontext->toArr()));
+        if ( $e instanceof  XRuntimeException  )
+        {
+            $level = "error" ;
+            switch($e->status_code)
+            {
+            case 404:
+                $level = "warning" ;
+                break;
+            case 403:
+                $level = "warning" ;
+                break;
+            case 401:
+                $level = "warning" ;
+                break;
+            case 400:
+                $level = "warning" ;
+                break;
+            }
+            $client->getIdent($client->captureException($e,array("level" => $level)));
+            return ;
+        }
+        $client->getIdent($client->captureException($e));
     }
 }
 class RavenLogger implements XIlogger 

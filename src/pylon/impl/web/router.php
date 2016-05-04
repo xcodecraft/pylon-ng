@@ -58,8 +58,37 @@ class XInterceptorRuner extends XInterceptor
 
     private function defaultException($plog,$e,$response)
     {
-        $plog->error(get_class($e) ." : " .$e->getMessage());
-        $plog->error(XExceptionUtls::simple_trace($e));
+
+        $level = "error" ;
+        if ( $e instanceof  XRuntimeException  )
+        {
+            switch($e->status_code)
+            {
+            case 404:
+                $level = "warning" ;
+                break;
+            case 403:
+                $level = "warning" ;
+                break;
+            case 401:
+                $level = "warning" ;
+                break;
+            case 400:
+                $level = "warning" ;
+                break;
+            }
+        }
+
+        if($level == "error"  )
+        {
+            $plog->error(get_class($e) ." : " .$e->getMessage());
+            $plog->error(XExceptionUtls::simple_trace($e));
+        }
+        if($level == "warning" )
+        {
+            $plog->warn(get_class($e) ." : " .$e->getMessage());
+            $plog->warn(XExceptionUtls::simple_trace($e));
+        }
         $response->exception($e);
     }
 }

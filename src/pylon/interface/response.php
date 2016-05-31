@@ -49,6 +49,8 @@ abstract class XBaseResp  implements  XResponse
     }
 
 }
+
+
 class XEchoResp   extends XBaseResp
 {
     public $statusCode = 500 ;

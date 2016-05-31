@@ -42,7 +42,6 @@ class XBoxTest extends PHPUnit_Framework_TestCase
         }
         catch( Exception $e)
         {
-            echo "\n" . $e->getMessage();
             $this->assertTrue(true);
         }
     }

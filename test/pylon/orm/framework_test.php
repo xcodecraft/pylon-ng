@@ -1,21 +1,21 @@
 <?php
-class ArrayCache extends XProperty
-{
-    public function get($key)
-    {
-        if($this->have($key))
-            return $this->$key;
-        return null;
-    }
-    public function set($key,$val)
-    {
-        $this->$key=$val;
-    }
-    public function delete($key)
-    {
-        $this->remove($key);
-    }
-}
+// class ArrayCache extends XProperty
+// {
+//     public function get($key)
+//     {
+//         if($this->have($key))
+//             return $this->$key;
+//         return null;
+//     }
+//     public function set($key,$val)
+//     {
+//         $this->$key=$val;
+//     }
+//     public function delete($key)
+//     {
+//         $this->remove($key);
+//     }
+// }
 
 class FrameWorkTestCase extends PHPUnit_Framework_TestCase
 {

@@ -6,17 +6,38 @@ class RouterStub  implements XIRouter
         return '{ "rule" : "/mygoods/$uid" , "cls" : "mygoods",  "uri" : { "uid" : "1234" } } '  ;
     }
 }
-class mygoods  extends XSimpleService implements XService //@REST_RULE: /mygoods/$uid/
+//@REST_RULE: /mygoods/$uid/
+class mygoods  extends XSimpleService implements XService 
 {
-    //    const REST_RULE='/mygoods/$uid/';
     public function _get($xcontext,$request,$response)
     {
-
         $response->success("pylon is great");
-        return $result ;
     }
 }
 
+
+class ResponseStub implements XResponse
+{
+    public function send($logger,$set_header=true) 
+    {}
+    public function error($errmsg,$errno = XErrCode::UNKNOW,$status_code = 510)
+    {}
+    public function exception($ex)
+    {
+
+        $this->status_code        = $ex->status_code ;
+
+
+    }
+    public function success($data)
+    {
+        $this->data = $data ;
+    }
+    public function getData()
+    {
+        return $this->data ;
+    }
+}
 
 
 class MyIntcpt extends XInterceptor
@@ -70,16 +91,19 @@ class RestTest extends PHPUnit_Framework_TestCase
 
     public function testNormal()
     {
-        $autoLog            = new XScopeLogEvent("e1");
-        XLogKit::logger("logtest")->debug("debug","r");
+        $oldcls              = XSetting::$respClass ;
+        XSetting::$respClass = "ResponseStub" ;
+
+        // $autoLog            = new XScopeLogEvent("e1");
+        // XLogKit::logger("logtest")->debug("debug","r");
         $url                = "/mygoods/1001?begin=1&limit=10";
         self::http_get($url);
-        // XSetting::$assembly = "APIAssemply1" ;
         XAop::append_by_match_uri("/mygoods/.*", new MyIntcpt());
         //XBox::replace 可以重复注册
         XBox::replace(XBox::ROUTER,new RouterStub(),__METHOD__);
 
         $result             = XRouter::serving(false);
+        XSetting::$respClass = $oldcls;
         $this->assertEquals($result->getData(), "pylon is great");
         $this->assertEquals(MyIntcpt::$beforeCall,1);
         $this->assertEquals(MyIntcpt::$afterCall,1);
@@ -87,8 +111,10 @@ class RestTest extends PHPUnit_Framework_TestCase
     }
     public function testError()
     {
-        $autoLog = new XScopeLogEvent("e2");
-        XLogKit::logger("logtest")->debug("debug","r");
+        $oldcls              = XSetting::$respClass ;
+        XSetting::$respClass = "ResponseStub" ;
+        // $autoLog = new XScopeLogEvent("e2");
+        // XLogKit::logger("logtest")->debug("debug","r");
         $url = "/mygoods/1001?begin=1&limit=10";
         self::http_get($url);
 
@@ -96,6 +122,7 @@ class RestTest extends PHPUnit_Framework_TestCase
         //XBox::replace 可以重复注册
         XBox::replace(XBox::ROUTER,new RouterStub(),__METHOD__);
         $result             = XRouter::serving(false);
+        XSetting::$respClass = $oldcls;
         $this->assertEquals($result->status_code, 510);
         // $this->assertEquals($result->errno, 1101);
 

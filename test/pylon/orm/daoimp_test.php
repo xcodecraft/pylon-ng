@@ -349,35 +349,4 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($updatenames[0],"name");
         $this->assertEquals($updatenames[1],"age");
     }
-    public function testCacheDA()
-    {
-
-        if(!MemCacheSvc::isEnable())
-        {
-            echo "\nno memcached  ".__CLASS__."::".__FUNCTION__." is ignore\n";
-            return ;
-        }
-        $cacheDriver = new MemCacheSvc(MemCacheSvc::localhostConf());
-        CacheAdmin::setup($cacheDriver,new CacheStg(600));
-        PylonCtrl::switchDaoCache(PylonCtrl::ON);
-
-        $executer =  XBox::must_get('SQLExecuter');
-        PylonCtrl::switchLazyLoad(PylonCtrl::OFF);
-        $app = AppSession::begin();
-        $author= Author::createByBiz('zwj_test','1975-10-18','chinese');
-        $app->commit();
-
-        $app = AppSession::begin();
-        $found = DDA::ins()->get_Author_by_id($author->id());
-        $found->lang="yyy";
-        $app->commit();
-        $this->assertEquals($found->ver() , 2);
-
-
-        $found = DDA::ins()->get_Author_by_id($author->id());
-        $found->lang="xxx";
-        $app->commit();
-        $this->assertEquals($found->ver() , 3);
-        $this->assertTrue(true);
-    }
 }

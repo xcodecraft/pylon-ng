@@ -134,26 +134,6 @@ _sys:
     - !R.system
         _name : "test"
         _res  :
-            - !R.vars
-                PHP_INI  : "${PRJ_ROOT}/test/pylon/config/used/php_test.ini"
-                ASSEMBLY : "test_assembly"
-            - !R.path
-                dst      : "${PRJ_ROOT}/test/pylon/config/used/"
-            - !R.file_tpl
-                tpl      : "${PRJ_ROOT}/test/pylon/config/options/php_tpl.ini"
-                dst      : "${PHP_INI}"
-            - !R.file_tpl
-                tpl      : "${PRJ_ROOT}/test/pylon/config/options/conf_tpl.php"
-                dst      : "${PRJ_ROOT}/test/pylon/config/used/config_test.php"
-
-            - !R.pylon_autoload
-                include  : "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/src/extends"
-                dst      : "${PRJ_ROOT}/src/class_index"
-                relpath  : "${PRJ_ROOT}/src"
-            - !R.pylon_autoload
-                include  : "${PRJ_ROOT}/test/pylon:/usr/local/php/lib/php/"
-
-
             - !R.mysql
                 host     : "ayidev02.mysql.rds.aliyuncs.com"
                 name     : "pylon_zuowenjian"
@@ -161,8 +141,13 @@ _sys:
                 password : "pylon123"
                 sql      : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
 
-            - !R.shell
-                script   : "${PRJ_ROOT}/test/pylon/test.sh"
+            - !R.using
+                path  : "${PRJ_ROOT}/src/rigger/pylon.yaml"
+                modul : "phpunit"
+                args  : !R.vars
+                    TEST_INCLUDE: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/src/extends:${PRJ_ROOT}/test/pylon"
+                    CONF_PATH   : "test/pylon/config"
+                    TEST_PATH   : "test/pylon"
 
 
     # college: !R.system2

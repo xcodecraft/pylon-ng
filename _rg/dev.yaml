@@ -10,4 +10,8 @@ _dev:
         runner   : "/data/x/tools/sonar/bin/sonar-runner"
         qube     : "http://sonar.ayibang.cn"
         src      : "src/pylon"
+        test     : "test/pylon"
         language : "php"
+        config:
+            - "sonar.php.coverage.reportPath=test/pylon/reports/phpunit.coverage.xml"
+            - "sonar.php.tests.reportPath=test/pylon/reports/phpunit.report.xml"

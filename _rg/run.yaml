@@ -7,11 +7,11 @@ _env:
                 root : "${HOME}/devspace/pylon-ng"
 
     - !R.env
-        _name : "_jenkins"
+        _name : "_ci"
         _res  :
             - !R.project
                 name : "pylon"
-                root : "/data/jenkins_space/pylon-ng"
+                root : "/data/ci_space/pylon-ng"
 
     - !R.env
         _name : "_online"
@@ -73,8 +73,8 @@ _env:
         _mix: "_dev,php56,centos66,base"
 
     - !R.env
-        _name : "jenkins"
-        _mix: "_jenkins,php56,centos66,base"
+        _name : "ci"
+        _mix: "_ci,php56,centos66,base"
 
 _sys:
     - !R.system

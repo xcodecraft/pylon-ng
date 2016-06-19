@@ -2,8 +2,17 @@ _env:
     - !R.env
         _name : "_dev"
         _res  :
-            - !R.vars
-                DOMAIN      : "api.pylon360.com"
+            - !R.project
+                name : "pylon"
+                root : "${HOME}/devspace/pylon-ng"
+
+    - !R.env
+        _name : "_jekins"
+        _res  :
+            - !R.project
+                name : "pylon"
+                root : "/data/jekins_space/pylon-ng"
+
     - !R.env
         _name : "_online"
         _res  :
@@ -37,9 +46,6 @@ _env:
     - !R.env
         _name : "base"
         _res  :
-            - !R.project
-                name : "pylon"
-                root : "${HOME}/devspace/pylon-ng"
 
             - !R.vars
                 PYLON     : "${PRJ_ROOT}/src"
@@ -65,6 +71,10 @@ _env:
     - !R.env
         _name : "dev"
         _mix: "_dev,php56,centos66,base"
+
+    - !R.env
+        _name : "jekins"
+        _mix: "_jekins,php56,centos66,base"
 
 _sys:
     - !R.system

@@ -1,6 +1,7 @@
 <?php
 include "pylon/pylon.php" ;
 
+xdebug_start_code_coverage();
 XSetting::$logMode  = XSetting::LOG_DEBUG_MODE ;
 //XSetting::$logMode   = XSetting::LOG_BENCHMARK_MODE ;
 XSetting::$prjName    = "pylon-ng" ;

@@ -11,7 +11,7 @@ _env:
         _res  :
             - !R.project
                 name : "pylon"
-                root : "/data/jekins_space/pylon-ng"
+                root : "/data/jenkins_space/pylon-ng"
 
     - !R.env
         _name : "_online"

@@ -156,6 +156,9 @@ _sys:
                 user     : "pylon"
                 password : "pylon123"
                 sql      : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
+            - !R.link
+                src : "/usr/local/${PHP_VER}/extensions/xdebug.so"
+                dst : "${PRJ_ROOT}/smasher/bin/xdebug.so"
 
             - !R.using
                 path  : "${PRJ_ROOT}/src/rigger/pylon.yaml"

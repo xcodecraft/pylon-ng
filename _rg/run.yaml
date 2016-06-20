@@ -81,7 +81,7 @@ _sys:
         _name: "ext"
         _res :
                 - !R.path
-                    dst    : "${PRJ_ROOT}/smasher/conf/used"
+                    dst    : "${PRJ_ROOT}/smasher/conf/used,${PRJ_ROOT}/smasher/bin/"
                 - !R.file_tpl
                     tpl    : "${PRJ_ROOT}/smasher/conf/options/php.ini"
                     dst    : "${PRJ_ROOT}/smasher/conf/used/php.ini"

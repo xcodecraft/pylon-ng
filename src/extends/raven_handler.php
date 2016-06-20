@@ -30,7 +30,7 @@ class RavenErrorHandler extends XInterceptor
                 $level = "warning" ;
                 break;
             default:
-                break;    
+                break;
             }
             $client->getIdent($client->captureException($e,array("level" => $level)));
             return ;
@@ -38,7 +38,7 @@ class RavenErrorHandler extends XInterceptor
         $client->getIdent($client->captureException($e));
     }
 }
-class RavenLogger implements XIlogger 
+class RavenLogger implements XIlogger
 {
     public function __construct($name)
     {}
@@ -63,7 +63,7 @@ class RavenLogger implements XIlogger
 
     public function warn($msg,$event = null )
     {
-        static::getClient()->captureMessage($msg,array(),array("level" => 'warning'));
+         static::getClient()->captureMessage($msg,array(),array("level" => 'warning'));
     }
 
     public function error($msg,$event = null )

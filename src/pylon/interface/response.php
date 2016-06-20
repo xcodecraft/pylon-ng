@@ -1,6 +1,6 @@
 <?php
 
-abstract class XBaseResp  implements  XResponse 
+abstract class XBaseResp  implements  XResponse
 {
 
     public function out($msg,$code=200)
@@ -128,7 +128,45 @@ class XRespFail
     }
     public function isFail()
     {
-        return $this->code != 0 ;
+        if ( ! $this->isSucc()  && ! $this->isWarn() && !$this->isIgnore())
+        {
+            return true  ;
+        }
+        return false ;
+    }
+    public function isSucc()
+    {
+        if ($this->code == 0 || $this->code == 200 || $this->code == 201)
+        {
+            return true ;
+        }
+        return false ;
+    }
+    public function isIgnore()
+    {
+            switch($this->code)
+            {
+            case 304:
+            case 302:
+                return true ;
+            default:
+                break;
+            }
+            return false ;
+    }
+    public function isWarn()
+    {
+            switch($this->code)
+            {
+            case 404:
+            case 403:
+            case 401:
+            case 400:
+                return true ;
+            default:
+                break;
+            }
+            return false ;
     }
 }
 
@@ -220,18 +258,24 @@ class XRestResp implements XResponse
         }
 
         $outdata = "";
-        if($this->error->isFail())
+        if ($this->error->isSucc())
         {
-            $data['error'] = get_object_vars($this->error) ;
-            $outdata       = json_encode($data);
-            $logger->error("status code: " . $this->status_code , RESPONSE_TAG );
-            $logger->error($outdata, RESPONSE_TAG );
+            $outdata = json_encode($this->data);
+            $logger->info($outdata, RESPONSE_TAG );
+
         }
         else
         {
-            $outdata = json_encode($this->data);
-            $logger->info("status code: " . $this->status_code , RESPONSE_TAG );
-            $logger->info($outdata, RESPONSE_TAG );
+            $data['error'] = get_object_vars($this->error) ;
+            $outdata       = json_encode($data);
+            if($this->error->isFail())
+            {
+                $logger->error($outdata, RESPONSE_TAG );
+            }
+            if ($this->error->isWarn())
+            {
+                $logger->warn($outdata, RESPONSE_TAG );
+            }
         }
         if ($this->jsonpEnable == true )
         {

@@ -5,6 +5,8 @@ _env:
             - !R.project
                 name : "pylon"
                 root : "${HOME}/devspace/pylon-ng"
+            - !R.vars
+                FPM_USER    : "${USER}"
 
     - !R.env
         _name : "_ci"
@@ -12,12 +14,16 @@ _env:
             - !R.project
                 name : "pylon"
                 root : "/data/ci_space/pylon-ng"
+            - !R.vars
+                FPM_USER    : "ayb"
 
     - !R.env
         _name : "_online"
         _res  :
             - !R.vars
                 DOMAIN      :  "api.pylon360.com"
+            - !R.vars
+                FPM_USER    : "ayb"
     - !R.env
         _name : "centos54"
         _res  :

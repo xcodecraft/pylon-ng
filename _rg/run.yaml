@@ -7,6 +7,7 @@ _env:
                 root : "${HOME}/devspace/pylon-ng"
             - !R.vars
                 FPM_USER    : "${USER}"
+                DOMAIN        : "${USER}.pylon.dev.ayibang.cn"
 
     - !R.env
         _name : "_ci"
@@ -16,12 +17,13 @@ _env:
                 root : "/data/ci_space/pylon-ng"
             - !R.vars
                 FPM_USER    : "ayb"
+                DOMAIN      : "ci.pylon.dev.ayibang.cn"
 
     - !R.env
         _name : "_online"
         _res  :
             - !R.vars
-                DOMAIN      :  "api.pylon360.com"
+                DOMAIN      :  "api.pylon.ayibang.cn"
             - !R.vars
                 FPM_USER    : "ayb"
     - !R.env
@@ -118,7 +120,6 @@ _sys:
         _res :
                 - !R.vars
                     APP_SYS       : "demo"
-                    DOMAIN        : "${USER}.demo.pylon360.com"
                     SOCK_FILE     : "${RUN_PATH}/fpm.sock"
                     PHP_INCLUDE   : "${PRJ_ROOT}/src:${PRJ_ROOT}/demo/:/usr/local/php/lib/php/"
 

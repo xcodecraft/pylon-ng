@@ -22,12 +22,14 @@ class XInterceptorRuner extends XInterceptor
     }
     public function _exception($e,$xcontext,$request,$response)
     {
-            static::doException($this->beforedItcs,$e,$xcontext,$request,$response) ;
-            static::defaultException($this->plog,$e,$response) ;
+        static::doException($this->beforedItcs,$e,$xcontext,$request,$response) ;
+        static::defaultException($this->plog,$e,$response) ;
+        $response->exception($e);
     }
 
     static private function doException($intcs,$e,$xcontext,$request,$response)
     {
+            $haveDone = false ;
             foreach( $intcs  as $itc )
             {
                 $end = $itc->_exception($e,$xcontext,$request,$response) ;
@@ -35,7 +37,10 @@ class XInterceptorRuner extends XInterceptor
                 {
                     break ;
                 }
+                $haveDone = true ;
             }
+            return $haveDone;
+
     }
 
 
@@ -52,8 +57,8 @@ class XInterceptorRuner extends XInterceptor
             }
             catch(Exception $e)
             {
-                static::doException($unAfterItcs,$e,$xcontext,$request,$response) ;
-                static::defaultException($this->plog,$e,$response) ;
+
+                $this->_exception($e,$xcontext,$request,$response) ;
             }
         }
 
@@ -88,7 +93,6 @@ class XInterceptorRuner extends XInterceptor
             $plog->warn(get_class($e) ." : " .$e->getMessage());
             $plog->warn(XExceptionUtls::simple_trace($e));
         }
-        $response->exception($e);
     }
 }
 class XRouter

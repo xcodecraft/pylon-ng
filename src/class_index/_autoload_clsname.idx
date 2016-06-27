@@ -1,4 +1,3 @@
-cls_apcdriver,APCDriver
 cls_apistyle,ApiStyle
 cls_argschecker,ArgsChecker
 cls_autoscopeintc,AutoScopeIntc
@@ -40,8 +39,6 @@ cls_lockable,Lockable
 cls_lockutil,LockUtil
 cls_lzlexecutor,LZLExecutor
 cls_mappingutls,MappingUtls
-cls_memcachesessdriver,MemcacheSessDriver
-cls_memcachesvc,MemCacheSvc
 cls_memcollectlogger,MemCollectLogger
 cls_mysqlidgenerator,MySqlIDGenerator
 cls_mysqlsessdriver,MySqlSessDriver
@@ -146,6 +143,7 @@ cls_xrespfail,XRespFail
 cls_xresponse,XResponse
 cls_xrestresp,XRestResp
 cls_xrestresult,XRestResult
+cls_xrestsimulator,XRESTSimulator
 cls_xrouter,XRouter
 cls_xruleservice,XRuleService
 cls_xruntimeexception,XRuntimeException

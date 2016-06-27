@@ -1,4 +1,3 @@
-APCDriver,/pylon/impl/autoload/cache_svc.php
 ApiStyle,/pylon/impl/orm/other.php
 ArgsChecker,/pylon/impl/utls/args_checker.php
 AutoScopeIntc,/pylon/impl/web/aop.php
@@ -40,8 +39,6 @@ Lockable,/pylon/impl/basesvc/locks.php
 LockUtil,/pylon/impl/basesvc/locks.php
 LZLExecutor,/pylon/driver/sql_executor.php
 MappingUtls,/pylon/impl/orm/entity.php
-MemcacheSessDriver,/pylon/driver/session_memcache.php
-MemCacheSvc,/pylon/impl/autoload/cache_svc.php
 MemCollectLogger,/pylon/impl/utls/logutls.php
 MySqlIDGenerator,/extends/idgenerator.php
 MySqlSessDriver,/pylon/driver/session_mysql.php
@@ -146,6 +143,7 @@ XRespFail,/pylon/interface/response.php
 XResponse,/pylon/interface/web.php
 XRestResp,/pylon/interface/response.php
 XRestResult,/pylon/utls/http.php
+XRESTSimulator,/pylon/utls/http.php
 XRouter,/pylon/impl/web/router.php
 XRuleService,/pylon/interface/webimpl.php
 XRuntimeException,/pylon/interface/exception.php

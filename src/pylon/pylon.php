@@ -333,14 +333,14 @@ class XPylon
      * @brief 启动rest 服务
      * @return
      */
-    static public function serving()
+    static public function serving($httpStatus=true)
     {
 
         ob_start();
         static::useEnv();
         $data_file = XSetting::$runPath . "/router/_router.idx" ;
-        XBox::regist(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
-        XRouter::serving();
+        XBox::replace(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
+        XRouter::serving($httpStatus);
         ob_end_flush();
     }
     /**

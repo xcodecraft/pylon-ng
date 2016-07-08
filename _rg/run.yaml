@@ -68,7 +68,10 @@ _env:
                 FULL_EXT  : "${EXT_NAME}_${EXT_TAG}.so"
             - !R.path
                 dst: "${PRJ_ROOT}/conf/used/"
-
+            - !R.pylon_autoload
+                include: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/src/extends"
+                relpath: "${PRJ_ROOT}/src"
+                dst: "${PRJ_ROOT}/src/class_index"
     - !R.env 
         _name : "debug"
         _res  :

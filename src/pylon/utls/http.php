@@ -401,3 +401,81 @@ class XHttpCaller
 
 }
 
+class XRESTSimulator
+{
+    static public function setup($bootstrap)
+    {
+        static $isSetup = false ;
+        if ($isSetup) 
+        {
+            return  ;
+        }
+        $prjRoot = XSetting::ensureEnv('PRJ_ROOT') ;
+        require "$prjRoot/$bootstrap" ;
+        $isSetup = true ;
+    }
+    public function  debug()
+    {
+        $this->debugOn = true ;
+    }
+    private function headerSet($key,$prefix,$value)
+    {
+        $len = strlen($prefix) ;
+        if(strncmp($value,$prefix,$len) == 0)
+        {
+            $value         = strpbrk($value, ":");
+            $_SERVER[$key] = trim(strpbrk($value, " "));
+        }
+
+    }
+    public function __construct()
+    {
+        $this->debugOn = false ;
+    }
+    public function  setHeader($value)
+    {
+        $this->headerSet("HTTP_USER_AGENT","User-Agent",$value) ;
+        $this->headerSet("HTTP_NETWORK","Network",$value) ;
+        $this->headerSet("PHP_AUTH_DIGEST","Authorization",$value) ;
+    }
+    public function post($uri,$data)
+    {
+        $_SERVER['REQUEST_URI']    = $uri ;
+        $_SERVER['REQUEST_METHOD'] = "POST" ;
+        $_REQUEST                  = $data;
+        $_POST                     = $data;
+
+        ob_start() ;
+        XPylon::serving(false);
+        $data = ob_get_contents();
+        ob_end_clean();
+        if ($this->debugOn)
+        {
+            echo $data;
+        }
+        $response   = new XHttpResponse(200,$data);
+        $_REQUEST                  = array();
+        $_POST                     = array();
+        return $response;
+
+
+    }
+    public function get($uri)
+    {
+        $_SERVER['REQUEST_URI']    = $uri ;
+        $_SERVER['REQUEST_METHOD'] = "GET" ;
+        $_REQUEST                  = array() ;
+        ob_start() ;
+        XPylon::serving(false);
+        $data = ob_get_contents();
+        ob_end_clean();
+        if ($this->debugOn)
+        {
+            echo $data;
+        }
+
+        $response   = new XHttpResponse(200,$data);
+        return $response;
+
+    }
+}

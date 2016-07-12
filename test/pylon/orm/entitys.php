@@ -1,5 +1,7 @@
 <?php
 use pylon\impl\Relation ;
+use pylon\impl\ObjectSet ;
+use pylon\impl\EntityUtls ;
 
 class User extends XEntity
 {

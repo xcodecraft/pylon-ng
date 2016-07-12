@@ -1,6 +1,14 @@
 <?php
 
-namespace \pylon\impl ;
+namespace pylon\impl ;
+use XInterceptor ;
+use XLogKit ;
+use XLogSpeed ;
+use XContext ;
+use XProperty ;
+use XSetting ;
+use XBox ;
+use XAop ;
 
 class XInterceptorRuner extends XInterceptor
 {

@@ -1,6 +1,8 @@
 <?php
 
-namespace \pylon\impl ;
+namespace pylon\impl ;
+use logger ;
+use XDBC ;
 
 /**
  * @brief 拦截对象;
@@ -83,7 +85,7 @@ class XAopRule
     }
     public function using($itarget)
     {
-        DBC::requireNotNull($itarget,'$itarget');
+        XDBC::requireNotNull($itarget,'$itarget');
         $matchAll  = false ;
 
         $posIdx    =  0 ;
@@ -146,7 +148,7 @@ class XAopRuleSet
     {
         if(!preg_match('/(\S+)_(by)_([a-zA-Z0-9]+)_(\S+)/',$name ,$matchs))
         {
-            DBC::unExpect("unknow $name ,eg:  append_by_name_match('.*',xxxx)");
+            XDBC::unExpect("unknow $name ,eg:  append_by_name_match('.*',xxxx)");
         }
         list($all,$op,$by,$rule, $pos )=$matchs;
 
@@ -161,14 +163,14 @@ class XAopRuleSet
         }
         else
         {
-            DBC::unExpect("unknow $match, only support  match , dismatch");
+            XDBC::unExpect("unknow $match, only support  match , dismatch");
         }
 
         $mutiPos    = explode("_",$pos);
         $posCnt     = count($mutiPos);
         if ((count($params ) )  != $posCnt +1  )
         {
-            DBC::unExpect("[$name]  not match  params");
+            XDBC::unExpect("[$name]  not match  params");
         }
         $mutiVal    = array();
         for($i =0 ; $i < $posCnt ; $i++)
@@ -187,7 +189,7 @@ class XAopRuleSet
         }
         else
         {
-            DBC::unExpect("unknow $op, only support  append, replace ");
+            XDBC::unExpect("unknow $op, only support  append, replace ");
         }
     }
 

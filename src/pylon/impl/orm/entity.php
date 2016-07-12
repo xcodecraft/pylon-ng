@@ -3,6 +3,8 @@ namespace pylon\impl ;
 use XProperty ;
 use XBox ;
 use XDBC ;
+use XEntity ;
+use XSetting ;
 
 /**\addtogroup Ent
  * @{

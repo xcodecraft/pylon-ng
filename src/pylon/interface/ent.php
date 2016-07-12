@@ -15,6 +15,8 @@ use pylon\impl\DQLObj ;
 use pylon\impl\UnitWorkImpl ;
 use pylon\impl\DynCallParser ;
 use pylon\impl\DiagnoseContext ;
+use pylon\impl\ApiStyle ;
+use pylon\impl\FilterProp ;
 
 function QL($express,$symbol='?')
 {

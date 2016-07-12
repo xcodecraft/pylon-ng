@@ -1,6 +1,8 @@
 <?php
 namespace pylon\impl ;
 
+use XPylon ;
+use XDBC ;
 /**\addtogroup Ent
  * @{
  */
@@ -100,12 +102,12 @@ class Query
 
     static public function toEntity($cls,$data)
     {
-        DBC::unImplement('not implement toEntity function!');
+        XDBC::unImplement('not implement toEntity function!');
     }
 
     public function getByProp($prop,$view,$viewCond='',$columns="*",$addiWhereCmd ="", $order=null)
     {
-        DBC::requireNotNull($prop);
+        XDBC::requireNotNull($prop);
         $statement = new SQLSelectStatement($view,$viewCond);
         $statement->columns($columns);
         $valsArr =  array();
@@ -165,7 +167,7 @@ class Query
         {
             $condsArr     = $prop->getPropArray();
             $valsArr      = SqlProcUtls::filterCondVal(array_values($condsArr));
-            $propCmd= JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $propCmd= JoinUtls::jassoArrayEx(' and ',$condsArr,array('pylon\impl\SqlProcUtls','bindCond'));
             return $propCmd;
         }
         return "";

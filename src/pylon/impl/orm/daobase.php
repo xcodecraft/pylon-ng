@@ -365,7 +365,7 @@ class DaoImp extends DaoBase implements XDao
                 $obj = XEntity::loadEntity($cls,$row,$this->mappingStg);
             }
         }
-        else if(DaoBase::cls_is_a('Relation',$cls))
+        else if(DaoBase::cls_is_a('pylon\impl\Relation',$cls))
         {
             if(method_exists($cls,'load'))
             {

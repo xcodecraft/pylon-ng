@@ -1,4 +1,5 @@
 <?php
+use pylon\impl\XRouter ;
 
 /** @defgroup assembly 装配器
  *
@@ -33,7 +34,6 @@
  *
  *  使用者关注
  */
-
 class XSetting
 {
 
@@ -280,14 +280,18 @@ function appsys__autoload($classname)
 function pylon__unload($classname)
 {
     $glogger = XLogKit::logger("_pylon");
-    $glogger->error("cls : $classname" );
-    $msg      = pylon_dict_prompt($classname);
-    $info     = "";
-    $info    .= "******* AUTOLOAD ERROR *********<br>\n";
-    $info    .= "Class not found : '$classname' <br>\n";
-    $info    .= $msg ;
-    $info    .= "DATAFILE:<br>\n" . implode(PylonModule::$modleFiles,",<br>\n");
-    $glogger->error("log load class $classname define faiure!!\n, $info");
+    $calls = debug_backtrace() ;
+    foreach($calls as $c )
+    {
+        if ($c['function'] == 'class_exists')
+        {
+            return ;
+        }
+
+    }
+
+    $glogger->error("load class $classname define faiure!");
+    // throw new XDBCException( "cant's find cls $classname") ;
 }
 
 

@@ -1,13 +1,14 @@
 <?php
 namespace pylon\impl ;
+use XDBC ;
 
 class ObjectSet  extends ObjUpdater
 {
     protected $clsName;
     static public function load($clsName,$items)
     {
-        DBC::requireTrue(is_string($clsName));
-        DBC::requireTrue(is_array($items));
+        XDBC::requireTrue(is_string($clsName));
+        XDBC::requireTrue(is_array($items));
         $obj =new ObjectSet($items,ObjUpdater::OBJ_LOAD);
         $obj->clsName=$clsName;
         return $obj;
@@ -15,7 +16,7 @@ class ObjectSet  extends ObjUpdater
 
     static public function createByBiz($clsName)
     {
-        DBC::requireTrue(is_string($clsName));
+        XDBC::requireTrue(is_string($clsName));
         $item=array();
         $obj=new ObjectSet($item,ObjUpdater::OBJ_ADD);
         $obj->clsName=$clsName;

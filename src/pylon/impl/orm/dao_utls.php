@@ -1,4 +1,6 @@
 <?php
+namespace pylon\impl ;
+use XProperty ;
 
 /**\addtogroup Ent
  * @{

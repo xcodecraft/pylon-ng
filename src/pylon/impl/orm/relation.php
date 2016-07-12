@@ -1,4 +1,5 @@
 <?php
+namespace pylon\impl ;
 
 class ObjectSet  extends ObjUpdater
 {

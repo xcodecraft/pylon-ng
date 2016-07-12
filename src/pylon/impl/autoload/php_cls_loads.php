@@ -1,4 +1,5 @@
 <?php
+namespace pylon\impl ;
 /**\addtogroup Autoload
  * @{
  */

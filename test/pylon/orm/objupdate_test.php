@@ -1,5 +1,6 @@
 <?php
 
+use pylon\impl\ObjUpdater ;
 class ObjUpdateTest extends ObjUpdater
 {
     public $commitObjs=array();

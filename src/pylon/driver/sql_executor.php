@@ -1,4 +1,5 @@
 <?php
+use pylon\impl\DiagnoseContext ;
 
 /**
  * @brief 基于PDO对Mysql 的SQL 执行器

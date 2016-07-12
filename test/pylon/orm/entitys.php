@@ -1,4 +1,5 @@
 <?php
+use pylon\impl\Relation ;
 
 class User extends XEntity
 {

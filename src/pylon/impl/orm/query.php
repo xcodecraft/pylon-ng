@@ -1,15 +1,16 @@
 <?php
+namespace pylon\impl ;
 
 /**\addtogroup Ent
  * @{
  */
 
-function sqlprocutls_ins_not_dqlobj($item)
-{
-    return ! $item  instanceof DQLObj ;
-}
 class SqlProcUtls
 {
+    static function sqlprocutls_ins_not_dqlobj($item)
+    {
+        return ! $item  instanceof DQLObj ;
+    }
     static public function bindCond($key,$val)
     {
         //处理非单值的情况
@@ -21,7 +22,8 @@ class SqlProcUtls
     }
     static public function filterCondVal($arr)
     {
-        return  array_filter($arr,sqlprocutls_ins_not_dqlobj);
+        // return  array_filter($arr,array("\SqlProcUtls",sqlprocutls_ins_not_dqlobj));
+        return  array_filter($arr,array("pylon\impl\SqlProcUtls",sqlprocutls_ins_not_dqlobj));
     }
     static public function  bindUpdate($key,$val)
     {
@@ -36,10 +38,6 @@ class SqlProcUtls
  *
  * @return
  */
-function QL($express,$symbol='?')
-{
-    return new DQLObj($express,$symbol);
-}
 /**
  * @brief
  */

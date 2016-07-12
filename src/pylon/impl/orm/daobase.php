@@ -1,4 +1,10 @@
 <?php
+namespace pylon\impl ;
+use XDBC ;
+use XBox ;
+use XEntity ;
+use XPylon ;
+// use pylon\impl\SqlProcUtls ;
 /**\addtogroup Ent
  * @{
  */
@@ -13,7 +19,7 @@ class XDaoImplUtls
 
     static public function whereByProp($statement,$prop)
     {
-        $where     = JoinUtls::jassoArrayEx(' and ',$prop->getPropArray(),array(SqlProcUtls,'bindCond'));
+        $where     = JoinUtls::jassoArrayEx(' and ',$prop->getPropArray(),array('pylon\impl\SqlProcUtls','bindCond'));
         $statement->where($where);
     }
 
@@ -48,7 +54,7 @@ class DaoBase
     public $loadStg     = null;
     public function __construct($cls,$executer=NULL,$tableFinder=NULL)
     {
-        DBC::requireNotNull($tableFinder,'$tableFinder');
+        XDBC::requireNotNull($tableFinder,'$tableFinder');
         $this->_executer   = $executer ? $executer : XBox::must_get('SQLExecuter');
         $this->tableFinder = $tableFinder;
         $this->cls         = $cls;
@@ -242,7 +248,7 @@ class DaoBase
         $statement->columnArray(array_keys($pairs));
 
         $pairsCnt= count($pairs);
-        DBC::requireTrue($pairsCnt > 0, "count of pairs is $pairsCnt,it mush > 0 " );
+        XDBC::requireTrue($pairsCnt > 0, "count of pairs is $pairsCnt,it mush > 0 " );
         $placeholders = array_fill(0,$pairsCnt,'?');
         $statement->dataArray($placeholders);
         return $this->_executer->exeNoQuery($statement->generateSql(),array_values($pairs));
@@ -254,7 +260,7 @@ class DaoBase
     protected function updateImpl($keys, $pairs,$hashKey)
     {
         $pairsCnt= count($pairs);
-        DBC::requireTrue($pairsCnt > 0, "count of pairs is $pairsCnt,it mush > 0 " );
+        XDBC::requireTrue($pairsCnt > 0, "count of pairs is $pairsCnt,it mush > 0 " );
         $placeholders = array_fill(0,$pairsCnt,'?');
         $bindParms    = array_combine(array_keys($pairs),$placeholders);
         $statement    = new SQLUpdateStatment($this->getStoreTable($hashKey));
@@ -269,9 +275,9 @@ class DaoBase
     {
 
         $statement  = new SQLUpdateStatment($this->getStoreTable($hashKey));
-        $updateSql  = JoinUtls::jassoArrayEx(',',$updateArr,array('SqlProcUtls','bindUpdate'));
+        $updateSql  = JoinUtls::jassoArrayEx(',',$updateArr,array('pylon\impl\SqlProcUtls','bindUpdate'));
         $statement->updateColumns($updateSql);
-        $statement->where(JoinUtls::jassoArrayEx(' and ',$condArr,array('SqlProcUtls','bindCond')));
+        $statement->where(JoinUtls::jassoArrayEx(' and ',$condArr,array('pylon\impl\SqlProcUtls','bindCond')));
         $condvalArr = SqlProcUtls::filterCondVal(array_values($condArr));
         $bindArr    = array_merge(array_values($updateArr), $condvalArr);
         $sql        = $statement->generateSql();
@@ -309,8 +315,8 @@ class DaoImp extends DaoBase implements XDao
     }
     public function __construct($cls,$execer,$view,$mappingStg,$hashStoreFun=null)
     {
-        DBC::requireTrue(!empty($cls),'$cls is empty! ');
-        DBC::requireNotNull($mappingStg);
+        XDBC::requireTrue(!empty($cls),'$cls is empty! ');
+        XDBC::requireNotNull($mappingStg);
         $this->view=$view;
         $this->mappingStg=$mappingStg;
         if($hashStoreFun == null)
@@ -341,7 +347,7 @@ class DaoImp extends DaoBase implements XDao
     public function obj2row($obj)
     {
 
-        DBC::requireNotNull($obj);
+        XDBC::requireNotNull($obj);
         return $obj->getDTO($this->mappingStg)->getPropArray();
     }
     public function row2obj($cls,$row)
@@ -372,7 +378,7 @@ class DaoImp extends DaoBase implements XDao
         }
         else
         {
-            DBC::unExpect("$cls load error");
+            XDBC::unExpect("$cls load error");
         }
         return $obj;
     }
@@ -406,7 +412,7 @@ class SimpleDaoFactory
         {
             return $ncls;
         }
-        DBC::requireNotNull($ncls,"not found the $cls class!");
+        XDBC::requireNotNull($ncls,"not found the $cls class!");
         return $ncls;
     }
     static public function funIns($executer)

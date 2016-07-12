@@ -1,5 +1,7 @@
 <?php
 
+namespace \pylon\impl ;
+
 /**
  * @brief 拦截对象;
  * 可获得对象值如下:

@@ -1,4 +1,7 @@
 <?php
+
+namespace \pylon\impl ;
+
 class XInterceptorRuner extends XInterceptor
 {
     private $beforedItcs = null ;

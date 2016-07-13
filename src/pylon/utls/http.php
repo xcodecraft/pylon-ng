@@ -401,7 +401,7 @@ class XHttpCaller
 
 }
 
-class XRESTSimulator
+class XHttpSimulator
 {
     static public function setup($bootstrap)
     {
@@ -445,6 +445,15 @@ class XRESTSimulator
         $_REQUEST                  = $data;
         $_POST                     = $data;
 
+        $query = parse_url($uri, PHP_URL_QUERY);
+        $queryArr = explode('&',$query) ;
+        foreach($queryArr as $q)
+        {
+            list($key,$val) = explode('=',$q) ;
+            $_REQUEST[$key] = $val ;
+        }
+
+
         ob_start() ;
         XPylon::serving(false);
         $data = ob_get_contents();
@@ -465,6 +474,17 @@ class XRESTSimulator
         $_SERVER['REQUEST_URI']    = $uri ;
         $_SERVER['REQUEST_METHOD'] = "GET" ;
         $_REQUEST                  = array() ;
+        $_GET                      = array() ;
+
+        $query = parse_url($uri, PHP_URL_QUERY);
+        $queryArr = explode('&',$query) ;
+        foreach($queryArr as $q)
+        {
+            list($key,$val) = explode('=',$q) ;
+            $_REQUEST[$key] = $val ;
+            $_GET[$key]     = $val ;
+        }
+
         ob_start() ;
         XPylon::serving(false);
         $data = ob_get_contents();

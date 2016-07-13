@@ -10,3 +10,4 @@ XSetting::$runPath   = XSetting::ensureEnv("RUN_PATH") ;
 XSetting::$bootstrap = "pylonstrap.php" ;
 date_default_timezone_set('PRC');
 XPylon::useEnv() ;
+XHttpSimulator::setup("demo/api/bootstrap.php") ;

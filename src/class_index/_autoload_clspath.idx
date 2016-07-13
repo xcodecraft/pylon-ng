@@ -127,6 +127,7 @@ XHtmlResp,/pylon/interface/response.php
 XHttpCaller,/pylon/utls/http.php
 XHttpConf,/pylon/utls/http.php
 XHttpResponse,/pylon/utls/http.php
+XHttpSimulator,/pylon/utls/http.php
 XIDGenerator,/pylon/interface/plugin.php
 XIlogger,/pylon/pylon.php
 XInterceptor,/pylon/interface/web.php
@@ -147,7 +148,6 @@ XRespFail,/pylon/interface/response.php
 XResponse,/pylon/interface/web.php
 XRestResp,/pylon/interface/response.php
 XRestResult,/pylon/utls/http.php
-XRESTSimulator,/pylon/utls/http.php
 XRuleService,/pylon/interface/webimpl.php
 XRuntimeException,/pylon/interface/exception.php
 XScopeLogEvent,/pylon/utls/log.php

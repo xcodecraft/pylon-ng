@@ -6,6 +6,7 @@ class RestDemoTest extends PHPUnit_Framework_TestCase
         $user       = $_SERVER['USER'] ;
         $conf       = XHttpConf::localSvc("$user.demo.pylon360.com",80);
         $this->curl = new XHttpCaller($conf);
+        // $this->curl = Caller::ins();
     }
 
     public function testSuc()

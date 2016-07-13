@@ -127,6 +127,7 @@ cls_xhtmlresp,XHtmlResp
 cls_xhttpcaller,XHttpCaller
 cls_xhttpconf,XHttpConf
 cls_xhttpresponse,XHttpResponse
+cls_xhttpsimulator,XHttpSimulator
 cls_xidgenerator,XIDGenerator
 cls_xilogger,XIlogger
 cls_xinterceptor,XInterceptor
@@ -147,7 +148,6 @@ cls_xrespfail,XRespFail
 cls_xresponse,XResponse
 cls_xrestresp,XRestResp
 cls_xrestresult,XRestResult
-cls_xrestsimulator,XRESTSimulator
 cls_xruleservice,XRuleService
 cls_xruntimeexception,XRuntimeException
 cls_xscopelogevent,XScopeLogEvent

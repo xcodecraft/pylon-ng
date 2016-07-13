@@ -9,13 +9,14 @@ class user_profile_Test extends PHPUnit_Framework_TestCase
     public function setup()
     {
         $user       = $_SERVER['USER'] ;
-        $conf       = XHttpConf::localSvc("$user.demo.pylon360.com",80, "xdemo_test");
-        $this->curl = new XHttpCaller($conf);
+        // $conf       = XHttpConf::localSvc("$user.demo.pylon360.com",80, "xdemo_test");
+        // $this->curl = new XHttpCaller($conf);
+        $this->curl = Caller::ins();
     }
 
     public function testGet()
     {
-        $x = $this->curl->get("/user/profile/get?uid=5555");
+        $x = $this->curl->get("/user/profile/get?uid=5555&abc=1111");
         $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);
         $this->assertEquals("user_profile get user: 5555",$data);
@@ -53,8 +54,9 @@ class game_test2_Test extends PHPUnit_Framework_TestCase
     public function setup()
     {
         $user       = $_SERVER['USER'] ;
-        $conf       = XHttpConf::localSvc("$user.demo.pylon360.com",80);
-        $this->curl = new XHttpCaller($conf);
+        // $conf       = XHttpConf::localSvc("$user.demo.pylon360.com",80);
+        // $this->curl = new XHttpCaller($conf);
+        $this->curl = Caller::ins();
     }
 
     public function testSuc()

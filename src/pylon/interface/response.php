@@ -1,4 +1,5 @@
 <?php
+use pylon\impl\PYL_HttpHeader ;
 
 abstract class XBaseResp  implements  XResponse
 {

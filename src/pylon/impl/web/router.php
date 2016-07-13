@@ -9,6 +9,9 @@ use XProperty ;
 use XSetting ;
 use XBox ;
 use XAop ;
+use XDBC ;
+use Exception ;
+use XExceptionUtls ;
 
 class XInterceptorRuner extends XInterceptor
 {
@@ -170,7 +173,7 @@ class XRouter
         if (is_callable(XSetting::$respInsFun))
         {
             $response = call_user_func(XSetting::$respInsFun,$uri) ;
-            DBC::requireNotNull($response,"XSetting::\$respInsFun return null ") ;
+            XDBC::requireNotNull($response,"XSetting::\$respInsFun return null ") ;
         }
         else
         {

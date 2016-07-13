@@ -190,8 +190,6 @@ class XDBC
 
 
 }
-class DBC  extends XDBC 
-{}
 
 /**
  *  @}

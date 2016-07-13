@@ -19,10 +19,10 @@ interface XIDGenerator
 /**
  * @brief  SessionSvc depend  一个 SessionDriver
  */
-interface ISessionDriver
-{
-    public function init();
-}
+// interface XSessionDriver
+// {
+//     public function init();
+// }
 
 /**
  * @ingroup entity

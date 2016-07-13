@@ -69,9 +69,14 @@ _env:
             - !R.path
                 dst: "${PRJ_ROOT}/conf/used/"
             - !R.pylon_autoload
+                include: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/src/extends:${PRJ_ROOT}/src/compatible/v1"
+                relpath: "${PRJ_ROOT}/src"
+                dst: "${PRJ_ROOT}/src/cls_idx/v1"
+            - !R.pylon_autoload
                 include: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/src/extends"
                 relpath: "${PRJ_ROOT}/src"
-                dst: "${PRJ_ROOT}/src/class_index"
+                dst: "${PRJ_ROOT}/src/cls_idx/v2"
+
     - !R.env 
         _name : "debug"
         _res  :
@@ -167,7 +172,8 @@ _sys:
                 path  : "${PRJ_ROOT}/src/rigger/pylon.yaml"
                 modul : "phpunit"
                 args  : !R.vars
-                    TEST_INCLUDE: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/src/extends:${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
+                    # TEST_INCLUDE: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/src/extends:${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
+                    TEST_INCLUDE: "${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
 
                     SVC_ENTRY    : "${PRJ_ROOT}/demo/"
                     CONF_PATH   : "test/pylon/config"

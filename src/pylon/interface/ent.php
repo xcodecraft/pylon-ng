@@ -520,7 +520,7 @@ class XEntEnv
             XBox::regist(XBox::SQLE,$sql_exec,__METHOD__);
             if(empty($idgenter))
             {
-                XBox::regist(XBox::IDG, new MySqlIDGenerator($sql_exec),__METHOD__);
+                XBox::regist(XBox::IDG, new pylon\driver\MySqlIDGenerator($sql_exec),__METHOD__);
             }
             else
             {

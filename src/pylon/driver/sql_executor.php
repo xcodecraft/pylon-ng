@@ -1,10 +1,13 @@
 <?php
+namespace pylon\driver ;
 use pylon\impl\DiagnoseContext ;
+use logger ;
+use PDO ;
 
 /**
  * @brief 基于PDO对Mysql 的SQL 执行器
  */
-class FastSQLExecutor
+class XFastSQLExecutor
 {
     /**
      * @brief 长连接
@@ -31,7 +34,7 @@ class FastSQLExecutor
      *
      * @return  void
      */
-    public function __construct($host, $userName, $password, $dbName,$connType=FastSQLExecutor::SHORT_CONN,$charset='GBK',$port=3306)
+    public function __construct($host, $userName, $password, $dbName,$connType=XFastSQLExecutor::SHORT_CONN,$charset='GBK',$port=3306)
     {
 
         $this->_connectInfo['dsn']="mysql:host=$host;dbname=$dbName;port=$port";
@@ -261,10 +264,10 @@ class Pair
  * @brief 基于 Layzer Load 的 SQL 执行器，用于在需要访问数据库是，才建立连接
  * @example
  *          $executer = new LZLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name,
- *                        FastSQLExecutor::SHORT_CONN,'utf8',"FastSQLExecutor");
+ *                        XFastSQLExecutor::SHORT_CONN,'utf8',"XFastSQLExecutor");
  *
  */
-class LZLExecutor
+class XLZLExecutor
 {
     public $host;
     public $userName;
@@ -291,7 +294,7 @@ class LZLExecutor
      *
      * @return
      */
-    public function __construct($host, $userName, $password, $dbName,$connType=FastSQLExecutor::SHORT_CONN,$charset='GBK', $cls = "FastSQLExecutor" , $port="3306")
+    public function __construct($host, $userName, $password, $dbName,$connType=XFastSQLExecutor::SHORT_CONN,$charset='GBK', $cls = "FastSQLExecutor" , $port="3306")
     {
         $this->host     = $host;
         $this->userName = $userName;
@@ -331,3 +334,7 @@ class LZLExecutor
         }
     }
 }
+
+
+
+

@@ -8,9 +8,6 @@ class user_profile_Test extends PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $user       = $_SERVER['USER'] ;
-        // $conf       = XHttpConf::localSvc("$user.demo.pylon360.com",80, "xdemo_test");
-        // $this->curl = new XHttpCaller($conf);
         $this->curl = Caller::ins();
     }
 
@@ -53,9 +50,6 @@ class game_test2_Test extends PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $user       = $_SERVER['USER'] ;
-        // $conf       = XHttpConf::localSvc("$user.demo.pylon360.com",80);
-        // $this->curl = new XHttpCaller($conf);
         $this->curl = Caller::ins();
     }
 

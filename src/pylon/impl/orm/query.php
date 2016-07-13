@@ -24,7 +24,6 @@ class SqlProcUtls
     }
     static public function filterCondVal($arr)
     {
-        // return  array_filter($arr,array("\SqlProcUtls",sqlprocutls_ins_not_dqlobj));
         return  array_filter($arr,array("pylon\impl\SqlProcUtls",sqlprocutls_ins_not_dqlobj));
     }
     static public function  bindUpdate($key,$val)
@@ -197,7 +196,7 @@ class Query
         {
             $propWhere = static::prop2cmd($prop,$valsArr);
         }
-        $statement->where($propWhere.$addiWhereCmd);
+        $statement->where($propWhere);
         return $this->statementCount($statement,$valsArr);
     }
     public function listByPropExt($view,$viewCond,$columns,$prop=null,$page=null,$order=null,$addiWhereCmd="")
@@ -224,8 +223,7 @@ class Query
 
         $statement->multiOrderBy($order);
         $statement->columns($columns);
-        $rows=$this->listByCmd($statement->generateSql(),$valsArr);
-        return $rows;
+        return $this->listByCmd($statement->generateSql(),$valsArr);
     }
     public function listByPropLimit($view,$viewCond,$columns,$prop,$begin,$count,$order=null,$addiWhereCmd="")
     {

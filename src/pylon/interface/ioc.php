@@ -204,14 +204,3 @@ class XBox
         }
     }
 }
-
-/**
- * @ingroup assembly
- * @brief
- * @include assembly.php
- */
-interface XAssembly
-{
-    public function setup() ;
-}
-

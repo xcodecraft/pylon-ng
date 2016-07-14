@@ -103,7 +103,6 @@ Raven_Util,/extends/Raven/Util.php
 XAop,/pylon/interface/ioc.php
 XAPICallException,/pylon/interface/exception.php
 XAppSession,/pylon/interface/ent.php
-XAssembly,/pylon/interface/ioc.php
 XBaseResp,/pylon/interface/response.php
 XBizException,/pylon/interface/exception.php
 XBizResult,/pylon/utls/biz.php

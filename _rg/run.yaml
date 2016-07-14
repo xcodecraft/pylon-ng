@@ -165,14 +165,14 @@ _sys:
                 password : "pylon123"
                 sql      : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
             - !R.link
-                src : "/usr/local/${PHP_VER}/extensions/xdebug.so"
+                src : "/usr/local/php-${PHP_VER}/extensions/xdebug.so"
                 dst : "${PRJ_ROOT}/smasher/bin/xdebug.so"
+                force : True 
 
             - !R.using
                 path  : "${PRJ_ROOT}/src/rigger/pylon.yaml"
                 modul : "phpunit"
                 args  : !R.vars
-                    # TEST_INCLUDE: "${PRJ_ROOT}/src/pylon:${PRJ_ROOT}/src/extends:${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
                     TEST_INCLUDE: "${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
 
                     SVC_ENTRY    : "${PRJ_ROOT}/demo/"

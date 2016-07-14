@@ -10,7 +10,10 @@ class PylonModule
     static function pylon_load_cls_index($lib_root,$ver)
     {
         static $index_load = false ;
-        if ($index_load ) return ;
+        if ($index_load ) 
+        {
+            return ;
+        }
         pylon_dict_data("$lib_root/cls_idx/$ver/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
         pylon_dict_data("$lib_root/cls_idx/$ver/_autoload_clsname.idx","","");
         XLogKit::logger("_pylon")->info("$lib_root/cls_idx/v1/_autoload_clspath.idx") ;
@@ -66,8 +69,8 @@ class PylonModule
 
         }
 
-        $glogger->error("load class $classname define faiure!");
-        // throw new XDBCException( "cant's find cls $classname") ;
+        // $glogger->error("load class $classname define faiure!");
+        throw new XDBCException( "cant's find cls $classname") ;
     }
 
 }

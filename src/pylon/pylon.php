@@ -309,6 +309,10 @@ class XPylon
      */
     static public function serving($httpStatus=true)
     {
+        if(!is_bool($httpStatus))
+        {
+            $httpStatus = true ;
+        }
 
         ob_start();
         static::useEnv();

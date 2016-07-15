@@ -156,7 +156,7 @@ class XRouter
             $logger->$level("data : " .  http_build_query($_POST),"request");
         }
     }
-    static public function serving($http_status=true)
+    static public function serving($http_status = true )
     {
 
         ob_start();

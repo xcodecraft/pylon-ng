@@ -9,7 +9,7 @@
  * @brief   对逻辑进行验证，当为flase时抛出 XDBCException
  *
  */
-class DBC
+class XDBC
 {
     /**
      * @brief 失败抛出EXCEPTION

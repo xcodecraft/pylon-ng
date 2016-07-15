@@ -1,12 +1,21 @@
 <?php
 
+use pylon\impl\EmptyUnitWork ;
+use pylon\impl\Daoimp;
+use pylon\impl\SimpleMapping ;
+use pylon\impl\DynCallParser ;
+use pylon\impl\DQLObj ;
+use pylon\impl\DaoFinderUtls ;
+use pylon\driver\XFastSQLExecutor ;
+use pylon\driver\MySqlIDGenerator ;
+
 class UTAssemply
 {
     static public function setup()
     {
         // echo "---------------------------------0------------------------------" ;
         $dbConf =  Conf::getDBConf();
-        $executer = new FastSQLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $executer = new XFastSQLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
         XBox::regist(XBox::SQLE,$executer,__METHOD__);
         XBox::regist(XBox::IDG, new MySqlIDGenerator($executer),__METHOD__);
         // echo "---------------------------------1------------------------------" ;

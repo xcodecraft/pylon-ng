@@ -1,4 +1,6 @@
 <?php
+namespace pylon\impl ;
+use XDBC;
 
 /**\addtogroup DBA
  * @{
@@ -175,7 +177,7 @@ class SQLSelectStatement extends SQLStatement
      */
     function where($condition)
     {
-        DBC::requireTrue(is_string($condition),'is_string($condition)');
+        XDBC::requireTrue(is_string($condition),'is_string($condition)');
         $this->_whereCond= $condition;
         return $this;
     }

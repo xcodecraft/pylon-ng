@@ -1,5 +1,6 @@
 <?php
 
+use pylon\driver\XFastSQLExecutor ;
 
 class TestLogger
 {
@@ -20,7 +21,7 @@ class  DBExecuterTC extends PHPUnit_Framework_TestCase
 	{
         $this->_tableName = "db_executer_test";
         $dbConf =  Conf::getDBConf();
-        $this->_executer = new FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $this->_executer = new XFastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
         $this->_cnStr='GBKÖÐÎÄ';
 	}
 

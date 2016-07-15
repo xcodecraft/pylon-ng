@@ -72,7 +72,7 @@ _sys:
                 password: "${DB_PWD}"
                 sql:      "${PRJ_ROOT}/src/init/create_db.sql"
             - !R.using
-                path  : "${RIGGER}/extends/moduls/pylon.yaml"
+                path  : "${PYLON}/rigger/pylon.yaml"
                 modul : "pylon_php"
                 args  : !R.vars
                     MOD_TAG     : "init"
@@ -89,7 +89,7 @@ _sys:
                 DOMAIN      : "api.${BASE_DOMAIN}"
                 SOCK_FILE   : "${RUN_PATH}/api_fpm.sock"
             - !R.using
-                path  : "${RIGGER}/extends/moduls/pylon.yaml"
+                path  : "${PYLON}/rigger/pylon.yaml"
                 modul : "pylon_web"
                 args  : !R.vars
                     MOD_TAG     : "api"

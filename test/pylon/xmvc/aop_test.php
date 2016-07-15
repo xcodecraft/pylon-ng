@@ -1,4 +1,6 @@
 <?php
+use pylon\impl\XAopRuleSet ;
+use pylon\impl\XIntercepterTarget ;
 class StubIntercepter
 {
 }

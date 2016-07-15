@@ -1,4 +1,5 @@
 <?php
+use pylon\impl\XRouter ;
 class RouterStub  implements XIRouter
 {
     public function _find($uri)

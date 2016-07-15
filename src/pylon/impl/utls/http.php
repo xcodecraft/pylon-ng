@@ -1,4 +1,5 @@
 <?php
+namespace pylon\impl ;
 class PYL_HttpHeader
 {
     static function header_info($status_code)

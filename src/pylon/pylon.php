@@ -1,4 +1,9 @@
 <?php
+use pylon\impl\XRouter ;
+use pylon\impl\PylonModule ;
+use pylon\driver\FastRouter ;
+
+require_once("impl/autoload/class_loads.php") ;
 
 /** @defgroup assembly 装配器
  *
@@ -33,7 +38,6 @@
  *
  *  使用者关注
  */
-
 class XSetting
 {
 
@@ -60,6 +64,7 @@ class XSetting
     static public  $logAll       = True ;
     static public  $logTag       = "" ;
     static public  $runPath      = "" ;
+    static public  $version      = "v1" ;
     static public  $assembly     = "" ;
     static public  $prjName      = "" ;
     static public  $bootstrap    = "bootstrap.php" ;
@@ -121,7 +126,17 @@ class XSetting
     {
         return  static::$extendData[$key]  ;
     }
+    static public function setupModel()
+    {
+        $sql = XDriver::shortSQLEX();
+        XEntEnv::simpleSetup($sql) ;
+    }
 
+    static public function setupModel2($sqlex,$idg)
+    {
+        XEntEnv::simpleSetup($sqlex,$idg);
+
+    }
 
 
 }
@@ -164,7 +179,7 @@ class XLogger  implements XIlogger
         $this->log = new Logger($name) ;
         $logCls    = XSetting::$logCls ;
         $this->externLog =  is_null($logCls) ?  new XNullLogger() : new $logCls($name);
-        
+
     }
     public function debug($msg,$event = null )
     {
@@ -220,26 +235,11 @@ class XLogKit
 }
 
 
-class PylonModule
-{
-    static $modleFiles=array();
-}
 
 function pylon_load_cls_index()
 {
-
-    static $index_load = false ;
-    if ($index_load ) return ;
     $lib_root  = dirname(dirname(__FILE__));
-    pylon_dict_data("$lib_root/class_index/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
-    pylon_dict_data("$lib_root/class_index/_autoload_clsname.idx","","");
-
-    $runpath = XSetting::$runPath ;
-    array_push(PylonModule::$modleFiles,"$runpath/_autoload_clspath.idx");
-    pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
-    pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
-
-    $index_load = true ;
+    PylonModule::pylon_load_cls_index($lib_root,XSetting::$version) ;
 }
 /**
  * \public
@@ -251,43 +251,17 @@ function pylon_load_cls_index()
  */
 function pylonlib__autoload($classname)
 {
-    $key       = "PYLON2_CLASS:".$classname ;
-
-    $glogger   = XLogKit::logger("_pylon");
-    $path      = pylon_dict_find($key);
-    if($path  != NULL)
-    {
-        $glogger->debug("cls : $classname , file: $path");
-        include_once("$path");
-        return ;
-    }
+    PylonModule::pylonlib__autoload($classname) ;
 }
 
 function appsys__autoload($classname)
 {
-
-    $key     = "CLASS:".$classname ;
-    $glogger = XLogKit::logger("_pylon");
-    $path    = pylon_dict_find($key);
-    if($path !=NULL)
-    {
-        $glogger->debug("cls : $classname , file: $path");
-        include_once("$path");
-        return ;
-    }
+    PylonModule::appsys__autoload($classname) ;
 }
 
 function pylon__unload($classname)
 {
-    $glogger = XLogKit::logger("_pylon");
-    $glogger->error("cls : $classname" );
-    $msg      = pylon_dict_prompt($classname);
-    $info     = "";
-    $info    .= "******* AUTOLOAD ERROR *********<br>\n";
-    $info    .= "Class not found : '$classname' <br>\n";
-    $info    .= $msg ;
-    $info    .= "DATAFILE:<br>\n" . implode(PylonModule::$modleFiles,",<br>\n");
-    $glogger->error("log load class $classname define faiure!!\n, $info");
+    PylonModule::pylon__unload($classname) ;
 }
 
 
@@ -335,6 +309,10 @@ class XPylon
      */
     static public function serving($httpStatus=true)
     {
+        if(!is_bool($httpStatus))
+        {
+            $httpStatus = true ;
+        }
 
         ob_start();
         static::useEnv();

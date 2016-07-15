@@ -1,4 +1,10 @@
 <?php
+namespace pylon\impl ;
+use XProperty ;
+use XBox ;
+use XDBC ;
+use XEntity ;
+use XSetting ;
 
 /**\addtogroup Ent
  * @{
@@ -77,7 +83,7 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         {
             $this->merge($prop);
         }
-        DBC::requireNotNull($this->xid,"entity id is null" );
+        XDBC::requireNotNull($this->xid,"entity id is null" );
     }
 
     /**
@@ -112,7 +118,7 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         $unitwork = XBox::get("unitwork");
         if( $unitwork === null )
         {
-            throw new XDBCException("没有调用 XAppSession::begin()");
+            throw new XXDBCException("没有调用 XAppSession::begin()");
         }
         return $unitwork ;
     }
@@ -229,7 +235,7 @@ class ObjUpdater
         }
         else
         {
-            DBC::unExpect($objType,"ObjUpdater not support this type ");
+            XDBC::unExpect($objType,"ObjUpdater not support this type ");
         }
         foreach($items as $item)
         {
@@ -290,7 +296,7 @@ class ObjUpdater
     }
     public function regLoad($obj)
     {
-        DBC::requireNotNull($obj);
+        XDBC::requireNotNull($obj);
         //消除副本的影响！
         if(isset($this->items[$obj->index()]))
         {
@@ -306,11 +312,11 @@ class ObjUpdater
     public function regAdd($obj)
     {
 
-        DBC::requireNotNull($obj);
+        XDBC::requireNotNull($obj);
         //消除副本的影响！
         if(isset($this->items[$obj->index()]))
         {
-            DBC::requireNotNull($this->items[$obj->index()]);
+            XDBC::requireNotNull($this->items[$obj->index()]);
             //反回第一个对象。
             return  $this->items[$obj->index()];
         }
@@ -350,7 +356,7 @@ class ObjUpdater
     }
     public function get($index)
     {
-        DBC::requireTrue(isset($this->items[$index]),"not found index[$index] obj!");
+        XDBC::requireTrue(isset($this->items[$index]),"not found index[$index] obj!");
         return $this->items[$index];
     }
     public function getByObj($indexObj)
@@ -371,7 +377,7 @@ class ObjUpdater
     }
     public function equal($other)
     {
-        DBC::requireNotNull($other);
+        XDBC::requireNotNull($other);
         $cur=$this->items();
         $oth=$other->items();
         $diff = array_udiff_assoc($cur,$oth,array($this,'objcomp'));
@@ -420,7 +426,7 @@ class SimpleMapping implements IMappingStg
     }
     public function convertDTO($vars)
     {
-        DBC::requireNotNull($vars,'$vars');
+        XDBC::requireNotNull($vars,'$vars');
         $subdtos = array();
         $dtovars = array();
         foreach($vars as $key=>$val)
@@ -524,7 +530,7 @@ class StdMapping implements IMappingStg
                 }
                 else {
                     $cls = get_class($varl) ;
-                    DBC::unExpect("unsupport $cls obj to DTO") ;
+                    XDBC::unExpect("unsupport $cls obj to DTO") ;
                 }
             }
             else {
@@ -614,7 +620,7 @@ class EntityUtls
             {
                 $msg = Prompt::recommend($key,array_keys($array));
                 $msg = JoinUtls::jarray(',',$msg);
-                DBC::unExpect("$key not unexpect!  col is $col,<br>\n key mabey is [ $msg ] <br>\n");
+                XDBC::unExpect("$key not unexpect!  col is $col,<br>\n key mabey is [ $msg ] <br>\n");
             }
         }
         return  $reflectionObj->newInstanceArgs($constrctArgs) ;
@@ -622,7 +628,7 @@ class EntityUtls
 
     static public function assembly($unitwork)
     {
-        DBC::requireNotNull($unitwork);
+        XDBC::requireNotNull($unitwork);
         XEntity::unitWork($unitwork);
     }
 
@@ -685,7 +691,7 @@ class DaoFinderUtls
 
         $names = Prompt::recommend($cls,array_keys(XBox::space_keys($key)));
         $str   = JoinUtls::jarray(',',$names);
-        DBC::unExpect("$cls $key unfoud","maybe in $str");
+        XDBC::unExpect("$cls $key unfoud","maybe in $str");
     }
 
     static public function query($clsName)

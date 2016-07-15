@@ -1,6 +1,6 @@
 <?php
-class Debug                                                                                                               
-{                                                                                                                         
+class XDebug
+{
     static public function watch($file,$line,$var,$varName="UnKonw") 
     {
         echo "<br>*****************************DEBUG::WATCH******************************<br>\n";
@@ -11,5 +11,4 @@ class Debug
         echo "from: [$file $line] <br>\n";
         echo "***************************************************************************<br>\n";
     }                                                                                                                     
-}                
-?>
+}

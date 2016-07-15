@@ -1,4 +1,5 @@
 <?php
+use pylon\impl\PYL_HttpHeader ;
 
 abstract class XBaseResp  implements  XResponse
 {
@@ -14,6 +15,7 @@ abstract class XBaseResp  implements  XResponse
 
         if($set_header === true)
         {
+
             foreach($this->headers as $name => $value)
             {
                 header("$name: " . $value);

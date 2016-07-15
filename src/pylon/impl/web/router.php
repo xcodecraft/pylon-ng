@@ -1,4 +1,18 @@
 <?php
+
+namespace pylon\impl ;
+use XInterceptor ;
+use XLogKit ;
+use XLogSpeed ;
+use XContext ;
+use XProperty ;
+use XSetting ;
+use XBox ;
+use XAop ;
+use XDBC ;
+use Exception ;
+use XExceptionUtls ;
+
 class XInterceptorRuner extends XInterceptor
 {
     private $beforedItcs = null ;
@@ -142,7 +156,7 @@ class XRouter
             $logger->$level("data : " .  http_build_query($_POST),"request");
         }
     }
-    static public function serving($http_status=true)
+    static public function serving($http_status = true )
     {
 
         ob_start();
@@ -159,7 +173,7 @@ class XRouter
         if (is_callable(XSetting::$respInsFun))
         {
             $response = call_user_func(XSetting::$respInsFun,$uri) ;
-            DBC::requireNotNull($response,"XSetting::\$respInsFun return null ") ;
+            XDBC::requireNotNull($response,"XSetting::\$respInsFun return null ") ;
         }
         else
         {

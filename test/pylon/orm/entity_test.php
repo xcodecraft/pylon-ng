@@ -1,5 +1,7 @@
 <?php
 
+use pylon\impl\NullEntity ;
+use pylon\impl\DaoFinderUtls ;
 
 class EntityTest extends PHPUnit_Framework_TestCase
 {

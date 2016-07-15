@@ -4,7 +4,26 @@
  *
  *  class Aplle extends XEntity
  */
-class XEntity extends XEntityBase
+use pylon\impl\DaoFinderUtls ;
+use pylon\impl\SimpleDaoFactory ;
+use pylon\impl\SimpleQueryFactory ;
+use pylon\impl\SimpleMapping ;
+use pylon\impl\StdMapping ;
+use pylon\impl\DaoImp ;
+use pylon\impl\XID ;
+use pylon\impl\DQLObj ;
+use pylon\impl\UnitWorkImpl ;
+use pylon\impl\DynCallParser ;
+use pylon\impl\DiagnoseContext ;
+use pylon\impl\ApiStyle ;
+use pylon\impl\FilterProp ;
+
+function QL($express,$symbol='?')
+{
+    return new DQLObj($express,$symbol);
+}
+
+class XEntity extends pylon\impl\XEntityBase
 {
     public function upgrade()
     {
@@ -501,7 +520,7 @@ class XEntEnv
             XBox::regist(XBox::SQLE,$sql_exec,__METHOD__);
             if(empty($idgenter))
             {
-                XBox::regist(XBox::IDG, new MySqlIDGenerator($sql_exec),__METHOD__);
+                XBox::regist(XBox::IDG, new pylon\driver\MySqlIDGenerator($sql_exec),__METHOD__);
             }
             else
             {

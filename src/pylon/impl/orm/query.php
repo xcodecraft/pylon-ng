@@ -1,15 +1,18 @@
 <?php
+namespace pylon\impl ;
 
+use XPylon ;
+use XDBC ;
 /**\addtogroup Ent
  * @{
  */
 
-function sqlprocutls_ins_not_dqlobj($item)
-{
-    return ! $item  instanceof DQLObj ;
-}
 class SqlProcUtls
 {
+    static function sqlprocutls_ins_not_dqlobj($item)
+    {
+        return ! $item  instanceof DQLObj ;
+    }
     static public function bindCond($key,$val)
     {
         //处理非单值的情况
@@ -21,7 +24,7 @@ class SqlProcUtls
     }
     static public function filterCondVal($arr)
     {
-        return  array_filter($arr,sqlprocutls_ins_not_dqlobj);
+        return  array_filter($arr,array("pylon\impl\SqlProcUtls",sqlprocutls_ins_not_dqlobj));
     }
     static public function  bindUpdate($key,$val)
     {
@@ -36,10 +39,6 @@ class SqlProcUtls
  *
  * @return
  */
-function QL($express,$symbol='?')
-{
-    return new DQLObj($express,$symbol);
-}
 /**
  * @brief
  */
@@ -102,12 +101,12 @@ class Query
 
     static public function toEntity($cls,$data)
     {
-        DBC::unImplement('not implement toEntity function!');
+        XDBC::unImplement('not implement toEntity function!');
     }
 
     public function getByProp($prop,$view,$viewCond='',$columns="*",$addiWhereCmd ="", $order=null)
     {
-        DBC::requireNotNull($prop);
+        XDBC::requireNotNull($prop);
         $statement = new SQLSelectStatement($view,$viewCond);
         $statement->columns($columns);
         $valsArr =  array();
@@ -167,7 +166,7 @@ class Query
         {
             $condsArr     = $prop->getPropArray();
             $valsArr      = SqlProcUtls::filterCondVal(array_values($condsArr));
-            $propCmd= JoinUtls::jassoArrayEx(' and ',$condsArr,array('SqlProcUtls','bindCond'));
+            $propCmd= JoinUtls::jassoArrayEx(' and ',$condsArr,array('pylon\impl\SqlProcUtls','bindCond'));
             return $propCmd;
         }
         return "";
@@ -197,7 +196,7 @@ class Query
         {
             $propWhere = static::prop2cmd($prop,$valsArr);
         }
-        $statement->where($propWhere.$addiWhereCmd);
+        $statement->where($propWhere);
         return $this->statementCount($statement,$valsArr);
     }
     public function listByPropExt($view,$viewCond,$columns,$prop=null,$page=null,$order=null,$addiWhereCmd="")
@@ -224,8 +223,7 @@ class Query
 
         $statement->multiOrderBy($order);
         $statement->columns($columns);
-        $rows=$this->listByCmd($statement->generateSql(),$valsArr);
-        return $rows;
+        return $this->listByCmd($statement->generateSql(),$valsArr);
     }
     public function listByPropLimit($view,$viewCond,$columns,$prop,$begin,$count,$order=null,$addiWhereCmd="")
     {

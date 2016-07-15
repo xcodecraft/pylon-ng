@@ -1,4 +1,6 @@
 <?php
+namespace pylon\impl ;
+use XEntity ;
 
 class NullEntity extends XEntity
 {

@@ -18,4 +18,5 @@ class XEnv
         }
         throw new XDBCException( "_SERVER[$key] not exists ") ;
     }
+
 }

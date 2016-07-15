@@ -1,5 +1,8 @@
 <?php
 
+use pylon\driver\XFastSQLExecutor ;
+use pylon\driver\IDGenterSvcImp ;
+use pylon\driver\MySqlIDGenerator ;
 class TestX
 {
     private $name;
@@ -16,7 +19,7 @@ class IDGenterSvcTC extends PHPUnit_Framework_TestCase
     public function __construct()
     {
         $dbConf =  Conf::getDBConf();
-        $this->_executer = new FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $this->_executer = new XFastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
         $this->_tableName = "id_genter";
 
     }
@@ -80,7 +83,7 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
     public function __construct()
     {
         $dbConf =  Conf::getDBConf();
-        $this->_executer = new FastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $this->_executer = new XFastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
     }
 
     public function setTableName($tableName)

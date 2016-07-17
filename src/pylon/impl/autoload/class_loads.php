@@ -3,6 +3,7 @@ namespace pylon\impl ;
 
 use XSetting ;
 use XLogKit ;
+use XDBCException ;
 class PylonModule
 {
     static $modleFiles=array();

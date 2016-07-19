@@ -85,7 +85,7 @@ class XRestResult
         }
         if (static::$failException)
         {
-            throw new XRuntimeException($response->statusCode,$response->body()) ;
+            throw new XRuntimeException($response->statusCode,$response->body(),0) ;
 
         }
         return  null ;

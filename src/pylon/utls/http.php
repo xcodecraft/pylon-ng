@@ -69,6 +69,8 @@ class XHttpConf
 
 class XRestResult
 {
+    public static $failException = false  ;
+
     static public function ok($response)
     {
         if($response->statusCode == 201 || $response->statusCode == 200 )
@@ -80,6 +82,11 @@ class XRestResult
                 return $data ;
 
             }
+        }
+        if (static::$failException)
+        {
+            throw new XAPICallException($response->body(),$response->statusCode) ;
+
         }
         return  null ;
     }

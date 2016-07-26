@@ -48,7 +48,7 @@ class SQLLockImp implements Lockable
         $this->_dbh->query($sql);
     }
 
-    public function unlock($key)
+    public function unlock()
     {
         $sql = sprintf("SELECT RELEASE_LOCK('%s')", $this->key);
         $this->_dbh->query($sql);

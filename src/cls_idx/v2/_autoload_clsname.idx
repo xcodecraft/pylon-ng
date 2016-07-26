@@ -1,7 +1,6 @@
 cls_pylon\driver\fastrouter,pylon\driver\FastRouter
 cls_pylon\driver\idgentersvcimp,pylon\driver\IDGenterSvcImp
 cls_pylon\driver\mysqlidgenerator,pylon\driver\MySqlIDGenerator
-cls_pylon\driver\mysqlsessdriver,pylon\driver\MySqlSessDriver
 cls_pylon\driver\pair,pylon\driver\Pair
 cls_pylon\driver\xfastsqlexecutor,pylon\driver\XFastSQLExecutor
 cls_pylon\driver\xlzlexecutor,pylon\driver\XLZLExecutor
@@ -33,7 +32,6 @@ cls_pylon\impl\lockutil,pylon\impl\LockUtil
 cls_pylon\impl\mappingutls,pylon\impl\MappingUtls
 cls_pylon\impl\memcollectlogger,pylon\impl\MemCollectLogger
 cls_pylon\impl\nullentity,pylon\impl\NullEntity
-cls_pylon\impl\nullsessiondriver,pylon\impl\NullSessionDriver
 cls_pylon\impl\objectset,pylon\impl\ObjectSet
 cls_pylon\impl\objupdater,pylon\impl\ObjUpdater
 cls_pylon\impl\prompt,pylon\impl\Prompt
@@ -70,7 +68,6 @@ cls_pylon\impl\xid,pylon\impl\XID
 cls_pylon\impl\xinterceptertarget,pylon\impl\XIntercepterTarget
 cls_pylon\impl\xinterceptorruner,pylon\impl\XInterceptorRuner
 cls_pylon\impl\xrouter,pylon\impl\XRouter
-cls_pylon\impl\xsessionsvc,pylon\impl\XSessionSvc
 cls_pylon\impl\xunitwork,pylon\impl\XUnitWork
 cls_raven_autoloader,Raven_Autoloader
 cls_raven_client,Raven_Client

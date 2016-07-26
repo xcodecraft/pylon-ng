@@ -91,6 +91,22 @@ _env:
         _mix: "_ci,php56,centos66,base"
 
 _sys:
+
+    - !R.system
+        _name : "init"
+        _res  :
+            - !R.mysql
+                host     : "ayidev02.mysql.rds.aliyuncs.com"
+                name     : "pylon_zuowenjian"
+                user     : "pylon"
+                password : "pylon123"
+                sql      : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
+            - !R.link
+                src : "/usr/local/php-${PHP_VER}/extensions/xdebug.so"
+                dst : "${PRJ_ROOT}/smasher/bin/xdebug.so"
+                force : True 
+
+
     - !R.system
         _name: "ext"
         _res :
@@ -158,16 +174,6 @@ _sys:
     - !R.system
         _name : "test"
         _res  :
-            - !R.mysql
-                host     : "ayidev02.mysql.rds.aliyuncs.com"
-                name     : "pylon_zuowenjian"
-                user     : "pylon"
-                password : "pylon123"
-                sql      : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
-            - !R.link
-                src : "/usr/local/php-${PHP_VER}/extensions/xdebug.so"
-                dst : "${PRJ_ROOT}/smasher/bin/xdebug.so"
-                force : True 
 
             - !R.using
                 path  : "${PRJ_ROOT}/src/rigger/pylon.yaml"

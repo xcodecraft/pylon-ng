@@ -70,7 +70,7 @@ class PylonModule
 
         }
 
-        // $glogger->error("load class $classname define faiure!");
+        $glogger->error("load class $classname define faiure!");
         throw new XDBCException( "cant's find cls $classname") ;
     }
 

@@ -100,10 +100,10 @@ _sys:
         _name : "init"
         _res  :
             - !R.mysql
-                host     : "ayidev02.mysql.rds.aliyuncs.com"
-                name     : "pylon_zuowenjian"
-                user     : "pylon"
-                password : "pylon123"
+                host     : "${DB_HOST}"
+                name     : "${DB_NAME}"
+                user     : "${DB_USER}"
+                password : "${DB_PWD}"
                 sql      : "${PRJ_ROOT}/test/pylon/datainit/create_db.sql"
             - !R.link
                 src : "/usr/local/php-${PHP_VER}/extensions/xdebug.so"

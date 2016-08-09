@@ -14,6 +14,7 @@ _env:
             - !R.project
                 name : "pylon"
                 root : "/data/ci_space/pylon-ng"
+                # root : "${HOME}/devspace/pylon-ng"
             - !R.vars
                 FPM_USER    : "ayb"
 

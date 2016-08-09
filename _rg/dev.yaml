@@ -1,7 +1,7 @@
 _dev:
     - !C.project
         name : "pylon-ng"
-        root : "pylon-ng"
+        root : "./"
     - !C.version
         file : "src/version.txt"
     - !C.git

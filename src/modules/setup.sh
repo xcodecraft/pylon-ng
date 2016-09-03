@@ -11,6 +11,9 @@ if test -e /etc/redhat-release  ; then
     if test  "$CONTENT" = "CentOS release 6.6 (Final)" ; then
         OS="centos-6.6"
     fi
+    if test  "$CONTENT" = "CentOS release 6.8 (Final)" ; then
+        OS="centos-6.8"
+    fi
 
 fi
 if test "$OS" = "UNKNOW"  ;  then

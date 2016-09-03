@@ -18,8 +18,11 @@ class IDGenterSvcTC extends PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-        $dbConf =  Conf::getDBConf();
-        $this->_executer = new XFastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        $host     = XSetting::ensureEnv("DB_HOST") ;
+        $user     = XSetting::ensureEnv("DB_USER") ;
+        $password = XSetting::ensureEnv("DB_PWD") ;
+        $name     = XSetting::ensureEnv("DB_NAME") ;
+        $this->_executer = new XFastSQLExecutor( $host,$user,$password,$name);
         $this->_tableName = "id_genter";
 
     }
@@ -82,8 +85,12 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-        $dbConf =  Conf::getDBConf();
-        $this->_executer = new XFastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+
+        $host     = XSetting::ensureEnv("DB_HOST") ;
+        $user     = XSetting::ensureEnv("DB_USER") ;
+        $password = XSetting::ensureEnv("DB_PWD") ;
+        $name     = XSetting::ensureEnv("DB_NAME") ;
+        $this->_executer = new XFastSQLExecutor( $host,$user,$password,$name);
     }
 
     public function setTableName($tableName)

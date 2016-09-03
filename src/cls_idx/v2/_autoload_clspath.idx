@@ -1,7 +1,6 @@
 pylon\driver\FastRouter,/pylon/driver/rest_finder.php
 pylon\driver\IDGenterSvcImp,/pylon/driver/idgenerator.php
 pylon\driver\MySqlIDGenerator,/pylon/driver/idgenerator.php
-pylon\driver\MySqlSessDriver,/pylon/driver/session_mysql.php
 pylon\driver\Pair,/pylon/driver/sql_executor.php
 pylon\driver\XFastSQLExecutor,/pylon/driver/sql_executor.php
 pylon\driver\XLZLExecutor,/pylon/driver/sql_executor.php
@@ -33,7 +32,6 @@ pylon\impl\LockUtil,/pylon/impl/basesvc/locks.php
 pylon\impl\MappingUtls,/pylon/impl/orm/entity.php
 pylon\impl\MemCollectLogger,/pylon/impl/utls/logutls.php
 pylon\impl\NullEntity,/pylon/impl/orm/other.php
-pylon\impl\NullSessionDriver,/pylon/impl/basesvc/session_svc.php
 pylon\impl\ObjectSet,/pylon/impl/orm/relation.php
 pylon\impl\ObjUpdater,/pylon/impl/orm/entity.php
 pylon\impl\Prompt,/pylon/impl/autoload/php_cls_loads.php
@@ -70,7 +68,6 @@ pylon\impl\XID,/pylon/impl/orm/entity.php
 pylon\impl\XIntercepterTarget,/pylon/impl/web/aop.php
 pylon\impl\XInterceptorRuner,/pylon/impl/web/router.php
 pylon\impl\XRouter,/pylon/impl/web/router.php
-pylon\impl\XSessionSvc,/pylon/impl/basesvc/session_svc.php
 pylon\impl\XUnitWork,/pylon/impl/orm/unitwork.php
 Raven_Autoloader,/extends/Raven/Autoloader.php
 Raven_Client,/extends/Raven/Client.php

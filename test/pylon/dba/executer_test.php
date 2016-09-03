@@ -20,9 +20,13 @@ class  DBExecuterTC extends PHPUnit_Framework_TestCase
 	public function __construct()
 	{
         $this->_tableName = "db_executer_test";
-        $dbConf =  Conf::getDBConf();
-        $this->_executer = new XFastSQLExecutor( $dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
         $this->_cnStr='GBKÖÐÎÄ';
+
+        $host     = XSetting::ensureEnv("DB_HOST") ;
+        $user     = XSetting::ensureEnv("DB_USER") ;
+        $password = XSetting::ensureEnv("DB_PWD") ;
+        $name     = XSetting::ensureEnv("DB_NAME") ;
+        $this->_executer = new XFastSQLExecutor( $host,$user,$password,$name);
 	}
 
 	public function setUp()

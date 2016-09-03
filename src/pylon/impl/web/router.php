@@ -12,6 +12,7 @@ use XAop ;
 use XDBC ;
 use Exception ;
 use XExceptionUtls ;
+use XErrCode ;
 
 class XInterceptorRuner extends XInterceptor
 {

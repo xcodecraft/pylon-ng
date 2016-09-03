@@ -14,6 +14,10 @@ class MySqlIDGenerator implements XIDGenerator
     private $_enable_second = false;
     public static $ENABLE_DOUBLE_MASTER = false;
     private $_idsets = array() ;
+    const CURID = 'curID' ;
+    const MAXID = 'maxID' ;
+    const OBJ   = 'obj' ;
+    const ID    = 'id' ;
 
     /** 
      * @brief 
@@ -57,9 +61,9 @@ class MySqlIDGenerator implements XIDGenerator
         {
             foreach($rows as $row)
             {
-                $this->_idsets[$row['obj']]['curID'] = $row['id'];
-                $this->_idsets[$row['obj']]['maxID'] = $row['id'];
-                $this->_idsets[$row['obj']]['step'] = $row['step'];
+                $this->_idsets[$row[self::OBJ]][self::CURID] = $row['id'];
+                $this->_idsets[$row[self::OBJ]][self::MAXID] = $row['id'];
+                $this->_idsets[$row[self::OBJ]]['step'] = $row['step'];
             }
         }
     }
@@ -83,7 +87,7 @@ class MySqlIDGenerator implements XIDGenerator
 
     private function createIDimp($objName)
     {
-        if($this->_idsets[$objName]['curID'] == $this->_idsets[$objName]['maxID'] )
+        if($this->_idsets[$objName][self::CURID] == $this->_idsets[$objName][self::MAXID] )
         {
             if(!$this->getBatchID($objName)) 
             {
@@ -91,8 +95,8 @@ class MySqlIDGenerator implements XIDGenerator
             }
         }
 
-        $this->_idsets[$objName]['curID'] += static::$ENABLE_DOUBLE_MASTER ? 2 : 1;
-        $createdID = $this->getID($this->_idsets[$objName]['curID']);
+        $this->_idsets[$objName][self::CURID] += static::$ENABLE_DOUBLE_MASTER ? 2 : 1;
+        $createdID = $this->getID($this->_idsets[$objName][self::CURID]);
         return $createdID;
     }
 
@@ -128,8 +132,8 @@ class MySqlIDGenerator implements XIDGenerator
             $row = $this->_executer->query($cmd);
             if($row)
             {
-                $this->_idsets[$objName]['maxID'] = $row['id'];
-                $this->_idsets[$objName]['curID'] = $row['id'] - $step;
+                $this->_idsets[$objName][self::MAXID] = $row['id'];
+                $this->_idsets[$objName][self::CURID] = $row['id'] - $step;
                 return true;
             }
         }

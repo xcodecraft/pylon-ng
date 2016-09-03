@@ -1,7 +1,4 @@
-<phpunit
-    bootstrap="./bootstrap.php"
-    colors="true"
-    >
+<phpunit bootstrap="./bootstrap.php" colors="true" >
         <testsuite name="basesvc">
             <directory suffix="test.php">basesvc</directory>
         </testsuite>
@@ -23,4 +20,9 @@
         <testsuite name="router">
             <directory suffix="test.php">router</directory>
         </testsuite>
-</phpunit>
+        <filter>
+            <whitelist processUncoveredFilesFromWhitelist="true">
+                <directory suffix=".php">../../src/pylon/</directory>
+            </whitelist>
+        </filter>
+    </phpunit>

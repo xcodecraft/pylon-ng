@@ -3,8 +3,8 @@ class RestDemoTest extends PHPUnit_Framework_TestCase
 {
     public function setup()
     {
-        $user       = $_SERVER['USER'] ;
-        $conf       = XHttpConf::localSvc("$user.demo.pylon360.com",80);
+        $domain     = XSetting::ensureEnv('DOMAIN') ;
+        $conf       = XHttpConf::localSvc($domain,80);
         $this->curl = new XHttpCaller($conf);
     }
 

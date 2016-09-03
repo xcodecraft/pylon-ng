@@ -14,8 +14,14 @@ class UTAssemply
     static public function setup()
     {
         // echo "---------------------------------0------------------------------" ;
-        $dbConf =  Conf::getDBConf();
-        $executer = new XFastSQLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name);
+        //
+
+        $host     = XSetting::ensureEnv("DB_HOST") ;
+        $user     = XSetting::ensureEnv("DB_USER") ;
+        $password = XSetting::ensureEnv("DB_PWD") ;
+        $name     = XSetting::ensureEnv("DB_NAME") ;
+        $executer = new XFastSQLExecutor( $host,$user,$password,$name);
+
         XBox::regist(XBox::SQLE,$executer,__METHOD__);
         XBox::regist(XBox::IDG, new MySqlIDGenerator($executer),__METHOD__);
         // echo "---------------------------------1------------------------------" ;

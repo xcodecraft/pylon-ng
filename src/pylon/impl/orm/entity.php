@@ -5,6 +5,7 @@ use XBox ;
 use XDBC ;
 use XEntity ;
 use XSetting ;
+use XDBCException ;
 
 /**\addtogroup Ent
  * @{
@@ -118,7 +119,7 @@ class XEntityBase extends XProperty implements XIAutoUpdate
         $unitwork = XBox::get("unitwork");
         if( $unitwork === null )
         {
-            throw new XXDBCException("没有调用 XAppSession::begin()");
+            throw new XDBCException("没有调用 XAppSession::begin()");
         }
         return $unitwork ;
     }
@@ -263,7 +264,7 @@ class ObjUpdater
     }
     public function haveChange()
     {
-        if(count($this->additems)>0  ||  count($this->delitems)>0) 
+        if(count($this->additems)>0  ||  count($this->delitems)>0)
         {
             return true;
         }
@@ -369,7 +370,7 @@ class ObjUpdater
     }
     public function  objcomp($a,$b)
     {
-        if($a==$b) 
+        if($a==$b)
         {
             return 0;
         }
@@ -401,7 +402,7 @@ interface IMappingStg
     public function convertDTO($vars);
     public function buildEntityProp(&$array);
 }
-class MappingUtls 
+class MappingUtls
 {
     static public function assembleDTO($dtovars,$subdtos)
     {
@@ -675,7 +676,7 @@ class DaoFinderUtls
     {
         $cls  =  strtolower($cls);
         $obj  = XBox::get($key,"/$cls");
-        if($obj !== null) 
+        if($obj !== null)
         {
             return $obj ;
         }

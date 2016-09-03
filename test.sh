@@ -1,5 +1,4 @@
-rg conf -e dev -s demo,test
-# rg data,start  -s test  
-rg data,start  
+rg conf -e dev -s init,demo,test
+rg restart
 
 

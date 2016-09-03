@@ -16,13 +16,6 @@ interface XIDGenerator
 }
 
 
-/**
- * @brief  SessionSvc depend  一个 SessionDriver
- */
-// interface XSessionDriver
-// {
-//     public function init();
-// }
 
 /**
  * @ingroup entity

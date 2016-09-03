@@ -1,0 +1,22 @@
+_env:
+    - !R.env
+        _name : "php53"
+        _res  :
+            - !R.vars
+                PHP_VER     : "5.3"
+                PHP_VER_TAG : "53"
+                PHP_INI_TPL : "tpl_web_php.ini"
+    - !R.env
+        _name : "php56"
+        _res  :
+            - !R.vars
+                PHP_VER     : "5.6"
+                PHP_VER_TAG : "56"
+                PHP_INI_TPL : "tpl_web_php.ini"
+    - !R.env
+        _name : "php70"
+        _res  :
+            - !R.vars
+                PHP_VER     : "7.0"
+                PHP_VER_TAG : "70"
+                PHP_INI_TPL : "tpl_web_php.ini"

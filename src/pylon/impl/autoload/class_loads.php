@@ -4,6 +4,8 @@ namespace pylon\impl ;
 use XSetting ;
 use XLogKit ;
 use XDBCException ;
+use pylon_dict_data ;
+use pylon_dict_find ;
 class PylonModule
 {
     static $modleFiles=array();
@@ -11,7 +13,7 @@ class PylonModule
     static function pylon_load_cls_index($lib_root,$ver)
     {
         static $index_load = false ;
-        if ($index_load ) 
+        if ($index_load )
         {
             return ;
         }

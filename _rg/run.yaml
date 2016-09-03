@@ -1,5 +1,12 @@
 _env:
     - !R.env
+        _name : "include"
+        _res  :
+            - !R.include
+                _path :
+                    - "./_rg/os.yaml"
+                    - "./_rg/php.yaml"
+    - !R.env
         _name : "_dev"
         _res  :
             - !R.project
@@ -7,6 +14,7 @@ _env:
                 root : "${HOME}/devspace/pylon-ng"
             - !R.vars
                 FPM_USER    : "${USER}"
+                BASE_DOMAIN : "${USER}.demo.xcodecraft.com"
 
     - !R.env
         _name : "_ci"
@@ -16,39 +24,14 @@ _env:
                 root : "/data/ci_space/pylon-ng"
                 # root : "${HOME}/devspace/pylon-ng"
             - !R.vars
-                FPM_USER    : "ayb"
+                FPM_USER    : "xcc"
 
     - !R.env
         _name : "_online"
         _res  :
             - !R.vars
-                DOMAIN      :  "api.pylon360.com"
-            - !R.vars
-                FPM_USER    : "ayb"
-    - !R.env
-        _name : "centos54"
-        _res  :
-            - !R.vars
-                OS_VER      : "centos-5.4"
-    - !R.env
-        _name : "centos66"
-        _res  :
-            - !R.vars
-                OS_VER      : "centos-6.6"
-    - !R.env
-        _name : "php53"
-        _res  :
-            - !R.vars
-                PHP_VER     : "5.3"
-                PHP_VER_TAG : "53"
-                PHP_INI_TPL : "tpl_web_php.ini"
-    - !R.env
-        _name : "php56"
-        _res  :
-            - !R.vars
-                PHP_VER     : "5.6"
-                PHP_VER_TAG : "56"
-                PHP_INI_TPL : "tpl_web_php_56.ini"
+                FPM_USER    : "xcc"
+                BASE_DOMAIN : "xcodecraft.com"
 
     - !R.env
         _name : "base"
@@ -56,9 +39,9 @@ _env:
 
             - !R.vars
                 PYLON     : "${PRJ_ROOT}/src"
-                DB_HOST   : "ayidev02.mysql.rds.aliyuncs.com"
-                DB_USER   : "pylon"
-                DB_PWD    : "pylon123"
+                DB_HOST   : "rm-2zev1kz7y3a0adx9d.mysql.rds.aliyuncs.com"
+                DB_USER   : "xcc_dev"
+                DB_PWD    : "dev1024@xcc"
                 DB_NAME   : "pylon_${USER}"
                 PHP_ERROR : "E_ALL & ~E_NOTICE"
                 DEBUG     : "FALSE1"
@@ -85,7 +68,7 @@ _env:
                 DEBUG     : "TRUE"
     - !R.env
         _name : "dev"
-        _mix: "_dev,php56,centos66,base"
+        _mix: "include,_dev,php56,centos66,base"
 
     - !R.env
         _name : "ci"
@@ -146,7 +129,7 @@ _sys:
         _res :
                 - !R.vars
                     APP_SYS       : "demo"
-                    DOMAIN        : "${USER}.demo.pylon360.com"
+                    DOMAIN        : "${BASE_DOMAIN}"
                     SOCK_FILE     : "${RUN_PATH}/fpm.sock"
                     PHP_INCLUDE   : "${PRJ_ROOT}/src:${PRJ_ROOT}/demo/:/usr/local/php/lib/php/"
 
@@ -169,7 +152,7 @@ _sys:
         _name: "code"
         _res :
                 - !R.vars
-                    DOMAIN        : "code.pylon360.com"
+                    DOMAIN        : "code.xcodecraft.com"
                 - !R.nginx_conf
                     tpl:  "${PRJ_ROOT}/conf/options/doc_code_ngx.conf"
                     src:  "${PRJ_ROOT}/conf/used/doc_code_ngx.conf"
@@ -178,6 +161,9 @@ _sys:
     - !R.system
         _name : "test"
         _res  :
+            - !R.vars
+                APP_SYS       : "demo"
+                DOMAIN        : "${BASE_DOMAIN}"
 
             - !R.using
                 path  : "${PRJ_ROOT}/src/rigger/pylon.yaml"

@@ -29,17 +29,19 @@ class Cond
 
     public static $_valComparison
         = array(
-            'gt&lt'   => '/^\(([^,]){1,},([^,]){1,}\)$/',//开区间  in为字段，(1,2) [2016-01-02,2017-09-08]
-            'gt&elt'  => '/^\(([^,]){1,},([^,]){1,}\]$/',//半开半闭
-            'egt&lt'  => '/^\[([^,]){1,},([^,]){1,}\)$/',//半闭半开
-            'egt&elt' => '/^\[([^,]){1,},([^,]){1,}\]$/',//闭区间
-            'in'      => '/^\{(\S{1,})(\S{1,},)?\}$/', //in
-            'notin'   => '/^!\{(\S{1,})(\S{1,},)?\}$/', //notin
-            'egt'     => '/^>=/',
-            'elt'     => '/^<=/',
-            'neq'     => '/^!=/',
-            'gt'      => '/^>/',
-            'lt'      => '/^</',
+            'gt&lt'               => '/^\(([^,]){1,},([^,]){1,}\)$/',//开区间  in为字段，(1,2) [2016-01-02,2017-09-08]
+            'gt&elt'              => '/^\(([^,]){1,},([^,]){1,}\]$/',//半开半闭
+            'egt&lt'              => '/^\[([^,]){1,},([^,]){1,}\)$/',//半闭半开
+            'egt&elt'             => '/^\[([^,]){1,},([^,]){1,}\]$/',//闭区间
+            'in'                  => '/^\{(\S{1,})(\S{1,},)?\}$/', //in
+            'notin'               => '/^!\{(\S{1,})(\S{1,},)?\}$/', //notin
+            'egt'                 => '/^>=/',
+            'elt'                 => '/^<=/',
+            'neq'                 => '/^!=/',
+            'gt'                  => '/^>/',
+            'lt'                  => '/^</',
+            self::SQL_LIKE_EXP    => '/^like\((\S{1,})(\S{1,},)?\)$/', //like
+            self::SQL_NOTLIKE_EXP => '/^!like\((\S{1,})(\S{1,},)?\)$/', //notlike
         );
 }
 
@@ -177,11 +179,29 @@ class dbquery
         return $cls;
     }
 
+    private function getCondFromDTO($clsQuery, $clsDTO=null, $filterEmpty = true)
+    {
+        $objArr = get_object_vars($clsQuery);
+        $dtoArr = $clsDTO?get_class_vars($clsDTO):array();
+        foreach ($objArr as $k => $v) {
+            if (($v === '' || is_null($v)) && $filterEmpty) {
+                unset($objArr[$k]);
+            } else {
+                $v = $v ? $v : '';
+                if ((($clsDTO && array_key_exists($k, $dtoArr)) || !$clsDTO) && ! is_array($v)) {
+                    $this->setQueryFromVal($k, $v);
+                }
+            }
+        }
+        $this->sqlKeyFilter($objArr);//过滤系统字段 如limit,order
+        return $this;
+    }
+
     private function setQueryFromVal($k, $v)
     {
         $isFind = false;
         foreach (Cond::$_valComparison as $xexp => $reg) {
-            if (preg_match($reg, $v) === 1) {
+            if (preg_match($reg, $v,$match) === 1) {
                 if ( ! isset(Cond::$_comparison[$xexp])) {
                     $exp1  = substr($xexp, 0, strrpos($xexp, '&'));
                     $exp2  = substr($xexp, strrpos($xexp, '&') + 1);
@@ -197,6 +217,8 @@ class dbquery
                         } else {
                             $v = substr($v, 2, strlen($v) - 3);
                         }
+                    }elseif(in_array($xexp,AyiCond::$likeExpArr)){
+                        $v = $match[1];
                     } else {
                         $v = str_replace(Cond::$_comparison[$xexp], '', $v);
                     }
@@ -215,19 +237,31 @@ class dbquery
 
     public function __call($method, $arg)
     {
-        if (strpos($method, 'set') === 0) {
+        if(stripos($method,'_by_dto') !== false){
+            $condArr = explode("_",$method);
+            $dataMethod = null;
+            if($condArr[0] == 'list'){
+                $dataMethod = 'fetchAll';
+            }elseif($condArr[0] == 'get'){
+                $dataMethod = 'fetchRow';
+            }
+            if($dataMethod){
+                return $this->table($condArr[1])->getCondFromDTO($arg[0],$arg[1])->$dataMethod();
+            }
+        }else if (stripos($method, 'set') === 0) {
             $k        = strtolower('_' . str_replace('set', '', $method));
             $arg[0]   = rawurldecode($arg[0]);
             $this->$k = $arg[0];
 
             return $this;
-        } else if (strpos($method, 'get') === 0) {
+        } else if (stripos($method, 'get') === 0) {
             $k = strtolower('_' . str_replace('get', '', $method));
 
             return $this->$k;
         } else if (in_array(strtolower($method), Cond::$mysqlFun, true)) {
             // 统计查询的实现
             $field = isset($arg[0]) ? $arg[0] : '*';
+
             return $this->setField(strtoupper($method) . '(' . $field . ') AS ayb_' . $method)->fetchOne();
         }
     }

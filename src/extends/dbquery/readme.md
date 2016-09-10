@@ -128,9 +128,13 @@ SvcUtls\DB 扩展
     */
     $couponQueryDTO     = new CouponDTO;
     $couponQueryDTO->id = $queryArr['id'];
-    $data               = \Pylon\db\dbquery::arrIns($couponQueryDTO, CouponDTO)
-                            ->table('coupon')
-                            ->fetchAll();
+    $data               = \Pylon\db\dbquery::Q()->list_coupon_by_dto($couponQueryDTO, CouponDTO);
+    //或者 获取数据集合
+    $data = \Pylon\db\dbquery::arrIns($couponQueryDTO, CouponDTO)->fetchAll();
+   
+    //获取单行数据
+    $data               = \Pylon\db\dbquery::Q()->get_coupon_by_dto($couponQueryDTO, CouponDTO);
+
 ```
 ##### 2.等于，大于，小于，大于等于，小于等于 表达式说明
 ``` php
@@ -140,8 +144,8 @@ SvcUtls\DB 扩展
     */
     $couponQueryDTO     = new CouponDTO;
     $couponQueryDTO->id = 'xxx';
-    $data               = \Pylon\db\dbquery::arrIns($couponQueryDTO, CouponDTO)
-                            ->db($this->dbContect)->table('coupon')->fetchAll();
+    $data               = \Pylon\db\dbquery::Q()->list_coupon_by_dto($couponQueryDTO, CouponDTO)
+                            ->db($this->dbContect);
 
     /**
     * 大于
@@ -180,8 +184,8 @@ SvcUtls\DB 扩展
     */
     $couponQueryDTO     = new CouponDTO;
     $couponQueryDTO->id = '(xxxA,xxxB)';
-    $data               = \Pylon\db\dbquery::arrIns($couponQueryDTO, CouponDTO)
-                            ->db($this->dbContect)->table('coupon')->fetchAll();
+    $data               = \Pylon\db\dbquery::Q()->list_coupon_by_dto($couponQueryDTO, CouponDTO)
+                            ->db($this->dbContect);
 
     /**
     * 闭区间
@@ -213,8 +217,7 @@ SvcUtls\DB 扩展
     */
     $couponQueryDTO     = new CouponDTO;
     $couponQueryDTO->id = '{xxxA,xxxB}';
-    $data               = \Pylon\db\dbquery::arrIns($couponQueryDTO, CouponDTO)
-                        ->db($this->dbContect)->table('coupon')->fetchAll();
+    $data               = \Pylon\db\dbquery::Q()->list_coupon_by_dto($couponQueryDTO);
 
     /**
     * not in 查询
@@ -230,13 +233,15 @@ SvcUtls\DB 扩展
     * like 查询
     * 解析后的sql语句为 select * from coupon where name like '%xxx%'
     */
-    \Pylon\db\dbquery::arrIns($couponQueryDTO, CouponDTO)
-       ->db($this->dbContect)->table('coupon')->setCond('name',array('like','xxx'))->fetchAll();
+     $couponQueryDTO     = new CouponDTO;
+     $couponQueryDTO->id = '!like(xxx)';
+   \Pylon\db\dbquery::Q()->list_coupon_by_dto($couponQueryDTO, CouponDTO);
 
     /**
     * notlike 查询
     * 解析后的sql语句为 select * from coupon where name not like '%xxx%'
     */
-    \Pylon\db\dbquery::arrIns($couponQueryDTO, CouponDTO)
-    ->db($this->dbContect)->table('coupon')->setCond('name',array('notlike','xxx'))->fetchAll();
+    $couponQueryDTO     = new CouponDTO;
+    $couponQueryDTO->id = '!like(xxx)';
+    \Pylon\db\dbquery::Q()->list_coupon_by_dto($couponQueryDTO, CouponDTO);
 ```

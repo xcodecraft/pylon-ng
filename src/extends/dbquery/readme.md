@@ -234,7 +234,7 @@ SvcUtls\DB 扩展
     * 解析后的sql语句为 select * from coupon where name like '%xxx%'
     */
      $couponQueryDTO     = new CouponDTO;
-     $couponQueryDTO->id = '!like(xxx)';
+     $couponQueryDTO->id = 'like(xxx)';
    \Pylon\db\dbquery::Q()->list_coupon_by_dto($couponQueryDTO, CouponDTO);
 
     /**

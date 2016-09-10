@@ -183,6 +183,7 @@ class dbquery
     {
         $objArr = get_object_vars($clsQuery);
         $dtoArr = $clsDTO?get_class_vars($clsDTO):array();
+        $this->sqlKeyFilter($objArr);//过滤系统字段 如limit,order
         foreach ($objArr as $k => $v) {
             if (($v === '' || is_null($v)) && $filterEmpty) {
                 unset($objArr[$k]);
@@ -193,7 +194,6 @@ class dbquery
                 }
             }
         }
-        $this->sqlKeyFilter($objArr);//过滤系统字段 如limit,order
         return $this;
     }
 

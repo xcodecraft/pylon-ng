@@ -518,6 +518,10 @@ class XEntEnv
         if ($sql_exec !== null)
         {
             XBox::regist(XBox::SQLE,$sql_exec,__METHOD__);
+            if (XBox::have(XBox::IDG))
+            {
+                return ;
+            }
             if(empty($idgenter))
             {
                 XBox::regist(XBox::IDG, new pylon\driver\MySqlIDGenerator($sql_exec),__METHOD__);

@@ -110,9 +110,6 @@ class XRestResult
             if ($errno == null | $err['sub_code'] == $errno) {
                 return  true ;
             }
-            else
-            {
-            }
 
         }
         return  false;
@@ -413,7 +410,7 @@ class XHttpSimulator
     static public function setup($bootstrap)
     {
         static $isSetup = false ;
-        if ($isSetup) 
+        if ($isSetup)
         {
             return  ;
         }

@@ -3,7 +3,7 @@ namespace pylon\driver ;
 
 use XIDGenerator ;
 
-/** 
+/**
  * @ingroup extends
  * @brief  基于Mysql实现的IDGenterService
  */
@@ -19,22 +19,22 @@ class MySqlIDGenerator implements XIDGenerator
     const OBJ   = 'obj' ;
     const ID    = 'id' ;
 
-    /** 
-     * @brief 
-     * 
+    /**
+     * @brief
+     *
      * @param $executer  数据库执行器
      * @param $clone     是否独立于事务，默认为 true
      * @param $second    双 Master模式下 ，true 为双数ID, false 为 单数。
-     * 
-     * @return 
+     *
+     * @return
      */
     public function __construct($executer,$clone=true,$second=false)
     {
         if(!$clone){
-            $this->_executer = $executer; 
+            $this->_executer = $executer;
         }
         else {
-            $this->_executer = clone $executer; 
+            $this->_executer = clone $executer;
         }
 
         if( static::$ENABLE_DOUBLE_MASTER && $second) {
@@ -43,10 +43,10 @@ class MySqlIDGenerator implements XIDGenerator
 
     }
 
-    /** 
+    /**
      * @brief  打开双 Master支持
-     * 
-     * @return 
+     *
+     * @return
      */
     public static function ENABLE_DOUBLE_MASTER()
     {
@@ -61,9 +61,9 @@ class MySqlIDGenerator implements XIDGenerator
         {
             foreach($rows as $row)
             {
-                $this->_idsets[$row[self::OBJ]][self::CURID] = $row['id'];
-                $this->_idsets[$row[self::OBJ]][self::MAXID] = $row['id'];
-                $this->_idsets[$row[self::OBJ]]['step'] = $row['step'];
+                $this->_idsets[$row[static::OBJ]][static::CURID] = $row['id'];
+                $this->_idsets[$row[static::OBJ]][static::MAXID] = $row['id'];
+                $this->_idsets[$row[static::OBJ]]['step'] = $row['step'];
             }
         }
     }
@@ -87,16 +87,16 @@ class MySqlIDGenerator implements XIDGenerator
 
     private function createIDimp($objName)
     {
-        if($this->_idsets[$objName][self::CURID] == $this->_idsets[$objName][self::MAXID] )
+        if($this->_idsets[$objName][static::CURID] == $this->_idsets[$objName][static::MAXID] )
         {
-            if(!$this->getBatchID($objName)) 
+            if(!$this->getBatchID($objName))
             {
                 return false;
             }
         }
 
-        $this->_idsets[$objName][self::CURID] += static::$ENABLE_DOUBLE_MASTER ? 2 : 1;
-        $createdID = $this->getID($this->_idsets[$objName][self::CURID]);
+        $this->_idsets[$objName][static::CURID] += static::$ENABLE_DOUBLE_MASTER ? 2 : 1;
+        $createdID = $this->getID($this->_idsets[$objName][static::CURID]);
         return $createdID;
     }
 
@@ -132,8 +132,8 @@ class MySqlIDGenerator implements XIDGenerator
             $row = $this->_executer->query($cmd);
             if($row)
             {
-                $this->_idsets[$objName][self::MAXID] = $row['id'];
-                $this->_idsets[$objName][self::CURID] = $row['id'] - $step;
+                $this->_idsets[$objName][static::MAXID] = $row['id'];
+                $this->_idsets[$objName][static::CURID] = $row['id'] - $step;
                 return true;
             }
         }

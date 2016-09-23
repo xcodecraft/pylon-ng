@@ -99,10 +99,6 @@ class Query
         return $this->exer;
     }
 
-    static public function toEntity($cls,$data)
-    {
-        XDBC::unImplement('not implement toEntity function!');
-    }
 
     public function getByProp($prop,$view,$viewCond='',$columns="*",$addiWhereCmd ="", $order=null)
     {
@@ -133,7 +129,7 @@ class Query
     {
         if($page !=null)
         {
-            if(!$page->isInit) 
+            if(!$page->isInit)
             {
                 $page->initTotalRows($this->countOfCmd($cmd,$valsArr));
             }

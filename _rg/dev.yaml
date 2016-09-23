@@ -7,11 +7,12 @@ _dev:
     - !C.git
         remote : "git@github.com:xcodecraft/pylon-ng.git"
     - !C.sonar
-        runner   : "/data/x/tools/sonar/bin/sonar-runner"
-        qube     : "http://sonar.ayibang.cn"
+        runner   : "/data/sonar-scanner/bin/sonar-scanner"
+        qube     : "http://10.26.101.134:9000"
         src      : "src/pylon"
-        test     : "test/pylon"
         language : "php"
-        config:
-            - "sonar.php.coverage.reportPath=test/pylon/reports/phpunit.coverage.xml"
-            - "sonar.php.tests.reportPath=test/pylon/reports/phpunit.report.xml"
+        config   :
+            - "sonar.login=mara"
+            - "sonar.password=NzZhY2Q2ZTA5Nzk4Zjc0YjZhNWM1NTEw"
+            - "sonar.php.coverage.reportPath=test/reports/phpunit.coverage.xml"
+            - "sonar.php.tests.reportPath=test/reports/phpunit.report.xml"

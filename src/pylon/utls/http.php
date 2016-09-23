@@ -67,6 +67,7 @@ class XHttpConf
     }
 }
 
+const ERROR_TAG = "error"
 class XRestResult
 {
     public static $failException = false  ;
@@ -95,9 +96,9 @@ class XRestResult
         DBC::requireNotNull($response);
 
         $data = json_decode($response->body(),true) ;
-        if(isset($data['error']))
+        if(isset($data[ERROR_TAG]))
         {
-            return $data['error'] ;
+            return $data[ERROR_TAG] ;
 
         }
         return  null ;
@@ -140,6 +141,12 @@ function lineBody($body)
     return  str_replace(array("\r\n","\n","\r"),"|",$body);
 }
 
+
+const HTTP_POST = 'POST' ;
+const HTTP_GET  = 'GET' ;
+const LOG_DEBUG = 'debug' ;
+const LOG_INFO  = 'info' ;
+const LOG_ERROR = 'error'
 /**
  * @brief
  */
@@ -209,9 +216,8 @@ class XHttpCaller
     public function get($url,$timeout=0)
     {
         $url = $this->makeURL($url);
-        curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"GET");
-        $r   = $this->callRemote('GET',$url,$timeout);
-        return $r;
+        curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,HTTP_GET);
+        return   = $this->callRemote('GET',$url,$timeout);
     }
     /**
      * @brief PUT 调用
@@ -251,7 +257,7 @@ class XHttpCaller
     {
         $this->bindData($data) ;
         $url = $this->makeURL($url);
-        curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,"POST");
+        curl_setopt($this->ch,CURLOPT_CUSTOMREQUEST,HTTP_POST);
         return $this->callRemote('POST',$url,$timeout);
     }
     public function setHeader($value,$mutiRequ=true)
@@ -323,7 +329,7 @@ class XHttpCaller
         if ($this->conf->timeout_ms > 0 && ! defined('CURLOPT_TIMEOUT_MS'))
         {
             $this->conf->timeout_ms = null;
-            $this->log('error',"TIMEOUT_MS need cURL 7.16.2.", '');
+            $this->log(ERROR_TAG,"TIMEOUT_MS need cURL 7.16.2.", '');
         }
 
         $timeout = $timeout > 0 ? $timeout : $this->conf->timeout;
@@ -341,18 +347,18 @@ class XHttpCaller
         if(!empty($this->conf->proxy))
         {
             curl_setopt($this->ch, CURLOPT_PROXY, $this->conf->proxy);
-            $this->log("debug","[proxy] ".$this->conf->proxy,$event);
+            $this->log(LOG_DEBUG,"[proxy] ".$this->conf->proxy,$event);
         }
         if(!empty($this->conf->bHttps))
         {
             curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, FALSE);
             curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false);
-            $this->log("debug","[https] ",$event);
+            $this->log(LOG_DEBUG,"[https] ",$event);
         }
 
         $port      = $this->conf->port;
-        $this->log("info",$reqestMsg,$event);
-        $this->log("debug","curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" -d {$this->call_data} ",$event);
+        $this->log(LOG_INFO,$reqestMsg,$event);
+        $this->log(LOG_DEBUG,"curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" -d {$this->call_data} ",$event);
         $stime      = microtime(true);
         $r          = curl_exec($this->ch);
         $errono     = curl_errno($this->ch);
@@ -376,10 +382,10 @@ class XHttpCaller
                 echo "[respons: {$response->statusCode} ($usetime s)] body: $body" ;
                 echo "\n" ;
             }
-            $this->log('error',"$url curlerr: ".$errMsg,$event);
-            $this->log("error","[reqest,$port:$method,timeout:$timeout_info] url: $url",$event);
-            $this->log("error","curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" ",$event);
-            $this->log("error","[respons: {$response->statusCode} ($usetime s)] body: $body",$event);
+            $this->log(ERROR_TAG,"$url curlerr: ".$errMsg,$event);
+            $this->log(ERROR_TAG,"[reqest,$port:$method,timeout:$timeout_info] url: $url",$event);
+            $this->log(ERROR_TAG,"curl -X $method -H\"Host:{$this->conf->domain}\" \"$url\" ",$event);
+            $this->log(ERROR_TAG,"[respons: {$response->statusCode} ($usetime s)] body: $body",$event);
             if(!empty($this->conf->exception))
             {
                 $cls = $this->conf->exception ;
@@ -388,7 +394,7 @@ class XHttpCaller
         }
         else {
             $body   = lineBody($response->body()) ;
-            $this->log("info","[respons: {$response->statusCode} ($usetime s)] body: $body",$event);
+            $this->log(LOG_INFO,"[respons: {$response->statusCode} ($usetime s)] body: $body",$event);
         }
 
         if ($usetime > 0.5)
@@ -396,9 +402,8 @@ class XHttpCaller
             $slowmsg = "[slow] usetime: $usetime(s), code: $statusCode, timeout: $timeout_info, port: $port, method: $method, url: $url ";
             $this->log('warn', $slowmsg, $event);
         }
-        $this->headers = array();
-
-        $this->call_data  = null ;;
+        $this->headers   = array();
+        $this->call_data = null ;
         return $response ;
     }
 
@@ -445,7 +450,7 @@ class XHttpSimulator
     public function post($uri,$data)
     {
         $_SERVER['REQUEST_URI']    = $uri ;
-        $_SERVER['REQUEST_METHOD'] = "POST" ;
+        $_SERVER['REQUEST_METHOD'] = HTTP_POST ;
         $_REQUEST                  = $data;
         $_POST                     = $data;
 
@@ -476,7 +481,7 @@ class XHttpSimulator
     public function get($uri)
     {
         $_SERVER['REQUEST_URI']    = $uri ;
-        $_SERVER['REQUEST_METHOD'] = "GET" ;
+        $_SERVER['REQUEST_METHOD'] = HTTP_GET ;
         $_REQUEST                  = array() ;
         $_GET                      = array() ;
 
@@ -498,8 +503,7 @@ class XHttpSimulator
             echo $data;
         }
 
-        $response   = new XHttpResponse(200,$data);
-        return $response;
+        return  new XHttpResponse(200,$data);
 
     }
 }

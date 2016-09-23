@@ -1,7 +1,7 @@
 <?php
 /**
  * @ingroup utls
- * @brief 
+ * @brief
  */
 class XStatusDirect
 {
@@ -13,7 +13,7 @@ class XStatusDirect
         $this->to = $to;
     }
 };
-/** 
+/**
  * @brief  状态机
  */
 class XStatusMachine
@@ -30,34 +30,34 @@ class XStatusMachine
         $this->moveableDirects = array();
         $this->parentSonsMap = array();
     }
-    /** 
+    /**
      * @brief 添加状态
-     * 
-     * @return 
+     *
+     * @return
      */
     public function add()
     {
         $statusList =  func_get_args();
         foreach($statusList as $status)
         {
-            $this->addSon($this->rootStatus,$status); 
+            $this->addSon($this->rootStatus,$status);
         }
     }
-    /** 
+    /**
      * @brief 添加子状态
-     * 
-     * @param $parent 
-     * @param $son1 
-     * 
-     * @return 
+     *
+     * @param $parent
+     * @param $son1
+     *
+     * @return
      */
-    public function addSon($parent, $son1)
+    public function addSon($parent, $son)
     {
-        $args = func_get_args();
-        $parentStatus = array_shift($args); 
+        $args         = func_get_args();
+        $parentStatus = array_shift($args);
         if(array_key_exists($parent,$this->parentSonsMap))
         {
-            $oldSons = $this->parentSonsMap[$parent];
+            $oldSons                      = $this->parentSonsMap[$parent];
             $this->parentSonsMap[$parent] = array_merge($args,$oldSons);
         }
         else
@@ -76,16 +76,19 @@ class XStatusMachine
     }
 
     public function isParentSonRelation($parent, $son)
-    {       
+    {
         $parentid = $son;
-        do      
-    {       
-        $parentid=$this->parentStatus($son);
-        if($parentid == $parent) return true;
-        $son = $parentid;
-    }while($parentid!= $this->rootStatus);
+        do
+        {
+            $parentid=$this->parentStatus($son);
+            if($parentid == $parent)
+            {
+                return true;
+            }
+            $son = $parentid;
+        }while($parentid!= $this->rootStatus);
         return false;
-    }       
+    }
 
     public function bidirecMoveable($first, $second)
     {
@@ -101,7 +104,7 @@ class XStatusMachine
         DBC::requireTrue($len >= 2 );
         for($i =1 ; $i<$len ; ++$i )
         {
-            $left2right = new XStatusDirect($statusList[$i-1],$statusList[$i]); 
+            $left2right = new XStatusDirect($statusList[$i-1],$statusList[$i]);
             array_push($this->moveableDirects,$left2right);
         }
     }
@@ -113,8 +116,8 @@ class XStatusMachine
     {
         foreach( $this->moveableDirects as $statusDirect)
         {
-            if(($statusDirect->from == $this->currentStatus  || 
-                $this->isParentSonRelation($statusDirect->from ,$this->currentStatus)) && 
+            if(($statusDirect->from == $this->currentStatus  ||
+                $this->isParentSonRelation($statusDirect->from ,$this->currentStatus)) &&
                 $statusDirect->to == $status )
                 return true;
         }

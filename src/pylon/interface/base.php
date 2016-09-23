@@ -18,9 +18,12 @@ class XProperty
 	 */
 	public function have($name)
 	{
-		if(!is_string($name)) return false;
         DBC::requireNotNull($this->attr,'attr');
-		return array_key_exists(strtolower($name),$this->attr);
+        if(is_string($name))
+        {
+            return array_key_exists(strtolower($name),$this->attr);
+        }
+        return false;
 	}
 	/**
 	 * @brief  获取不存在的值，会报错
@@ -59,7 +62,7 @@ class XProperty
 	{
 		return $this->have($name)?$this->attr[$name]:$default;
 	}
-    public function set($name,$vale)
+    public function set($name,$value)
     {
         $this->attr[$name] = $value ;
     }
@@ -67,7 +70,9 @@ class XProperty
     static public function fromArray($arr=array())
     {
         if(empty($arr))
+        {
             return new XProperty();
+        }
         $lowerArr = array_change_key_case($arr) ;
         return new XProperty($lowerArr);
     }
@@ -85,15 +90,6 @@ class XProperty
         $name=strtolower($name);
         unset( $this->attr[$name]);
     }
-    // public function filter($value=null,$fun=null)
-    // {
-    //     if($value)
-    //         $fun = create_function('$v','return  $v != '.$value.'; ');
-    //     if($fun)
-    //         $this->attr= array_filter($this->attr,$fun);
-    //     else
-    //         $this->attr= array_filter($this->attr);
-    // }
 
 }
 

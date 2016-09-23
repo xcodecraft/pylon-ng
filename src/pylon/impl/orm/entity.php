@@ -436,7 +436,7 @@ class SimpleMapping implements IMappingStg
             {
                 $dtovars[$key."__id"]= null;
             }
-            elseif(is_object($val) && $val instanceof  XEntity)
+            elseif(is_object($val) && ( $val instanceof  XEntity  || $val instanceof LDProxy))
             {
                 $dtovars[$key."__id"]= $val->id();
             }
@@ -444,12 +444,9 @@ class SimpleMapping implements IMappingStg
             {
                 $subdtos[] = XProperty::fromArray($val->getPropArray());
             }
-            else if (is_object($val) && $val instanceof LDProxy)
-            {
-                $dtovars[$key."__id"]= $val->id();
-            }
             else if (is_object($val) && $val instanceof ObjectSet)
             {
+                throw new XDBCException("not support ObjectSet");
             }
             else {
                 $dtovars[$key]=$val;
@@ -526,10 +523,8 @@ class StdMapping implements IMappingStg
                 {
                     $dtovars[$key."__".strtolower(get_class($val->getObj()))]= $val->id();
                 }
-                elseif ( $val instanceof ObjectSet)
+                else
                 {
-                }
-                else {
                     $cls = get_class($varl) ;
                     XDBC::unExpect("unsupport $cls obj to DTO") ;
                 }

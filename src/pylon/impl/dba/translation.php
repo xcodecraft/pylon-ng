@@ -5,15 +5,15 @@ namespace pylon\impl ;
  * @{
  */
 
-/** 
- * @brief 
+/**
+ * @brief
  */
 class SqlCollector
 {
     var $_writes;
     var $_reads;
 
-    function SqlCollector()
+    function __construct()
     {
         $this->_writes = array();
         $this->_reads = array();
@@ -38,7 +38,7 @@ class SqlCollector
         return $joined;
     }
 }
-/** 
+/**
  * @brief  事务
  * @example test_translation.php
  */
@@ -55,66 +55,53 @@ class Translation
 
         $this->_executer = $executer;
         $this->_isReged = false;
-        // if(!$this->_executer->haveCollector())
-        // {
-        //
-        //     $this->_collector = new SqlCollector();
-        //     $this->_executer->regCollector($this->_collector);
-        //     $this->_isReged = true;
-        // }
     }
 
-    /** 
+    /**
         * @brief  commit translation
-        * 
-        * @return 
+        *
+        * @return
      */
     public function commit()
     {
 
-        if($this->_isEnd) 
+        if($this->_isEnd || !$this->_isReged)
             return true;
 
-        if($this->_isReged)
-        {
+        $sqls = $this->_collector->_writes;
+        $this->_executer->unRegCollector();
 
-            $sqls = $this->_collector->_writes;
-            $this->_executer->unRegCollector();
-
-            if(empty($sqls)) return true;
-            $this->_executer->beginTrans() ;
-            try{
-                if($this->_executer->exeNoQuerys($sqls))
-                {
-                    if($this->_executer->commit())
-                    {
-                        $this->_isEnd=true;
-                        return true;
-                    }
-                }
-                return false;
-            }
-            catch(Exception $e)
+        if(empty($sqls)) return true;
+        $this->_executer->beginTrans() ;
+        try{
+            if($this->_executer->exeNoQuerys($sqls))
             {
-                $this->_executer->rollback();
-                throw $e;
+                if($this->_executer->commit())
+                {
+                    $this->_isEnd=true;
+                    return true;
+                }
             }
-
+            return false;
         }
-        return true;
+        catch(Exception $e)
+        {
+            $this->_executer->rollback();
+            throw $e;
+        }
     }
 
-    /** 
-        * @brief 
-        * 
-        * @return 
+    /**
+        * @brief
+        *
+        * @return
      */
     public function rollback()
     {
 
         if($this->_isReged)
         {
-            $collector = $this->_executer->unRegCollector();
+            $this->_executer->unRegCollector();
         }
         $this->_isEnd=true;
         return true;
@@ -125,7 +112,7 @@ class Translation
     }
 }
 
-/** 
+/**
  *  @}
  */
 ?>

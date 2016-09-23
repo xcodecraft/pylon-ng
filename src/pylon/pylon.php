@@ -149,7 +149,7 @@ interface XIlogger
 
 }
 
-class XNullLogger implements XIlogger 
+class XNullLogger implements XIlogger
 {
     public function debug($msg,$event = null )
     {
@@ -171,10 +171,10 @@ class XNullLogger implements XIlogger
 }
 
 
-class XLogger  implements XIlogger 
+class XLogger  implements XIlogger
 {
 
-    public function __construct($name) 
+    public function __construct($name)
     {
         $this->log = new Logger($name) ;
         $logCls    = XSetting::$logCls ;

@@ -192,6 +192,12 @@ class XBox
         return $found ;
 
     }
+
+    static public function have($key,$space='/')
+    {
+        $found = static::get($key,$space);
+        return $found != null ;
+    }
     static public function clean($key=null)
     {
         if ( $key == null)

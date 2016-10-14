@@ -37,8 +37,10 @@ class XInterceptorRuner extends XInterceptor
     }
     public function _exception($e,$xcontext,$request,$response)
     {
-            static::doException($this->beforedItcs,$e,$xcontext,$request,$response) ;
+        if( !static::doException($this->beforedItcs,$e,$xcontext,$request,$response) )
+        {
             static::defaultException($this->plog,$e,$response) ;
+        }
     }
 
     static private function doException($intcs,$e,$xcontext,$request,$response)
@@ -46,9 +48,9 @@ class XInterceptorRuner extends XInterceptor
             foreach( $intcs  as $itc )
             {
                 $end = $itc->_exception($e,$xcontext,$request,$response) ;
-                if ($end === true) 
+                if ($end === true)
                 {
-                    break ;
+                    return $end ;
                 }
             }
     }
@@ -161,7 +163,7 @@ class XRouter
     {
 
         ob_start();
-        if ($http_status) 
+        if ($http_status)
         {
             PYL_HttpHeader::out_header(500);
         }
@@ -226,7 +228,7 @@ class XRouter
 
         $conf = array();
         $cls_name = implode('_', array_slice($uri_arr, 0, $uri_arr_count - 1));
-        if (empty($cls_name)) 
+        if (empty($cls_name))
         {
             return  null;
         }

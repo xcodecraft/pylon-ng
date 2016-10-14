@@ -45,14 +45,17 @@ class XInterceptorRuner extends XInterceptor
 
     static private function doException($intcs,$e,$xcontext,$request,$response)
     {
+            $haveDone = false ;
             foreach( $intcs  as $itc )
             {
+                $haveDone = true ;
                 $end = $itc->_exception($e,$xcontext,$request,$response) ;
                 if ($end === true)
                 {
                     return $end ;
                 }
             }
+            return $haveDone ;
     }
 
 

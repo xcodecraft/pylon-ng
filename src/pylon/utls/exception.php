@@ -1,15 +1,15 @@
 <?php
-/** 
+/**
  * @brief 异常工具
  */
 class XExceptionUtls
 {
-    /** 
-     * @brief  simple_trace 
-     * 
-     * @param $e 
-     * 
-     * @return 
+    /**
+     * @brief  simple_trace
+     *
+     * @param $e
+     *
+     * @return
      */
     static public function simple_trace($e)
     {
@@ -20,7 +20,7 @@ class XExceptionUtls
             $file = basename($i['file']);
             $line = $i['line'];
             $fun  = $i['function'];
-            $info = $info . "$file@$line:$fun(); ";
+            $info = $info . "$file($line):$fun(); ";
         }
         return $info ;
     }

@@ -38,22 +38,21 @@ class XInterceptorRuner extends XInterceptor
     public function _exception($e,$xcontext,$request,$response)
     {
         static::doException($this->beforedItcs,$e,$xcontext,$request,$response) ;
-        static::defaultException($this->plog,$e,$response) ;
     }
 
     static private function doException($intcs,$e,$xcontext,$request,$response)
     {
-            $haveDone = false ;
+            $plog     = XLogKit::logger("_pylon") ;
             foreach( $intcs  as $itc )
             {
-                $haveDone = true ;
                 $end = $itc->_exception($e,$xcontext,$request,$response) ;
                 if ($end === true)
                 {
-                    return $end ;
+                    break ;
                 }
             }
-            return $haveDone ;
+            XExceptionUtls::logException($plog,$e) ;
+            $response->exception($e);
     }
 
 
@@ -71,43 +70,11 @@ class XInterceptorRuner extends XInterceptor
             catch(Exception $e)
             {
                 static::doException($unAfterItcs,$e,$xcontext,$request,$response) ;
-                static::defaultException($this->plog,$e,$response) ;
             }
         }
 
     }
 
-    private function defaultException($plog,$e,$response)
-    {
-
-        $level = "error" ;
-        if ( $e instanceof  XRuntimeException  )
-        {
-            switch($e->status_code)
-            {
-            case 404:
-            case 403:
-            case 401:
-            case 400:
-                $level = "warning" ;
-                break;
-            default:
-                break;
-            }
-        }
-
-        if($level == "error"  )
-        {
-            $plog->error(get_class($e) ." : " .$e->getMessage());
-            $plog->error(XExceptionUtls::simple_trace($e));
-        }
-        if($level == "warning" )
-        {
-            $plog->warn(get_class($e) ." : " .$e->getMessage());
-            $plog->warn(XExceptionUtls::simple_trace($e));
-        }
-        $response->exception($e);
-    }
 }
 class XRouter
 {

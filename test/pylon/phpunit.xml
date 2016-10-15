@@ -1,4 +1,5 @@
 <phpunit bootstrap="./bootstrap.php" colors="true" >
+
         <testsuite name="basesvc">
             <directory suffix="test.php">basesvc</directory>
         </testsuite>

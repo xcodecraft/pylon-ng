@@ -1,6 +1,6 @@
 <?php
 //@REST_RULE: /mygame/$uid/,/mygame/$uid
-class MyGameSvc extends XSimpleService implements XService 
+class MyGameSvc extends XSimpleService implements XService
 {
     public function _post($xcontext,$request,$response)
     {
@@ -19,7 +19,7 @@ class MyGameSvc extends XSimpleService implements XService
     }
 }
 //@REST_RULE: /game/$gkey
-class GameSvc extends XSimpleService implements XService   
+class GameSvc extends XSimpleService implements XService
 {
     public function _get($xcontext,$request,$response)
     {
@@ -43,29 +43,13 @@ class AllgameSvc extends XSimpleService implements XService   //@REST_RULE: /all
 }
 
 
-/**
- * 对外接口，建议使用标准的REST风格
- * @brief
- * GET  /books                  获取所有book列表
- * eg:  curl '${DOMAIN}:8360/books'
- *
- * GET  /books/$book_id         根据book_id获取书籍详情
- * eg:  curl '${DOMAIN}:8360/books/123'
- *
- * POST /books                  新建/修改一个book
- * eg:  curl '${DOMAIN}:8360/books'  -d "uid=123&book_name=天龙八部&author_name=金庸"
- *
- * DELETE /books/$book_id       删除book_id所对应的书籍
- * eg:  curl -X DELETE '${DOMAIN}:8360/books/123'
- */
 
 //@REST_RULE: /books/$uid,/books/,/books
-class BooksSvc extends XSimpleService implements XService   
+class BooksSvc extends XSimpleService implements XService
 {
     public function _post($xcontext,$request,$response)
     {
-        // $uid         = XssFilter::filter($request->uid);          //防止XSS攻击,不用做SQL注入处理，框架会帮我们完成
-        $response->error("post error ",XErrCode::SYS_UNKNOW,404);//error(错误描述，错误号，http状态码),错误返回:json格式
+        $response->error("post error ",XErrCode::SYS_UNKNOW,404);
     }
 
     public function _put($xcontext,$request,$response)
@@ -81,6 +65,31 @@ class BooksSvc extends XSimpleService implements XService
     public function _delete($xcontext,$request,$response)
     {
         $response->success("delete ok : " . $request->uid );
+    }
+}
+
+
+
+// /books/lists?auth=zuowenjian&date=[2010-1-1,2012-2-1]&limit=[0,2]
+//@REST_RULE: /books/lists
+class Books2Svc extends XRuleService implements XService
+{
+    public function lists($xcontext,$request,$response)
+    {
+        // list($auth,$data,$limit)= XInput::safeArr($reuest,'auth,date,limit');
+        $dict = XInput::safeDict($reuest,'auth,date,limit,order');
+        $sql  = XSql::where("select * from apple " ,$dict);
+        $data = XQuery::sql($sql) ;
+        $response->success(['data' => $data, 'page' => $page]);
+    }
+
+    public function page($xcontext,$request,$response)
+    {
+        // list($auth,$data,$limit)= XInput::safeArr($reuest,'auth,date,limit');
+        $dict = XInput::safeDict($reuest,'auth,date');
+        $sql  = XSql::where("select count(* )from apple " ,$dict);
+        $data = XQuery::sql($sql) ;
+        $response->success(['data' => $data, 'page' => $page]);
     }
 }
 

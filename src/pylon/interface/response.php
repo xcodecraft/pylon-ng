@@ -101,7 +101,7 @@ class XRespFail
     public $code        = 500 ;
     public $message     = "unset response data" ;
     public $type        = "" ;
-    public $sub_code    = 100;
+    public $sub_code    = "100" ;
     public $prompt_info = "" ;
     public $prompt_type = "" ;
 

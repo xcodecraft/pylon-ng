@@ -101,7 +101,7 @@ class XRespFail
     public $code        = 500 ;
     public $message     = "unset response data" ;
     public $type        = "" ;
-    public $sub_code    = "100" ;
+    public $sub_code    = "1" ;
     public $prompt_info = "" ;
     public $prompt_type = "" ;
 
@@ -113,7 +113,10 @@ class XRespFail
             $code = $this->code ;
         }
         $this->code     = $code ;
-        $this->sub_code = $ex->getCode();
+        if( is_subclass_of($ex,XRuntimeException) || is_subclass_of($ex,XLogicException))
+        {
+            $this->sub_code = $ex->sub_code ;
+        }
         $this->message  = $ex->getMessage();
         $this->type     = get_class($ex) ;
 

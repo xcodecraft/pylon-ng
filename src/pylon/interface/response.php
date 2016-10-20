@@ -84,7 +84,7 @@ class XHtmlResp   extends XBaseResp
         {
             $_data = $_xc->toArr();
         }
-        if ($extract and is_array($_data))
+        if ($extract && is_array($_data))
         {
             extract($_data);
         }

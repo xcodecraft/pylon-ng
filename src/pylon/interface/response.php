@@ -79,9 +79,14 @@ class XHtmlResp   extends XBaseResp
     }
     public function tpl($_xc,$file,$extract=false)
     {
-        if ($extract)
+        $_data = $_xc ;
+        if( is_subclass_of($_xc,XContext) )
         {
-            extract($_xc->toArr());
+            $_data = $_xc->toArr();
+        }
+        if ($extract and is_array($_data))
+        {
+            extract($_data);
         }
         $this->statusCode = 500 ;
         $file = $this->root . "/" . $file ;

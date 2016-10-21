@@ -80,7 +80,7 @@ class XHtmlResp   extends XBaseResp
     public function tpl($_xc,$file,$extract=false)
     {
         $_data = $_xc ;
-        if( is_subclass_of($_xc,XContext) )
+        if( is_a($_xc,XContext) )
         {
             $_data = $_xc->toArr();
         }
@@ -118,7 +118,7 @@ class XRespFail
             $code = $this->code ;
         }
         $this->code     = $code ;
-        if( is_subclass_of($ex,XRuntimeException) || is_subclass_of($ex,XLogicException))
+        if( is_a($ex,XRuntimeException) || is_a($ex,XLogicException))
         {
             $this->sub_code = $ex->sub_code ;
         }

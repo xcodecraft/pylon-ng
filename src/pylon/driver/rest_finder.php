@@ -16,7 +16,7 @@ class  FastRouter implements XIRouter
         $found = pylon_rest_find($uri);
         if(empty($found ))
         {
-            $found = pylon_rest_find("/__dyn__$uri");
+            $found = pylon_rest_find("/zzzzzz$uri");
 
         }
         return  $found  ;

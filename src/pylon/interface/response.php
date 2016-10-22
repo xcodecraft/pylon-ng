@@ -41,7 +41,7 @@ abstract class XBaseResp  implements  XResponse
         $code = $ex->status_code ;
         if(empty($code) )
         {
-            $code = $this->status_code ;
+            $code = $ex->getCode();
         }
         if(!empty($ex->headers))
         {
@@ -77,6 +77,29 @@ class XHtmlResp   extends XBaseResp
     {
         $this->jumpURL = $url ;
     }
+    public function error($errmsg,$errno = XErrCode::UNKNOW,$statusCode = 510)
+    {
+        $this->statusCode = $statusCode ;
+        echo "error:<br>" ;
+        echo $errmsg ;
+    }
+
+    public function exception($ex)
+    {
+        $code = $ex->status_code ;
+        if(empty($code) )
+        {
+            $code = $ex->getCode() ;
+        }
+        if(!empty($ex->headers))
+        {
+            $this->headers = $ex->headers ;
+        }
+        $this->statusCode = $code ;
+        echo "error:<br>" ;
+        echo $ex->getMessage();
+    }
+
     public function tpl($_xc,$file,$extract=false)
     {
         $_data = $_xc ;

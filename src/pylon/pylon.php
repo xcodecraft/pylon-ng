@@ -128,7 +128,7 @@ class XSetting
     }
     static public function setupModel()
     {
-        $sql = XDriver::shortSQLEX();
+        $sql = XDriver::sqlex();
         XEntEnv::simpleSetup($sql) ;
     }
 

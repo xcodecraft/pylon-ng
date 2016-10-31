@@ -7,13 +7,6 @@ namespace pylon\impl ;
 /**
 * @brief 见UnitWork模式
  */
-interface XUnitWork
-{
-    public function commit();
-    public function regLoad($obj);
-    public function regAdd($obj);
-    public function regDel($obj);
-}
 class EmptyUnitWork implements XUnitWork
 {
     public function commit()

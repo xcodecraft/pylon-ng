@@ -10,7 +10,7 @@ pylon\impl\AutoScopeIntc,/pylon/impl/web/aop.php
 pylon\impl\CombinLogger,/pylon/impl/utls/logutls.php
 pylon\impl\CondProp,/pylon/impl/orm/dao_utls.php
 pylon\impl\DaoBase,/pylon/impl/orm/daobase.php
-pylon\impl\DaoFinderUtls,/pylon/impl/orm/entity.php
+pylon\impl\DaoFinderUtls,/pylon/impl/orm/dao_finder.php
 pylon\impl\DaoImp,/pylon/impl/orm/daobase.php
 pylon\impl\DContextImpl,/pylon/impl/utls/diagnosis.php
 pylon\impl\DiagnoseContext,/pylon/impl/utls/diagnosis.php
@@ -24,7 +24,7 @@ pylon\impl\EntityUtls,/pylon/impl/orm/entity.php
 pylon\impl\FileLockImp,/pylon/impl/basesvc/locks.php
 pylon\impl\FilterProp,/pylon/impl/orm/dao_utls.php
 pylon\impl\IControl,/pylon/impl/orm/control.php
-pylon\impl\IMappingStg,/pylon/impl/orm/entity.php
+pylon\impl\IMappingStg,/pylon/impl/orm/interface.php
 pylon\impl\JoinUtls,/pylon/impl/utls/join_utls.php
 pylon\impl\LDProxy,/pylon/impl/orm/proxy.php
 pylon\impl\Lockable,/pylon/impl/basesvc/locks.php
@@ -33,7 +33,7 @@ pylon\impl\MappingUtls,/pylon/impl/orm/entity.php
 pylon\impl\MemCollectLogger,/pylon/impl/utls/logutls.php
 pylon\impl\NullEntity,/pylon/impl/orm/other.php
 pylon\impl\ObjectSet,/pylon/impl/orm/relation.php
-pylon\impl\ObjUpdater,/pylon/impl/orm/entity.php
+pylon\impl\ObjUpdater,/pylon/impl/orm/obj_update.php
 pylon\impl\Prompt,/pylon/impl/autoload/php_cls_loads.php
 pylon\impl\PYL_HttpHeader,/pylon/impl/utls/http.php
 pylon\impl\PylonModule,/pylon/impl/autoload/class_loads.php
@@ -60,15 +60,15 @@ pylon\impl\UnitWorkImpl,/pylon/impl/orm/unitwork.php
 pylon\impl\XAopRule,/pylon/impl/web/aop.php
 pylon\impl\XAopRuleSet,/pylon/impl/web/aop.php
 pylon\impl\XDaoImplUtls,/pylon/impl/orm/daobase.php
-pylon\impl\XDao,/pylon/impl/orm/entity.php
+pylon\impl\XDao,/pylon/impl/orm/interface.php
 pylon\impl\XEntityBase,/pylon/impl/orm/entity.php
 pylon\impl\XFunctionControl,/pylon/impl/orm/control.php
-pylon\impl\XIAutoUpdate,/pylon/impl/orm/entity.php
+pylon\impl\XIAutoUpdate,/pylon/impl/orm/interface.php
 pylon\impl\XID,/pylon/impl/orm/entity.php
 pylon\impl\XIntercepterTarget,/pylon/impl/web/aop.php
 pylon\impl\XInterceptorRuner,/pylon/impl/web/router.php
 pylon\impl\XRouter,/pylon/impl/web/router.php
-pylon\impl\XUnitWork,/pylon/impl/orm/unitwork.php
+pylon\impl\XUnitWork,/pylon/impl/orm/interface.php
 RavenErrorHandler,/extends/raven_handler.php
 RavenLogger,/extends/raven_handler.php
 RavenSetting,/extends/raven_handler.php

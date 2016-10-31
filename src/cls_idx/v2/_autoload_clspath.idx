@@ -38,7 +38,7 @@ pylon\impl\Prompt,/pylon/impl/autoload/php_cls_loads.php
 pylon\impl\PYL_HttpHeader,/pylon/impl/utls/http.php
 pylon\impl\PylonModule,/pylon/impl/autoload/class_loads.php
 pylon\impl\Query,/pylon/impl/orm/query.php
-pylon\impl\Relation,/pylon/impl/orm/entity.php
+pylon\impl\Relation,/pylon/impl/orm/relation.php
 pylon\impl\ScopeAutoTrans,/pylon/impl/orm/unitwork.php
 pylon\impl\ScopeExec,/pylon/impl/utls/logutls.php
 pylon\impl\SimpleDaoFactory,/pylon/impl/orm/daobase.php
@@ -52,7 +52,7 @@ pylon\impl\SqlProcUtls,/pylon/impl/orm/query.php
 pylon\impl\SQLSelectStatement,/pylon/impl/dba/sql_constructor.php
 pylon\impl\SQLStatement,/pylon/impl/dba/sql_constructor.php
 pylon\impl\SQLUpdateStatment,/pylon/impl/dba/sql_constructor.php
-pylon\impl\StdMapping,/pylon/impl/orm/entity.php
+pylon\impl\StdMapping,/pylon/impl/orm/std_mapping.php
 pylon\impl\SysVersion,/pylon/impl/utls/version.php
 pylon\impl\Translation,/pylon/impl/dba/translation.php
 pylon\impl\TransManager,/pylon/impl/dba/trans_manager.php

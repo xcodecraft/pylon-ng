@@ -8,8 +8,6 @@ use pylon_dict_data ;
 use pylon_dict_find ;
 class PylonModule
 {
-    static $modleFiles=array();
-
     static function pylon_load_cls_index($lib_root,$ver)
     {
         static $index_load = false ;
@@ -17,12 +15,11 @@ class PylonModule
         {
             return ;
         }
-        pylon_dict_data("$lib_root/cls_idx/$ver/_autoload_clspath.idx","PYLON2_CLASS:",$lib_root);
+        pylon_dict_data("$lib_root/cls_idx/$ver/_autoload_clspath.idx","CLASS:",$lib_root);
         pylon_dict_data("$lib_root/cls_idx/$ver/_autoload_clsname.idx","","");
         XLogKit::logger("_pylon")->info("$lib_root/cls_idx/v1/_autoload_clspath.idx") ;
 
         $runpath = XSetting::$runPath ;
-        array_push(static::$modleFiles,"$runpath/_autoload_clspath.idx");
         pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
         pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
         XLogKit::logger("_pylon")->info("$runpath/autoload/_autoload_clspath.idx") ;
@@ -31,35 +28,21 @@ class PylonModule
 
     }
 
-    static function pylonlib__autoload($classname)
+    static function autoload($classname)
     {
-        $key       = "PYLON2_CLASS:".$classname ;
 
-        $glogger   = XLogKit::logger("_pylon");
+        $key       = "CLASS:".$classname ;
         $path      = pylon_dict_find($key);
         if($path  != NULL)
         {
+            $glogger   = XLogKit::logger("_pylon");
             $glogger->debug("cls : $classname , file: $path");
             include_once("$path");
             return ;
         }
     }
 
-    static function appsys__autoload($classname)
-    {
-
-        $key     = "CLASS:".$classname ;
-        $glogger = XLogKit::logger("_pylon");
-        $path    = pylon_dict_find($key);
-        if($path !=NULL)
-        {
-            $glogger->debug("cls : $classname , file: $path");
-            include_once("$path");
-            return ;
-        }
-    }
-
-    static function pylon__unload($classname)
+    static function unload($classname)
     {
         $glogger = XLogKit::logger("_pylon");
         $calls = debug_backtrace() ;
@@ -71,7 +54,6 @@ class PylonModule
             }
 
         }
-
         $glogger->error("load class $classname define faiure!");
         throw new XDBCException( "cant's find cls $classname") ;
     }

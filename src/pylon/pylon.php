@@ -216,6 +216,7 @@ class XLogger  implements XIlogger
 class XLogKit
 {
 
+    static  $loggers = array() ;
     public static function event($evt)
     {
         log_kit::event($evt);
@@ -229,8 +230,17 @@ class XLogKit
      */
     public static function logger($name)
     {
-        // if (! self::$is_setting)
-        return new XLogger($name);
+        $logger = null ;
+        if( isset( static::$loggers[$name]))
+        {
+            $logger = static::$loggers[$name] ;
+        }
+        else
+        {
+            $logger =  new XLogger($name);
+            static::$loggers[$name] = $logger ;
+        }
+        return $logger ;
     }
 }
 
@@ -251,29 +261,22 @@ function pylon_load_cls_index()
  */
 function pylonlib__autoload($classname)
 {
-    PylonModule::pylonlib__autoload($classname) ;
+    PylonModule::autoload($classname) ;
 }
 
-function appsys__autoload($classname)
-{
-    PylonModule::appsys__autoload($classname) ;
-}
 
 function pylon__unload($classname)
 {
-    PylonModule::pylon__unload($classname) ;
+    PylonModule::unload($classname) ;
 }
 
 
 
-
+// pylon_load_cls_index();
 spl_autoload_register(pylon_load_cls_index);
 
 //注册 PYLON框架自已的autoload方法
 spl_autoload_register(pylonlib__autoload);
-
-//注册应用系统的的autoload方法
-spl_autoload_register(appsys__autoload);
 
 //注册没有找的处理函数
 spl_autoload_register(pylon__unload);

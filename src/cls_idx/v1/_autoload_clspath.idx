@@ -78,7 +78,7 @@ RavenLogger,/extends/raven_handler.php
 RavenSetting,/extends/raven_handler.php
 XAop,/pylon/interface/ioc.php
 XAPICallException,/pylon/interface/exception.php
-XAppSession,/pylon/interface/ent.php
+XAppSession,/pylon/interface/xapp.php
 XBaseResp,/pylon/interface/response.php
 XBizException,/pylon/interface/exception.php
 XBizResult,/pylon/utls/biz.php
@@ -93,7 +93,7 @@ XDBException,/pylon/interface/exception.php
 XDebug,/pylon/utls/debug_utls.php
 XDriver,/pylon/driver/driver.php
 XEchoResp,/pylon/interface/response.php
-XEntEnv,/pylon/interface/ent.php
+XEntEnv,/pylon/interface/xentenv.php
 XEntity,/pylon/interface/ent.php
 XEnv,/pylon/utls/env.php
 XErrCode,/pylon/interface/exception.php
@@ -117,9 +117,9 @@ XNotImplemented,/pylon/interface/exception.php
 XNullLogger,/pylon/pylon.php
 XProperty,/pylon/interface/base.php
 XPylon,/pylon/pylon.php
-XQueryArr,/pylon/interface/ent.php
-XQueryObj,/pylon/interface/ent.php
-XQuery,/pylon/interface/ent.php
+XQueryArr,/pylon/interface/xquery_arr.php
+XQueryObj,/pylon/interface/xquery_obj.php
+XQuery,/pylon/interface/xquery.php
 XRespFail,/pylon/interface/response.php
 XResponse,/pylon/interface/web.php
 XRestResp,/pylon/interface/response.php
@@ -138,4 +138,4 @@ XUnAuthorized,/pylon/interface/exception.php
 XUnitTestIntecept,/pylon/utls/unittest.php
 XUnitViewIntecept,/pylon/utls/unittest.php
 XUserInputException,/pylon/interface/exception.php
-XWriter,/pylon/interface/ent.php
+XWriter,/pylon/interface/xwriter.php

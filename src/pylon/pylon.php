@@ -156,49 +156,31 @@ interface XIlogger
 
 }
 
-class XNullLogger implements XIlogger
+class XNullLogger
 {
     public function __call($name,$params) { }
 }
 
 
-class XLogger  implements XIlogger
+class XLogger
 {
 
     public function __construct($name)
     {
         $this->log = new Logger($name) ;
+        $this->ext = new XNullLogger();
         $logCls    = XSetting::$logCls ;
-        $this->externLog =  is_null($logCls) ?  new XNullLogger() : new $logCls($name);
+        if(! is_null($logCls))
+        {
+            $this->ext = new $logCls($name);
+        }
 
     }
-    public function debug($msg,$event = null )
+    public function __call($name,$params)
     {
-        $this->log->debug($msg,$event) ;
-        $this->externLog->debug($msg,$event) ;
-
+        call_user_func_array(array($this->log,$name),$params);
+        call_user_func_array(array($this->ext,$name),$params);
     }
-
-    public function info($msg,$event = null )
-    {
-        $this->log->info($msg,$event) ;
-        $this->externLog->info($msg,$event) ;
-
-    }
-
-    public function warn($msg,$event = null )
-    {
-        $this->log->warn($msg,$event) ;
-        $this->externLog->warn($msg,$event) ;
-
-    }
-
-    public function error($msg,$event = null )
-    {
-        $this->log->error($msg,$event) ;
-        $this->externLog->error($msg,$event) ;
-    }
-
 }
 /**
  * @ingroup utls
@@ -302,19 +284,6 @@ function pylon_load_cls_index()
     $lib_root  = dirname(dirname(__FILE__));
     PylonModule::pylon_load_cls_index($lib_root,XSetting::$version) ;
 }
-/**
- * \public
- * @brief  定义的autoload 函数
- *
- * @param $classname
- *
- * @return
- */
-function pylonlib__autoload($classname)
-{
-    PylonModule::autoload($classname) ;
-}
-
 
 function pylon__unload($classname)
 {
@@ -349,7 +318,6 @@ class XPylon
         {
             $func() ;
         }
-
         require XSetting::$bootstrap ;
     }
     /**

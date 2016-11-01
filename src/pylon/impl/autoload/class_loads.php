@@ -3,7 +3,6 @@ namespace pylon\impl ;
 
 use XSetting ;
 use XLogKit ;
-use XDBCException ;
 use pylon_dict_data ;
 use pylon_dict_find ;
 class PylonModule
@@ -17,12 +16,12 @@ class PylonModule
         }
         pylon_dict_data("$lib_root/cls_idx/$ver/_autoload_clspath.idx","CLASS:",$lib_root);
         pylon_dict_data("$lib_root/cls_idx/$ver/_autoload_clsname.idx","","");
-        XLogKit::logger("_pylon")->info("$lib_root/cls_idx/v1/_autoload_clspath.idx") ;
+        XLogKit::logger("_pylon")->debug("$lib_root/cls_idx/v1/_autoload_clspath.idx") ;
 
         $runpath = XSetting::$runPath ;
         pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
         pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
-        XLogKit::logger("_pylon")->info("$runpath/autoload/_autoload_clspath.idx") ;
+        XLogKit::logger("_pylon")->debug("$runpath/autoload/_autoload_clspath.idx") ;
 
         $index_load = true ;
 
@@ -36,7 +35,7 @@ class PylonModule
         if($path  != NULL)
         {
             $glogger   = XLogKit::logger("_pylon");
-            $glogger->debug("cls : $classname , file: $path");
+            // $glogger->debug("cls : $classname , file: $path");
             include_once("$path");
             return ;
         }
@@ -55,7 +54,7 @@ class PylonModule
 
         }
         $glogger->error("load class $classname define faiure!");
-        throw new XDBCException( "cant's find cls $classname") ;
+        throw new \LogicException( "cant's find cls $classname") ;
     }
 
 }

@@ -128,13 +128,20 @@ class XSetting
     }
     static public function setupModel()
     {
-        $sql = XDriver::sqlex();
-        XEntEnv::simpleSetup($sql) ;
+        $fun = function () {
+            $sql = XDriver::sqlex();
+            XEntEnv::simpleSetup($sql) ;
+        } ;
+        XPylon::$load_funcs[] = $fun ;
+
     }
 
     static public function setupModel2($sqlex,$idg)
     {
-        XEntEnv::simpleSetup($sqlex,$idg);
+        $fun = function()use($sqlex,$idg) {
+            XEntEnv::simpleSetup($sqlex,$idg);
+        } ;
+        XPylon::$load_funcs[] = $fun ;
 
     }
 
@@ -151,23 +158,7 @@ interface XIlogger
 
 class XNullLogger implements XIlogger
 {
-    public function debug($msg,$event = null )
-    {
-    }
-
-    public function info($msg,$event = null )
-    {
-
-    }
-
-    public function warn($msg,$event = null )
-    {
-
-    }
-
-    public function error($msg,$event = null )
-    {
-    }
+    public function __call($name,$params) { }
 }
 
 
@@ -332,10 +323,9 @@ function pylon__unload($classname)
 
 
 
-//spl_autoload_register(pylon_load_cls_index);
 
 //注册 PYLON框架自已的autoload方法
-spl_autoload_register(pylonlib__autoload);
+spl_autoload_register('pylon\impl\PylonModule::autoload');
 
 //注册没有找的处理函数
 spl_autoload_register(pylon__unload);
@@ -347,6 +337,7 @@ spl_autoload_register(pylon__unload);
  */
 class XPylon
 {
+    static public  $load_funcs = array() ;
     static private function load()
     {
         pylon_load_cls_index();
@@ -354,6 +345,11 @@ class XPylon
         {
             throw new LogicException('没有设定 XSetting::$runPath') ;
         }
+        foreach(static::$load_funcs  as $func)
+        {
+            $func() ;
+        }
+
         require XSetting::$bootstrap ;
     }
     /**

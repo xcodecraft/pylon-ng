@@ -13,10 +13,6 @@ use pylon\impl\DaoImp ;
 use pylon\impl\XID ;
 use pylon\impl\DQLObj ;
 
-function QL($express,$symbol='?')
-{
-    return new DQLObj($express,$symbol);
-}
 
 class XEntity extends pylon\impl\XEntityBase
 {

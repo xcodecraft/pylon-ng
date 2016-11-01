@@ -242,118 +242,7 @@ class XLogKit
         }
         return $logger ;
     }
-}
 
-
-
-function pylon_load_cls_index()
-{
-    $lib_root  = dirname(dirname(__FILE__));
-    PylonModule::pylon_load_cls_index($lib_root,XSetting::$version) ;
-}
-/**
- * \public
- * @brief  定义的autoload 函数
- *
- * @param $classname
- *
- * @return
- */
-function pylonlib__autoload($classname)
-{
-    PylonModule::autoload($classname) ;
-}
-
-
-function pylon__unload($classname)
-{
-    PylonModule::unload($classname) ;
-}
-
-
-
-// pylon_load_cls_index();
-spl_autoload_register(pylon_load_cls_index);
-
-//注册 PYLON框架自已的autoload方法
-spl_autoload_register(pylonlib__autoload);
-
-//注册没有找的处理函数
-spl_autoload_register(pylon__unload);
-
-
-/**
- * @ingroup interface
- * @brief Pylon框架入口
- */
-class XPylon
-{
-    static private function load()
-    {
-
-        if (empty(XSetting::$runPath) )
-        {
-            throw new LogicException('没有设定 XSetting::$runPath') ;
-        }
-        require XSetting::$bootstrap ;
-    }
-    /**
-     * @brief 获得websvc实例
-     *
-     * @return  PylonMvcSvr 实例
-     */
-    static public function websvc()
-    {
-        return new PylonMvcSvc(static::$runpath);
-    }
-    /**
-     * @brief 启动rest 服务
-     * @return
-     */
-    static public function serving($httpStatus=true)
-    {
-        if(!is_bool($httpStatus))
-        {
-            $httpStatus = true ;
-        }
-
-        ob_start();
-        static::useEnv();
-        $data_file = XSetting::$runPath . "/router/_router.idx" ;
-        XBox::replace(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
-        XRouter::serving($httpStatus);
-        ob_end_flush();
-    }
-    /**
-     * @brief 后台服务
-     * @return
-     */
-    static public function useEnv()
-    {
-        static::logConf();
-        static::load();
-    }
-
-    private static function logConf()
-    {
-        switch(XSetting::$logMode)
-        {
-        case XSetting::LOG_ONLINE_MODE :
-            static::log4online();
-            break;
-        case XSetting::LOG_DEBUG_MODE :
-            static::log4debug();
-            break;
-        case XSetting::LOG_BENCHMARK_MODE:
-            static::log4benchmark();
-            break;
-        case XSetting::LOG_FAST_MODE:
-            static::log4fast();
-            break;
-        default:
-            static::log4online();
-        }
-    }
     private static function log4online()
     {
         log_kit::init(XSetting::$prjName,XSetting::$logTag,XSetting::LOG_INFO_LEVEL);
@@ -393,6 +282,117 @@ class XPylon
         log_kit::level("_speed" , XSetting::LOG_ERROR_LEVEL);
         log_kit::level("_rest"  , XSetting::LOG_ERROR_LEVEL);
     }
+    public static function logConf()
+    {
+        switch(XSetting::$logMode)
+        {
+        case XSetting::LOG_ONLINE_MODE :
+            static::log4online();
+            break;
+        case XSetting::LOG_DEBUG_MODE :
+            static::log4debug();
+            break;
+        case XSetting::LOG_BENCHMARK_MODE:
+            static::log4benchmark();
+            break;
+        case XSetting::LOG_FAST_MODE:
+            static::log4fast();
+            break;
+        default:
+            static::log4online();
+        }
+    }
+}
+
+
+
+function pylon_load_cls_index()
+{
+    $lib_root  = dirname(dirname(__FILE__));
+    PylonModule::pylon_load_cls_index($lib_root,XSetting::$version) ;
+}
+/**
+ * \public
+ * @brief  定义的autoload 函数
+ *
+ * @param $classname
+ *
+ * @return
+ */
+function pylonlib__autoload($classname)
+{
+    PylonModule::autoload($classname) ;
+}
+
+
+function pylon__unload($classname)
+{
+    PylonModule::unload($classname) ;
+}
+
+
+
+//spl_autoload_register(pylon_load_cls_index);
+
+//注册 PYLON框架自已的autoload方法
+spl_autoload_register(pylonlib__autoload);
+
+//注册没有找的处理函数
+spl_autoload_register(pylon__unload);
+
+
+/**
+ * @ingroup interface
+ * @brief Pylon框架入口
+ */
+class XPylon
+{
+    static private function load()
+    {
+        pylon_load_cls_index();
+        if (empty(XSetting::$runPath) )
+        {
+            throw new LogicException('没有设定 XSetting::$runPath') ;
+        }
+        require XSetting::$bootstrap ;
+    }
+    /**
+     * @brief 获得websvc实例
+     *
+     * @return  PylonMvcSvr 实例
+     */
+    static public function websvc()
+    {
+        return new PylonMvcSvc(static::$runpath);
+    }
+    /**
+     * @brief 启动rest 服务
+     * @return
+     */
+    static public function serving($httpStatus=true)
+    {
+        if(!is_bool($httpStatus))
+        {
+            $httpStatus = true ;
+        }
+
+        ob_start();
+        static::useEnv();
+        $data_file = XSetting::$runPath . "/router/_router.idx" ;
+        XBox::replace(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
+        XRouter::serving($httpStatus);
+        ob_end_flush();
+    }
+    /**
+     * @brief 后台服务
+     * @return
+     */
+    static public function useEnv()
+    {
+        XLogKit::logConf();
+        static::load();
+    }
+
 
     /**
      * \public

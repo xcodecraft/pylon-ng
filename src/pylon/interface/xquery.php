@@ -1,10 +1,16 @@
 <?php
+use pylon\impl\DQLObj ;
 
 /**
  * @brief
  * XQuery::obj()->get_Author_by_id($author->id()) ;
  * XQuery::arr()->get_Author_by_id($author->id()) ;
  */
+function QL($express,$symbol='?')
+{
+    return new DQLObj($express,$symbol);
+}
+
 class XQuery
 {
     /**
@@ -31,6 +37,11 @@ class XQuery
     static public function sql()
     {
         return  XBox::get(XBOx::SQLE);
+    }
+
+    static public function QL($express,$symbol='?')
+    {
+        return new DQLObj($express,$symbol);
     }
 
 }

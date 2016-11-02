@@ -7,7 +7,7 @@ use pylon_dict_data ;
 use pylon_dict_find ;
 class PylonModule
 {
-    static function pylon_load_cls_index($lib_root,$ver)
+    static function pylon_load_cls_index($runpath,$lib_root,$ver)
     {
         static $index_load = false ;
         if ($index_load )
@@ -18,7 +18,6 @@ class PylonModule
         pylon_dict_data("$lib_root/cls_idx/$ver/_autoload_clsname.idx","","");
         XLogKit::logger("_pylon")->debug("$lib_root/cls_idx/v1/_autoload_clspath.idx") ;
 
-        $runpath = XSetting::$runPath ;
         pylon_dict_data("$runpath/autoload/_autoload_clspath.idx","CLASS:","");
         pylon_dict_data("$runpath/autoload/_autoload_clsname.idx","","");
         XLogKit::logger("_pylon")->debug("$runpath/autoload/_autoload_clspath.idx") ;

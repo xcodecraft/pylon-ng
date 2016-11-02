@@ -21,7 +21,7 @@ class XDriver
          $name     = XEnv::get("DB_NAME") ;
          $user     = XEnv::get("DB_USER") ;
          $pwd      = XEnv::get("DB_PWD" ) ;
-         $conn      = getenv("DB_CONN" ) ;
+         $conn     = getenv("DB_CONN" ) ;
          if($conn == "LONG")
          {
              return  new pylon\driver\XLZLExecutor($host,$user,$pwd,$name,

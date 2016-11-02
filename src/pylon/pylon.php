@@ -135,6 +135,15 @@ class XSetting
         XPylon::$load_funcs[] = $fun ;
 
     }
+    static public function autoload()
+    {
+        if(empty(XSetting::$runPath))
+        {
+            throw new LogicException("not set [XSetting::\$runPath]") ;
+        }
+        $libRoot  = dirname(dirname(__FILE__));
+        PylonModule::pylon_load_cls_index(XSetting::$runPath,$libRoot,XSetting::$version) ;
+    }
 
     static public function setupModel2($sqlex,$idg)
     {
@@ -281,8 +290,6 @@ class XLogKit
 
 function pylon_load_cls_index()
 {
-    $lib_root  = dirname(dirname(__FILE__));
-    PylonModule::pylon_load_cls_index($lib_root,XSetting::$version) ;
 }
 
 function pylon__unload($classname)
@@ -291,6 +298,7 @@ function pylon__unload($classname)
 }
 
 
+pylon_load_cls_index();
 
 
 //注册 PYLON框架自已的autoload方法
@@ -309,7 +317,7 @@ class XPylon
     static public  $load_funcs = array() ;
     static private function load()
     {
-        pylon_load_cls_index();
+        XSetting::autoload();
         if (empty(XSetting::$runPath) )
         {
             throw new LogicException('没有设定 XSetting::$runPath') ;

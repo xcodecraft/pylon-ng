@@ -38,7 +38,7 @@ class StoreStg
 {
     static public function userStore($id)
     {
-        DBC::requireNotNull($id);
+        XDBC::requireNotNull($id);
         if($id%2 == 1)
         {
             return "user_1";

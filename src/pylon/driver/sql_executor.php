@@ -2,6 +2,7 @@
 namespace pylon\driver ;
 use pylon\impl\DiagnoseContext ;
 use logger ;
+use XLogkit ;
 use PDO ;
 
 /**
@@ -56,7 +57,7 @@ class XFastSQLExecutor
 
     public function connect()
     {
-        $dblog = new logger("_res");
+        $dblog = XLogkit::logger("_res");
 
         $this->_dbh = new PDO($this->_connectInfo['dsn'], $this->_connectInfo['userName'],$this->_connectInfo['password']
             , array(PDO::ATTR_PERSISTENT => $this->_connectInfo['connType']));
@@ -132,7 +133,7 @@ class XFastSQLExecutor
 
     public function logAllSql($dc,$sql, $values=array(),$e="")
     {
-        $slog = new logger("_sql");
+        $slog = XLogkit::logger("_sql");
         if(!empty($values))
         {
             // process like : linke %xxx%
@@ -263,7 +264,7 @@ class Pair
 /**
  * @brief 基于 Layzer Load 的 SQL 执行器，用于在需要访问数据库是，才建立连接
  * @example
- *          $executer = new LZLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name,
+ *          $executer = new XLZLExecutor($dbConf->host,$dbConf->user,$dbConf->password,$dbConf->name,
  *                        XFastSQLExecutor::SHORT_CONN,'utf8',"XFastSQLExecutor");
  *
  */

@@ -25,7 +25,7 @@ class XDBC
     /**
      * @brief 失败的行为
      */
-    public static  $failAction = DBC::DO_EXCEPTION;
+    public static  $failAction = XDBC::DO_EXCEPTION;
 
     static private function objMsg($obj,$msg)
     {
@@ -37,15 +37,15 @@ class XDBC
     }
     static private function dofailAction($msg)
     {
-        switch(DBC::$failAction)
+        switch(XDBC::$failAction)
         {
-        case  DBC::DO_EXCEPTION :
+        case  XDBC::DO_EXCEPTION :
             throw new XDBCException($msg);
             break;
-        case DBC::DO_ABORT:
+        case XDBC::DO_ABORT:
             echo $msg;
             exit ;
-        case DBC::DO_WARN:
+        case XDBC::DO_WARN:
             echo "$msg\n";
             break;
         default:
@@ -67,7 +67,7 @@ class XDBC
     {
         if($first != $second)
         {
-            DBC::dofailAction($msg);
+            XDBC::dofailAction($msg);
         }
         return $first;
     }
@@ -83,7 +83,7 @@ class XDBC
     {
         if(!is_a($first,$parentClass))
         {
-            DBC::dofailAction($msg);
+            XDBC::dofailAction($msg);
         }
         return $first;
     }
@@ -91,7 +91,7 @@ class XDBC
     {
         if($first == $second )
         {
-            DBC::dofailAction($msg);
+            XDBC::dofailAction($msg);
         }
         return $first;
     }
@@ -105,7 +105,7 @@ class XDBC
      */
     static  public function unExpect($obj,$msg= "unexcept!")
     {
-        DBC::dofailAction("$obj $msg");
+        XDBC::dofailAction("$obj $msg");
     }
     /**
      * @brief 未实现
@@ -124,7 +124,7 @@ class XDBC
         {
             return $obj;
         }
-        DBC::dofailAction($msg);
+        XDBC::dofailAction($msg);
 
     }
     /**
@@ -141,14 +141,9 @@ class XDBC
         {
             return $obj;
         }
-        DBC::dofailAction($msg);
+        XDBC::dofailAction($msg);
     }
 
-    // static public function requireNotEmpty($obj,$msg="value is  empty!")
-    // {
-    //     if(!is_null($obj)) return $obj;
-    //     DBC::dofailAction($msg);
-    // }
 
     /**
      * @brief
@@ -164,7 +159,7 @@ class XDBC
         {
             return $obj;
         }
-        DBC::dofailAction($msg);
+        XDBC::dofailAction($msg);
     }
     /**
      * @brief
@@ -180,12 +175,12 @@ class XDBC
         {
             return $obj;
         }
-        DBC::dofailAction($msg);
+        XDBC::dofailAction($msg);
     }
     static public function requireArray($arr,$msg="value is not  Array")
     {
         if(is_array($arr)) return $arr;
-        DBC::dofailAction($msg);
+        XDBC::dofailAction($msg);
     }
 
 

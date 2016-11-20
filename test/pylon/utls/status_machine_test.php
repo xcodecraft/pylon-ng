@@ -57,7 +57,7 @@ class StatusMachineTest  extends PHPUnit_Framework_TestCase
 
     public function testFailed()
     {
-        DBC::$failAction = DBC::DO_EXCEPTION;
+        XDBC::$failAction = XDBC::DO_EXCEPTION;
         try
         {
             $this->stats->moveTo(TestStatus.FATHER);
@@ -71,4 +71,3 @@ class StatusMachineTest  extends PHPUnit_Framework_TestCase
     }
 
 }
-?>

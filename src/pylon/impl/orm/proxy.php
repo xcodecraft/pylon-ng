@@ -17,14 +17,14 @@ class  LDProxy
 
     public function __construct($fun,$args)
     {
-        DBC::requireNotNull($fun);
+        XDBC::requireNotNull($fun);
         $this->fun = $fun;
         $this->args=$args;
     }
     public function loadObj()
     {
         $this->obj=call_user_func($this->fun,$this->args);
-        DBC::requireNotNull($this->obj);
+        XDBC::requireNotNull($this->obj);
     }
     public function getObj()
     {

@@ -119,7 +119,7 @@ class XQueryObj
             $ret = $this->delCall($cls,$name,$paramNames,$params);
             break;
         default:
-            DBC::unExpect($op,"unsupport op type");
+            XDBC::unExpect($op,"unsupport op type");
         }
         $dc->notkeep();
         return $ret ;

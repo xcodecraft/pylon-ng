@@ -81,7 +81,7 @@ class DynCallParser
         {
             $names  = JoinUtls::jarray(",", $condnames);
             $values  = JoinUtls::jarray(",", $params);
-            DBC::unExpect(null,"count of params name not match value! names is [ $names] value is [$values]");
+            XDBC::unExpect(null,"count of params name not match value! names is [ $names] value is [$values]");
         }
         $condArr = array_combine($condnames,$params);
         if(in_array('Prop',$condnames))

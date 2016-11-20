@@ -55,7 +55,7 @@ class XQueryArr
             $ret = $this->getCall($table,$paramNames,$params);
             break;
         default:
-            DBC::unExpect($op,"$op unsupport! ");
+            XDBC::unExpect($op,"$op unsupport! ");
         }
         $dc->notkeep();
         return $ret ;

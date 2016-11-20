@@ -93,13 +93,13 @@ class XBox
      */
     static public function replace($key,$obj,$where,$space='/')
     {
-        DBC::requireNotNull($obj,'$obj');
+        XDBC::requireNotNull($obj,'$obj');
         $force = true ;
         static::registImpl($key,$obj,$space,$force,$where);
     }
     static public function regist($key,$obj,$where,$space='/')
     {
-        DBC::requireNotNull($obj,'$obj');
+        XDBC::requireNotNull($obj,'$obj');
         $force = false ;
         static::registImpl($key,$obj,$space,$force,$where);
     }
@@ -116,7 +116,7 @@ class XBox
      */
     static private function registImpl($key,$obj,$space='/',$force=false,$where='')
     {
-        DBC::requireNotNull($key,'$key');
+        XDBC::requireNotNull($key,'$key');
         if (! isset(static::$_objs[$key]))
         {
             static::$_objs[$key] = array();
@@ -145,7 +145,7 @@ class XBox
 
     static public function get($key,$space='/')
     {
-        DBC::requireNotNull($key,'$key');
+        XDBC::requireNotNull($key,'$key');
 
         while( true )
         {

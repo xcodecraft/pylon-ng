@@ -64,7 +64,7 @@ class XWriter
             $ret = $this->updateCall($name,$params);
             break;
         default:
-            DBC::unExpect($op,"unsupport op type");
+            XDBC::unExpect($op,"unsupport op type");
         }
         return $ret ;
 

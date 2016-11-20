@@ -101,7 +101,7 @@ class XStatusMachine
     {
         $statusList = func_get_args();
         $len = count($statusList);
-        DBC::requireTrue($len >= 2 );
+        XDBC::requireTrue($len >= 2 );
         for($i =1 ; $i<$len ; ++$i )
         {
             $left2right = new XStatusDirect($statusList[$i-1],$statusList[$i]);
@@ -125,7 +125,7 @@ class XStatusMachine
     }
     public function moveTo($status)
     {
-        DBC::requireTrue($this->canMoveTo($status),"cant move to $status");
+        XDBC::requireTrue($this->canMoveTo($status),"cant move to $status");
         $this->originStatus = $this->currentStatus;
         $this->currentStatus = $status;
     }

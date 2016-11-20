@@ -6,15 +6,15 @@ class DBCTestCls
     private $c;
     public function __construct($a,$b,$c)
     {
-        $this->a= DBC::requireNotNull($a);
-        $this->b= DBC::requireNotNull($b);
-        $this->c= DBC::requireNotNull($c);
+        $this->a= XDBC::requireNotNull($a);
+        $this->b= XDBC::requireNotNull($b);
+        $this->c= XDBC::requireNotNull($c);
     }
     public function fun1($a,$b,$c)
     {
-        DBC::requireNotNull($a);
-        DBC::requireNotNull($b);
-        DBC::requireNotNull($c);
+        XDBC::requireNotNull($a);
+        XDBC::requireNotNull($b);
+        XDBC::requireNotNull($c);
     }
 }
 class DBCTestCase extends PHPUnit_Framework_TestCase
@@ -26,7 +26,7 @@ class DBCTestCase extends PHPUnit_Framework_TestCase
      */
     public function testTrue()
     {
-        DBC::requireTrue(false);
+        XDBC::requireTrue(false);
     }
     /** 
      * @brief 
@@ -36,7 +36,7 @@ class DBCTestCase extends PHPUnit_Framework_TestCase
     public function testEquals()
     {
         $b= "mytest";
-        DBC::requireEquals($b,"text",'$b');
+        XDBC::requireEquals($b,"text",'$b');
     }
     /** 
      * @brief 
@@ -46,7 +46,7 @@ class DBCTestCase extends PHPUnit_Framework_TestCase
     public function testNotEquals()
     {
         $b= "text";
-        DBC::requireNotEquals($b,"text");
+        XDBC::requireNotEquals($b,"text");
     }
     /** 
      * @brief 
@@ -55,7 +55,7 @@ class DBCTestCase extends PHPUnit_Framework_TestCase
      */
     public function testUnExpect()
     {
-        DBC::unExpect($b);
+        XDBC::unExpect($b);
     }
     /** 
      * @brief 
@@ -64,7 +64,7 @@ class DBCTestCase extends PHPUnit_Framework_TestCase
      */
     public function testNotNull()
     {
-        DBC::requireNotNull(null);
+        XDBC::requireNotNull(null);
     }
     /** 
      * @brief 
@@ -73,7 +73,7 @@ class DBCTestCase extends PHPUnit_Framework_TestCase
      */
     public function testNull()
     {
-        DBC::requireNull("xx");
+        XDBC::requireNull("xx");
     }
     public function testUsecase1()
     {

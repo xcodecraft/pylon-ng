@@ -282,7 +282,7 @@ class XRestResp implements XResponse
 
         if($set_header === true)
         {
-            DBC::requireNotNull($this->status_code);
+            XDBC::requireNotNull($this->status_code);
             foreach($this->headers as $name => $value)
             {
                 header("$name: " . $value);

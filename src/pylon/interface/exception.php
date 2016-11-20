@@ -161,7 +161,7 @@ class XConfigException extends XLogicException
 
 /**
  * @ingroup exception
- * @brief  违背DBC 抛出的异常
+ * @brief  违背XDBC 抛出的异常
  */
 class XDBCException extends XLogicException
 {

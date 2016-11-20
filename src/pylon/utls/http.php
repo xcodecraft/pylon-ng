@@ -93,7 +93,7 @@ class XRestResult
     }
     static public function fail($response)
     {
-        DBC::requireNotNull($response);
+        XDBC::requireNotNull($response);
 
         $data = json_decode($response->body(),true) ;
         if(isset($data[ERROR_TAG]))

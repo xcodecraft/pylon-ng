@@ -80,7 +80,7 @@ class XEntity extends pylon\impl\XEntityBase
      */
     static public function regist($entity)
     {
-        DBC::requireNotNull($entity);
+        XDBC::requireNotNull($entity);
         return  static::unitWork()->regAdd($entity);
     }
 

@@ -18,7 +18,7 @@ class XProperty
 	 */
 	public function have($name)
 	{
-        DBC::requireNotNull($this->attr,'attr');
+        XDBC::requireNotNull($this->attr,'attr');
         if(is_string($name))
         {
             return array_key_exists(strtolower($name),$this->attr);

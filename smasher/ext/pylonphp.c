@@ -121,9 +121,6 @@ PHP_FUNCTION(pylon_dict_find)
     char buf[BUF_SIZE];
     if (dict_find(key->val,buf,BUF_SIZE) )
     {
-        printf("xxxxx\n") ;
-        printf(buf);
-        printf("xxxxx\n") ;
         RETURN_STRING(buf) ;
     }
     else
@@ -229,11 +226,11 @@ PHP_METHOD(log_kit,init)
     long level = (long)log_kit::error ;
     int   argc = ZEND_NUM_ARGS();
     if (argc == 1 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "S", &name) == FAILURE) return ;
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "S", &name) == FAILURE) return ;
     if (argc == 2 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "SS", &name,&tag) == FAILURE) return ;
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "SS", &name,&tag) == FAILURE) return ;
     if (argc == 3 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "SSl", &name,&tag,&level) == FAILURE) return ;
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "SSl", &name,&tag,&level) == FAILURE) return ;
     log_kit::init(name->val,tag->val,(log_kit::level_t)level);
 }
 PHP_METHOD(log_kit,clear)
@@ -247,7 +244,7 @@ PHP_METHOD(log_kit,event)
     int   argc = ZEND_NUM_ARGS();
     if (argc == 1 )
     {
-        if (zend_parse_parameters(argc TSRMLS_CC, "S", &name) == FAILURE)  return ;
+        if (zend_parse_parameters(argc , "S", &name) == FAILURE)  return ;
         log_kit::event(name->val);
     }
 }
@@ -272,11 +269,11 @@ PHP_METHOD(log_kit,level)
 PHP_METHOD(log_kit,tag)
 {
     zend_string * name= NULL ;
-    zend_string * tag  ;
+    zend_string * tag = NULL ;
     int   argc = ZEND_NUM_ARGS();
     if (argc == 2 )
     {
-        if (zend_parse_parameters(argc TSRMLS_CC, "SS", &name,&tag) == FAILURE)  return ;
+        if (zend_parse_parameters(argc , "SS", &name,&tag) == FAILURE)  return ;
         log_kit::tag(name->val,tag->val);
     }
 }
@@ -287,7 +284,7 @@ PHP_METHOD(log_kit,channel)
     int   argc = ZEND_NUM_ARGS();
     if (argc == 1 )
     {
-        if (zend_parse_parameters(argc TSRMLS_CC, "l", &in_chn ) == FAILURE)  return ;
+        if (zend_parse_parameters(argc , "l", &in_chn ) == FAILURE)  return ;
         if( in_chn <= 7 && in_chn >=0 )
         {
             log_kit::channel_t chn =  (log_kit::channel_t)in_chn  ;
@@ -301,7 +298,7 @@ PHP_METHOD(log_kit,toall)
     int   argc = ZEND_NUM_ARGS();
     if (argc == 1 )
     {
-        if (zend_parse_parameters(argc TSRMLS_CC, "b", &enable ) == FAILURE)  return ;
+        if (zend_parse_parameters(argc , "b", &enable ) == FAILURE)  return ;
         log_kit::toall(enable );
     }
 }
@@ -312,13 +309,13 @@ PHP_METHOD(logger, __construct)
 {
 
     zend_string * name= NULL ;
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "S", &name) == FAILURE)
+    if (zend_parse_parameters(ZEND_NUM_ARGS() , "S", &name) == FAILURE)
     {
         RETURN_NULL();
     }
 
-    zval *impl = zend_read_property(logger_ce, getThis(), ZEND_STRL("_impl"), 1, NULL);
-    logger_proxy *p =  new logger_proxy(name->val);
+    zval *impl      = zend_read_property(logger_ce, getThis(), ZEND_STRL("_impl"), 1, NULL);
+    logger_proxy *p = new logger_proxy(name->val);
     ZVAL_LONG(impl,(long)p);
 }
 
@@ -332,58 +329,99 @@ PHP_METHOD(logger, __destruct)
 
 PHP_METHOD(logger,debug)
 {
-    zend_string * msg= NULL ;
-    zend_string* event= NULL ;
+    zend_string * msg  = NULL ;
+    zend_string* event = NULL ;
+    char * msg_cstr    = NULL ;
+    char * evt_cstr    = NULL ;
     int   argc = ZEND_NUM_ARGS();
     if(argc == 1 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "S", &msg) == FAILURE) return ;
+    {
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "S", &msg) == FAILURE) return ;
+        msg_cstr = msg->val ;
+    }
     if (argc ==2 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "SS", &msg,&event) == FAILURE) return ;
+    {
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "SS", &msg,&event) == FAILURE) return ;
+        msg_cstr = msg->val ;
+        evt_cstr = event->val ;
+    }
     zval *impl = zend_read_property(logger_ce, getThis(), ZEND_STRL("_impl"), 1, NULL);
     logger_proxy* p = (logger_proxy * )impl->value.lval ;
-    p->debug(msg->val,event->val);
+    p->debug(msg_cstr,evt_cstr);
+
 }
+
+
+
 PHP_METHOD(logger,info)
 {
-    zend_string * msg= NULL ;
-    zend_string * event= NULL ;
+
+    zend_string * msg  = NULL ;
+    zend_string* event = NULL ;
+    char * msg_cstr    = NULL ;
+    char * evt_cstr    = NULL ;
     int   argc = ZEND_NUM_ARGS();
     if(argc == 1 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "S", &msg) == FAILURE) return ;
+    {
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "S", &msg) == FAILURE) return ;
+        msg_cstr = msg->val ;
+    }
     if (argc ==2 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "SS", &msg,&event) == FAILURE) return ;
+    {
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "SS", &msg,&event) == FAILURE) return ;
+        msg_cstr = msg->val ;
+        evt_cstr = event->val ;
+    }
     zval *impl = zend_read_property(logger_ce, getThis(), ZEND_STRL("_impl"), 1, NULL);
     logger_proxy* p = (logger_proxy * )impl->value.lval ;
-    p->info(msg->val,event->val);
+    p->info(msg_cstr,evt_cstr);
 }
 
 PHP_METHOD(logger,warn)
 {
-    zend_string * msg= NULL ;
-    zend_string * event= NULL ;
+
+    zend_string * msg  = NULL ;
+    zend_string* event = NULL ;
+    char * msg_cstr    = NULL ;
+    char * evt_cstr    = NULL ;
     int   argc = ZEND_NUM_ARGS();
     if(argc == 1 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "S", &msg) == FAILURE) return ;
+    {
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "S", &msg) == FAILURE) return ;
+        msg_cstr = msg->val ;
+    }
     if (argc ==2 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "SS", &msg,&event) == FAILURE) return ;
-
+    {
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "SS", &msg,&event) == FAILURE) return ;
+        msg_cstr = msg->val ;
+        evt_cstr = event->val ;
+    }
     zval *impl = zend_read_property(logger_ce, getThis(), ZEND_STRL("_impl"), 1, NULL);
     logger_proxy* p = (logger_proxy * )impl->value.lval ;
-    p->warn(msg->val,event->val);
+    p->warn(msg_cstr,evt_cstr);
 }
 PHP_METHOD(logger,error)
 {
 
-    zend_string * msg= NULL ;
-    zend_string * event= NULL ;
+    zend_string * msg  = NULL ;
+    zend_string* event = NULL ;
+    char * msg_cstr    = NULL ;
+    char * evt_cstr    = NULL ;
     int   argc = ZEND_NUM_ARGS();
     if(argc == 1 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "S", &msg) == FAILURE) return ;
+    {
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "S", &msg) == FAILURE) return ;
+        msg_cstr = msg->val ;
+    }
     if (argc ==2 )
-        if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "SS", &msg,&event) == FAILURE) return ;
+    {
+        if (zend_parse_parameters(ZEND_NUM_ARGS() , "SS", &msg,&event) == FAILURE) return ;
+        msg_cstr = msg->val ;
+        evt_cstr = event->val ;
+    }
     zval *impl = zend_read_property(logger_ce, getThis(), ZEND_STRL("_impl"), 1, NULL);
     logger_proxy* p = (logger_proxy * )impl->value.lval ;
-    p->error(msg->val,event->val);
+    p->error(msg_cstr,evt_cstr);
 }
 
 

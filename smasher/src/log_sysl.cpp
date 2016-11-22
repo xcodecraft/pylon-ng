@@ -335,8 +335,5 @@ void log_kit::channel( log_kit::channel_t  ch)
 }
 void log_kit::toall( bool enable)
 {
-
     logger::impl::_toall =  enable ;
 }
-
-

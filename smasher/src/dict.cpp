@@ -23,9 +23,7 @@ struct dict::impl
     public:
         typedef std::map<std::string, std::string>          map_t ;
         typedef std::pair<std::string, std::string>         pair_t ;
-
         typedef std::map<std::string,time_t >               file_tags_t ;
-
         typedef std::vector<std::string>                    str_arr;
         typedef boost::shared_ptr< std::vector<std::string> >     str_arr_sptr;
         typedef std::map<std::string,str_arr_sptr >         keys_dict_t ;
@@ -45,7 +43,7 @@ struct dict::impl
         }
         str_arr_sptr get_file_keys(const std::string& data_file)
         {
-            keys_dict_t::iterator found = _file_keys.find(data_file);
+            auto found = _file_keys.find(data_file);
             if(found == _file_keys.end())
             {
                 _file_keys[data_file]   = str_arr_sptr(new str_arr);
@@ -58,7 +56,7 @@ struct dict::impl
         bool data_need_update( const std::string& data_file, bool force )
         {
 
-            file_tags_t::iterator found = _file_flags.find(data_file);
+            auto found = _file_flags.find(data_file);
             // 已经load 的文件
             if( found  != _file_flags.end()  )
             {
@@ -77,7 +75,7 @@ struct dict::impl
         int using_data(    const std::string& data_file,
                 const std::string& key_prefix,
                 const std::string& data_prefix,bool force )
-        {/*{{{*/
+        {
 
             if ( ! data_need_update( data_file, force)  ) return 0 ;
 
@@ -117,11 +115,11 @@ struct dict::impl
                 << "' data_prefix: '"       << data_prefix
                 << "' update cnt : "        << update_cnt;
             return update_cnt ;
-        }/*}}}*/
+        }
 
 
         bool find(const std::string& cls,char * buf , int buf_len)
-        {/*{{{*/
+        {
             map_t::iterator found = _dict.find(cls) ;
             if( found == _dict.end())
             {
@@ -131,13 +129,13 @@ struct dict::impl
             memset(buf,0,buf_len);
             strncpy(buf,found->second.c_str(), buf_len);
             return true;
-        }/*}}}*/
+        }
 
         bool has(const std::string& cls)
-        {/*{{{*/
+        {
             map_t::iterator found = _dict.find(cls) ;
             return  found != _dict.end() ;
-        }/*}}}*/
+        }
 
         int prompt_impl(const std::string& cls,char * buf , int buf_len, int cutlen = 4 )
         {

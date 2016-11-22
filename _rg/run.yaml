@@ -69,6 +69,9 @@ _env:
     - !R.env
         _name : "dev"
         _mix: "include,_dev,php56,centos66,base"
+    - !R.env
+        _name : "dev-7"
+        _mix: "include,_dev,php70,centos68,base"
 
     - !R.env
         _name : "ci"

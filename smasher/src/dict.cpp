@@ -92,7 +92,7 @@ struct dict::impl
             int  update_cnt = 0 ;
             while(data.good())
             {
-                memset(buf,BUF_SIZE,0);
+                memset(buf,0,BUF_SIZE);
                 data.getline(buf,BUF_SIZE);
                 str_arr strs;
                 boost::split(strs,buf, boost::is_any_of(","));

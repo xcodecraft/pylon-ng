@@ -212,6 +212,7 @@ class XRestResp implements XResponse
     public $error       = null ;
     public $jsonpEnable = false ;
     public $jsonpCall   = "";
+    public $contentType = "application/json" ;
     private $data       = array() ;
     public function __construct()
     {
@@ -287,7 +288,7 @@ class XRestResp implements XResponse
                 header("$name: " . $value);
             }
             PYL_HttpHeader::out_header((int)$this->status_code);
-            header('Content-type: application/json');
+            header('Content-type: ' . $this->contentType);
         }
 
         $outdata = "";

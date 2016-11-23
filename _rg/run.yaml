@@ -47,7 +47,7 @@ _env:
                 PHP_ERROR : "E_ALL & ~E_NOTICE"
                 DEBUG     : "FALSE1"
 
-                EXT_VER   : "30"
+                EXT_VER   : "31"
                 EXT_NAME  : "pylon"
                 EXT_TAG   : "${EXT_VER}-${PHP_VER}"
                 FULL_EXT  : "${EXT_NAME}_${EXT_TAG}.so"

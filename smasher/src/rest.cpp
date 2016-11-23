@@ -7,7 +7,6 @@
 #include <boost/shared_ptr.hpp>
 #include <fstream>
 #include <sstream>
-//#include <vector>
 #include <list>
 #include <iostream>
 #include <boost/foreach.hpp>
@@ -126,7 +125,7 @@ struct rule_comparer
 };
 
 struct rest_finder::impl
-{/*{{{*/
+{
     typedef std::map<std::string,time_t >           loadtag_dict_t ;
     typedef std::vector<rest_dto::ptr >             rules_t ;  
     typedef std::vector<std::string>                str_arr;
@@ -136,7 +135,7 @@ struct rest_finder::impl
     loadtag_dict_t      _load_flags;
 
     void using_data( const std::string& data_file)
-    {/*{{{*/
+    {
         loadtag_dict_t::iterator found =  _load_flags.find(data_file);
         struct stat fileinfo;
         if( found  != _load_flags.end()  )
@@ -150,7 +149,7 @@ struct rest_finder::impl
 
 
         char buf[BUF_SIZE];
-        memset(buf,BUF_SIZE,0);
+        memset(buf,0,BUF_SIZE);
         int line_count = 0 ;
         while(data.good())
         {
@@ -181,7 +180,7 @@ struct rest_finder::impl
 
         if (  stat(data_file.c_str(),&fileinfo) < 0 ) { return ; }
         _load_flags[data_file] = fileinfo.st_mtime;
-    }/*}}}*/
+    }
 
 
     bool find(const std::string& uri,char * buf , int buf_len)
@@ -220,10 +219,10 @@ struct rest_finder::impl
         }
         LOG_INFO_S(PLOG) << "unfound uri match rule: " << uri;
         return false ;
-    }/*}}}*/
+    }
 
 
-};/*}}}*/
+};
 
 rest_finder::rest_finder():_pimpl(new rest_finder::impl) {}
 rest_finder::~rest_finder() { delete _pimpl; }

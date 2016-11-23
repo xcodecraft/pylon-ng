@@ -15,7 +15,7 @@ function build_ext()
     echo $PHPIZE
     $PHPIZE --clean ;
     $PHPIZE ;
-    ./configure CC=g++  --with-php-config=$PHPBIN/php-config CFLAGS="-g3 -gdwarf-2" CXXFLAGS="-g3 -gdwarf-2" --disable-all --enable-debug --enable-tokenizer
+    ./configure CC=g++  --with-php-config=$PHPBIN/php-config 
     make clean
     make 
     make test

@@ -6,6 +6,7 @@ _env:
                 _path :
                     - "./_rg/os.yaml"
                     - "./_rg/php.yaml"
+                    - "./_rg/pylon.yaml"
     - !R.env
         _name : "_dev"
         _res  :
@@ -67,7 +68,7 @@ _env:
             - !R.vars
                 DEBUG     : "TRUE"
     - !R.env
-        _name : "dev"
+        _name : "dev-5"
         _mix: "include,_dev,php56,centos66,base"
     - !R.env
         _name : "dev-7"
@@ -169,12 +170,9 @@ _sys:
                 DOMAIN        : "${BASE_DOMAIN}"
 
             - !R.using
-                path  : "${PRJ_ROOT}/src/rigger/pylon.yaml"
                 modul : "phpunit"
                 args  : !R.vars
-                    TEST_INCLUDE: "${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
-
+                    TEST_INCLUDE : "${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
                     SVC_ENTRY    : "${PRJ_ROOT}/demo/"
-                    CONF_PATH   : "test/pylon/config"
-                    TEST_PATH   : "test/pylon"
+                    TEST_PATH    : "test/pylon"
 

@@ -13,4 +13,4 @@ _env:
         _name : "centos68"
         _res  :
             - !R.vars
-                OS_VER      : "centos-6.6"
+                OS_VER      : "centos-6.8"

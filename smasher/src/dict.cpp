@@ -43,7 +43,7 @@ struct dict::impl
         }
         str_arr_sptr get_file_keys(const std::string& data_file)
         {
-            auto found = _file_keys.find(data_file);
+            keys_dict_t::iterator  found = _file_keys.find(data_file);
             if(found == _file_keys.end())
             {
                 _file_keys[data_file]   = str_arr_sptr(new str_arr);
@@ -56,7 +56,7 @@ struct dict::impl
         bool data_need_update( const std::string& data_file, bool force )
         {
 
-            auto found = _file_flags.find(data_file);
+            file_tags_t::iterator found = _file_flags.find(data_file);
             // 已经load 的文件
             if( found  != _file_flags.end()  )
             {

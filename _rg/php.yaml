@@ -6,6 +6,8 @@ _env:
                 PHP_VER     : "5.3"
                 PHP_VER_TAG : "53"
                 PHP_INI_TPL : "tpl_web_php.ini"
+                PHP_BIN     : "/usr/local/php-5.3/bin/php"
+                PHP_FPM     : "/usr/local/php-5.3/sbin/php-fpm"
     - !R.env
         _name : "php56"
         _res  :
@@ -13,6 +15,9 @@ _env:
                 PHP_VER     : "5.6"
                 PHP_VER_TAG : "56"
                 PHP_INI_TPL : "tpl_web_php.ini"
+                PHP_BIN     : "/usr/local/php-5.6/bin/php"
+                PHP_FPM     : "/usr/local/php-5.6/sbin/php-fpm"
+
     - !R.env
         _name : "php70"
         _res  :
@@ -20,3 +25,5 @@ _env:
                 PHP_VER     : "7.0"
                 PHP_VER_TAG : "70"
                 PHP_INI_TPL : "tpl_web_php.ini"
+                PHP_BIN     : "/usr/local/php-7.0/bin/php"
+                PHP_FPM     : "/usr/local/php-7.0/sbin/php-fpm"

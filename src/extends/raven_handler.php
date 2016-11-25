@@ -27,8 +27,7 @@ class RavenErrorHandler extends XInterceptor
             case 403:
             case 401:
             case 400:
-                $level = "warning" ;
-                break;
+                return  ;
             default:
                 break;
             }
@@ -63,7 +62,6 @@ class RavenLogger implements XIlogger
 
     public function warn($msg,$event = null )
     {
-         static::getClient()->captureMessage($msg,array(),array("level" => 'warning'));
     }
 
     public function error($msg,$event = null )

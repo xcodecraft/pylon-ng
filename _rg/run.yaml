@@ -169,9 +169,7 @@ _sys:
                 path  : "${PRJ_ROOT}/src/rigger/pylon.yaml"
                 modul : "phpunit"
                 args  : !R.vars
-                    TEST_INCLUDE: "${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
-
+                    TEST_INCLUDE : "${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo:${PRJ_ROOT}/src"
                     SVC_ENTRY    : "${PRJ_ROOT}/demo/"
-                    CONF_PATH   : "test/pylon/config"
-                    TEST_PATH   : "test/pylon"
+                    TEST_PATH    : "test/pylon"
 

@@ -26,61 +26,25 @@ struct rest_dto
     string cls ;
 
 };
-bool operator < ( rest_dto::ptr & first,rest_dto::ptr & second)
-{
-    return first->rule < second->rule ;
-}
-
-bool operator == ( rest_dto::ptr & first,rest_dto::ptr & second)
-{
-    return first->rule == second->rule ;
-}
-
 typedef std::pair<string,string> key_value_t;
 typedef std::map<string,string>  kv_map_t  ;
 
 struct rule_comparer
 {
     enum status { VALUE_MATCH,RULE_MATCH };
-    const string    _target_uri;
     kv_map_t*       _dict ; 
-    rest_dto*       _found ;
-    rule_comparer(const string& target,rest_dto* found,kv_map_t* dict): 
-        _target_uri(target),_dict(dict),_found(found)
-    { }
-    bool operator()( const rest_dto::ptr & first,const rest_dto::ptr & second)
-    {
-        if (first->rule == _target_uri)
-        {
-
-            LOG_DEBUG_S(PLOG) << "match rule :" << second->rule << " cls : " << second->cls ;
-            // first < second return -1 ;
-            int less_more  = compare(first->rule.c_str(),second->rule.c_str())  ;
-            if (less_more <= 0 ) *_found = *second;
-            return less_more == -1 ;
-
-        }
-        else
-        {
-            // second > first return 1 ;
-            LOG_DEBUG_S(PLOG) << "match rule :" << first->rule << " cls : " << first->cls ;
-            int less_more = compare(second->rule.c_str(),first->rule.c_str())  ;
-            if (less_more == 0 ) *_found =  *first ;
-            return less_more == 1 ;
-        }
-
-    }
+    rule_comparer(kv_map_t* dict): _dict(dict){}
     int compare(const char* uri, const char* rule)
     {
+        int match_level = 9 ;
         status st = VALUE_MATCH ;
         while(true)
         {
-            if( (*uri == 0 || *uri == '?' )   && *rule == 0 ) return 0;
-
+            if( (*uri == 0 || *uri == '?' )   && *rule == 0 ) return match_level ;
             //uri < rule 
             if( *uri == 0 || *uri == '?' ) return -1;
             //uri > rule 
-            if( *rule == 0 ) return 1 ;
+            if( *rule == 0 ) return -1 ;
             switch(st)
             {
                 case VALUE_MATCH :
@@ -95,11 +59,10 @@ struct rule_comparer
                             ++rule;
                             continue ;
                         }
-
                     }
                     else
                     {
-                        return *uri > *rule ? 1:-1 ;
+                        return -1 ;
                     }
                     break; 
 
@@ -118,6 +81,7 @@ struct rule_comparer
                     }
                     (*_dict)[key] = value ;
                     st = VALUE_MATCH;
+                    match_level  = 1 ;
                     break;
             }
         }
@@ -184,19 +148,33 @@ struct rest_finder::impl
 
 
     bool find(const std::string& uri,char * buf , int buf_len)
-    {/*{{{*/
+    {
         rest_dto::ptr target(new rest_dto); 
         target->rule = uri;
-        rest_dto found ;
-        kv_map_t found_dict;
-        rule_comparer compare_obj(uri,&found,&found_dict);
-        if (std::binary_search(_rules.begin(),_rules.end(),target,compare_obj))
+        kv_map_t      var_dict;
+        rest_dto::ptr found ;
+        kv_map_t      found_dict ;
+        int found_mlevel = 0 ;
+        rule_comparer compare_obj(&var_dict);
+
+        
+        BOOST_FOREACH(rest_dto::ptr item, _rules) 
         {
+            var_dict.clear() ;
+            int mlevel =   compare_obj.compare(uri.c_str(),item->rule.c_str()) ;
+            if (mlevel > 0 && mlevel > found_mlevel)
+            {
+                found_mlevel = mlevel ;
+                found        = item ;
+                found_dict   = var_dict ;
+            }
 
-            LOG_DEBUG_S(PLOG) << "matched rule :" << found.rule << " cls : " << found.cls ;
+        }
+        if(found_mlevel > 0 )
+        {
+            LOG_DEBUG_S(PLOG) << "matched rule :" << found->rule << " cls : " << found->cls ;
             stringstream ss ;
-            ss << "{ \"rule\" : \"" <<  found.rule << "\",  \"cls\" : \""  << found.cls   << "\"  " ;
-
+            ss << "{ \"rule\" : \"" <<  found->rule << "\",  \"cls\" : \""  << found->cls   << "\"  " ;
             bool have_uri = false;
             BOOST_FOREACH(key_value_t i  , found_dict)
             {

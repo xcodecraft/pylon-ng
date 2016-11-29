@@ -1,16 +1,21 @@
 _env:
     - !R.env
-        _name : "centos54"
+        _name : "centos-5.4"
         _res  :
             - !R.vars
                 OS_VER      : "centos-5.4"
     - !R.env
-        _name : "centos66"
+        _name : "centos-6.6"
         _res  :
             - !R.vars
                 OS_VER      : "centos-6.6"
     - !R.env
-        _name : "centos68"
+        _name : "centos-6.8"
         _res  :
             - !R.vars
                 OS_VER      : "centos-6.8"
+    - !R.env
+        _name : "centos-7.0"
+        _res  :
+            - !R.vars
+                OS_VER      : "centos-7.0"

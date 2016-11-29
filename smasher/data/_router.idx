@@ -5,3 +5,4 @@
 /allgame : AllgameSvc
 /books/$uid,/books/,/books : BooksSvc
 /gexample/test2/$gkey/$method : gexample_test2
+/web/html/abc : Html2svc

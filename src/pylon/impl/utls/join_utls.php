@@ -6,54 +6,37 @@ namespace pylon\impl ;
  * @{
  */
 
-/** 
+/**
 * @brief Join工具类
  */
 class JoinUtls
 {
     static public function  j2str()
     {
-        $args = func_get_args();
-        $str = "";
-        foreach($args as $item)
-        {
-            if(!is_null($item))
-                $str .=$item;
-        }
-        return $str;
+        $array = func_get_args();
+        return implode("", array_filter($array, function($v){ return $v !== null; })) ;
     }
 
-    /** 
-        * @brief 
-        * 
-        * @param $glue 
-        * @param $array 
-        * 
-        * @return 
+    /**
+        * @brief
+        *
+        * @param $glue
+        * @param $array
+        *
+        * @return
      */
     static public function  jarray($glue,$array)
     {
-        $procArr= array();
-        foreach($array as $item)
-        {
-            if(!is_null($item))
-                $procArr[] = $item;
-        }
-        return implode($glue,$procArr);
+        return implode($glue, array_filter($array, function($v){ return $v !== null; })) ;
     }
     static public function jarrayEx($glue,$array,$fun)
     {
-
-        $procArr= array();
-        foreach($array as $item)
-        {
-            if(!is_null($item))
-                if(is_array($fun))
-                    $procArr[] = call_user_func($fun,$item);
-                else 
-                    $procArr[] = $fun($item);
-        }
-        return implode($glue,$procArr);
+        $array = array_filter($array, function($v){ return $v !== null; }) ;
+        $fun   = function (&$item,$key)use($fun) {
+            $item = call_user_func($fun,$item) ;
+        } ;
+        array_walk($array, $fun);
+        return implode($glue,$array);
     }
 
     static public function j2csv($arr)
@@ -75,24 +58,24 @@ class JoinUtls
     {
         $procArr= array();
         foreach($array as $key => $val)
-        {   
+        {
             if(!is_null($val))
-            {   
+            {
                 $procArr[] =  "$key$tag$val";
-            }   
-        }   
-        return implode($glue,$procArr); 
+            }
+        }
+        return implode($glue,$procArr);
     }
     static public function jassoArrayEx($glue,$array,$fun)
     {
         $procArr= array();
         foreach($array as $key => $val)
-        {   
+        {
             $ret = call_user_func($fun,$key,$val);
             if($ret)
                 $procArr[] = $ret;
-        }   
-        return implode($glue,$procArr); 
+        }
+        return implode($glue,$procArr);
     }
 
     static public function jsortArray($glue,$sort,$array)
@@ -103,7 +86,7 @@ class JoinUtls
             if(!is_null($item))
                 $str .= "$glue".$array[$item];
         }
-        return substr($str,strlen($glue)); 
+        return substr($str,strlen($glue));
     }
     static public function joinPath()
     {
@@ -113,6 +96,6 @@ class JoinUtls
     }
 }
 
-/** 
+/**
  *  @}
  */

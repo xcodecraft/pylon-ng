@@ -94,6 +94,11 @@ class XRouter
         try
         {
             $cls                     = $conf['cls'];
+            if (!class_exists($cls))
+            {
+                throw new \XNotFound("Not found Router Process Class: $cls ") ;
+            }
+
             $plog->debug(" service cls : $cls " );
             $xcontext->__service_run = true ;
             $xcontext->__service_cls = $cls ;

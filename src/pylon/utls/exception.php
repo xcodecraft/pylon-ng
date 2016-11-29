@@ -38,7 +38,7 @@ class XExceptionUtls
 
         $level = "error" ;
         $code  = -1 ;
-        if ( is_subclass_of($e, XRuntimeException ) )
+        if ( is_a($e, XRuntimeException )  || is_a($e, XLogicException))
         {
             $code = $e->status_code ;
             switch($e->status_code)

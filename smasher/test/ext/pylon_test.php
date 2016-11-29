@@ -1,8 +1,4 @@
 <?php
-function log_ins($name)
-{
-    return new logger($name);
-}
 $br = (php_sapi_name() == "cli")? "":"<br>";
 
 if(!extension_loaded('pylonphp')) {
@@ -27,47 +23,24 @@ log_kit::toall(false);
 log_kit::channel(6);
 log_kit::tag("_pylon","tagy");
 log_kit::level("_pylon",1,2);
-log_kit::out("_pylon",1);
 log_kit::event("phpevent");
-$l2 = new logger("_pylon");
-$l2->debug("xxxxdebug","r");
-log_kit::tag("_pylon","tagz");
-$l2->debug("xxxxdebug","w");
-$l1 = new logger("_pylon");
-$l1->info("xxxxinfo");
-$l1->info("xxxxinfo");
-
-
-$l3 = new logger("event");
-$l3->debug("xxxxdebug","r");
-$l3->info("xxxxinfo","w");
-
-
-// pylon_sdict_remove("php_test");
-// pylon_sdict_create("php_test",1);
-// pylon_sdict_create("php_test",1,1);
-// pylon_sdict_create("php_test",1,1,1);
-// $root=$_SERVER['HOME'] . "/devspace/pylon-ng/smasher/data/" ;
-// echo $root;
-// pylon_sdict_data("$root/data_1.txt","=","****");
-// var_dump(pylon_sdict_find("=cls_xaop"));
-// var_dump(pylon_sdict_count());
-
-
+for($i = 0 ; $i< 1000 ; $i++ )
+{
+    $l2 = new logger("_pylon");
+    $l2->debug("xxxxdebug","r");
+    $l2->debug("xxxxdebug","w");
+   log_kit::tag("_pylon","tagz");
+    $l1 = new logger("_pylon2");
+    $l1->debug("xxxxinfo");
+    $l1->info("xxxxinfo");
+    $l3 = new logger("event");
+    $l3->debug("xxxxdebug","r");
+    $l3->info("xxxxinfo","w");
+}
+$root=$_SERVER['HOME'] . "/devspace/pylon-ng/smasher/data/" ;
 pylon_dict_data("$root/data_2.txt","=","****");
-var_dump(pylon_dict_find("=XAop"));
-var_dump(pylon_dict_count());
-
-pylon_dict_data("$root/data_2.txt","=","****");
-var_dump(pylon_dict_find("=XAop"));
-var_dump(pylon_dict_count());
-log_ins("test")->debug("xxxxdebug");
-//log_kit::conf("all",0,1);
-log_ins("test")->debug("xxxxdebug");
-log_ins("_pylon")->debug("xxxxdebug");
-
-
-
+assert(pylon_dict_count() == 213 );
+assert(pylon_dict_find("=XAop") == "****/pylon/xmvc/xmvc.php");
 //pylon_rest_data("/home/luopan/devspace/pylon-ng/smasher/lib/rest_1.txt");
 //echo pylon_rest_find("/mygoods1/1234");
 //pylon_sdict_remove("php_test");

@@ -57,14 +57,21 @@ class XRuleService implements XService
     {
         $method = $request->method ;
         if (empty($method))
+        {
             throw new XConfigException("method 为空") ;
+        }
 
         if (method_exists($this,$method))
         {
             $this->$method($xcontext,$request,$response);
             return ;
         }
+        $this->_dismatch($xcontext,$request,$response) ;
+    }
+    public function _dismatch($xcontext,$request,$response)
+    {
         throw new XNotImplemented("Unimplemnt " . get_class($this) ."::" .  $method );
+
     }
     public function _get($xcontext,$request,$response)
     {

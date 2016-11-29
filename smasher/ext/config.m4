@@ -59,7 +59,8 @@ dnl [  --enable-pylonphp           Enable pylonphp support])
   dnl
 
   PHP_ADD_INCLUDE(${PRJ_ROOT}/smasher/include)
-  PHP_ADD_LIBRARY_WITH_PATH(pylon_smasher-${EXT_VER},$PRJ_ROOT/src/modules/${OS_VER}, PYLONPHP_SHARED_LIBADD)
+  dnl PHP_ADD_LIBRARY_WITH_PATH(pylon_smasher-${EXT_VER},$PRJ_ROOT/src/modules/${OS_VER}, PYLONPHP_SHARED_LIBADD)
+  PHP_ADD_LIBRARY_WITH_PATH(pylon_smasher-${EXT_VER},$PRJ_ROOT/smasher/bin, PYLONPHP_SHARED_LIBADD)
   PHP_NEW_EXTENSION(pylonphp, pylonphp.c, $ext_shared)
   PHP_SUBST(PYLONPHP_SHARED_LIBADD)
 

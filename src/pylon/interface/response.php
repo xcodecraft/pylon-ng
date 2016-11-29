@@ -41,7 +41,7 @@ abstract class XBaseResp  implements  XResponse
         $code = $ex->status_code ;
         if(empty($code) )
         {
-            $code = $this->status_code ;
+            $code = $ex->getCode();
         }
         if(!empty($ex->headers))
         {
@@ -77,11 +77,39 @@ class XHtmlResp   extends XBaseResp
     {
         $this->jumpURL = $url ;
     }
+    public function error($errmsg,$errno = XErrCode::UNKNOW,$statusCode = 510)
+    {
+        $this->statusCode = $statusCode ;
+        echo "error:<br>" ;
+        echo $errmsg ;
+    }
+
+    public function exception($ex)
+    {
+        $code = $ex->status_code ;
+        if(empty($code) )
+        {
+            $code = $ex->getCode() ;
+        }
+        if(!empty($ex->headers))
+        {
+            $this->headers = $ex->headers ;
+        }
+        $this->statusCode = $code ;
+        echo "error:<br>" ;
+        echo $ex->getMessage();
+    }
+
     public function tpl($_xc,$file,$extract=false)
     {
-        if ($extract)
+        $_data = $_xc ;
+        if( is_a($_xc,XContext) )
         {
-            extract($_xc->toArr());
+            $_data = $_xc->toArr();
+        }
+        if ($extract && is_array($_data))
+        {
+            extract($_data);
         }
         $this->statusCode = 500 ;
         $file = $this->root . "/" . $file ;
@@ -101,7 +129,7 @@ class XRespFail
     public $code        = 500 ;
     public $message     = "unset response data" ;
     public $type        = "" ;
-    public $sub_code    = 100;
+    public $sub_code    = "1" ;
     public $prompt_info = "" ;
     public $prompt_type = "" ;
 
@@ -113,7 +141,10 @@ class XRespFail
             $code = $this->code ;
         }
         $this->code     = $code ;
-        $this->sub_code = $ex->getCode();
+        if( is_a($ex,XRuntimeException) || is_a($ex,XLogicException))
+        {
+            $this->sub_code = $ex->sub_code ;
+        }
         $this->message  = $ex->getMessage();
         $this->type     = get_class($ex) ;
 
@@ -181,6 +212,7 @@ class XRestResp implements XResponse
     public $error       = null ;
     public $jsonpEnable = false ;
     public $jsonpCall   = "";
+    public $contentType = "application/json" ;
     private $data       = array() ;
     public function __construct()
     {
@@ -256,7 +288,7 @@ class XRestResp implements XResponse
                 header("$name: " . $value);
             }
             PYL_HttpHeader::out_header((int)$this->status_code);
-            header('Content-type: application/json');
+            header('Content-type: ' . $this->contentType);
         }
 
         $outdata = "";

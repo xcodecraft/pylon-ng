@@ -128,13 +128,29 @@ class XSetting
     }
     static public function setupModel()
     {
-        $sql = XDriver::shortSQLEX();
-        XEntEnv::simpleSetup($sql) ;
+        $fun = function () {
+            $sql = XDriver::sqlex();
+            XEntEnv::simpleSetup($sql) ;
+        } ;
+        XPylon::$load_funcs[] = $fun ;
+
+    }
+    static public function autoload()
+    {
+        if(empty(XSetting::$runPath))
+        {
+            throw new LogicException("not set [XSetting::\$runPath]") ;
+        }
+        $libRoot  = dirname(dirname(__FILE__));
+        PylonModule::pylon_load_cls_index(XSetting::$runPath,$libRoot,XSetting::$version) ;
     }
 
     static public function setupModel2($sqlex,$idg)
     {
-        XEntEnv::simpleSetup($sqlex,$idg);
+        $fun = function()use($sqlex,$idg) {
+            XEntEnv::simpleSetup($sqlex,$idg);
+        } ;
+        XPylon::$load_funcs[] = $fun ;
 
     }
 
@@ -149,65 +165,31 @@ interface XIlogger
 
 }
 
-class XNullLogger implements XIlogger
+class XNullLogger
 {
-    public function debug($msg,$event = null )
-    {
-    }
-
-    public function info($msg,$event = null )
-    {
-
-    }
-
-    public function warn($msg,$event = null )
-    {
-
-    }
-
-    public function error($msg,$event = null )
-    {
-    }
+    public function __call($name,$params) { }
 }
 
 
-class XLogger  implements XIlogger
+class XLogger
 {
 
     public function __construct($name)
     {
         $this->log = new Logger($name) ;
+        $this->ext = new XNullLogger();
         $logCls    = XSetting::$logCls ;
-        $this->externLog =  is_null($logCls) ?  new XNullLogger() : new $logCls($name);
+        if(! is_null($logCls))
+        {
+            $this->ext = new $logCls($name);
+        }
 
     }
-    public function debug($msg,$event = null )
+    public function __call($name,$params)
     {
-        $this->log->debug($msg,$event) ;
-        $this->externLog->debug($msg,$event) ;
-
+        call_user_func_array(array($this->log,$name),$params);
+        call_user_func_array(array($this->ext,$name),$params);
     }
-
-    public function info($msg,$event = null )
-    {
-        $this->log->info($msg,$event) ;
-        $this->externLog->info($msg,$event) ;
-
-    }
-
-    public function warn($msg,$event = null )
-    {
-        $this->log->warn($msg,$event) ;
-        $this->externLog->warn($msg,$event) ;
-
-    }
-
-    public function error($msg,$event = null )
-    {
-        $this->log->error($msg,$event) ;
-        $this->externLog->error($msg,$event) ;
-    }
-
 }
 /**
  * @ingroup utls
@@ -216,6 +198,7 @@ class XLogger  implements XIlogger
 class XLogKit
 {
 
+    static  $loggers = array() ;
     public static function event($evt)
     {
         log_kit::event($evt);
@@ -229,128 +212,19 @@ class XLogKit
      */
     public static function logger($name)
     {
-        // if (! self::$is_setting)
-        return new XLogger($name);
-    }
-}
-
-
-
-function pylon_load_cls_index()
-{
-    $lib_root  = dirname(dirname(__FILE__));
-    PylonModule::pylon_load_cls_index($lib_root,XSetting::$version) ;
-}
-/**
- * \public
- * @brief  定义的autoload 函数
- *
- * @param $classname
- *
- * @return
- */
-function pylonlib__autoload($classname)
-{
-    PylonModule::pylonlib__autoload($classname) ;
-}
-
-function appsys__autoload($classname)
-{
-    PylonModule::appsys__autoload($classname) ;
-}
-
-function pylon__unload($classname)
-{
-    PylonModule::pylon__unload($classname) ;
-}
-
-
-
-
-spl_autoload_register(pylon_load_cls_index);
-
-//注册 PYLON框架自已的autoload方法
-spl_autoload_register(pylonlib__autoload);
-
-//注册应用系统的的autoload方法
-spl_autoload_register(appsys__autoload);
-
-//注册没有找的处理函数
-spl_autoload_register(pylon__unload);
-
-
-/**
- * @ingroup interface
- * @brief Pylon框架入口
- */
-class XPylon
-{
-    static private function load()
-    {
-
-        if (empty(XSetting::$runPath) )
+        $logger = null ;
+        if( isset( static::$loggers[$name]))
         {
-            throw new LogicException('没有设定 XSetting::$runPath') ;
+            $logger = static::$loggers[$name] ;
         }
-        require XSetting::$bootstrap ;
-    }
-    /**
-     * @brief 获得websvc实例
-     *
-     * @return  PylonMvcSvr 实例
-     */
-    static public function websvc()
-    {
-        return new PylonMvcSvc(static::$runpath);
-    }
-    /**
-     * @brief 启动rest 服务
-     * @return
-     */
-    static public function serving($httpStatus=true)
-    {
-        if(!is_bool($httpStatus))
+        else
         {
-            $httpStatus = true ;
+            $logger =  new XLogger($name);
+            static::$loggers[$name] = $logger ;
         }
-
-        ob_start();
-        static::useEnv();
-        $data_file = XSetting::$runPath . "/router/_router.idx" ;
-        XBox::replace(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
-        XRouter::serving($httpStatus);
-        ob_end_flush();
-    }
-    /**
-     * @brief 后台服务
-     * @return
-     */
-    static public function useEnv()
-    {
-        static::logConf();
-        static::load();
+        return $logger ;
     }
 
-    private static function logConf()
-    {
-        switch(XSetting::$logMode)
-        {
-        case XSetting::LOG_ONLINE_MODE :
-            static::log4online();
-            break;
-        case XSetting::LOG_DEBUG_MODE :
-            static::log4debug();
-            break;
-        case XSetting::LOG_BENCHMARK_MODE:
-            static::log4benchmark();
-            break;
-        case XSetting::LOG_FAST_MODE:
-            static::log4fast();
-            break;
-        default:
-            static::log4online();
-        }
-    }
     private static function log4online()
     {
         log_kit::init(XSetting::$prjName,XSetting::$logTag,XSetting::LOG_INFO_LEVEL);
@@ -390,6 +264,107 @@ class XPylon
         log_kit::level("_speed" , XSetting::LOG_ERROR_LEVEL);
         log_kit::level("_rest"  , XSetting::LOG_ERROR_LEVEL);
     }
+    public static function logConf()
+    {
+        switch(XSetting::$logMode)
+        {
+        case XSetting::LOG_ONLINE_MODE :
+            static::log4online();
+            break;
+        case XSetting::LOG_DEBUG_MODE :
+            static::log4debug();
+            break;
+        case XSetting::LOG_BENCHMARK_MODE:
+            static::log4benchmark();
+            break;
+        case XSetting::LOG_FAST_MODE:
+            static::log4fast();
+            break;
+        default:
+            static::log4online();
+        }
+    }
+}
+
+
+
+function pylon_load_cls_index()
+{
+}
+
+function pylon__unload($classname)
+{
+    PylonModule::unload($classname) ;
+}
+
+
+pylon_load_cls_index();
+
+
+//注册 PYLON框架自已的autoload方法
+spl_autoload_register('pylon\impl\PylonModule::autoload');
+
+//注册没有找的处理函数
+spl_autoload_register(pylon__unload);
+
+
+/**
+ * @ingroup interface
+ * @brief Pylon框架入口
+ */
+class XPylon
+{
+    static public  $load_funcs = array() ;
+    static private function load()
+    {
+        XSetting::autoload();
+        if (empty(XSetting::$runPath) )
+        {
+            throw new LogicException('没有设定 XSetting::$runPath') ;
+        }
+        foreach(static::$load_funcs  as $func)
+        {
+            $func() ;
+        }
+        require XSetting::$bootstrap ;
+    }
+    /**
+     * @brief 获得websvc实例
+     *
+     * @return  PylonMvcSvr 实例
+     */
+    static public function websvc()
+    {
+        return new PylonMvcSvc(static::$runpath);
+    }
+    /**
+     * @brief 启动rest 服务
+     * @return
+     */
+    static public function serving($httpStatus=true)
+    {
+        if(!is_bool($httpStatus))
+        {
+            $httpStatus = true ;
+        }
+
+        ob_start();
+        static::useEnv();
+        $data_file = XSetting::$runPath . "/router/_router.idx" ;
+        XBox::replace(XBox::ROUTER,new FastRouter($data_file),__METHOD__);
+        XRouter::serving($httpStatus);
+        ob_end_flush();
+    }
+    /**
+     * @brief 后台服务
+     * @return
+     */
+    static public function useEnv()
+    {
+        XLogKit::logConf();
+        static::load();
+    }
+
 
     /**
      * \public

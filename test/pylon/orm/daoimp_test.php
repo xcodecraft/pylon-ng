@@ -3,6 +3,7 @@
 use pylon\impl\EmptyUnitWork ;
 use pylon\impl\Daoimp;
 use pylon\impl\SimpleMapping ;
+use pylon\impl\Relation ;
 use pylon\impl\DynCallParser ;
 use pylon\impl\DQLObj ;
 use pylon\impl\DaoFinderUtls ;
@@ -96,26 +97,26 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             unset($this->app) ;
             $this->app = XAppSession::begin(new EmptyUnitWork()) ;
 
-            $books = XQuery::obj()->list_Book_by_price(QL('# > 10 and # < 10.5 ','#'));
+            $books = XQuery::obj()->list_Book_by_price(XQuery::QL('# > 10 and # < 10.5 ','#'));
             $this->assertTrue(count($books)>=3);
-            $books2 = XQuery::obj()->list_Book_by_name(QL('? like "c%"'));
+            $books2 = XQuery::obj()->list_Book_by_name(XQuery::QL('? like "c%"'));
             $this->assertTrue(count($books2)>=3);
 
-            $books3 = XQuery::obj()->list_Book_by_name_price(QL('? like "c%"'),"10.3");
+            $books3 = XQuery::obj()->list_Book_by_name_price(XQuery::QL('? like "c%"'),"10.3");
 
 
-            $books = XQuery::obj()->list_Book_by_price(QL('? > 10 and ? < 10.5 '));
+            $books = XQuery::obj()->list_Book_by_price(XQuery::QL('? > 10 and ? < 10.5 '));
             $this->assertTrue(count($books)>=3);
 
-            $books = XQuery::obj()->list_Book_by_price(QL('? > 10 and ? < 10.5 '));
+            $books = XQuery::obj()->list_Book_by_price(XQuery::QL('? > 10 and ? < 10.5 '));
             $this->assertTrue(count($books)>=3);
 
-            $books = XQuery::obj()->list_Book_by_price(QL('? > 10 and ? < 10.5 '));
+            $books = XQuery::obj()->list_Book_by_price(XQuery::QL('? > 10 and ? < 10.5 '));
             $this->assertTrue(count($books)>=3);
             DaoFinderUtls::clearBinder();
 
             XWriter::ins()->update_Book_set_price_by_name("15",QL(' ? like "c%"'));
-            $books4 = XQuery::arr()->list_Book_by_price(QL('? > "12" '));
+            $books4 = XQuery::arr()->list_Book_by_price(XQuery::QL('? > "12" '));
             $this->assertTrue(count($books4)>0);
 
             // mongo style test
@@ -131,7 +132,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
             XWriter::del_Book(array("name"=>"todel"));
             $this->app->commit();
             $where = array(
-                "name"  => QL("? != 'c'"),
+                "name"  => XQuery::QL("? != 'c'"),
                 "price" => QL("? < 11"),
             );
             $order = array(
@@ -284,7 +285,7 @@ class DaoImpTest extends PHPUnit_Framework_TestCase
 
 //        $dda->list_user_by_age('? >18 or ? <20 ');
         extract(DynCallParser::condObjParse("list_user_by_age"));
-        $prop = DynCallParser::buildCondProp($condnames,array(QL("? > 18 or ? < 20 ")),$oparam);
+        $prop = DynCallParser::buildCondProp($condnames,array(XQuery::QL("? > 18 or ? < 20 ")),$oparam);
         $this->assertEquals($cls,"user");
         $this->assertEquals($op,"list");
         $this->assertEquals($prop->age,new DQLObj("? > 18 or ? < 20 "));

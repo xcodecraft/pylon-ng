@@ -31,10 +31,11 @@ function deploy_phpext ()
     VER=$1
     DST=/usr/local/php-$VER/extensions
     if test -d $DST ; then
-        cp -u ./$VER/pylon*.so $DST
+        if test -d ./$VER/ ; then
+            cp -u ./$VER/pylon*.so $DST
+        fi
     fi
 
 }
-deploy_phpext 5.3
-deploy_phpext 5.6
+deploy_phpext 7.0
 /sbin/ldconfig

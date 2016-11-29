@@ -15,9 +15,9 @@ function build_ext()
     echo $PHPIZE
     $PHPIZE --clean ;
     $PHPIZE ;
-    ./configure CC=g++  --with-php-config=$PHPBIN/php-config
+    ./configure CC=g++  --with-php-config=$PHPBIN/php-config 
     make clean
-    make
+    make 
     make test
     echo $PRJ_ROOT/smasher/ext/modules/$TARGET ;
     if ! test -e $PRJ_ROOT/smasher/ext/modules/$TARGET ; then

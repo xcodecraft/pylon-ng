@@ -1,0 +1,57 @@
+_mod :
+    - !R.modul
+        _name : "pylon_web"
+        _args : 
+            MOD_TAG:     None
+            MOD_ENTRY:   None
+            MOD_INCLUDE: None
+        _res  :
+            - !R.vars
+                tpl_root : "${PRJ_ROOT}/conf/options/"
+                use_root : "${PRJ_ROOT}/conf/used/"
+            - !R.pylon_autoload
+                include  : "${MOD_INCLUDE}"
+            - !R.pylon_router
+                include  : "${MOD_ENTRY}"
+            - !R.nginx_conf
+                sudo     : true
+                src      : "${USE_ROOT}/${MOD_TAG}_ngx.conf"
+                tpl      : "${TPL_ROOT}/${MOD_TAG}_ngx.conf"
+            - !R.fpm
+                sudo     : True
+                ini_tpl  : "${TPL_ROOT}/${MOD_TAG}_php.ini"
+                conf_tpl : "${TPL_ROOT}/${MOD_TAG}_fpm.conf"
+
+    - !R.modul
+        _name : "pylon_php"
+        _args : 
+            MOD_TAG:     None
+            MOD_INCLUDE: None
+        _res  :
+            - !R.vars
+                tpl_root : "${PRJ_ROOT}/conf/options/"
+                use_root : "${PRJ_ROOT}/conf/used/"
+
+            - !R.file_tpl
+                tpl      : "${TPL_ROOT}/${MOD_TAG}_php.ini"
+                dst      : "${USE_ROOT}/${MOD_TAG}_php.ini"
+            - !R.pylon_autoload
+                include  : "${MOD_INCLUDE}"
+
+    - !R.modul
+        _name : "phpunit"
+        _args : 
+             TEST_INCLUDE : None
+             TEST_PATH    : "test"
+             
+        _res  :
+            - !R.pylon_autoload
+                include  : "${TEST_INCLUDE}"
+            - !R.file_tpl
+                 tpl : "${PRJ_ROOT}/conf/options/tpl_test_php.ini"
+                 dst : "${PRJ_ROOT}/conf/used/test_php.ini"
+            - !R.php
+                bin    : "${PHP_BIN}"
+                ini    : "${PRJ_ROOT}/conf/used/test_php.ini"
+                script : "/usr/local/php/bin/phpunit"
+                args   : "--configuration ${PRJ_ROOT}/${TEST_PATH}/phpunit.xml --coverage-clover ${TEST_PATH}/reports/phpunit.coverage.xml --log-junit ${TEST_PATH}/reports/phpunit.report.xml"

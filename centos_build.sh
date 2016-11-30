@@ -1,7 +1,8 @@
+#!/bin/bash
 OS="UNKNOW"
-if test -e /etc/redhat-release  ; then
-
-    CONTENT=`cat /etc/redhat-release`
+OS_FILE=/etc/redhat-release 
+if test -e $OS_FILE  ; then
+    CONTENT=`cat $OS_FILE `
     if test  "$CONTENT" = "CentOS release 5.4 (Final)" ; then
         OS="centos-5.4"
     fi
@@ -17,28 +18,14 @@ if test -e /etc/redhat-release  ; then
     if test  "$CONTENT" = "CentOS Linux release 7.2.1511 (Core) " ; then 
         OS="centos-7.0"
     fi
-
 fi
+
 if test "$OS" = "UNKNOW"  ;  then
     echo "unknow this os ,
     setup exit!"
     exit;
 fi
-adirname() { odir=`pwd`; cd `dirname $1`; pwd; cd "${odir}"; }
-MYDIR=`dirname "$0"`
-cd $MYDIR
-cd $OS
-cp -u ./libpylon_smasher*.so /usr/local/lib/
-function deploy_phpext ()
-{
-    VER=$1
-    DST=/usr/local/php-$VER/extensions
-    if test -d $DST ; then
-        if test -d ./$VER/ ; then
-            cp -u ./$VER/pylon*.so $DST
-        fi
-    fi
 
-}
-deploy_phpext 7.0
-/sbin/ldconfig
+
+rg start -ecentos,$OS,php70 -s ext
+

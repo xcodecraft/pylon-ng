@@ -48,4 +48,3 @@ assert($ex1 == $found) ;
 $ex2 = '{ "rule" : "/web/html/$sub",  "cls" : "Htmlsvc"   , "uri": {"sub" : "xyz"} }' ;
 $found = pylon_rest_find("/web/html/xyz");
 assert($ex2 == $found) ;
-

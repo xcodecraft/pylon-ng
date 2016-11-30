@@ -140,6 +140,7 @@ _sys:
                     include: "${PHP_INCLUDE}"
 
                 - !R.pylon_router
+                    version       : 2 
                     include       : "${PRJ_ROOT}/demo/"
                 - !R.fpm
                     ini_tpl       : "${PRJ_ROOT}/conf/options/tpl_web_php.ini"

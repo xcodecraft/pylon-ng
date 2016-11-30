@@ -59,7 +59,7 @@ class game_test2_Test extends PHPUnit_Framework_TestCase
         $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);
         $this->assertEquals("sxd 1000, uid 5555",$data);
-
+        //
         $x  = $this->curl->post("/gexample/test2/sxd/start",array() );
         $data = XRestResult::ok($x) ;
         $this->assertTrue($data != null);

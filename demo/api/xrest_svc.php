@@ -47,7 +47,8 @@ class guser_user_profile extends XRuleService implements XService
     }
 }
 
-class gexample_test2 extends XRuleService implements XService   //@REST_RULE: /gexample/test2/$gkey/$method
+//@REST_RULE: /gexample/test2/$gkey/$method
+class gexample_test2 extends XRuleService implements XService   
 {
     public function score($xcontext,$request,$response)
     {

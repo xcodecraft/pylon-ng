@@ -48,4 +48,9 @@ assert($ex1 == $found) ;
 $ex2 = '{ "rule" : "/web/html/$sub",  "cls" : "Htmlsvc"   , "uri": {"sub" : "xyz"} }' ;
 $found = pylon_rest_find("/web/html/xyz");
 assert($ex2 == $found) ;
+$found = pylon_rest_find("/gexample/test2/sxd/score?uid=5555&name=yangwm&type=g");
+$ex3 = '{ "rule" : "/gexample/test2/$gkey/$method",  "cls" : "gexample_test2"   , "uri": {"gkey" : "sxd","method" : "score"} }' ;
+assert($ex3 == $found) ;
+
+
 

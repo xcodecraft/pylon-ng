@@ -51,6 +51,3 @@ assert($ex2 == $found) ;
 $found = pylon_rest_find("/gexample/test2/sxd/score?uid=5555&name=yangwm&type=g");
 $ex3 = '{ "rule" : "/gexample/test2/$gkey/$method",  "cls" : "gexample_test2"   , "uri": {"gkey" : "sxd","method" : "score"} }' ;
 assert($ex3 == $found) ;
-
-
-

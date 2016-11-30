@@ -12,6 +12,7 @@ _mod :
             - !R.pylon_autoload
                 include  : "${MOD_INCLUDE}"
             - !R.pylon_router
+                version  : 2
                 include  : "${MOD_ENTRY}"
             - !R.nginx_conf
                 sudo     : true

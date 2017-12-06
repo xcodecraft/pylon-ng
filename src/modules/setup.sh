@@ -14,7 +14,7 @@ if test -e /etc/redhat-release  ; then
     if test  "$CONTENT" = "CentOS release 6.8 (Final)" ; then
         OS="centos-6.8"
     fi
-    if test  "$CONTENT" = "CentOS Linux release 7.2.1511 (Core) " ; then 
+    if test  "$CONTENT" = "CentOS Linux release 7.4.1708 (Core) " ; then
         OS="centos-7.0"
     fi
 
@@ -26,7 +26,7 @@ if test "$OS" = "UNKNOW"  ;  then
 fi
 adirname() { odir=`pwd`; cd `dirname $1`; pwd; cd "${odir}"; }
 MYDIR=`dirname "$0"`
-cd $MYDIR
+cd $MYDIR/modules
 cd $OS
 cp -u ./libpylon_smasher*.so /usr/local/lib/
 function deploy_phpext ()

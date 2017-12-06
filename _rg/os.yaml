@@ -19,3 +19,9 @@ _env:
         _res  :
             - !R.vars
                 OS_VER      : "centos-7.0"
+
+    - !R.env
+        _name : "centos-7.4"
+        _res  :
+            - !R.vars
+                OS_VER      : "centos-7.4"

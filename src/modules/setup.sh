@@ -26,7 +26,7 @@ if test "$OS" = "UNKNOW"  ;  then
 fi
 adirname() { odir=`pwd`; cd `dirname $1`; pwd; cd "${odir}"; }
 MYDIR=`dirname "$0"`
-cd $MYDIR/modules
+cd $MYDIR
 cd $OS
 cp -u ./libpylon_smasher*.so /usr/local/lib/
 function deploy_phpext ()

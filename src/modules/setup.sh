@@ -40,5 +40,5 @@ function deploy_phpext ()
     fi
 
 }
-deploy_phpext 7.0
+deploy_phpext 7.1
 /sbin/ldconfig

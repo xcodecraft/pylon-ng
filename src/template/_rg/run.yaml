@@ -1,111 +1,96 @@
 _env:
     - !R.env
-        _name    : "_local_deploy"
+        _name    : "define"
         _res :
-            - !R.project
-                root        : "${HOME}/devspace/%{PRJ_NAME}"
-                name        : "%{PRJ_NAME}"
             - !R.vars
-                PHP_ERROR   : "E_ALL & ~E_NOTICE"
-                FPM_USER    : "${USER}"
-
-                # 数据库
-                # DB_HOST     : "127.0.0.1"
-                # DB_NAME     : "db_name"
-                # DB_USER     : "db_user"
-                # DB_PWD      : ""
+                PRJ_NAME    : "%{PRJ_NAME}"
+            - !R.include
+                _path :
+                    - "./_rg/run_base.yaml"
+    
 
     - !R.env
-        _name    : "_safe_deploy"
-        _res :
-            - !R.project
-                root        : "/data/x/projects/%{PRJ_NAME}"
-                name        : "%{PRJ_NAME}"
-            - !R.vars
-                PHP_ERROR   : "E_ALL & ~E_NOTICE"
-                FPM_USER    : "%{FPM_USER}"
-    - !R.env
-        _name    : "_dev"
+        _name    : "base"
         _res :
             - !R.vars
-                BASE_DOMAIN : "${USER}.%{MAIN_DOMAIN}"
-
-    - !R.env
-        _name    : "_demo"
-        _res :
-            - !R.vars
-                BASE_DOMAIN : "demo.%{MAIN_DOMAIN}"
-
-    - !R.env
-        _name : "base"
-        _res :
-            - !R.vars
-                PYLON   : "/data/x/framework/pylon-ng/"
-                RIGGER  : "/data/x/tools/rigger-ng/"
-                BASE_INCLUDE : "${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation"
-            - !R.path
-                dst  : "${PRJ_ROOT}/conf/used "
-
+                BASE_INCLUDE : "${PRJ_ROOT}/src/bizlogic}"
 
     - !R.env
         _name    : "dev"
-        _mix     : "_local_deploy,_dev,base"
+        _mix     : "define,_local_deploy,_dev,_base,base"
 
     - !R.env
         _name    : "demo"
-        _mix     : "_safe_deploy,_demo,base"
+        _mix     : "define,_serving_deploy,_demo,_base,base"
 
     - !R.env
         _name    : "test"
-        _mix     : "_safe_deploy,_test,base"
+        _mix     : "define,_serving_deploy,_test,_base,base"
+
+    - !R.env
+        _name    : "beta"
+        _mix     : "define,_serving_deploy,_beta,_base,base"
+
+    - !R.env
+        _name    : "online"
+        _mix     : "define,_serving_deploy,_online,_base,base"
 
 _sys:
-    -  !R.system
-        _name : "init"
-        _res  :
-            - !R.vars
-                YOU_X    : "x"
-            - !R.mysql
-                host:     "${DB_HOST}"
-                name:     "${DB_NAME}"
-                user:     "${DB_USER}"
-                password: "${DB_PWD}"
-                sql:      "${PRJ_ROOT}/src/init/create_db.sql"
-            - !R.using
-                path  : "${PYLON}/rigger/pylon.yaml"
-                modul : "pylon_php"
-                args  : !R.vars
-                    MOD_TAG     : "init"
-                    MOD_INCLUDE : "${PRJ_ROOT}/src/init:${BASE_INCLUDE}"
-            - !R.php
-                ini :    "${PRJ_ROOT}/conf/used/init_php.ini"
-                bin:     "/usr/local/php-5.6/bin/php"
-                script : "${PRJ_ROOT}/src/init/sys_init.php"
-
-    -  !R.system
-        _name : "api"
-        _res  :
-            - !R.vars
-                DOMAIN      : "api.${BASE_DOMAIN}"
-                SOCK_FILE   : "${RUN_PATH}/api_fpm.sock"
-            - !R.using
-                path  : "${PYLON}/rigger/pylon.yaml"
-                modul : "pylon_web"
-                args  : !R.vars
-                    MOD_TAG     : "api"
-                    MOD_ENTRY   : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
-                    MOD_INCLUDE : "${PRJ_ROOT}/src/sys_${SYS_NAME}:${BASE_INCLUDE}"
-
-    -  !R.system
-        _name : "test"
-        _res  :
-            - !R.using
-                path  : "${RIGGER}/extends/moduls/pylon.yaml"
-                modul : "pylon_php"
-                args  : !R.vars
-                    MOD_TAG     : "test"
-                    MOD_INCLUDE : "${PRJ_ROOT}/test:${PRJ_ROOT}/src"
-            - !R.shell
-                script : "${PRJ_ROOT}/test/phpunit.sh"
+      -  !R.system
+          _name  : "init"
+          _limit :
+              envs   : "demo,online"
+              passwd : "mind"
+          _res  :
+              - !R.vars
+                  PHP_INI : "${PRJ_ROOT}/conf/used/init_php.ini"
+              - !R.using
+                  modul : "pylon_init"
+                  args  : !R.vars
+                      INIT_SQL     : "${PRJ_ROOT}/src/sys_init/create_db.sql"
+                      INCLUDE_PATH : "${PRJ_ROOT}/src/sys_init:${BASE_INCLUDE}"
+              - !R.php
+                  ini :    "${PRJ_ROOT}/conf/used/init_php.ini"
+                  script : "${PRJ_ROOT}/src/sys_init/sys_init.php"
 
 
+      -  !R.system
+          _name : "api"
+          _res  :
+              - !R.vars
+                  DOMAIN      : "api.${BASE_DOMAIN}"
+                  PORT        : "80"
+              - !R.using
+                  modul : "pylon_api"
+                  args  : !R.vars
+                      API_ENTRY    : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
+                      INCLUDE_PATH : "${prj_root}/src/sys_${sys_name}:${BASE_INCLUDE}"
+
+      -  !R.system
+          _name : "test"
+          _res:
+              - !R.vars
+                  API_DOMAIN  : "api.${BASE_DOMAIN}"
+                  PHP_INI : "${PRJ_ROOT}/conf/used/test_php.ini"
+                  PORT        : "80"
+              - !R.using
+                  modul : "pylon_unit"
+                  args  : !R.vars
+                      INCLUDE_PATH: "${prj_root}/src/sys_api:${BASE_INCLUDE}:${PRJ_ROOT}/test/"
+
+      -  !R.system
+          _name : "console"
+          _res:
+              - !R.vars
+                  PHP_INI : "${PRJ_ROOT}/conf/used/console_php.ini"
+              - !R.using
+                  modul : "pylon_php"
+                  args  : !R.vars
+                      INCLUDE_PATH : "${PRJ_ROOT}/src/sys_console:${BASE_INCLUDE}"
+              # - !R.daemon_php
+              #     script:  "${PRJ_ROOT}/src/sys_console/apply_worker.php"
+              #     tag   :  "apply"
+              #     worker:  5
+              # - !R.file_tpl
+              #     tpl   : "${PRJ_ROOT}/conf/options/console.cron"
+              #     dst   : "${PRJ_ROOT}/conf/used/console.cron"

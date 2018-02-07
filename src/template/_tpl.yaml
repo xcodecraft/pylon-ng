@@ -1,9 +1,11 @@
 PRJ_NAME: !T.input
-    prompt : "please input project name"
+    prompt : "Please input project name"
 
 FPM_USER : !T.input
-    prompt : " fpm run user !"
+    prompt : " system run user, such as 'xcc' !"
 
+PHP_VRE: !T.input
+    prompt : "php version such as 7.1:"
 
 MAIN_DOMAIN : !T.input
     prompt : " domain? eg: rigger.so"

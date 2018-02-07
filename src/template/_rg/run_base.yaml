@@ -1,0 +1,321 @@
+_env:
+    - !R.env
+        _name    : "_local_deploy"
+        _res :
+            - !R.project
+                root      : "${HOME}/devspace/${PRJ_NAME}"
+                name      : "${PRJ_NAME}"
+            - !R.vars
+                RUN_USER   : "${USER}"
+                XDEBUG_DIR : "${HOME}/devspace/xdebug"
+
+
+    - !R.env
+        _name    : "_ci_deploy"
+        _res :
+            - !R.project
+                root      : "/data/jenkins/workspace/${PRJ_NAME}"
+                name      : "${PRJ_NAME}"
+            - !R.vars
+                RUN_USER     : "%{RUN_USER}"
+                XDEBUG_DIR : "/data/jenkins/workspace/xdebug"
+
+
+    - !R.env
+        _name    : "_serving_deploy"
+        _res :
+            - !R.project
+                root      : "/data/x/projects/${PRJ_NAME}"
+                name      : "${PRJ_NAME}"
+            - !R.vars
+                RUN_USER     : "%{RUN_USER}"
+                XDEBUG_DIR : "/data/x/projects/xdebug"
+
+    - !R.env
+        _name    : "_diy_deploy"
+        _res :
+            - !R.project
+                root      : "${DEPLOY_PATH}/${PRJ_NAME}"
+                name      : "${PRJ_NAME}"
+            - !R.vars
+                RUN_USER     : "%{RUN_USER}"
+
+    - !R.env
+        _name    : "_etc_deploy"
+        _res :
+            - !R.project
+                root      : "/data/x/etc/${PRJ_NAME}"
+                name      : "${PRJ_NAME}"
+            - !R.vars
+                RUN_USER     : "%{RUN_USER}"
+
+
+    - !R.env
+        _name : "_dev"
+        _mix  : "_debug,_speed_min"
+        _res  :
+            - !R.vars
+                BASE_DOMAIN  : "${USER}.dev.%{MAIN_DOMAIN}"
+                DB_NAME         : "${PRJ_NAME}_${USER}"
+                RUN_ENV         : "dev"
+
+    - !R.env
+        _name : "_demo"
+        _mix  : "_debug,_speed_min"
+        _res  :
+            - !R.vars
+                BASE_DOMAIN  : "demo.%{MAIN_DOMAIN}"
+                DB_NAME         : "${PRJ_NAME}_demo"
+                RUN_ENV         : "demo"
+    - !R.env
+        _name : "_ci"
+        _mix  : "_debug,_speed_min"
+        _res  :
+            - !R.vars
+                BASE_DOMAIN : "ci.%{MAIN_DOMAIN}"
+                DB_NAME        : "${PRJ_NAME}_lab"
+                RUN_ENV        : "lab"
+
+
+    - !R.env
+        _name : "_lab"
+        _mix  : "_debug,_speed_min"
+        _res  :
+            - !R.vars
+                BASE_DOMAIN : "lab.%{MAIN_DOMAIN}"
+                DB_NAME        : "${PRJ_NAME}_lab"
+                RUN_ENV        : "lab"
+
+    - !R.env
+        _name : "_test"
+        _mix  : "_debug,_speed_min"
+        _res  :
+            - !R.vars
+                BASE_DOMAIN : "test.%{MAIN_DOMAIN}"
+                DB_NAME        : "${PRJ_NAME}_test"
+                RUN_ENV        : "test"
+
+    - !R.env
+        _name : "_beta"
+        _mix  : "_debug,_speed_min"
+        _res  :
+            - !R.vars
+                BASE_DOMAIN  : "%{MAIN_DOMAIN}"
+                RUN_ENV        : "beta"
+
+
+    - !R.env
+        _name : "_online"
+        _mix  : "_release,_speed_max"
+        _res  :
+            - !R.vars
+                BASE_DOMAIN  : "%{MAIN_DOMAIN}"
+                RUN_ENV        : "online"
+
+    - !R.env
+        _name : "_base"
+        _res :
+            - !R.vars
+                _json: "/data/x/etc/xcc_env/run_env/env.json:/mysql"
+            - !R.vars
+                PHP_BIN       : "/usr/local/php-%{PHP_VER}/bin/php"
+                PHP_FPM       : "/usr/local/php-%{PHP_VER}/sbin/php-fpm"
+                VARNISHD      : "/usr/local/varnish/sbin/varnishd"
+                VARNISHADM    : "/usr/local/varnish/bin/varnishadm"
+                RG_DEVPATH    : "/data/${USER}/devspace/rigger-ng"
+                ZDAEMON       : "/usr/local/python/bin/zdaemon"
+                BEANSTALKD    : "/usr/local/beanstalkd/bin/beanstalkd"
+                NGINX_CONF    : "/usr/local/nginx/conf/include/"
+                NGINX_BIN     : "service nginx"
+                NGINX_TESTBIN : "/usr/local/nginx/sbin/nginx"
+
+                RIGGER        : "/data/x/tools/rigger-ng/"
+                PYLON         : "/data/x/libs/pylon-ng"
+
+                XCC_VENDOR    : "/data/x/libs/xcc_vendor"
+                XCC_LIBS      : "${XCC_VENDOR}"
+
+                _TPL_VER      :  "v1"
+                TPL_ROOt      : "${PRJ_ROOT}/conf/tpls/"
+            - !R.path
+                dst  : "${PRJ_ROOT}/conf/used "
+
+    - !R.env
+        _name : "_speed_max"
+        _res  :
+            - !R.vars
+                MAX_CHILDREN      : "200"
+                START_SERVERS     : "50"
+                MIN_SPARE_SERVERS : "50"
+                MAX_SPARE_SERVERS : "50"
+    - !R.env
+        _name    : "_speed_min"
+        _res :
+            - !R.vars
+                MAX_CHILDREN      : "5"
+                START_SERVERS     : "2"
+                MIN_SPARE_SERVERS : "1"
+                MAX_SPARE_SERVERS : "3"
+
+    - !R.env
+        _name    : "_debug"
+        _res :
+            - !R.vars
+                PHP_ERROR : "E_ALL & ~E_NOTICE"
+                DEBUG     : "ON"
+                LOG_MODE  : "DEBUG"
+    - !R.env
+        _name    : "_xdebug"
+        _res :
+            - !R.vars
+                _TPL_VER    : "v1_xdebug"
+
+    - !R.env
+        _name    : "_release"
+        _res :
+            - !R.vars
+                PHP_ERROR : "E_ERROR"
+                DEBUG     : "XOFF"
+                LOG_MODE  : "ONLINE"
+_mod :
+    - !R.modul
+        _name : "pylon_init"
+        _args :
+            PHP_INI  : "${PRJ_ROOT}/conf/used/init_php.ini"
+            INIT_SQL : "${PRJ_ROOT}/src/sys_init/create_db.sql"
+            INIT_PHP : ""
+            USE_ROOT : "${PRJ_ROOT}/conf/used/"
+            _res  :
+            - !R.mysql
+                host:     "${DB_HOST}"
+                name:     "${DB_NAME}"
+                user:     "${DB_USER}"
+                password: "${DB_PWD}"
+                sql:      "${INIT_SQL}"
+
+            - !R.file_tpl
+                tpl      : "${TPL_ROOT}/init_php.ini"
+                dst      : "${USE_ROOT}/init_php.ini"
+            - !R.pylon_autoload
+                include  : "${INCLUDE_PATH}"
+            - !R.php
+                script: "${INIT_PHP}"
+
+
+    - !R.modul
+        _name : "pylon_api"
+        _args :
+            USE_ROOT     : "${PRJ_ROOT}/conf/used/"
+            API_ENTRY    : "${PRJ_ROOT}/src/sys_api/"
+            NGX_TPL      : "${TPL_ROOT}/api_ngx.conf"
+            INI_TPL      : "${TPL_ROOT}/api_php.ini"
+            FPM_TPL      : "${TPL_ROOT}/api_fpm.conf"
+            NGX_NAME     : "${PRJ_NAME}_${SYS_NAME}_${USER}_${TAG}.conf"
+            INCLUDE_PATH : ""
+            TAG          : "api"
+        _res  :
+            - !R.vars
+                SOCK_FILE    : "${RUN_PATH}/api_fpm.sock"
+            - !R.pylon_autoload
+                include  : "${INCLUDE_PATH}"
+            - !R.pylon_router
+                version  : 2
+                include  : "${API_ENTRY}"
+            - !R.nginx_conf
+                sudo     : true
+                src      : "${USE_ROOT}/${TAG}_ngx.conf"
+                name     : "${NGX_NAME}"
+                tpl      : "${NGX_TPL}"
+            - !R.fpm
+                sudo     : True
+                ini_tpl  : "${INI_TPL}"
+                conf_tpl : "${FPM_TPL}"
+
+    - !R.modul
+        _name : "pylon_web"
+        _args :
+            USE_ROOT     : "${PRJ_ROOT}/conf/used/"
+            WEB_ENTRY    : "${PRJ_ROOT}/src/sys_web/"
+            NGX_TPL      : "${TPL_ROOT}/web_ngx.conf"
+            NGX_NAME     : "${PRJ_NAME}_${SYS_NAME}_${USER}_${TAG}.conf"
+            INI_TPL      : "${TPL_ROOT}/web_php.ini"
+            FPM_TPL      : "${TPL_ROOT}/web_fpm.conf"
+            INCLUDE_PATH : ""
+            TAG          : "web"
+        _res  :
+            - !R.vars
+                SOCK_FILE    : "${RUN_PATH}/web_fpm.sock"
+            - !R.pylon_autoload
+                include  : "${INCLUDE_PATH}"
+            - !R.pylon_router
+                version  : 2
+                include  : "${WEB_ENTRY}"
+            - !R.nginx_conf
+                sudo     : true
+                src      : "${USE_ROOT}/${TAG}_ngx.conf"
+                name     : "${NGX_NAME}"
+                tpl      : "${NGX_TPL}"
+            - !R.fpm
+                sudo     : True
+                ini_tpl  : "${INI_TPL}"
+                conf_tpl : "${FPM_TPL}"
+
+
+    - !R.modul
+        _name : "pylon_fe"
+        _args :
+            USE_ROOT     : "${PRJ_ROOT}/conf/used/"
+            NGX_NAME     : "${PRJ_NAME}_${SYS_NAME}_${USER}_${TAG}.conf"
+            NGX_TPL      : "${TPL_ROOT}/fe_ngx.conf"
+            NGX_NAME     : "${PRJ_NAME}_${SYS_NAME}_${USER}_${TAG}.conf"
+            INI_TPL      : "${TPL_ROOT}/fe_php.ini"
+            INCLUDE_PATH : ""
+            TAG          : "fe"
+        _res  :
+            - !R.nginx_conf
+                sudo     : true
+                src      : "${USE_ROOT}/${SYS_NAME}_ngx.conf"
+                name     : "${NGX_NAME}"
+                tpl      : "${NGX_TPL}"
+
+
+    - !R.modul
+        _name : "pylon_php"
+        _args :
+            USE_ROOT     : "${PRJ_ROOT}/conf/used/"
+            PHP_INI      : "${USE_ROOT}/${TAG}_php.ini"
+            PHP_SCRIPT   : ""
+            PHP_ARGS     : ""
+            INCLUDE_PATH : ""
+            TAG          : "console"
+        _res  :
+            - !R.file_tpl
+                tpl      : "${TPL_ROOT}/console_php.ini"
+                dst      : "${PHP_INI}"
+            - !R.pylon_autoload
+                include  : "${INCLUDE_PATH}"
+
+            - !R.php
+                ini    : "${PHP_INI}"
+                script : "${PHP_SCRIPT}"
+                args   : "${PHP_ARGS}"
+
+    - !R.modul
+        _name : "pylon_unit"
+        _args :
+             TEST_PATH    : "test"
+             CONF_PATH    : "conf"
+             USE_ROOT     : "${PRJ_ROOT}/conf/used/"
+             INCLUDE_PATH : ""
+
+        _res  :
+            - !R.pylon_autoload
+                include : "${INCLUDE_PATH}"
+            - !R.file_tpl
+                 tpl    : "${TPL_ROOT}/test_php.ini"
+                 dst    : "${USE_ROOT}/test_php.ini"
+            - !R.php
+                bin     : "${PHP_BIN}"
+                ini     : "${USE_ROOT}/test_php.ini"
+                script  : "/usr/local/php-7.1/bin/phpunit"
+                args    : "--configuration ${PRJ_ROOT}/${TEST_PATH}/phpunit.xml --coverage-clover ${TEST_PATH}/reports/phpunit.coverage.xml --log-junit ${TEST_PATH}/reports/phpunit.report.xml"

@@ -13,7 +13,7 @@ _env:
         _name    : "base"
         _res :
             - !R.vars
-                BASE_INCLUDE : "${PRJ_ROOT}/src/bizlogic}"
+                BASE_INCLUDE : "${PRJ_ROOT}/src/bizlogic"
 
     - !R.env
         _name    : "dev"

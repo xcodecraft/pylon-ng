@@ -6,8 +6,9 @@ _env:
                 root      : "${HOME}/devspace/${PRJ_NAME}"
                 name      : "${PRJ_NAME}"
             - !R.vars
-                RUN_USER   : "${USER}"
-                XDEBUG_DIR : "${HOME}/devspace/xdebug"
+                RUN_USER        : "${USER}"
+                BASE_RUN_PATH   : "${HOME}/devspace/run/${PRJ_NAME}"
+                XDEBUG_DIR      : "${HOME}/devspace/xdebug"
 
 
     - !R.env
@@ -17,8 +18,9 @@ _env:
                 root      : "/data/jenkins/workspace/${PRJ_NAME}"
                 name      : "${PRJ_NAME}"
             - !R.vars
-                RUN_USER     : "%{RUN_USER}"
-                XDEBUG_DIR : "/data/jenkins/workspace/xdebug"
+                RUN_USER        : "%{RUN_USER}"
+                BASE_RUN_PATH   : "/data/x/run/${PRJ_NAME}"
+                XDEBUG_DIR      : "/data/jenkins/workspace/xdebug"
 
 
     - !R.env
@@ -28,17 +30,10 @@ _env:
                 root      : "/data/x/projects/${PRJ_NAME}"
                 name      : "${PRJ_NAME}"
             - !R.vars
-                RUN_USER     : "%{RUN_USER}"
-                XDEBUG_DIR : "/data/x/projects/xdebug"
+                RUN_USER        : "%{RUN_USER}"
+                XDEBUG_DIR      : "/data/x/projects/xdebug"
+                BASE_RUN_PATH   : "/data/x/run/${PRJ_NAME}"
 
-    - !R.env
-        _name    : "_diy_deploy"
-        _res :
-            - !R.project
-                root      : "${DEPLOY_PATH}/${PRJ_NAME}"
-                name      : "${PRJ_NAME}"
-            - !R.vars
-                RUN_USER     : "%{RUN_USER}"
 
     - !R.env
         _name    : "_etc_deploy"

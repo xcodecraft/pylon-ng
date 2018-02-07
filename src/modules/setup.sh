@@ -14,8 +14,11 @@ if test -e /etc/redhat-release  ; then
     if test  "$CONTENT" = "CentOS release 6.8 (Final)" ; then
         OS="centos-6.8"
     fi
-    if test  "$CONTENT" = "CentOS Linux release 7.2.1511 (Core) " ; then 
-        OS="centos-7.0"
+    if test  "$CONTENT" = "CentOS Linux release 7.3.1611 (Core) " ; then
+        OS="centos-7.3"
+    fi
+    if test  "$CONTENT" = "CentOS Linux release 7.4.1708 (Core) " ; then
+        OS="centos-7.4"
     fi
 
 fi
@@ -40,5 +43,6 @@ function deploy_phpext ()
     fi
 
 }
-deploy_phpext 7.0
+
+deploy_phpext 7.1
 /sbin/ldconfig

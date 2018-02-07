@@ -22,3 +22,12 @@ _env:
                 PHP_INI_TPL : "tpl_web_php.ini"
                 PHP_BIN     : "/usr/local/php-7.0/bin/php"
                 PHP_FPM     : "/usr/local/php-7.0/sbin/php-fpm"
+    - !R.env
+        _name : "php71"
+        _res  :
+            - !R.vars
+                PHP_VER     : "7.1"
+                PHP_VER_TAG : "71"
+                PHP_INI_TPL : "tpl_web_php.ini"
+                PHP_BIN     : "/usr/local/php-7.1/bin/php"
+                PHP_FPM     : "/usr/local/php-7.1/sbin/php-fpm"

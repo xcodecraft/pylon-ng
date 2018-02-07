@@ -1,6 +1,6 @@
 #!/bin/bash
 OS="UNKNOW"
-OS_FILE=/etc/redhat-release 
+OS_FILE=/etc/redhat-release
 if test -e $OS_FILE  ; then
     CONTENT=`cat $OS_FILE `
     if test  "$CONTENT" = "CentOS release 5.4 (Final)" ; then
@@ -15,8 +15,11 @@ if test -e $OS_FILE  ; then
     if test  "$CONTENT" = "CentOS release 6.8 (Final)" ; then
         OS="centos-6.8"
     fi
-    if test  "$CONTENT" = "CentOS Linux release 7.2.1511 (Core) " ; then 
-        OS="centos-7.0"
+    if test  "$CONTENT" = "CentOS Linux release 7.3.1611 (Core) " ; then
+        OS="centos-7.3"
+    fi
+    if test  "$CONTENT" = "CentOS Linux release 7.4.1708 (Core) " ; then
+        OS="centos-7.4"
     fi
 fi
 
@@ -27,5 +30,5 @@ if test "$OS" = "UNKNOW"  ;  then
 fi
 
 
-rg start -ecentos,$OS,php70 -s ext
+/data/x/tools/rigger-ng/rg conf,start -ecentos,$OS,php71 -s ext
 

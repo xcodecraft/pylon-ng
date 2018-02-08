@@ -67,6 +67,18 @@ _sys:
                       INCLUDE_PATH : "${prj_root}/src/sys_${sys_name}:${BASE_INCLUDE}"
 
       -  !R.system
+          _name : "web"
+          _res  :
+              - !R.vars
+                  DOMAIN      : "www.${BASE_DOMAIN}"
+                  PORT        : "80"
+              - !R.using
+                  modul : "pylon_web"
+                  args  : !R.vars
+                      API_ENTRY    : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
+                      INCLUDE_PATH : "${prj_root}/src/sys_${sys_name}:${BASE_INCLUDE}"
+
+      -  !R.system
           _name : "test"
           _res:
               - !R.vars

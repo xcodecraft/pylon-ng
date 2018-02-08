@@ -180,7 +180,7 @@ _mod :
             INIT_SQL : "${PRJ_ROOT}/src/sys_init/create_db.sql"
             INIT_PHP : ""
             USE_ROOT : "${PRJ_ROOT}/conf/used/"
-            _res  :
+        _res  :
             - !R.mysql
                 host:     "${DB_HOST}"
                 name:     "${DB_NAME}"

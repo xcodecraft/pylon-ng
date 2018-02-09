@@ -1,4 +1,8 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
+
 function auto_load($name)
 {
     print "[[ $name  ]]" ;
@@ -7,7 +11,7 @@ function auto_load2($name)
 {
     print "[[ $name   2 ]]" ;
 }
-class AutoloadTest extends PHPUnit_Framework_TestCase
+class AutoloadTest extends TestCase
 {
 
     public function testLoad()

@@ -1,5 +1,7 @@
 <?php
-class  TestStatus 
+
+use PHPUnit\Framework\TestCase;
+class  TestStatus
 {
     const  LIVED = 0;
     const  DEATH  = 1;
@@ -8,12 +10,12 @@ class  TestStatus
     const  GRANDFATHER    = 4;
 }
 
-class StatusMachineTest  extends PHPUnit_Framework_TestCase
+class StatusMachineTest  extends TestCase
 {
 
 
     private $stats;
-    public function setUp() 
+    public function setUp()
     {
 
         $this->stats = new XStatusMachine();
@@ -23,10 +25,10 @@ class StatusMachineTest  extends PHPUnit_Framework_TestCase
         $this->stats->moveable(TestStatus.LIVED,TestStatus.DEATH);
         $this->stats->moveable(TestStatus.SON,TestStatus.FATHER,TestStatus.GRANDFATHER);
         $this->stats->setCurrentStatus(TestStatus.SON);
-    } 
+    }
     public function testSuccessToNextState()
     {
-        
+
         $this->stats->moveTo(TestStatus.FATHER);
         $this->stats->undo();
         $this->stats->moveTo(TestStatus.FATHER);

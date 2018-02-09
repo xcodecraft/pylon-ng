@@ -286,6 +286,26 @@ class XLogKit
     }
 }
 
+/*
+class LogMessage
+{
+    //$uid  ;
+    //$zone ;
+    //$level ;
+    //$role  ;
+    public static function ins($uid)
+    {
+        $insObj = new LogMessage() ;
+        $insObj->role  = XSetting::$prjname ;
+        $insObj->uid   = $uid ;
+        $insObj->level = "info" ;
+        $insObj->data  = [] ;
+
+        return $insObj ;
+    }
+}
+ */
+
 
 
 function pylon_load_cls_index()

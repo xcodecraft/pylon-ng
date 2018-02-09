@@ -1,4 +1,6 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
 class DBCTestCls
 {
     private $a;
@@ -17,59 +19,59 @@ class DBCTestCls
         DBC::requireNotNull($c);
     }
 }
-class DBCTestCase extends PHPUnit_Framework_TestCase
+class DBCTestCase extends TestCase
 {
-    /** 
-     * @brief 
+    /**
+     * @brief
      * @expectedException  XDBCException
-     * @return 
+     * @return
      */
     public function testTrue()
     {
         DBC::requireTrue(false);
     }
-    /** 
-     * @brief 
+    /**
+     * @brief
      * @expectedException  XDBCException
-     * @return 
+     * @return
      */
     public function testEquals()
     {
         $b= "mytest";
         DBC::requireEquals($b,"text",'$b');
     }
-    /** 
-     * @brief 
+    /**
+     * @brief
      * @expectedException  XDBCException
-     * @return 
+     * @return
      */
     public function testNotEquals()
     {
         $b= "text";
         DBC::requireNotEquals($b,"text");
     }
-    /** 
-     * @brief 
+    /**
+     * @brief
      * @expectedException  XDBCException
-     * @return 
+     * @return
      */
     public function testUnExpect()
     {
         DBC::unExpect($b);
     }
-    /** 
-     * @brief 
+    /**
+     * @brief
      * @expectedException  XDBCException
-     * @return 
+     * @return
      */
     public function testNotNull()
     {
         DBC::requireNotNull(null);
     }
-    /** 
-     * @brief 
+    /**
+     * @brief
      * @expectedException  XDBCException
-     * @return 
+     * @return
      */
     public function testNull()
     {

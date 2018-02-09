@@ -1,6 +1,7 @@
 cls_dbc,DBC
 cls_debug,Debug
 cls_fastsqlexecutor,FastSQLExecutor
+cls_logmessage,LogMessage
 cls_lzlexecutor,LZLExecutor
 cls_pylon\driver\fastrouter,pylon\driver\FastRouter
 cls_pylon\driver\idgentersvcimp,pylon\driver\IDGenterSvcImp

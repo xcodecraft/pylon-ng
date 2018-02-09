@@ -1,7 +1,7 @@
 _mod :
     - !R.modul
         _name : "pylon_web"
-        _args : 
+        _args :
             MOD_TAG:     None
             MOD_ENTRY:   None
             MOD_INCLUDE: None
@@ -25,7 +25,7 @@ _mod :
 
     - !R.modul
         _name : "pylon_php"
-        _args : 
+        _args :
             MOD_TAG:     None
             MOD_INCLUDE: None
         _res  :
@@ -41,18 +41,19 @@ _mod :
 
     - !R.modul
         _name : "phpunit"
-        _args : 
+        _args :
              TEST_INCLUDE : None
              TEST_PATH    : "test"
-             
+             TEST_CONF    : ""
+
         _res  :
             - !R.pylon_autoload
-                include  : "${TEST_INCLUDE}"
+                include  : "${TEST_INCLUDE}:${PRJ_ROOT}/vendor/phpunit"
             - !R.file_tpl
                  tpl : "${PRJ_ROOT}/conf/options/tpl_test_php.ini"
                  dst : "${PRJ_ROOT}/conf/used/test_php.ini"
             - !R.php
                 bin    : "${PHP_BIN}"
                 ini    : "${PRJ_ROOT}/conf/used/test_php.ini"
-                script : "/usr/local/php/bin/phpunit"
+                script : "${PRJ_ROOT}/vendor/bin/phpunit"
                 args   : "--configuration ${PRJ_ROOT}/${TEST_PATH}/phpunit.xml --coverage-clover ${TEST_PATH}/reports/phpunit.coverage.xml --log-junit ${TEST_PATH}/reports/phpunit.report.xml"

@@ -93,7 +93,7 @@ class XForbidden extends XRuntimeException
  * @ingroup exception
  * @brief  没有实现
  */
-class XNotImplemented extends XRuntimeException
+class XNotImplemented extends XLogicException
 {
     public function __construct($msg="",$code=XErrCode::UNDEFINE)
     {

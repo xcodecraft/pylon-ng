@@ -1,8 +1,9 @@
 <?php
 use pylon\impl\Prompt ;
 use pylon\impl\JoinUtls ;
+use PHPUnit\Framework\TestCase;
 
-class UtilityTest extends PHPUnit_Framework_TestCase
+class UtilityTest extends TestCase
 {
     public function testPromot()
     {

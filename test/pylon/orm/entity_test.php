@@ -2,8 +2,9 @@
 
 use pylon\impl\NullEntity ;
 use pylon\impl\DaoFinderUtls ;
+use PHPUnit\Framework\TestCase;
 
-class EntityTest extends PHPUnit_Framework_TestCase
+class EntityTest extends TestCase
 {
     private $session = null;
     public function __construct()

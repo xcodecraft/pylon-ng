@@ -1,5 +1,6 @@
 <?php
 use pylon\impl\XRouter ;
+use PHPUnit\Framework\TestCase;
 class RouterStub  implements XIRouter
 {
     public function _find($uri)
@@ -8,7 +9,7 @@ class RouterStub  implements XIRouter
     }
 }
 //@REST_RULE: /mygoods/$uid/
-class mygoods  extends XSimpleService implements XService 
+class mygoods  extends XSimpleService implements XService
 {
     public function _get($xcontext,$request,$response)
     {
@@ -19,7 +20,7 @@ class mygoods  extends XSimpleService implements XService
 
 class ResponseStub implements XResponse
 {
-    public function send($logger,$set_header=true) 
+    public function send($logger,$set_header=true)
     {}
     public function error($errmsg,$errno = XErrCode::UNKNOW,$status_code = 510)
     {}
@@ -82,7 +83,7 @@ class AfterErr extends XInterceptor
 
 
 
-class RestTest extends PHPUnit_Framework_TestCase
+class RestTest extends TestCase
 {
     public function http_get($url)
     {

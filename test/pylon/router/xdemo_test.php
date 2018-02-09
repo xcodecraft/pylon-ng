@@ -1,10 +1,11 @@
 <?php
+use PHPUnit\Framework\TestCase;
 /**
  * user profile test case : not config REST_RULE
  *
  * @author yangwm
  */
-class user_profile_Test extends PHPUnit_Framework_TestCase
+class user_profile_Test extends TestCase
 {
     public function setup()
     {
@@ -46,7 +47,7 @@ class user_profile_Test extends PHPUnit_Framework_TestCase
  * game_test2 test case : config REST_RULE
  *
  */
-class game_test2_Test extends PHPUnit_Framework_TestCase
+class game_test2_Test extends TestCase
 {
     public function setup()
     {

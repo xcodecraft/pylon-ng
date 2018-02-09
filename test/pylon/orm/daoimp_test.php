@@ -9,6 +9,7 @@ use pylon\impl\DQLObj ;
 use pylon\impl\DaoFinderUtls ;
 use pylon\driver\XFastSQLExecutor ;
 use pylon\driver\MySqlIDGenerator ;
+use PHPUnit\Framework\TestCase;
 
 class UTAssemply
 {
@@ -46,7 +47,7 @@ class StoreStg
         return "user_2";
     }
 }
-class DaoImpTest extends PHPUnit_Framework_TestCase
+class DaoImpTest extends TestCase
 {
     protected $oldXEntEnv=null;
     private $app= null;

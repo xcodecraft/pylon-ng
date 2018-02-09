@@ -1,10 +1,11 @@
 <?php
 use pylon\impl\XAopRuleSet ;
 use pylon\impl\XIntercepterTarget ;
+use PHPUnit\Framework\TestCase;
 class StubIntercepter
 {
 }
-class AopTest extends PHPUnit_Framework_TestCase
+class AopTest extends TestCase
 {
     public function testA()
     {

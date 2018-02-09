@@ -1,6 +1,7 @@
 <?php
 
 use pylon\driver\XFastSQLExecutor ;
+use PHPUnit\Framework\TestCase;
 
 class TestLogger
 {
@@ -10,7 +11,7 @@ class TestLogger
         $this->_msgs[]=$msg;
     }
 }
-class  DBExecuterTC extends PHPUnit_Framework_TestCase
+class  DBExecuterTC extends TestCase
 {
 	private $_exeManager;
 	private $_executer;

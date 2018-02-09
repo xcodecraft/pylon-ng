@@ -3,6 +3,7 @@
 use pylon\driver\XFastSQLExecutor ;
 use pylon\driver\IDGenterSvcImp ;
 use pylon\driver\MySqlIDGenerator ;
+use PHPUnit\Framework\TestCase;
 class TestX
 {
     private $name;
@@ -11,7 +12,7 @@ class TestX
         $this->name =$name;
     }
 }
-class IDGenterSvcTC extends PHPUnit_Framework_TestCase
+class IDGenterSvcTC extends TestCase
 {
     private $_executer;
     private $_tableName;
@@ -33,7 +34,7 @@ class IDGenterSvcTC extends PHPUnit_Framework_TestCase
         $cmd = "CREATE TABLE IF NOT EXISTS {$this->_tableName}
         (
                     id                             integer(11),
-                    obj                            varchar(30), 
+                    obj                            varchar(30),
                     step  integer(11)
                )";
 
@@ -58,7 +59,7 @@ class IDGenterSvcTC extends PHPUnit_Framework_TestCase
         for($i = 0; $i < 20; $i++)
         {
             $otherid[] = $gener->createID('other');
-            $testid[] =  $gener->createID('test');   
+            $testid[] =  $gener->createID('test');
         }
         for($i=1 ; $i<19; $i++)
         {
@@ -78,7 +79,7 @@ class IDGenterSvcTC extends PHPUnit_Framework_TestCase
     }
 }
 
-class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
+class Double_Master_IDGenterSvcTC extends TestCase
 {
     private $_executer;
     private $_tableName;
@@ -106,7 +107,7 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
         $cmd = "CREATE TABLE IF NOT EXISTS {$this->_tableName}
         (
                     id                             integer(11),
-                    obj                            varchar(30), 
+                    obj                            varchar(30),
                     step  integer(11)
                )";
 
@@ -132,22 +133,22 @@ class Double_Master_IDGenterSvcTC extends PHPUnit_Framework_TestCase
         for($i = 0; $i < 20; $i++)
         {
             $otherid[] = $gener->createID('other');
-            $testid[] =  $gener->createID('test');   
+            $testid[] =  $gener->createID('test');
         }
         for($i=1 ; $i<19; $i++)
         {
             if($second)
             {
-                $result = $otherid[$i] & 1 ; 
+                $result = $otherid[$i] & 1 ;
                 $this->assertFalse($result == 1);
-                $result = $testid[$i] & 1 ; 
+                $result = $testid[$i] & 1 ;
                 $this->assertFalse($result == 1);
             }
             else
             {
-                $result = $otherid[$i] & 1 ; 
+                $result = $otherid[$i] & 1 ;
                 $this->assertTrue($result == 1);
-                $result = $testid[$i] & 1 ; 
+                $result = $testid[$i] & 1 ;
                 $this->assertTrue($result == 1);
             }
             $this->assertTrue($otherid[$i-1]<$otherid[$i]);

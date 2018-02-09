@@ -1,4 +1,4 @@
-rg conf -e dev-7 -s init,demo,test
+rg conf -e newest -s demo,test
 rg restart
 
 

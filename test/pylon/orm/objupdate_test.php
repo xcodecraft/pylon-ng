@@ -1,6 +1,8 @@
 <?php
 
 use pylon\impl\ObjUpdater ;
+use PHPUnit\Framework\TestCase;
+
 class ObjUpdateTest extends ObjUpdater
 {
     public $commitObjs=array();
@@ -46,7 +48,7 @@ class A extends XProperty
     }
 }
 
-class ObjUpdateTC extends PHPUnit_Framework_TestCase
+class ObjUpdateTC extends TestCase
 {
     public function testObjUpdate()
     {

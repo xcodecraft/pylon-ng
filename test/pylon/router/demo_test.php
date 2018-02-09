@@ -1,5 +1,7 @@
 <?php
-class RestDemoTest extends PHPUnit_Framework_TestCase
+
+use PHPUnit\Framework\TestCase;
+class RestDemoTest extends TestCase
 {
     public function setup()
     {

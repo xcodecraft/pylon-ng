@@ -4,8 +4,9 @@ use pylon\impl\SQLInsertStatment ;
 use pylon\impl\SQLUpdateStatment ;
 use pylon\impl\SQLDelStatement ;
 use pylon\impl\JoinUtls ;
+use PHPUnit\Framework\TestCase;
 
-    class  SQLConstructTest extends PHPUnit_Framework_TestCase
+    class  SQLConstructTest extends TestCase
     {
         public function testSelect()
         {
@@ -51,8 +52,8 @@ use pylon\impl\JoinUtls ;
         }
         public function testA()
         {
-            $arr = array ( "id"=> 3, "ver"=> 1, "product"=>  "sagitar", 
-                        "name"=> "bbs stat" ,"rpttype" => 0,"descp"=> "bbs stat-desc", 
+            $arr = array ( "id"=> 3, "ver"=> 1, "product"=>  "sagitar",
+                        "name"=> "bbs stat" ,"rpttype" => 0,"descp"=> "bbs stat-desc",
                         "dataid"=> 7);
             $statement = new SQLInsertStatment("test");
             $statement->columnArray(array_keys($arr));

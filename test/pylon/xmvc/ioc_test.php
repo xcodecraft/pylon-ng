@@ -1,5 +1,6 @@
 <?php
-class XBoxTest extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+class XBoxTest extends TestCase
 {
 
     public function testA()

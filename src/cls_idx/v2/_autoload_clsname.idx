@@ -1,3 +1,4 @@
+cls_logmessage,LogMessage
 cls_pylon\driver\fastrouter,pylon\driver\FastRouter
 cls_pylon\driver\idgentersvcimp,pylon\driver\IDGenterSvcImp
 cls_pylon\driver\mysqlidgenerator,pylon\driver\MySqlIDGenerator

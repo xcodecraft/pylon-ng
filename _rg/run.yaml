@@ -72,6 +72,10 @@ _env:
         _mix: "include,_dev,base"
 
     - !R.env
+        _name : "newest"
+        _mix: "include,centos-7.4,php71,_dev,base"
+
+    - !R.env
         _name : "ci"
         _mix: "_ci,php56,centos66,base"
         _res :
@@ -174,4 +178,20 @@ _sys:
                     TEST_INCLUDE : "${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
                     SVC_ENTRY    : "${PRJ_ROOT}/demo/"
                     TEST_PATH    : "test/pylon"
+                    TEST_CONF    : "phpunit.xml"
+
+    - !R.system
+        _name : "test_db"
+        _res  :
+            - !R.vars
+                APP_SYS       : "demo"
+                DOMAIN        : "${BASE_DOMAIN}"
+
+            - !R.using
+                modul : "phpunit"
+                args  : !R.vars
+                    TEST_INCLUDE : "${PRJ_ROOT}/test/pylon:${PRJ_ROOT}/demo"
+                    SVC_ENTRY    : "${PRJ_ROOT}/demo/"
+                    TEST_PATH    : "test/pylon"
+                    TEST_CONF    : "phpunit_db.xml"
 

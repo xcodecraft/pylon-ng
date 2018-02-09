@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Framework\TestCase;
 // class ArrayCache extends XProperty
 // {
 //     public function get($key)
@@ -17,7 +18,7 @@
 //     }
 // }
 
-class FrameWorkTestCase extends PHPUnit_Framework_TestCase
+class FrameWorkTestCase extends TestCase
 {
     // public function testCacheOberver()
     // {
@@ -78,7 +79,7 @@ class TestDao
     {}
 }
 
-// class CacheProxyTC extends PHPUnit_Framework_TestCase
+// class CacheProxyTC extends TestCase
 // {
 //     public function setUp()
 //     {

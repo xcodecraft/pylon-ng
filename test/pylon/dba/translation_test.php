@@ -1,6 +1,8 @@
 <?php
-class TransTc //extends PHPUnit_Framework_TestCase
-//class TransTc 
+
+use PHPUnit\Framework\TestCase;
+class TransTc //extends TestCase
+//class TransTc
 {
     private $_insertCmd = "insert trans_test (id,name) values(1,\"normal\"); ";
     private $_insertCmd1 = "insert trans_test_1 (id,name) values(1,\"normal\"); ";
@@ -19,19 +21,19 @@ class TransTc //extends PHPUnit_Framework_TestCase
 
         $cmds[] = "drop table if exists  trans_test";
         $cmds[] = "drop table if exists  trans_test_1";
-        $cmds[] = "create table  trans_test 
+        $cmds[] = "create table  trans_test
             (
                 id                             integer(11),
-                   name                           varchar(30), 
-                   PRIMARY KEY (id) 
+                   name                           varchar(30),
+                   PRIMARY KEY (id)
                ) ENGINE=Innodb
                ";
-        $cmds[] = "create table  trans_test_1 
+        $cmds[] = "create table  trans_test_1
             (
                 id                             integer(11),
                    name                           varchar(30) ,
-                   PRIMARY KEY (id) 
-               ) ENGINE=Innodb 
+                   PRIMARY KEY (id)
+               ) ENGINE=Innodb
                ";
         $this->_executer->exeNoQuerys($cmds);
     }
@@ -45,7 +47,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
         if(
             $this->_executer->exeNoQuery($this->_insertCmd) &&
             $this->_executer->exeNoQuery($this->_insertCmd1) &&
-            $this->_executer->query($this->_queryCmd)&& 
+            $this->_executer->query($this->_queryCmd)&&
             $this->_executer->exeNoQuery($this->_updateCmd))
         {
             return true;
@@ -59,7 +61,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
             $this->_executer->exeNoQuery($this->_insertCmd) &&
             $this->_executer->exeNoQuery($this->_insertCmd1) &&
             $this->_executer->exeNoQuery($this->_insertCmd1) &&
-            $this->_executer->query($this->_queryCmd)&& 
+            $this->_executer->query($this->_queryCmd)&&
             $this->_executer->exeNoQuery($this->_updateCmd))
         {
             return true;
@@ -86,7 +88,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
         $this->accessDBFail();
         $this->assertTrue($this->_executer->haveCollector());
         try{
-        if($trans->commit())	
+        if($trans->commit())
         {
             return $this->_executer->query($this->_queryCmd) != null;
         }
@@ -104,7 +106,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
         $trans = new Translation($this->_executer);
         $this->accessDB();
         $this->assertTrue($this->_executer->haveCollector());
-        if($trans->rollback())	
+        if($trans->rollback())
         {
             return $this->_executer->query($this->_queryCmd) == null;
         }
@@ -114,7 +116,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
     function testCommit()
     {
         try{
-            if($this->doSucCommit())	
+            if($this->doSucCommit())
             {
                 $this->assertTrue(true);
                 return ;
@@ -133,7 +135,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
     {
         try
         {
-            if(!$this->doFailCommit())	
+            if(!$this->doFailCommit())
             {
                 $this->assertTrue(false);
             }
@@ -150,7 +152,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
         try
         {
             if($this->doRollback())
-            {			
+            {
                 $this->assertTrue(!$this->_executer->haveCollector());
                 return ;
             }
@@ -169,9 +171,9 @@ class TransTc //extends PHPUnit_Framework_TestCase
         $trans   = &$manager->createTrans();
 
         assert($this->doSucCommit());
-        if($trans->commit())	
+        if($trans->commit())
         {
-            return $this->_executer->query($row =null,$this->_queryCmd) 
+            return $this->_executer->query($row =null,$this->_queryCmd)
                         && $row != null;
         }
         return false;
@@ -182,7 +184,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
         $manager = &TransManager::instance();
         $trans   = $manager->createTrans();
         $this->testCommit();
-        $trans->commit();	
+        $trans->commit();
     }
 
     function testNest2()
@@ -190,7 +192,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
         $manager = &TransManager::instance();
         $trans   = $manager->createTrans();
         $this->testCommit();
-        $trans->rollback();	
+        $trans->rollback();
     }
     function testNest3()
     {
@@ -198,7 +200,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
         $trans   = $manager->createTrans();
         $this->testCommit();
         $this->testRollback();
-        $trans->commit();	
+        $trans->commit();
     }
 
     function testNest4()
@@ -207,7 +209,7 @@ class TransTc //extends PHPUnit_Framework_TestCase
         $trans   = $manager->createTrans();
         $this->testCommit();
         $this->testCommit();
-        $trans->rollback();	
+        $trans->rollback();
     }
      */
 

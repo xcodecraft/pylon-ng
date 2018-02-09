@@ -1,3 +1,4 @@
+LogMessage,/pylon/pylon.php
 pylon\driver\FastRouter,/pylon/driver/rest_finder.php
 pylon\driver\IDGenterSvcImp,/pylon/driver/idgenerator.php
 pylon\driver\MySqlIDGenerator,/pylon/driver/idgenerator.php

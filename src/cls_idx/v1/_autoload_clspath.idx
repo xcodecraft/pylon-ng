@@ -1,6 +1,7 @@
 DBC,/compatible/v1/old.php
 Debug,/compatible/v1/old.php
 FastSQLExecutor,/compatible/v1/old.php
+LogMessage,/pylon/pylon.php
 LZLExecutor,/compatible/v1/old.php
 pylon\driver\FastRouter,/pylon/driver/rest_finder.php
 pylon\driver\IDGenterSvcImp,/pylon/driver/idgenerator.php
